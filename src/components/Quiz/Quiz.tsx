@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { quizQuestions } from './quizData';
-import { ArrowRight, ArrowLeft, CheckCircle } from 'lucide-react';
+// Добавили Loader2 для отображения индикатора отправки
+import { ArrowRight, ArrowLeft, CheckCircle, Loader2 } from 'lucide-react';
 
 export const Quiz = () => {
   // Состояния для шагов, ответов и формы контактов
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [isFinished, setIsFinished] = useState(false);
+  const [isSending, setIsSending] = useState(false); // Защита кнопки от повторных кликов
   const [userData, setUserData] = useState({ name: '', phone: '' });
 
   const currentQuestion = quizQuestions[currentStep];
@@ -30,11 +32,63 @@ export const Quiz = () => {
     if (currentStep > 0) setCurrentStep(currentStep - 1);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // МОДЕРНИЗИРОВАННАЯ ФУНКЦИЯ ОТПРАВКИ ЗАЯВКИ В TELEGRAM
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Senior-подход: здесь данные отправляются в CRM юриста или Telegram-бота
-    console.log('Lead Data for CRM:', { answers, userData });
-    alert('Стратегия успешно сформирована! Юрист свяжется с вами в течение 15 минут.');
+    setIsSending(true);
+
+    // ВСТАВЬТЕ СЮДА ВАШИ ТОЧНЫЕ ДАННЫЕ ИЗ ТЕЛЕГРАМА
+    const TELEGRAM_TOKEN = '8780330169:AAGTLGeN6-jJx7nNv8w15tXlapbhfiaC8Dw';
+    const TELEGRAM_CHAT_ID = '477802635';
+
+    // Очищаем введенный номер от скобок и дефисов для генерации чистой ссылки в WhatsApp
+    const cleanPhone = userData.phone.replace(/\D/g, '');
+
+    // Форматируем красивый текст сообщения для Анастасии
+    const message = `
+🕊️ *ЛЁГКАЯ ЛЕГАЛИЗАЦИЯ*
+📥 _Новая анкета с сайта_
+
+👤 *Имя клиента:* ${userData.name}
+📞 *Телефон:* ${userData.phone}
+
+📊 *Профиль анкетирования:*
+• *Источник дохода:* ${answers.source === 'remote' ? 'Удаленка / Фриланс' : answers.source === 'business' ? 'Бизнес / Дивиденды' : answers.source === 'passive' ? 'Пассивный доход' : 'Ищет работу на месте'}
+• *Сумма дохода:* ${answers.income === 'high' ? 'Более €4 000' : answers.income === 'medium' ? '€2 000 — €4 000' : 'До €2 000'}
+• *Образование:* ${answers.education === 'higher' ? 'Высшее (диплом)' : answers.education === 'secondary' ? 'Специальное / Опыт от 3 лет' : 'Нет диплома'}
+
+⚡️ *Быстрая связь с клиентом:*
+• [Написать в WhatsApp](https://wa.me/${cleanPhone})
+    `.trim();
+
+    try {
+      const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: TELEGRAM_CHAT_ID,
+          text: message,
+          parse_mode: 'Markdown',
+          disable_web_page_preview: true, // Убирает громоздкие превью ссылок в чате бота
+        }),
+      });
+
+      if (response.ok) {
+        alert('Данные успешно отправлены! Анастасия свяжется с вами в ближайшее время.');
+        // Очищаем форму и возвращаем квиз в исходное начало
+        setAnswers({});
+        setUserData({ name: '', phone: '' });
+        setCurrentStep(0);
+        setIsFinished(false);
+      } else {
+        throw new Error('Ошибка отправки через Telegram API');
+      }
+    } catch (error) {
+      console.error(error);
+      alert('Произошла ошибка при отправке данных. Пожалуйста, проверьте подключение к интернету.');
+    } finally {
+      setIsSending(false);
+    }
   };
 
   // ЭКРАН 2: Финальная форма сбора контактов
@@ -50,18 +104,30 @@ export const Quiz = () => {
         </div>
         
         <input 
-          type="text" required placeholder="Ваше имя"
+          type="text" required placeholder="Ваше имя" disabled={isSending}
           value={userData.name} onChange={e => setUserData({...userData, name: e.target.value})}
-          className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-legal-gold transition-colors"
+          className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-legal-gold transition-colors disabled:opacity-50"
         />
         <input 
-          type="tel" required placeholder="Телефон / Telegram"
+          type="tel" required placeholder="Телефон / Telegram" disabled={isSending}
           value={userData.phone} onChange={e => setUserData({...userData, phone: e.target.value})}
-          className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-legal-gold transition-colors"
+          className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-legal-gold transition-colors disabled:opacity-50"
         />
         
-        <button type="submit" className="w-full bg-legal-gold hover:bg-amber-700 text-white font-semibold py-3 rounded-lg text-sm transition-all cursor-pointer">
-          Получить стратегию релокации
+        {/* Кнопка с индикатором отправки (Senior UX) */}
+        <button 
+          type="submit" 
+          disabled={isSending}
+          className="w-full bg-legal-gold hover:bg-amber-700 text-white font-semibold py-3 rounded-lg text-sm transition-all cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {isSending ? (
+            <>
+              <Loader2 size={16} className="animate-spin" />
+              Отправка данных...
+            </>
+          ) : (
+            'Получить стратегию релокации'
+          )}
         </button>
       </form>
     );
