@@ -38,8 +38,8 @@ export const Quiz = () => {
     setIsSending(true);
 
     // ВСТАВЬТЕ СЮДА ВАШИ ТОЧНЫЕ ДАННЫЕ ИЗ ТЕЛЕГРАМА
-    const TELEGRAM_TOKEN = '8780330169:AAGTLGeN6-jJx7nNv8w15tXlapbhfiaC8Dw';
-    const TELEGRAM_CHAT_ID = '477802635';
+    const TELEGRAM_TOKEN = import.meta.env.VITE_TELEGRAM_TOKEN;
+    const TELEGRAM_CHAT_ID = import.meta.env.VITE_TELEGRAM_CHAT_ID;
 
     // Очищаем введенный номер от скобок и дефисов для генерации чистой ссылки в WhatsApp
     const cleanPhone = userData.phone.replace(/\D/g, '');
