@@ -9,45 +9,51 @@ export const AboutAndServices = () => {
   ];
 
   return (
-    <section className="py-20 bg-slate-900 border-t border-slate-800" id="programs">
+    <section className="py-20 bg-cream-bg" id="programs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Блок 1: Обо мне (Анимация через класс scroll-reveal) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-24 scroll-reveal">
-          <div className="lg:col-span-5 relative">
-            <div className="w-full aspect-[4/5] bg-gradient-to-t from-slate-950 to-slate-800 rounded-2xl border border-slate-700/50 flex items-center justify-center overflow-hidden shadow-2xl relative">
+          <div className="lg:col-span-5 relative justify-self-center lg:justify-self-start w-full max-w-md">
+            {/* Нежное золотое свечение за фотографией */}
+            <div className="absolute -inset-2 bg-gradient-to-tr from-gold-accent/20 to-transparent rounded-2xl blur-lg"></div>
+            
+            {/* Рамка под фото (Светлый премиум-градиент) */}
+            <div className="relative w-full aspect-[4/5] bg-gradient-to-b from-cream-card to-white rounded-2xl border border-gold-accent/20 flex items-center justify-center overflow-hidden shadow-xl">
               <div className="text-center p-6 space-y-2">
-                <Briefcase className="mx-auto text-legal-gold" size={40} />
-                <p className="text-sm font-medium text-slate-400">Место для вашего профессионального фото</p>
+                <Briefcase className="mx-auto text-gold-hover" size={40} />
+                <p className="text-sm font-medium text-luxury-text/60">Место для вашего профессионального фото</p>
               </div>
-              <div className="absolute bottom-4 left-4 right-4 bg-slate-950/80 backdrop-blur-sm p-4 rounded-xl border border-slate-800 text-center">
-                <p className="font-bold text-white text-base">Александр Вайс</p>
-                <p className="text-xs text-legal-gold">Магистр международного права</p>
+              
+              {/* Плашка с именем поверх фото */}
+              <div className="absolute bottom-4 left-4 right-4 bg-emerald-luxury/95 backdrop-blur-md p-4 rounded-xl border border-gold-accent/10 text-center">
+                <p className="font-bold text-cream-bg text-base">Anastazja Łapo</p>
+                <p className="text-[11px] text-gold-accent font-medium uppercase tracking-wider">Основатель проекта</p>
               </div>
             </div>
           </div>
 
           <div className="lg:col-span-7 space-y-6">
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
-              Личный опыт и <span className="text-legal-gold">юридическая точность</span> на вашей стороне
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-emerald-luxury">
+              Личный опыт и <span className="text-gold-hover">юридическая точность</span> на вашей стороне
             </h2>
-            <p className="text-slate-400 leading-relaxed">
+            <p className="text-luxury-text/80 leading-relaxed">
               Я специализируюсь на международном праве и миграционных программах более 8 лет. Моя цель — не просто собрать пачку документов, а выстроить для вас легальный, безопасный и прогнозируемый трек релокации. 
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-              <div className="flex gap-3 bg-slate-950/50 p-4 rounded-xl border border-slate-800">
-                <Award className="text-legal-gold flex-shrink-0" size={20} />
+              <div className="flex gap-3 bg-cream-card p-4 rounded-xl border border-gold-accent/20 shadow-sm">
+                <Award className="text-gold-hover flex-shrink-0" size={20} />
                 <div>
-                  <h4 className="font-semibold text-white text-sm">350+ успешных кейсов</h4>
-                  <p className="text-xs text-slate-500">Одобренных ВНЖ и паспортов</p>
+                  <h4 className="font-semibold text-emerald-luxury text-sm">350+ успешных кейсов</h4>
+                  <p className="text-xs text-luxury-text/60">Одобренных ВНЖ и паспортов</p>
                 </div>
               </div>
-              <div className="flex gap-3 bg-slate-950/50 p-4 rounded-xl border border-slate-800">
-                <BookOpen className="text-legal-gold flex-shrink-0" size={20} />
+              <div className="flex gap-3 bg-cream-card p-4 rounded-xl border border-gold-accent/20 shadow-sm">
+                <BookOpen className="text-gold-hover flex-shrink-0" size={20} />
                 <div>
-                  <h4 className="font-semibold text-white text-sm">98.6% одобрений</h4>
-                  <p className="text-xs text-slate-500">За счет жесткого пре-аудита</p>
+                  <h4 className="font-semibold text-emerald-luxury text-sm">98.6% одобрений</h4>
+                  <p className="text-xs text-luxury-text/60">За счет жесткого пре-аудита</p>
                 </div>
               </div>
             </div>
@@ -57,27 +63,27 @@ export const AboutAndServices = () => {
         {/* Блок 2: Стоимость и Услуги (Анимация через класс scroll-reveal) */}
         <div className="space-y-12 scroll-reveal">
           <div className="space-y-4">
-            <h2 className="text-3xl font-bold text-white text-center" id="services">Основные направления и стоимость</h2>
-            <p className="text-slate-400 text-center max-w-xl mx-auto text-sm">Фиксированная стоимость в договоре. Никаких скрытых платежей, доплат и комиссий в процессе работы.</p>
+            <h2 className="text-3xl font-bold text-emerald-luxury text-center" id="services">Основные направления и стоимость</h2>
+            <p className="text-luxury-text/70 text-center max-w-xl mx-auto text-sm">Фиксированная стоимость в договоре. Никаких скрытых платежей, доплат и комиссий в процессе работы.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {services.map((service) => (
               <div 
                 key={service.id} 
-                className="bg-slate-950 border border-slate-800/80 p-6 rounded-2xl hover:border-slate-700 transition-all flex flex-col justify-between group"
+                className="bg-cream-card border border-gold-accent/10 p-6 rounded-2xl hover:border-gold-accent/40 hover:shadow-md transition-all flex flex-col justify-between group"
               >
                 <div className="space-y-3">
                   <div className="flex justify-between items-start gap-4">
-                    <h3 className="font-bold text-lg text-white group-hover:text-legal-gold transition-colors">{service.title}</h3>
-                    <span className="text-sm font-semibold text-legal-gold bg-amber-500/10 px-2.5 py-1 rounded-md flex-shrink-0">{service.price}</span>
+                    <h3 className="font-bold text-lg text-emerald-luxury group-hover:text-gold-hover transition-colors">{service.title}</h3>
+                    <span className="text-sm font-semibold text-emerald-luxury bg-gold-accent/20 px-2.5 py-1 rounded-md flex-shrink-0">{service.price}</span>
                   </div>
-                  <p className="text-xs text-slate-400 leading-relaxed">{service.desc}</p>
+                  <p className="text-xs text-luxury-text/80 leading-relaxed">{service.desc}</p>
                 </div>
                 
-                <div className="flex items-center justify-between border-t border-slate-900 pt-4 mt-6 text-xs text-slate-500">
-                  <span>{service.time}</span>
-                  <span className="text-slate-300 group-hover:text-legal-gold flex items-center gap-1 font-medium transition-colors cursor-pointer">
+                <div className="flex items-center justify-between border-t border-gold-accent/20 pt-4 mt-6 text-xs text-luxury-text/60">
+                  <span className="font-medium text-emerald-medium">{service.time}</span>
+                  <span className="text-emerald-medium group-hover:text-gold-hover flex items-center gap-1 font-medium transition-colors cursor-pointer">
                     Подробнее <ArrowRight size={12} />
                   </span>
                 </div>
@@ -90,3 +96,4 @@ export const AboutAndServices = () => {
     </section>
   );
 };
+

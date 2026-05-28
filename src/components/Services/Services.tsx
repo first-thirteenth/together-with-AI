@@ -71,15 +71,15 @@ const services = [
 
 
   return (
-    <section className="py-24 bg-slate-950 border-t border-slate-900 relative z-20" id="services">
+    <section className="py-24 bg-cream-bg relative z-20" id="services">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Заголовок секции */}
         <div className="text-center space-y-4 mb-16 scroll-reveal">
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
-            Направления работы и <span className="text-legal-gold">стоимость</span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-emerald-luxury">
+            Направления работы и <span className="text-gold-hover">стоимость</span>
           </h2>
-          <p className="text-sm text-slate-400 max-w-xl mx-auto leading-relaxed">
+          <p className="text-sm text-luxury-text/70 max-w-xl mx-auto leading-relaxed">
             Прозрачные условия без скрытых комиссий. Фиксируем финальную стоимость в официальном договоре до начала процесса.
           </p>
         </div>
@@ -89,41 +89,43 @@ const services = [
           {services.map((service) => (
             <div 
               key={service.id}
-              className={`bg-slate-900/60 backdrop-blur-sm border rounded-2xl p-6 sm:p-8 flex flex-col justify-between group transition-all duration-300 hover:border-slate-700 hover:-translate-y-1 relative overflow-hidden ${
-                service.popular ? 'border-legal-gold/60 ring-1 ring-legal-gold/20' : 'border-slate-800/80'
+              className={`bg-cream-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between group transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-1 relative overflow-hidden ${
+                service.popular 
+                  ? 'border-2 border-gold-accent ring-1 ring-gold-accent/20' 
+                  : 'border border-gold-accent/10'
               }`}
             >
               {/* Бейдж для популярной услуги */}
               {service.popular && (
-                <div className="absolute top-0 right-0 bg-legal-gold text-white text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-bl-xl flex items-center gap-1">
+                <div className="absolute top-0 right-0 bg-gold-accent text-emerald-luxury text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-bl-xl flex items-center gap-1">
                   <Sparkles size={10} /> Топ выбор
                 </div>
               )}
 
               <div className="space-y-4">
                 <div className="flex justify-between items-start gap-4">
-                  <h3 className="font-bold text-xl text-white group-hover:text-legal-gold transition-colors duration-200">
+                  <h3 className="font-bold text-xl text-emerald-luxury group-hover:text-gold-hover transition-colors duration-200">
                     {service.title}
                   </h3>
                   <div className="text-right flex-shrink-0">
-                    <span className="text-sm font-bold text-legal-gold bg-amber-500/10 px-2.5 py-1 rounded-md">
+                    <span className="text-sm font-bold text-emerald-luxury bg-gold-accent/20 px-2.5 py-1 rounded-md">
                       {service.price}
                     </span>
                   </div>
                 </div>
                 
-                <p className="text-xs text-slate-400 leading-relaxed">
+                <p className="text-xs text-luxury-text/80 leading-relaxed">
                   {service.desc}
                 </p>
               </div>
 
               {/* Нижняя плашка карточки */}
-              <div className="flex items-center justify-between border-t border-slate-800/60 pt-4 mt-6 text-xs text-slate-500">
-                <span className="flex items-center gap-1.5">
-                  <Check size={12} className="text-legal-gold" />
+              <div className="flex items-center justify-between border-t border-gold-accent/20 pt-4 mt-6 text-xs text-luxury-text/60">
+                <span className="flex items-center gap-1.5 font-medium text-emerald-medium">
+                  <Check size={12} className="text-gold-accent" />
                   {service.time}
                 </span>
-                <button className="text-slate-300 group-hover:text-legal-gold flex items-center gap-1 font-semibold transition-colors duration-200 cursor-pointer text-xs">
+                <button className="text-emerald-medium group-hover:text-gold-hover flex items-center gap-1 font-semibold transition-colors duration-200 cursor-pointer text-xs">
                   Подробнее <ArrowRight size={12} className="transform group-hover:translate-x-0.5 transition-transform" />
                 </button>
               </div>
