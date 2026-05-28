@@ -12,3 +12,58 @@ body {
   color: #f8fafc;            /* Светлый текст */
   font-family: system-ui, -apple-system, sans-serif;
 }
+
+.reveal-hidden {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Современная нативная анимация появления при прокрутке */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scroll-reveal {
+  view-timeline-name: --block;
+  view-timeline-axis: block;
+  animation-name: fadeInUp;
+  animation-fill-mode: both;
+  animation-timeline: --block;
+  /* Анимация проигрывается, пока элемент заходит на 15% снизу экрана */
+  animation-range: entry 0% cover 15%; 
+}
+
+/* Анимация плавного проявления сверху вниз */
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Применяем анимацию к элементам */
+.animate-hero {
+  animation: heroFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Легкая задержка для правого блока (квиза), чтобы сайт оживал по очереди */
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
