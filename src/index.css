@@ -4,11 +4,11 @@ html {
   scroll-behavior: smooth; /* Включает идеальный плавный скролл по якорным ссылкам */
 }
 
-
 @theme {
   /* Наши фирменные цвета под юридическую тематику */
   --color-legal-navy: #0f172a;  /* Глубокий строгий синий */
   --color-legal-gold: #b45309;  /* Премиальный золотой */
+  
   /* Благородный изумрудный для заголовков, главного бренда и плашек */
   --color-emerald-luxury: #0f2e24;
   --color-emerald-medium: #1b4d3e;
@@ -23,12 +23,43 @@ html {
   
   /* Глубокий графит для основного текста (вместо чисто чёрного) */
   --color-luxury-text: #2c3531;
+
+  /* 1. Премиальная анимация глянцевого блика на кнопках */
+  @keyframes shine {
+    0% { left: -50%; }
+    100% { left: 125%; }
+  }
+
+  /* 2. Анимация бесконечной бегущей строки */
+  @keyframes marquee {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-50%, 0, 0); }
+  }
+
+  /* 3. НАША ОБНОВЛЕННАЯ АНИМАЦИЯ: Мощный вылет заголовка слева с -250px */
+  @keyframes slideInLeft {
+    0% {
+      transform: translate3d(-250px, 0, 0); /* Увеличили размах вылета для заметности */
+      opacity: 0;
+      filter: blur(8px);                     /* Усилили размытие для дорогой динамики */
+    }
+    100% {
+      transform: translate3d(0, 0, 0);
+      opacity: 1;
+      filter: blur(0px);
+    }
+  }
+}
+
+/* ИИ-ТЮНИНГ: Настроили благородную длительность 1.4s и ультра-мягкое торможение (0.25, 1, 0.5, 1) */
+@utility animate-fade-left {
+  animation: slideInLeft 1.4s cubic-bezier(0.25, 1, 0.5, 1) both;
 }
 
 body {
   margin: 0;
-  background-color: #020617; /* Slate-950 (очень темный синий фон) */
-  color: #f8fafc;            /* Светлый текст */
+  background-color: #fbf9f4; 
+  color: #2c3531;            
   font-family: system-ui, -apple-system, sans-serif;
 }
 
@@ -64,7 +95,6 @@ body {
   animation-range: entry 0% cover 20%; 
 }
 
-
 /* Анимация плавного проявления сверху вниз */
 @keyframes heroFadeIn {
   from {
@@ -85,4 +115,43 @@ body {
 /* Легкая задержка для правого блока (квиза), чтобы сайт оживал по очереди */
 .animation-delay-200 {
   animation-delay: 200ms;
+}
+
+/* Начальные состояния карточек до момента, пока пользователь до них доскроллил */
+.fly-card {
+  opacity: 0;
+  will-change: transform, opacity;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
+}
+
+/* Левая карточка ждет за экраном слева (-60px) */
+.fly-from-left {
+  transform: translate3d(-60px, 0, 0);
+}
+
+/* Правая карточка ждет за экраном справа (60px) */
+.fly-from-right {
+  transform: translate3d(60px, 0, 0);
+}
+
+/* Состояние, которое JS включит при скролле — карточки встают на свои законные места */
+.fly-card.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Применяем анимацию к контейнеру с отзывами */
+.animate-marquee {
+  animation: marquee 160s linear infinite; 
+}
+
+/* Прячем системный скроллбар для Chrome, Safari и Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Мягкое размытие по краям экрана для бесшовного растворения отзывов */
+.mask-gradient {
+  mask-image: linear-gradient(to right, transparent, white 25%, white 75%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, white 25%, white 75%, transparent);
 }

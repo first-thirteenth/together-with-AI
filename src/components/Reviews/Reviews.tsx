@@ -1,30 +1,109 @@
-import { MessageSquare, Star } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
 
-export const Reviews = () => {
-  const reviews = [
-    {
-      name: 'Марк и Анна',
-      program: 'ВНЖ Digital Nomad, Испания',
-      text: 'Обратились к Анастасии после самостоятельного отказа из-за неправильно оформленного контракта. Она полностью переформатировала наши документы с американским заказчиком и составила пояснительное письмо для UGE. Подали заново — одобрение пришло через 18 дней! Настоящий профессионал.',
-    },
-    {
-      name: 'Дмитрий К.',
-      program: 'Стартап-виза, Португалия',
-      text: 'Анастасия помогла докрутить нашу бизнес-модель под жесткие требования института IAPMEI. Сопровождал на каждом шагу: от сбора справок до открытия счета. Всегда на связи в Telegram, объясняет сложные законы простым языком. Рекомендую.',
-    },
-    {
-      name: 'Елена Б.',
-      program: 'ВНЖ без права на работу, Италия',
-      text: 'Для меня было критично успеть подать документы до изменения правил по пассивному доходу. Анастасия подготовила кейс за 2 недели. Аудит доходов от аренды был сделан идеально — консульство в Москве выдало визу D без единого дополнительного вопроса.',
-    },
-  ];
+// Компонент для отдельной карточки отзыва с независимым Observer
+const ReviewItem = ({ rev }: { rev: { text: string; name: string; program: string } }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [isActive, setIsActive] = useState(false);
+
+  useEffect(() => {
+    const card = cardRef.current;
+    if (!card) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsActive(entry.isIntersecting);
+      },
+      {
+        root: null,
+        rootMargin: '0px -40% 0px -40%', // Окно фокуса строго по центру
+        threshold: 0.5,
+      }
+    );
+
+    observer.observe(card);
+    return () => observer.unobserve(card);
+  }, []);
 
   return (
-    <section className="py-24 bg-cream-bg relative z-20" id="reviews">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+    <div 
+      ref={cardRef}
+      className={`w-[290px] sm:w-[500px] shrink-0 flex flex-col justify-center text-center snap-center transition-all duration-500 ease-out min-h-[220px] will-change-[opacity,transform,filter] ${
+        isActive 
+          ? 'opacity-100 scale-100 blur-0 z-30' 
+          : 'opacity-35 scale-95 blur-[2px] z-10 select-none'
+      }`}
+    >
+      <div className="space-y-6">
+        <p className="text-sm sm:text-base text-luxury-text font-medium leading-relaxed italic">
+          "{rev.text}"
+        </p>
+        <div>
+          <h4 className="font-bold text-emerald-luxury text-sm tracking-wide">
+            {rev.name}
+          </h4>
+          <p className="text-[11px] text-gold-hover font-semibold uppercase tracking-wider mt-1">
+            {rev.program}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const Reviews = () => {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const isDown = useRef(false);
+  const startX = useRef(0);
+  const scrollLeft = useRef(0);
+
+  // Базовые отзывы про Anastazja Łapo
+  const baseReviews = [
+    { name: 'Марк и Анна', program: 'ВНЖ Digital Nomad, Испания', text: 'Обратились к Анастасии после самостоятельного отказа из-за неправильно оформленного контракта. Она полностью переформатировала наши документы с американским заказчиком и составила пояснительное письмо для UGE. Подали заново — одобрение пришло через 18 дней! Настоящий профессионал.' },
+    { name: 'Дмитрий К.', program: 'Стартап-виза, Португалия', text: 'Анастасия помогла докрутить нашу бизнес-модель под жесткие требования института IAPMEI. Сопровождала на каждом шагу: от сбора справок до открытия счета. Всегда на связи в Telegram, объясняет сложные законы простым языком. Рекомендую.' },
+    { name: 'Елена Б.', program: 'ВНЖ без права на работу, Италия', text: 'Для меня было критично успеть подать документы до изменения правил по пассивному доходу. Анастасия подготовила кейс за 2 недели. Аудит доходов был сделан идеально — консульство в Москве выдало визу D без единого вопроса.' },
+    { name: 'Игорь и Ольга', program: 'Бизнес-инкубатор, Польша', text: 'Релоцировали IT-стартап в Варшаву. Анастазья Лапо идеально провела нас через весь процесс: от регистрации компании (Sp. z o.o.) до получения пластика карты побыту на 3 года. Сберегли тонну нервов.' },
+    { name: 'Татьяна Ш.', program: 'Гражданство по корням, Румыния', text: 'Процесс восстановления корней казался нереальным из-за утерянных архивов. Анастасия организовала профессиональный поиск, нашла свидетельства дедушки и полностью вела дело до присяги в Бухаресте. Паспорт в руках!' }
+  ];
+
+  // Генерируем 50 отзывов
+  const totalReviewsCount = 50;
+  const infiniteReviews = Array.from({ length: totalReviewsCount }, (_, index) => {
+    const baseReview = baseReviews[index % baseReviews.length];
+    return { ...baseReview, id: `${baseReview.name}-${index}` };
+  });
+
+  // Логика перетаскивания мышкой (Drag-to-Scroll)
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (!scrollContainerRef.current) return;
+    isDown.current = true;
+    scrollContainerRef.current.classList.add('active');
+    // Фиксируем стартовую точку клика
+    startX.current = e.pageX - scrollContainerRef.current.offsetLeft;
+    scrollLeft.current = scrollContainerRef.current.scrollLeft;
+  };
+
+  const handleMouseLeaveOrUp = () => {
+    isDown.current = false;
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.classList.remove('active');
+    }
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDown.current || !scrollContainerRef.current) return;
+    e.preventDefault();
+    // Считаем пройденное мышкой расстояние
+    const x = e.pageX - scrollContainerRef.current.offsetLeft;
+    const walk = (x - startX.current) * 1.5; // Умножаем на 1.5 для скорости скролла
+    scrollContainerRef.current.scrollLeft = scrollLeft.current - walk;
+  };
+
+  return (
+    <section className="py-24 bg-cream-bg relative z-20 overflow-hidden" id="reviews">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
-        {/* Заголовок */}
-        <div className="text-center space-y-4 max-w-xl mx-auto scroll-reveal">
+        {/* Заголовок секции */}
+        <div className="text-center space-y-4 max-w-xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-emerald-luxury">
             Что говорят <span className="text-gold-hover">клиенты</span>
           </h2>
@@ -33,45 +112,39 @@ export const Reviews = () => {
           </p>
         </div>
 
-        {/* Сетка отзывов */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 scroll-reveal">
-          {reviews.map((rev, index) => (
+        {/* Скролл-контейнер нового поколения */}
+        <div className="relative w-full overflow-visible">
+          
+          {/* Градиентные маски по бокам */}
+          <div className="w-full mask-gradient">
             <div 
-              key={index} 
-              className="bg-cream-card border border-gold-accent/20 p-6 sm:p-8 rounded-2xl space-y-5 relative flex flex-col justify-between hover:border-gold-accent/60 hover:shadow-md transition-all duration-300 group"
+              ref={scrollContainerRef}
+              onMouseDown={handleMouseDown}
+              onMouseLeave={handleMouseLeaveOrUp}
+              onMouseUp={handleMouseLeaveOrUp}
+              onMouseMove={handleMouseMove}
+              className="flex gap-12 sm:gap-24 overflow-x-auto no-scrollbar py-8 px-[35vw] snap-x snap-mandatory scroll-smooth cursor-grab active:cursor-grabbing select-none"
+              style={{ scrollbarWidth: 'none' }}
             >
-              <div className="space-y-4">
-                {/* Шапка карточки отзыва */}
-                <div className="flex justify-between items-start gap-4">
-                  <div>
-                    <h4 className="font-bold text-emerald-luxury text-sm group-hover:text-gold-hover transition-colors duration-200">
-                      {rev.name}
-                    </h4>
-                    <p className="text-[11px] text-gold-hover font-medium mt-0.5">
-                      {rev.program}
-                    </p>
-                  </div>
-                  {/* 5 звезд в цвет благородного золота */}
-                  <div className="flex gap-0.5 text-gold-accent flex-shrink-0">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} size={12} fill="currentColor" />
-                    ))}
-                  </div>
-                </div>
-                
-                {/* Текст */}
-                <p className="text-xs text-luxury-text/80 leading-relaxed italic relative z-10">
-                  "{rev.text}"
-                </p>
-              </div>
-
-              {/* Фоновая декоративная иконка (светлая и аккуратная) */}
-              <MessageSquare className="absolute bottom-6 right-6 text-gold-accent/10 pointer-events-none group-hover:text-gold-accent/20 transition-colors duration-300" size={32} />
+              {infiniteReviews.map((rev) => (
+                <ReviewItem key={rev.id} rev={rev} />
+              ))}
             </div>
-          ))}
+          </div>
+
+          {/* Индикатор-подсказка */}
+          <div className="flex justify-center items-center gap-1.5 pt-4 text-[10px] uppercase font-bold text-gold-hover tracking-widest opacity-60 animate-pulse select-none">
+            <span>Зажмите и тяните вбок или листайте</span>
+          </div>
+
         </div>
         
       </div>
     </section>
   );
 };
+
+
+
+
+
