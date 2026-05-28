@@ -18,7 +18,7 @@ export const Home = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           
           {/* Левая колонка: Оффер и Преимущества */}
-          <div className="space-y-6">
+          <div className="space-y-6 animate-hero">
             <div className="inline-flex items-center gap-2 bg-slate-900 border border-slate-800 px-3 py-1 rounded-full text-xs text-legal-gold">
               <Shield size={14} />
               <span>Официальная легализация и релокация под ключ</span>
@@ -60,7 +60,7 @@ export const Home = () => {
           </div>
 
           {/* Правая колонка: Наш интерактивный Квиз */}
-          <div className="relative justify-self-center lg:justify-self-end w-full max-w-md">
+          <div className="relative justify-self-center lg:justify-self-end w-full max-w-md animate-hero animation-delay-200">
             {/* Свечение позади формы */}
             <div className="absolute -inset-1 bg-gradient-to-r from-amber-600/20 to-yellow-500/10 rounded-2xl blur opacity-30"></div>
             
