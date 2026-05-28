@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+@theme {
+  /* Наши фирменные цвета под юридическую тематику */
+  --color-legal-navy: #0f172a;  /* Глубокий строгий синий */
+  --color-legal-gold: #b45309;  /* Премиальный золотой */
+}
+
+body {
+  margin: 0;
+  background-color: #020617; /* Slate-950 (очень темный синий фон) */
+  color: #f8fafc;            /* Светлый текст */
+  font-family: system-ui, -apple-system, sans-serif;
+}
