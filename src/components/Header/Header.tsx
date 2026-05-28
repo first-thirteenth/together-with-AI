@@ -4,13 +4,11 @@ import { Scale, Menu, X, Phone } from 'lucide-react';
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  // Ссылки для навигации
   const navigation = [
     { name: 'Главная', href: '#' },
-    { name: 'Программы ВНЖ', href: '#programs' },
-    { name: 'Кейсы', href: '#cases' },
-    { name: 'Блог', href: '#blog' },
-    { name: 'Контакты', href: '#contacts' },
+    { name: 'Обо мне', href: '#about' },
+    { name: 'Услуги и цены', href: '#services' },
+    { name: 'Отзывы', href: '#reviews' }, // Ссылка ведет на id="reviews"
   ];
 
   return (
