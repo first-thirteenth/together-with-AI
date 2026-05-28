@@ -1,4 +1,4 @@
-import { Scale, ShieldCheck } from 'lucide-react';
+import { Feather, ShieldCheck } from 'lucide-react';
 
 export const Footer = () => {
   return (
@@ -7,13 +7,13 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 border-b border-slate-900 pb-8">
           
           {/* Колонка 1: Бренд */}
-          <div className="md:col-span-5 space-y-3">
+          <div className="md:col-span-4 space-y-3">
             <div className="flex items-center gap-2 text-white">
-              <Scale size={20} className="text-legal-gold" />
-              <span className="font-bold text-sm tracking-tight">LEX LAB — Александр Вайс</span>
+              <Feather size={20} className="text-legal-gold" />
+              <span className="font-bold text-sm tracking-tight">Легализация с Анастасией Лапо</span>
             </div>
-            <p className="text-slate-400 max-w-sm leading-relaxed">
-              Индивидуальное юридическое сопровождение международных миграционных процессов, релокации бизнеса и комплаенса.
+            <p className="text-slate-400 max-w-sm leading-relaxed text-[11px]">
+              Экспертное сопровождение миграционных процессов, оформление ВНЖ, релокация бизнеса и комплаенс. Лёгкий путь в любую точку мира.
             </p>
           </div>
 
@@ -35,9 +35,9 @@ export const Footer = () => {
         </div>
 
         {/* Копирайт */}
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-slate-600 text-[11px]">
-          <p>© {new Date().getFullYear()} LEX LAB. Все права защищены.</p>
-          <p className="flex items-center gap-1"><ShieldCheck size={12} /> Защищено сквозным шифрованием SSL</p>
+       <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-slate-600 text-[11px]">
+          <p>© {new Date().getFullYear()} Лёгкая легализация с Анастасией Лапо. Все права защищены.</p>
+          <p className="flex items-center gap-1"><ShieldCheck size={12} /> Защищено SSL шифрованием</p>
         </div>
       </div>
     </footer>
