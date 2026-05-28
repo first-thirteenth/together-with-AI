@@ -9,7 +9,7 @@ export const Home = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans">
+    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans sticky top-0 z-10">
       {/* Декоративный размытый фон для Senior-эффекта */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-amber-600/10 rounded-full blur-3xl pointer-events-none"></div>
       

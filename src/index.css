@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+html {
+  scroll-behavior: smooth; /* Включает идеальный плавный скролл по якорным ссылкам */
+}
+
+
 @theme {
   /* Наши фирменные цвета под юридическую тематику */
   --color-legal-navy: #0f172a;  /* Глубокий строгий синий */
@@ -24,11 +29,11 @@ body {
   transform: translateY(0);
 }
 
-/* Современная нативная анимация появления при прокрутке */
+/* Нативная анимация появления при прокрутке */
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
@@ -42,9 +47,9 @@ body {
   animation-name: fadeInUp;
   animation-fill-mode: both;
   animation-timeline: --block;
-  /* Анимация проигрывается, пока элемент заходит на 15% снизу экрана */
-  animation-range: entry 0% cover 15%; 
+  animation-range: entry 0% cover 20%; 
 }
+
 
 /* Анимация плавного проявления сверху вниз */
 @keyframes heroFadeIn {
