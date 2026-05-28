@@ -8,7 +8,8 @@ import { Footer } from './components/Footer/Footer';
 
 function App() {
   return (
-    <>
+    // Оборачиваем всё приложение в премиальную гамму
+    <div className="min-h-screen bg-cream-bg text-luxury-text font-sans antialiased selection:bg-gold-accent/30">
       <Header />
       
       <div className="relative">
@@ -22,11 +23,12 @@ function App() {
         
         <Footer />
       </div>
-    </>
+    </div>
   );
 }
 
 export default App;
+
 
 
 
