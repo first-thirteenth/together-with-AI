@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* МАГИЯ ДЛЯ TAILWIND V4: Включаем ручное переключение тем по классу .dark */
+@variant dark (&:where(.dark, .dark *));
+
 html {
   scroll-behavior: smooth; /* Включает идеальный плавный скролл по якорным ссылкам */
 }
@@ -155,4 +158,10 @@ body {
   mask-image: linear-gradient(to right, transparent, white 25%, white 75%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, white 25%, white 75%, transparent);
 }
+
+/* Медленное вращение для иконки солнца в режиме Dark Mode */
+@utility animate-spin-slow {
+  animation: spin 8s linear infinite;
+}
+
 

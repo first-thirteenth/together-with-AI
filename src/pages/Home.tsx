@@ -9,7 +9,8 @@ export const Home = () => {
   };
 
   return (
-    <div className="min-h-screen bg-cream-bg text-luxury-text font-sans sticky top-0 z-10 overflow-hidden">
+    // ИСПРАВЛЕНО: Добавлены dark:bg-emerald-luxury, dark:text-cream-bg и плавность смены темы transition-colors
+    <div className="min-h-screen bg-cream-bg dark:bg-emerald-luxury text-luxury-text dark:text-cream-bg font-sans sticky top-0 z-10 overflow-hidden transition-colors duration-500">
       {/* Мягкое золотистое свечение на фоне в стиле «Тихий люкс» */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-gold-accent/10 rounded-full blur-3xl pointer-events-none"></div>
       
@@ -19,22 +20,24 @@ export const Home = () => {
           
           {/* Левая колонка: Оффер и Преимущества */}
           <div className="space-y-6">
-            <div className="inline-flex items-center gap-2 bg-cream-card border border-gold-accent/20 px-3 py-1 rounded-full text-xs text-gold-hover font-medium shadow-sm animate-hero">
+            {/* ИСПРАВЛЕНО: Добавлены стили для темной подложки бейджа */}
+            <div className="inline-flex items-center gap-2 bg-cream-card dark:bg-emerald-medium border border-gold-accent/20 dark:border-gold-accent/30 px-3 py-1 rounded-full text-xs text-gold-hover font-medium shadow-sm animate-hero">
               <Shield size={14} className="text-gold-accent" />
               <span>Официальная легализация и релокация под ключ</span>
             </div>
             
-            {/* ИСПРАВЛЕНО: Добавили класс animate-fade-left прямо на заголовок */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight text-emerald-luxury animate-fade-left will-change-[transform,opacity]">
-              Ваш надежный путь к <span className="text-gold-hover">ВНЖ и гражданству</span>
+            {/* ИСПРАВЛЕНО: Заголовок h1 в темноте становится белоснежно-кремовым */}
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight text-emerald-luxury dark:text-cream-bg animate-fade-left will-change-[transform,opacity] transition-colors duration-500">
+              Ваш надежный путь к <span className="text-gold-hover dark:text-gold-accent">ВНЖ и гражданству</span>
             </h1>
             
-            <p className="text-base text-luxury-text/80 max-w-xl leading-relaxed animate-hero animation-delay-200">
+            {/* ИСПРАВЛЕНО: Описание dark:text-cream-bg/80 */}
+            <p className="text-base text-luxury-text/80 dark:text-cream-bg/80 max-w-xl leading-relaxed animate-hero animation-delay-200 transition-colors duration-500">
               Комплексное юридическое сопровождение: от анализа документов до гарантированного получения статуса. Минимизируем риски отказов на 99%.
             </p>
 
             {/* Списочные преимущества */}
-            <ul className="space-y-3 text-sm text-luxury-text/90 pt-2 animate-hero animation-delay-200">
+            <ul className="space-y-3 text-sm text-luxury-text/90 dark:text-cream-bg/90 pt-2 animate-hero animation-delay-200 transition-colors duration-500">
               <li className="flex items-center gap-3">
                 <CheckCircle2 size={16} className="text-gold-accent flex-shrink-0" />
                 <span>Оценка шансов до заключения договора</span>
@@ -62,7 +65,8 @@ export const Home = () => {
                 </span>
               </button>
 
-              <button className="inline-flex items-center justify-center bg-cream-card hover:bg-white border border-gold-accent/20 text-emerald-medium font-semibold px-6 py-3 rounded-lg text-sm transition-all cursor-pointer shadow-sm">
+              {/* ИСПРАВЛЕНО: Вторая кнопка переодевается в темный изумрудный, чтобы не сливаться с фоном */}
+              <button className="inline-flex items-center justify-center bg-cream-card dark:bg-emerald-medium hover:bg-white dark:hover:bg-emerald-medium/50 border border-gold-accent/20 dark:border-gold-accent/30 text-emerald-medium dark:text-cream-bg font-semibold px-6 py-3 rounded-lg text-sm transition-all cursor-pointer shadow-sm">
                 Посмотреть программы
               </button>
             </div>
@@ -74,7 +78,8 @@ export const Home = () => {
             <div className="absolute -inset-1 bg-gradient-to-r from-gold-accent/20 to-transparent rounded-2xl blur opacity-30"></div>
             
             {/* Контейнер формы в глубоком изумрудном цвете для мощного фокуса */}
-            <div className="relative bg-emerald-luxury p-6 sm:p-8 rounded-2xl shadow-2xl border border-gold-accent/10">
+            {/* ИСПРАВЛЕНО: В темноте блок квиза становится еще глубже dark:bg-[#081b15], создавая дорогой объем */}
+            <div className="relative bg-emerald-luxury dark:bg-[#081b15] p-6 sm:p-8 rounded-2xl shadow-2xl border border-gold-accent/10 dark:border-gold-accent/20 transition-colors duration-500">
               <h3 className="text-xl font-bold mb-1 text-cream-bg">Проверить шансы на ВНЖ</h3>
               <p className="text-xs text-cream-bg/60 mb-5">Ответьте на 3 вопроса профиля для экспресс-оценки вашего кейса экспертом.</p>
               
@@ -88,3 +93,4 @@ export const Home = () => {
     </div>
   );
 };
+
