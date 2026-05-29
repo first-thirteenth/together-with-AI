@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { motion, useInView } from 'framer-motion';
 
 // Компонент для отдельной карточки отзыва с независимым Observer для затушёвывания
 const ReviewItem = ({ rev }: { rev: { text: string; name: string; program: string } }) => {
@@ -27,7 +28,7 @@ const ReviewItem = ({ rev }: { rev: { text: string; name: string; program: strin
   return (
     <div 
       ref={cardRef}
-      className={`w-[290px] sm:w-[500px] shrink-0 flex flex-col justify-center text-center snap-center transition-all duration-500 ease-out min-h-[220px] will-change-[opacity,transform,filter] ${
+      className={`w-[290px] sm:w-[500px] shrink-0 flex flex-col justify-center text-center snap-center transition-all duration-700 ease-out min-h-[220px] will-change-[opacity,transform,filter] ${
         isActive 
           ? 'opacity-100 scale-100 blur-0 z-30' 
           : 'opacity-35 scale-95 blur-[2px] z-10 select-none'
@@ -52,11 +53,15 @@ const ReviewItem = ({ rev }: { rev: { text: string; name: string; program: strin
 
 export const Reviews = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  
+  // Умный хук от Framer Motion: понимает, когда секция зашла в экран
+  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
+
   const isDown = useRef(false);
   const startX = useRef(0);
   const scrollLeft = useRef(0);
 
-  // Базовые сочные отзывы про Anastazja Łapo
   const baseReviews = [
     { name: 'Марк и Анна', program: 'ВНЖ Digital Nomad, Испания', text: 'Обратились к Анастасии после самостоятельного отказа из-за неправильно оформленного контракта. Она полностью переформатировала наши документы с американским заказчиком и составила пояснительное письмо для UGE. Подали заново — одобрение пришло через 18 дней! Настоящий профессионал.' },
     { name: 'Дмитрий К.', program: 'Стартап-виза, Португалия', text: 'Анастасия помогла докрутить нашу бизнес-модель под жесткие требования института IAPMEI. Сопровождала на каждом шагу: от сбора справок до открытия счета. Всегда на связи в Telegram, объясняет сложные законы простым языком. Рекомендую.' },
@@ -65,22 +70,20 @@ export const Reviews = () => {
     { name: 'Татьяна Ш.', program: 'Гражданство по корням, Румыния', text: 'Процесс восстановления корней казался нереальным из-за утерянных архивов. Анастасия организовала профессиональный поиск, нашла свидетельства дедушки и полностью вела дело до присяги в Бухаресте. Паспорт в руках!' }
   ];
 
-  // Генерируем 50 отзывов
   const totalReviewsCount = 50;
   const infiniteReviews = Array.from({ length: totalReviewsCount }, (_, index) => {
     const baseReview = baseReviews[index % baseReviews.length];
     return { ...baseReview, id: `${baseReview.name}-${index}` };
   });
 
-  // Нативно паркуем скролл на 4-й отзыв при загрузке (индекс 3), чтобы по бокам ВСЕГДА были элементы
+  // Моментально паркуем скролл на 4-й отзыв при загрузке, чтобы бока всегда были заполнены контентом
   useEffect(() => {
     const container = scrollContainerRef.current;
     if (!container) return;
 
-    const targetChild = container.children[0] as HTMLElement;
+    const targetChild = container.children[3] as HTMLElement;
     if (targetChild) {
-      // Вычисляем точный центр для 4-й карточки, чтобы сдвиг произошел мгновенно и без багов анимации
-      container.scrollLeft = (targetChild.offsetWidth + 48) * 3; 
+      container.scrollLeft = targetChild.offsetLeft - container.offsetWidth / 2 + targetChild.offsetWidth / 2;
     }
   }, []);
 
@@ -109,22 +112,31 @@ export const Reviews = () => {
   };
 
   return (
-    <section className="py-24 bg-cream-bg relative z-20 overflow-hidden" id="reviews">
+    <section ref={sectionRef} className="py-24 bg-cream-bg relative z-20 overflow-hidden" id="reviews">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
-        {/* ЗАГОЛОВОК: Использует наш новый нативный класс спуска сверху */}
-        <div className="text-center space-y-4 max-w-xl mx-auto scroll-reveal-down">
+        {/* ЗАГОЛОВОК: Длительность проявления увеличена до 2 секунд */}
+        <motion.div 
+          initial={{ opacity: 0, filter: 'blur(10px)' }}
+          animate={isInView ? { opacity: 1, filter: 'blur(0px)' } : {}}
+          transition={{ duration: 2.0, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center space-y-4 max-w-xl mx-auto"
+        >
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-emerald-luxury">
             Что говорят <span className="text-gold-hover">клиенты</span>
           </h2>
           <p className="text-sm text-luxury-text/70 leading-relaxed mt-4">
             Реальные истории людей, которые успешно прошли процесс легализации и доверили свой переезд эксперту.
           </p>
-        </div>
+        </motion.div>
 
-        {/* СЛАЙДЕР: Использует наш нативный класс влёта снизу */}
-        <div className="relative w-full overflow-visible scroll-reveal-up">
-          
+        {/* СЛАЙДЕР: Задержка (delay) увеличена до 0.6 секунды, длительность — 1.8 секунды */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.97 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ duration: 1.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="relative w-full overflow-visible"
+        >
           <div className="w-full mask-gradient">
             <div 
               ref={scrollContainerRef}
@@ -141,17 +153,17 @@ export const Reviews = () => {
             </div>
           </div>
 
-          {/* Индикатор-подсказка */}
           <div className="flex justify-center items-center gap-1.5 pt-4 text-[10px] uppercase font-bold text-gold-hover tracking-widest opacity-60 animate-pulse select-none">
             <span>Зажмите и тяните вбок или листайте</span>
           </div>
-
-        </div>
+        </motion.div>
         
       </div>
     </section>
   );
 };
+
+
 
 
 
