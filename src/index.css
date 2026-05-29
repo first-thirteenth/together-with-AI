@@ -155,3 +155,45 @@ body {
   mask-image: linear-gradient(to right, transparent, white 25%, white 75%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, white 25%, white 75%, transparent);
 }
+
+/* 1. Нативная скролл-анимация СВЕРХУ ВНИЗ для заголовка отзывов */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -30px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.scroll-reveal-down {
+  view-timeline-name: --block-down;
+  view-timeline-axis: block;
+  animation-name: fadeInDown;
+  animation-fill-mode: both;
+  animation-timeline: --block-down;
+  animation-range: entry 0% cover 18%; 
+}
+
+/* 2. Нативная скролл-анимация СНИЗУ ВВЕРХ для самой ленты отзывов */
+@keyframes fadeInUpReviews {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 40px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.scroll-reveal-up {
+  view-timeline-name: --block-up;
+  view-timeline-axis: block;
+  animation-name: fadeInUpReviews;
+  animation-fill-mode: both;
+  animation-timeline: --block-up;
+  animation-range: entry 5% cover 25%; /* Лента вылетает чуть позже заголовка */
+}

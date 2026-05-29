@@ -35,7 +35,7 @@ export const Header = () => {
     >
       {/* Сама плашка навигации, которая сжимается и скругляется при скролле */}
       <nav 
-        className={`max-w-7xl mx-auto transition-all duration-300 ${
+        className={`max-w-7xl mx-auto transition-all duration-300 relative ${
           isScrolled 
             ? 'bg-cream-bg/85 backdrop-blur-md border border-gold-accent/20 h-16 rounded-2xl shadow-md' 
             : 'bg-transparent h-24 border-b border-gold-accent/0'
@@ -59,7 +59,7 @@ export const Header = () => {
               </div>
             </div>
 
-            {/* Навигация */}
+            {/* Навигация (Десктоп) */}
             <div className="hidden md:flex items-center gap-8">
               {navigation.map((item) => (
                 <a
@@ -105,7 +105,7 @@ export const Header = () => {
             <div className="md:hidden">
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="text-luxury-text/80 hover:text-emerald-luxury p-2 focus:outline-none cursor-pointer"
+                className="text-luxury-text/80 hover:text-emerald-luxury p-2 focus:outline-none cursor-pointer relative z-50"
               >
                 {isOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
@@ -113,37 +113,43 @@ export const Header = () => {
           </div>
         </div>
 
-        {/* Мобильное меню */}
-        {isOpen && (
-          <div className={`md:hidden bg-cream-bg border border-gold-accent/20 mt-2 px-4 pt-2 pb-6 space-y-3 shadow-lg rounded-xl transition-all`}>
-            {navigation.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                onClick={() => setIsOpen(false)}
-                className="block text-base font-medium text-luxury-text/80 hover:text-gold-hover py-2 transition-colors duration-200"
-              >
-                {item.name}
+        {/* МОДЕРНИЗИРОВАННОЕ МОБИЛЬНОЕ МЕНЮ: Теперь оно выезжает и проявляется ультра-плавно */}
+        <div 
+          className={`absolute left-0 right-0 top-full mt-2 bg-cream-bg/95 backdrop-blur-md border border-gold-accent/20 px-4 pt-4 pb-6 space-y-4 shadow-xl rounded-2xl md:hidden transition-all duration-500 cubic-bezier(0.16, 1, 0.3, 1) origin-top overflow-hidden ${
+            isOpen 
+              ? 'opacity-100 scale-100 max-h-[400px] visible' 
+              : 'opacity-0 scale-95 max-h-0 invisible pointer-events-none'
+          }`}
+        >
+          {navigation.map((item) => (
+            <a
+              key={item.name}
+              href={item.href}
+              onClick={() => setIsOpen(false)}
+              className="block text-base font-medium text-luxury-text/80 hover:text-gold-hover py-1 transition-colors duration-200"
+            >
+              {item.name}
+            </a>
+          ))}
+          
+          <div className="pt-4 border-t border-gold-accent/20 space-y-4">
+            <a href="tel:+79991234567" className="flex items-center gap-2 text-sm text-luxury-text/60">
+              <Phone size={14} /> +7 (999) 123-45-67
+            </a>
+            <div className="grid grid-cols-3 gap-2 pt-1">
+              <a href="https://t.me" target="_blank" rel="noopener noreferrer" className="bg-cream-card border border-gold-accent/10 text-luxury-text/80 text-center py-2.5 rounded-lg text-xs font-medium hover:text-gold-hover">
+                Telegram
               </a>
-            ))}
-            <div className="pt-4 border-t border-gold-accent/20 space-y-4">
-              <a href="tel:+79991234567" className="flex items-center gap-2 text-sm text-luxury-text/60">
-                <Phone size={14} /> +7 (999) 123-45-67
+              <a href="https://wa.me" target="_blank" rel="noopener noreferrer" className="bg-cream-card border border-gold-accent/10 text-luxury-text/80 text-center py-2.5 rounded-lg text-xs font-medium hover:text-gold-hover">
+                WhatsApp
               </a>
-              <div className="grid grid-cols-3 gap-2 pt-2">
-                <a href="https://t.me" target="_blank" rel="noopener noreferrer" className="bg-cream-card border border-gold-accent/10 text-luxury-text/80 text-center py-2.5 rounded-lg text-xs font-medium hover:text-gold-hover">
-                  Telegram
-                </a>
-                <a href="https://wa.me" target="_blank" rel="noopener noreferrer" className="bg-cream-card border border-gold-accent/10 text-luxury-text/80 text-center py-2.5 rounded-lg text-xs font-medium hover:text-gold-hover">
-                  WhatsApp
-                </a>
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="bg-cream-card border border-gold-accent/10 text-luxury-text/80 text-center py-2.5 rounded-lg text-xs font-medium hover:text-gold-hover">
-                  Instagram
-                </a>
-              </div>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="bg-cream-card border border-gold-accent/10 text-luxury-text/80 text-center py-2.5 rounded-lg text-xs font-medium hover:text-gold-hover">
+                Instagram
+              </a>
             </div>
           </div>
-        )}
+        </div>
+
       </nav>
     </div>
   );

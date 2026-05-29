@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-// Компонент для отдельной карточки отзыва с независимым Observer
+// Компонент для отдельной карточки отзыва с независимым Observer для затушёвывания
 const ReviewItem = ({ rev }: { rev: { text: string; name: string; program: string } }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [isActive, setIsActive] = useState(false);
@@ -15,7 +15,7 @@ const ReviewItem = ({ rev }: { rev: { text: string; name: string; program: strin
       },
       {
         root: null,
-        rootMargin: '0px -40% 0px -40%', // Окно фокуса строго по центру
+        rootMargin: '0px -40% 0px -40%', // Окно фокуса строго по центру экрана
         threshold: 0.5,
       }
     );
@@ -56,7 +56,7 @@ export const Reviews = () => {
   const startX = useRef(0);
   const scrollLeft = useRef(0);
 
-  // Базовые отзывы про Anastazja Łapo
+  // Базовые сочные отзывы про Anastazja Łapo
   const baseReviews = [
     { name: 'Марк и Анна', program: 'ВНЖ Digital Nomad, Испания', text: 'Обратились к Анастасии после самостоятельного отказа из-за неправильно оформленного контракта. Она полностью переформатировала наши документы с американским заказчиком и составила пояснительное письмо для UGE. Подали заново — одобрение пришло через 18 дней! Настоящий профессионал.' },
     { name: 'Дмитрий К.', program: 'Стартап-виза, Португалия', text: 'Анастасия помогла докрутить нашу бизнес-модель под жесткие требования института IAPMEI. Сопровождала на каждом шагу: от сбора справок до открытия счета. Всегда на связи в Telegram, объясняет сложные законы простым языком. Рекомендую.' },
@@ -72,12 +72,23 @@ export const Reviews = () => {
     return { ...baseReview, id: `${baseReview.name}-${index}` };
   });
 
-  // Логика перетаскивания мышкой (Drag-to-Scroll)
+  // Нативно паркуем скролл на 4-й отзыв при загрузке (индекс 3), чтобы по бокам ВСЕГДА были элементы
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const targetChild = container.children[0] as HTMLElement;
+    if (targetChild) {
+      // Вычисляем точный центр для 4-й карточки, чтобы сдвиг произошел мгновенно и без багов анимации
+      container.scrollLeft = (targetChild.offsetWidth + 48) * 3; 
+    }
+  }, []);
+
+  // Логика ручного перетаскивания мышкой (Drag-to-Scroll)
   const handleMouseDown = (e: React.MouseEvent) => {
     if (!scrollContainerRef.current) return;
     isDown.current = true;
     scrollContainerRef.current.classList.add('active');
-    // Фиксируем стартовую точку клика
     startX.current = e.pageX - scrollContainerRef.current.offsetLeft;
     scrollLeft.current = scrollContainerRef.current.scrollLeft;
   };
@@ -92,9 +103,8 @@ export const Reviews = () => {
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!isDown.current || !scrollContainerRef.current) return;
     e.preventDefault();
-    // Считаем пройденное мышкой расстояние
     const x = e.pageX - scrollContainerRef.current.offsetLeft;
-    const walk = (x - startX.current) * 1.5; // Умножаем на 1.5 для скорости скролла
+    const walk = (x - startX.current) * 1.5;
     scrollContainerRef.current.scrollLeft = scrollLeft.current - walk;
   };
 
@@ -102,20 +112,19 @@ export const Reviews = () => {
     <section className="py-24 bg-cream-bg relative z-20 overflow-hidden" id="reviews">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
-        {/* Заголовок секции */}
-        <div className="text-center space-y-4 max-w-xl mx-auto">
+        {/* ЗАГОЛОВОК: Использует наш новый нативный класс спуска сверху */}
+        <div className="text-center space-y-4 max-w-xl mx-auto scroll-reveal-down">
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-emerald-luxury">
             Что говорят <span className="text-gold-hover">клиенты</span>
           </h2>
-          <p className="text-sm text-luxury-text/70 leading-relaxed">
+          <p className="text-sm text-luxury-text/70 leading-relaxed mt-4">
             Реальные истории людей, которые успешно прошли процесс легализации и доверили свой переезд эксперту.
           </p>
         </div>
 
-        {/* Скролл-контейнер нового поколения */}
-        <div className="relative w-full overflow-visible">
+        {/* СЛАЙДЕР: Использует наш нативный класс влёта снизу */}
+        <div className="relative w-full overflow-visible scroll-reveal-up">
           
-          {/* Градиентные маски по бокам */}
           <div className="w-full mask-gradient">
             <div 
               ref={scrollContainerRef}
@@ -143,6 +152,7 @@ export const Reviews = () => {
     </section>
   );
 };
+
 
 
 
