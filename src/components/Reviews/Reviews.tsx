@@ -10,14 +10,18 @@ const ReviewItem = ({ rev }: { rev: { text: string; name: string; program: strin
     const card = cardRef.current;
     if (!card) return;
 
+    // ИСПРАВЛЕНО: Для мобильных устройств убираем строгое окно фокуса, чтобы отзывы не затушёвывались намертво
+    const isMobile = window.innerWidth < 768;
+    const margin = isMobile ? '0px -5% 0px -5%' : '0px -40% 0px -40%';
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsActive(entry.isIntersecting);
       },
       {
         root: null,
-        rootMargin: '0px -40% 0px -40%', // Окно фокуса строго по центру экрана
-        threshold: 0.5,
+        rootMargin: margin, // Динамическое окно фокуса в зависимости от экрана
+        threshold: isMobile ? 0.2 : 0.5,
       }
     );
 
@@ -28,20 +32,18 @@ const ReviewItem = ({ rev }: { rev: { text: string; name: string; program: strin
   return (
     <div 
       ref={cardRef}
-      // ИСПРАВЛЕНО: Добавлены dark:text-cream-bg стили для текстов отзыва в ночном режиме
-      className={`w-[290px] sm:w-[500px] shrink-0 flex flex-col justify-center text-center snap-center transition-all duration-700 ease-out min-h-[220px] will-change-[opacity,transform,filter] ${
+      // ИСПРАВЛЕНО: На мобильных (до md:) принудительно держим карточки читаемыми без блюра и затушёвывания
+      className={`w-[290px] sm:w-[500px] shrink-0 flex flex-col justify-center text-center snap-center transition-all duration-700 ease-out min-h-[220px] will-change-[opacity,transform,filter] md:blur-0 ${
         isActive 
-          ? 'opacity-100 scale-100 blur-0 z-30' 
-          : 'opacity-35 scale-95 blur-[2px] z-10 select-none'
+          ? 'opacity-100 scale-100 md:blur-0 z-30' 
+          : 'md:opacity-35 scale-95 md:blur-[2px] z-10 select-none max-md:opacity-100'
       }`}
     >
       <div className="space-y-6">
-        {/* ИСПРАВЛЕНО: Текст отзыва адаптирован под темную тему через dark:text-cream-bg */}
         <p className="text-sm sm:text-base text-luxury-text dark:text-cream-bg/90 font-medium leading-relaxed italic transition-colors duration-500">
           "{rev.text}"
         </p>
         <div>
-          {/* ИСПРАВЛЕНО: Имя автора адаптировано через dark:text-cream-bg */}
           <h4 className="font-bold text-emerald-luxury dark:text-cream-bg text-sm tracking-wide transition-colors duration-500">
             {rev.name}
           </h4>
@@ -115,12 +117,10 @@ export const Reviews = () => {
   };
 
   return (
-    // ИСПРАВЛЕНО: Добавлен dark:bg-emerald-luxury и transition-colors duration-500 для плавной смены фона всей секции
     <section ref={sectionRef} className="py-24 bg-cream-bg dark:bg-emerald-luxury transition-colors duration-500 relative z-20 overflow-hidden" id="reviews">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         {/* ЗАГОЛОВОК: Театральное проявление из блюра */}
-        {/* ИСПРАВЛЕНО: Добавлен заголовок dark:text-cream-bg */}
         <motion.div 
           initial={{ opacity: 0, filter: 'blur(10px)' }}
           animate={isInView ? { opacity: 1, filter: 'blur(0px)' } : {}}
@@ -135,21 +135,23 @@ export const Reviews = () => {
           </p>
         </motion.div>
 
-        {/* СЛАЙДЕР: Мягкое проявление с легким увеличением (микро-толчок на пользователя) */}
+        {/* СЛАЙДЕР */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.97 }}
           animate={isInView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 1.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="relative w-full overflow-visible"
         >
-          <div className="w-full mask-gradient">
+          {/* ИСПРАВЛЕНО: Маска md:mask-gradient применяется только на больших экранах, чтобы не тушевать мобилки */}
+          <div className="w-full md:mask-gradient">
             <div 
               ref={scrollContainerRef}
               onMouseDown={handleMouseDown}
               onMouseLeave={handleMouseLeaveOrUp}
               onMouseUp={handleMouseLeaveOrUp}
               onMouseMove={handleMouseMove}
-              className="flex gap-12 sm:gap-24 overflow-x-auto no-scrollbar py-8 px-[35vw] snap-x snap-mandatory scroll-smooth cursor-grab active:cursor-grabbing select-none"
+              // ИСПРАВЛЕНО: Снизили паддинг на мобилках px-4, а для md: вернули центрирующий px-[35vw]
+              className="flex gap-12 sm:gap-24 overflow-x-auto no-scrollbar py-8 px-4 md:px-[35vw] snap-x snap-mandatory scroll-smooth cursor-grab active:cursor-grabbing select-none"
               style={{ scrollbarWidth: 'none' }}
             >
               {infiniteReviews.map((rev) => (
@@ -167,6 +169,7 @@ export const Reviews = () => {
     </section>
   );
 };
+
 
 
 
