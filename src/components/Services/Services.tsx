@@ -25,37 +25,35 @@ export const Services = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // Карточка вошла в экран — собираем её в центр
             entry.target.classList.add('is-visible');
           } else {
-            // ТО САМОЕ ИСПРАВЛЕНИЕ: Карточка ушла из экрана — разбираем обратно по сторонам
             entry.target.classList.remove('is-visible');
           }
         });
       },
       { 
-        threshold: 0.05, // Срабатывает быстрее, как только показался край
+        threshold: 0.05,
         rootMargin: '0px 0px -20px 0px' 
       }
     );
 
     cards.forEach((card) => observer.observe(card));
-
-    return () => {
-      cards.forEach((card) => observer.unobserve(card));
-    };
+    return () => cards.forEach((card) => observer.unobserve(card));
   }, []);
 
   return (
-    <section className="py-24 bg-cream-bg relative z-20 overflow-hidden" id="services">
+    // ИСПРАВЛЕНО: Добавлен dark:bg-emerald-luxury для всей секции услуг
+    <section className="py-24 bg-cream-bg dark:bg-emerald-luxury transition-colors duration-500 relative z-20 overflow-hidden" id="services">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Заголовок секции */}
         <div className="text-center space-y-4 mb-16">
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-emerald-luxury">
-            Направления работы и <span className="text-gold-hover">стоимость</span>
+          {/* ИСПРАВЛЕНО: Добавлен dark:text-cream-bg */}
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-emerald-luxury dark:text-cream-bg transition-colors duration-500">
+            Направления работы и <span className="text-gold-hover dark:text-gold-accent">стоимость</span>
           </h2>
-          <p className="text-sm text-luxury-text/70 max-w-xl mx-auto leading-relaxed">
+          {/* ИСПРАВЛЕНО: Добавлен dark:text-cream-bg/70 */}
+          <p className="text-sm text-luxury-text/70 dark:text-cream-bg/70 max-w-xl mx-auto leading-relaxed transition-colors duration-500">
             Прозрачные условия без скрытых комиссий. Фиксируем финальную стоимость в официальном договоре до начала процесса.
           </p>
         </div>
@@ -66,14 +64,15 @@ export const Services = () => {
             const isLeft = index % 2 === 0;
 
             return (
+              /* ИСПРАВЛЕНО: Чистое внедрение dark:bg-emerald-medium и dark:border-gold-accent/30 без синтаксических ошибок */
               <div 
                 key={service.id}
-                className={`bg-cream-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between group transition-all duration-300 shadow-sm hover:shadow-md relative overflow-hidden fly-card ${
+                className={`bg-cream-card dark:bg-emerald-medium rounded-2xl p-6 sm:p-8 flex flex-col justify-between group transition-all duration-300 shadow-sm hover:shadow-md relative overflow-hidden fly-card ${
                   isLeft ? 'fly-from-left' : 'fly-from-right'
                 } ${
                   service.popular 
-                    ? 'border-2 border-gold-accent ring-1 ring-gold-accent/20' 
-                    : 'border border-gold-accent/10'
+                    ? 'border-2 border-gold-accent dark:border-gold-accent ring-1 ring-gold-accent/20' 
+                    : 'border border-gold-accent/10 dark:border-gold-accent/20'
                 }`}
               >
                 {/* Бейдж для популярной услуги */}
@@ -85,28 +84,32 @@ export const Services = () => {
 
                 <div className="space-y-4">
                   <div className="flex justify-between items-start gap-4">
-                    <h3 className="font-bold text-xl text-emerald-luxury group-hover:text-gold-hover transition-colors duration-200">
+                    {/* ИСПРАВЛЕНО: Добавлен dark:text-cream-bg */}
+                    <h3 className="font-bold text-xl text-emerald-luxury dark:text-cream-bg group-hover:text-gold-hover transition-colors duration-200">
                       {service.title}
                     </h3>
                     <div className="text-right flex-shrink-0">
-                      <span className="text-sm font-bold text-emerald-luxury bg-gold-accent/20 px-2.5 py-1 rounded-md">
+                      <span className="text-sm font-bold text-emerald-luxury dark:text-cream-bg bg-gold-accent/20 px-2.5 py-1 rounded-md transition-colors duration-500">
                         {service.price}
                       </span>
                     </div>
                   </div>
                   
-                  <p className="text-xs text-luxury-text/80 leading-relaxed">
+                  {/* ИСПРАВЛЕНО: Добавлен dark:text-cream-bg/80 */}
+                  <p className="text-xs text-luxury-text/80 dark:text-cream-bg/80 leading-relaxed transition-colors duration-500">
                     {service.desc}
                   </p>
                 </div>
 
                 {/* Нижняя плашка карточки */}
-                <div className="flex items-center justify-between border-t border-gold-accent/20 pt-4 mt-6 text-xs text-luxury-text/60">
-                  <span className="flex items-center gap-1.5 font-medium text-emerald-medium">
+                <div className="flex items-center justify-between border-t border-gold-accent/20 pt-4 mt-6 text-xs text-luxury-text/60 dark:text-cream-bg/60 transition-colors duration-500">
+                  {/* ИСПРАВЛЕНО: Добавлен dark:text-gold-accent */}
+                  <span className="flex items-center gap-1.5 font-medium text-emerald-medium dark:text-gold-accent">
                     <Check size={12} className="text-gold-accent" />
                     {service.time}
                   </span>
-                  <button className="text-emerald-medium group-hover:text-gold-hover flex items-center gap-1 font-semibold transition-colors duration-200 cursor-pointer text-xs">
+                  {/* ИСПРАВЛЕНО: Добавлен dark:text-cream-bg/80 */}
+                  <button className="text-emerald-medium dark:text-cream-bg/80 group-hover:text-gold-hover transition-colors duration-200 cursor-pointer text-xs">
                     Подробнее <ArrowRight size={12} className="transform group-hover:translate-x-0.5 transition-transform" />
                   </button>
                 </div>
@@ -119,5 +122,6 @@ export const Services = () => {
     </section>
   );
 };
+
 
 
