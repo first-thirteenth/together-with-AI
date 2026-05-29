@@ -1,4 +1,6 @@
-import { Award, BookOpen, Scale, CheckCircle } from 'lucide-react';
+import { Award, BookOpen, CheckCircle } from 'lucide-react';
+// 1. ИМПОРТИРУЕМ ФОТОГРАФИЮ ИЗ ПАПКИ ASSETS
+import anastasiaPhoto from '../../assets/anastasia.jpg';
 
 export const About = () => {
   return (
@@ -6,22 +8,28 @@ export const About = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
-          {/* Левая колонка: Фото / Имиджевый блок */}
+          {/* Левая校онка: Фото / Имиджевый блок */}
           <div className="lg:col-span-5 relative justify-self-center lg:justify-self-start w-full max-w-md">
             {/* Нежное золотое свечение за фотографией */}
             <div className="absolute -inset-2 bg-gradient-to-tr from-gold-accent/20 to-transparent rounded-2xl blur-lg"></div>
             
-            {/* Рамка под фото (Светлый премиум-градиент) */}
-            <div className="relative w-full aspect-[4/5] bg-gradient-to-b from-cream-card to-white rounded-2xl border border-gold-accent/20 flex items-center justify-center overflow-hidden shadow-xl">
-              <div className="text-center p-6 space-y-3">
-                <Scale className="mx-auto text-gold-hover" size={44} />
-                <p className="text-xs text-luxury-text/60 max-w-[200px]">Место для вашего профессионального photo в деловом стиле</p>
-              </div>
+            {/* Рамка под фото в стиле Премиум */}
+            <div className="relative w-full aspect-[4/5] bg-gradient-to-b from-cream-card to-white rounded-2xl border border-gold-accent/20 overflow-hidden shadow-xl group">
+              
+              {/* 2. ОТОБРАЖАЕМ РЕАЛЬНУЮ ФОТОГРАФИЮ АНАСТАСИИ С ЭФФЕКТОМ ЗУМА */}
+              <img 
+                src={anastasiaPhoto} 
+                alt="Anastazja Łapo" 
+                className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+              />
+
+              {/* Мягкий затемняющий градиент снизу для безупречной читаемости имени */}
+              <div className="absolute inset-0 bg-gradient-to-t from-emerald-luxury/40 via-transparent to-transparent pointer-events-none" />
               
               {/* Плашка с именем поверх фото */}
-              <div className="absolute bottom-4 left-4 right-4 bg-emerald-luxury/95 backdrop-blur-md p-4 rounded-xl border border-gold-accent/10 text-center">
-                <p className="font-bold text-cream-bg text-base">Anastazja Łapo</p>
-                <p className="text-[11px] text-gold-accent font-medium uppercase tracking-wider">Основатель проекта</p>
+              <div className="absolute bottom-4 left-4 right-4 bg-emerald-luxury/95 backdrop-blur-md p-4 rounded-xl border border-gold-accent/10 text-center z-10 shadow-lg">
+                <p className="font-bold text-cream-bg text-base tracking-wide">Anastazja Łapo</p>
+                <p className="text-[11px] text-gold-accent font-medium uppercase tracking-wider mt-0.5">Основатель проекта</p>
               </div>
             </div>
           </div>
@@ -48,7 +56,7 @@ export const About = () => {
               </li>
               <li className="flex items-center gap-2.5">
                 <CheckCircle size={14} className="text-gold-accent flex-shrink-0" />
-                <span>Прямая связь с экспертом без менеджеров и посредников</span>
+                <span>Пнямая связь с экспертом без менеджеров и посредников</span>
               </li>
             </ul>
 
@@ -76,4 +84,3 @@ export const About = () => {
     </section>
   );
 };
-

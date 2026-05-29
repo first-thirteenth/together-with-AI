@@ -1,4 +1,6 @@
-import { Award, BookOpen, Briefcase, ArrowRight } from 'lucide-react';
+import { Award, BookOpen, ArrowRight } from 'lucide-react';
+// 1. ИМПОРТИРУЕМ ФОТОГРАФИЮ (Укажи здесь правильный путь к файлу!)
+import anastasiaPhoto from '../assets/anastasia.jpg';
 
 export const AboutAndServices = () => {
   const services = [
@@ -12,25 +14,33 @@ export const AboutAndServices = () => {
     <section className="py-20 bg-cream-bg" id="programs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Блок 1: Обо мне (Анимация через класс scroll-reveal) */}
+        {/* Блок 1: Обо мне */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-24 scroll-reveal">
           <div className="lg:col-span-5 relative justify-self-center lg:justify-self-start w-full max-w-md">
+            
             {/* Нежное золотое свечение за фотографией */}
             <div className="absolute -inset-2 bg-gradient-to-tr from-gold-accent/20 to-transparent rounded-2xl blur-lg"></div>
             
-            {/* Рамка под фото (Светлый премиум-градиент) */}
-            <div className="relative w-full aspect-[4/5] bg-gradient-to-b from-cream-card to-white rounded-2xl border border-gold-accent/20 flex items-center justify-center overflow-hidden shadow-xl">
-              <div className="text-center p-6 space-y-2">
-                <Briefcase className="mx-auto text-gold-hover" size={40} />
-                <p className="text-sm font-medium text-luxury-text/60">Место для вашего профессионального фото</p>
-              </div>
+            {/* Рамка под фото в стиле Премиум */}
+            <div className="relative w-full aspect-[4/5] bg-gradient-to-b from-cream-card to-white rounded-2xl border border-gold-accent/20 overflow-hidden shadow-xl group">
+              
+              {/* 2. ТЕГ ИМИДЖА: Отображаем реальную фотографию */}
+              <img 
+                src={anastasiaPhoto} 
+                alt="Anastazja Łapo" 
+                className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+              />
+
+              {/* Мягкий градиентный фильтр поверх фото для лучшей читаемости белой плашки */}
+              <div className="absolute inset-0 bg-gradient-to-t from-emerald-luxury/40 via-transparent to-transparent pointer-events-none" />
               
               {/* Плашка с именем поверх фото */}
-              <div className="absolute bottom-4 left-4 right-4 bg-emerald-luxury/95 backdrop-blur-md p-4 rounded-xl border border-gold-accent/10 text-center">
-                <p className="font-bold text-cream-bg text-base">Anastazja Łapo</p>
-                <p className="text-[11px] text-gold-accent font-medium uppercase tracking-wider">Основатель проекта</p>
+              <div className="absolute bottom-4 left-4 right-4 bg-emerald-luxury/95 backdrop-blur-md p-4 rounded-xl border border-gold-accent/10 text-center z-10 shadow-lg">
+                <p className="font-bold text-cream-bg text-base tracking-wide">Anastazja Łapo</p>
+                <p className="text-[11px] text-gold-accent font-medium uppercase tracking-wider mt-0.5">Основатель проекта</p>
               </div>
             </div>
+
           </div>
 
           <div className="lg:col-span-7 space-y-6">
@@ -60,7 +70,7 @@ export const AboutAndServices = () => {
           </div>
         </div>
 
-        {/* Блок 2: Стоимость и Услуги (Анимация через класс scroll-reveal) */}
+        {/* Блок 2: Стоимость и Услуги */}
         <div className="space-y-12 scroll-reveal">
           <div className="space-y-4">
             <h2 className="text-3xl font-bold text-emerald-luxury text-center" id="services">Основные направления и стоимость</h2>
@@ -96,4 +106,5 @@ export const AboutAndServices = () => {
     </section>
   );
 };
+
 
