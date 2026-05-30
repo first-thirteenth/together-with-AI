@@ -1,12 +1,18 @@
 import { useState, useEffect } from 'react';
 import { Feather, Menu, X, Phone, Send, Moon, Sun, Globe, ChevronDown } from 'lucide-react';
 
+// Сеньорские импорты, разделенные по файлам для поддержки Fast Refresh и verbatimModuleSyntax
+import { useLang } from '../../context/useLang';
+import type { LanguageCode } from '../../context/translations';
+
 export const Header = () => {
+  const { lang, setLang, t } = useLang();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [isPhoneHighlighted, setIsPhoneHighlighted] = useState(false);
   
+  // Инициализируем стейт сразу из localStorage, чтобы избежать мигания при перезагрузке
   // Языковой стейт
   const [currentLang, setCurrentLang] = useState('RU');
   const languages = [
@@ -29,6 +35,7 @@ export const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Синхронизируем состояние с тегом HTML и сохраняем выбор в localStorage
   useEffect(() => {
     const root = window.document.documentElement;
     if (isDarkMode) {
@@ -40,6 +47,10 @@ export const Header = () => {
     }
   }, [isDarkMode]);
 
+  // Интерактивный звонок с локализованным подтверждением
+  const handleCallClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const confirmCall = window.confirm(t.header.callConfirm);
   // Функция для безопасного и интерактивного звонка
   const handleCallClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -49,20 +60,33 @@ export const Header = () => {
     }
   };
 
+  // Эффект подсветки номера телефона при клике на "Консультация"
   // Эффект подсветки номера при клике на Консультацию
   const handleConsultationClick = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsPhoneHighlighted(true);
     setTimeout(() => {
       setIsPhoneHighlighted(false);
+    }, 2500);
+  };
+
+  // Массив языков для рендеринга в селекторах
+  const languages: { code: LanguageCode; name: string }[] = [
+    { code: 'EN', name: 'English' },
+    { code: 'PL', name: 'Polski' },
+    { code: 'RU', name: 'Русский' },
+    { code: 'UA', name: 'Українська' }
+  ];
+
+  // Динамическая навигация, подключенная к i18n словарям
     }, 2500); // Подсветка горит 2.5 секунды
   };
 
   const navigation = [
-    { name: 'Главная', href: '#' },
-    { name: 'Обо мне', href: '#about' },
-    { name: 'Услуги и цены', href: '#services' },
-    { name: 'Отзывы', href: '#reviews' },
+    { name: t.header.main, href: '#' },
+    { name: t.header.about, href: '#about' },
+    { name: t.header.services, href: '#services' },
+    { name: t.header.reviews, href: '#reviews' },
   ];
 
   return (
@@ -108,6 +132,7 @@ export const Header = () => {
             {/* Контакты + Языки + Тема + Кнопка (Десктоп) */}
             <div className="hidden md:flex items-center gap-6">
               
+              {/* Переключатель языков (Десктоп) */}
               {/* Переключатель языков */}
               <div className="relative">
                 <button 
@@ -115,11 +140,23 @@ export const Header = () => {
                   className="text-xs font-medium text-luxury-text/70 dark:text-cream-bg/70 hover:text-gold-hover dark:hover:text-gold-accent flex items-center gap-1 transition-colors cursor-pointer"
                 >
                   <Globe size={14} />
+                  <span>{lang}</span>
                   <span>{currentLang}</span>
                   <ChevronDown size={12} className={`transition-transform duration-200 ${isLangOpen ? 'rotate-180' : ''}`} />
                 </button>
                 
                 {isLangOpen && (
+                  <div className="absolute right-0 mt-2 w-32 bg-cream-bg dark:bg-emerald-luxury border border-gold-accent/20 rounded-xl shadow-lg py-1 z-50">
+                    {languages.map((item) => (
+                      <button
+                        key={item.code}
+                        onClick={() => {
+                          setLang(item.code);
+                          setIsLangOpen(false);
+                        }}
+                        className={`w-full text-left px-3 py-1.5 text-xs transition-colors hover:bg-gold-accent/10 cursor-pointer ${lang === item.code ? 'text-gold-hover font-bold' : 'text-luxury-text/80 dark:text-cream-bg/80'}`}
+                      >
+                        {item.name}
                   <div className="absolute right-0 mt-2 w-32 bg-cream-bg dark:bg-emerald-luxury border border-gold-accent/20 rounded-xl shadow-lg py-1 z-50 animate-in fade-in slide-in-from-top-1 duration-200">
                     {languages.map((lang) => (
                       <button
@@ -146,6 +183,13 @@ export const Header = () => {
                 {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
               </button>
 
+              {/* Реальный телефон Анастасии */}
+              <a 
+                href="tel:+48571053915" 
+                onClick={handleCallClick}
+                className={`text-xs font-semibold transition-all duration-300 flex items-center gap-1.5 cursor-pointer ${
+                  isPhoneHighlighted 
+                    ? 'text-gold-hover dark:text-gold-accent scale-110 font-bold' 
               {/* Реальный телефон Анастасии с анимацией подсветки */}
               <a 
                 href="tel:+48571053915" 
@@ -160,11 +204,14 @@ export const Header = () => {
                 +48 571 053 915
               </a>
               
+              {/* Реальный Telegram Анастасии (Десктоп) — пофикшен регистр букв */}
               
               {/* Реальный Telegram Анастасии */}
               <a 
-                href="https://t.me" 
+                href="https://t.me/AnastaziALappo" 
                 target="_blank" 
+                rel="noreferrer"
+                className="relative z-30 inline-flex items-center justify-center text-luxury-text/60 dark:text-cream-bg/60 hover:text-gold-hover dark:hover:text-gold-accent transition-colors p-2 cursor-pointer"
                 rel="noopener noreferrer"
                 className="relative z-20 inline-flex items-center justify-center text-luxury-text/60 dark:text-cream-bg/60 hover:text-gold-hover dark:hover:text-gold-accent transition-colors p-2 cursor-pointer"
                 title="Написать в Telegram Анастасии"
@@ -172,6 +219,7 @@ export const Header = () => {
                 <Send size={16} className="transform rotate-45 pointer-events-none" />
               </a>
 
+              {/* Кнопка Консультация */}
               
               {/* Кнопка активации триггера подсветки номера */}
               <button 
@@ -179,6 +227,11 @@ export const Header = () => {
                 className="relative overflow-hidden bg-emerald-luxury dark:bg-gold-accent text-cream-bg dark:text-emerald-luxury font-bold px-4 py-2 rounded-lg text-xs transition-all cursor-pointer shadow-sm group/btn"
               >
                 <span className="absolute top-0 -inset-full h-full w-1/2 block transform -skew-x-12 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover/btn:opacity-100 group-hover/btn:animate-[shine_0.8s_ease-in-out]" />
+                <span className="relative z-10">{t.header.consultation}</span>
+              </button>
+            </div>
+
+            {/* Правый блок мобилки */}
                 <span className="relative z-10">Консультация</span>
               </button>
             </div>
@@ -208,6 +261,12 @@ export const Header = () => {
           ))}
           
           <div className="pt-4 border-t border-gold-accent/20 space-y-4">
+            
+            {/* Телефон на мобилке */}
+            <a 
+              href="tel:+48571053915" 
+              onClick={handleCallClick}
+              className={`flex items-center gap-2 text-sm transition-all duration-300 cursor-pointer ${
             {/* Интерактивный телефон Анастасии на мобилке */}
             <a 
               href="tel:+48571053915" 
@@ -220,6 +279,19 @@ export const Header = () => {
               +48 571 053 915
             </a>
 
+            {/* Мобильный селектор языков */}
+            <div className="space-y-1.5">
+              <span className="text-xs text-luxury-text/40 dark:text-cream-bg/40 block">{t.header.langSelect}:</span>
+              <div className="grid grid-cols-4 gap-1">
+                {languages.map((item) => (
+                  <button
+                    key={item.code}
+                    onClick={() => {
+                      setLang(item.code);
+                      setIsOpen(false);
+                    }}
+                    className={`text-xs py-1.5 rounded-md border text-center transition-colors cursor-pointer ${
+                      lang === item.code 
             {/* Мобильный выбор языков */}
             <div className="space-y-1.5">
               <span className="text-xs text-luxury-text/40 dark:text-cream-bg/40 block">Выберите язык / Wybierz język:</span>
@@ -237,12 +309,20 @@ export const Header = () => {
                         : 'border-gold-accent/10 text-luxury-text/70 dark:text-cream-bg/70'
                     }`}
                   >
+                    {item.code}
                     {lang.code}
                   </button>
                 ))}
               </div>
             </div>
 
+              {/* Мессенджеры на мобилке — пофикшен регистр букв */}
+              <div className="grid grid-cols-2 gap-2 pt-1">
+                <a 
+                  href="https://t.me/AnastaziALappo" 
+                  target="_blank" 
+                  rel="noreferrer"
+                  onClick={() => setIsOpen(false)} // Закрываем шторку меню при клике
               {/* Мессенджеры на мобилке */}
               <div className="grid grid-cols-2 gap-2 pt-1">
                 <a 
@@ -257,6 +337,7 @@ export const Header = () => {
                   onClick={handleConsultationClick}
                   className="bg-gold-accent text-emerald-luxury text-center py-2.5 rounded-lg text-xs font-bold cursor-pointer"
                 >
+                  {t.header.consultation}
                   Консультация
                 </button>
               </div>
