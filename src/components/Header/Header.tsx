@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Feather, Menu, X, Phone, Send, Moon, Sun, Globe, ChevronDown } from 'lucide-react';
 
-// Чистые сеньорские импорты, разделенные по файлам для поддержки Fast Refresh и verbatimModuleSyntax
+// Сеньорские импорты, разделенные по файлам для поддержки Fast Refresh и verbatimModuleSyntax
 import { useLang } from '../../context/useLang';
 import type { LanguageCode } from '../../context/translations';
 
@@ -54,7 +54,7 @@ export const Header = () => {
     setIsPhoneHighlighted(true);
     setTimeout(() => {
       setIsPhoneHighlighted(false);
-    }, 2500); // ИСПРАВЛЕНО: Таймер теперь находится строго внутри своей функции
+    }, 2500);
   };
 
   // Массив языков для рендеринга в селекторах
@@ -168,9 +168,9 @@ export const Header = () => {
                 +48 571 053 915
               </a>
               
-              {/* Реальный Telegram Анастасии */}
+              {/* Телеграм Анастасии */}
               <a 
-                href="https://t.me" 
+                href="https://t.me/AnastaziALappo" 
                 target="_blank" 
                 rel="noreferrer"
                 className="relative z-30 inline-flex items-center justify-center text-luxury-text/60 dark:text-cream-bg/60 hover:text-gold-hover dark:hover:text-gold-accent transition-colors p-2 cursor-pointer"
@@ -251,6 +251,7 @@ export const Header = () => {
 
             {/* Мессенджеры на мобилке */}
             <div className="grid grid-cols-2 gap-2 pt-1">
+              {/* ИСПРАВЛЕНО: Ссылка-близнец из SocialLinks для мобильного меню */}
               <a 
                 href="https://t.me" 
                 target="_blank" 
@@ -274,6 +275,12 @@ export const Header = () => {
     </div>
   );
 };
+
+
+
+
+
+
 
 
 
