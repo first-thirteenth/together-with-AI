@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Feather, Menu, X, Phone, Send, Moon, Sun, Globe, ChevronDown } from 'lucide-react';
 
-// Сеньорские импорты, разделенные по файлам для поддержки Fast Refresh и verbatimModuleSyntax
+// Чистые сеньорские импорты, разделенные по файлам для поддержки Fast Refresh и verbatimModuleSyntax
 import { useLang } from '../../context/useLang';
 import type { LanguageCode } from '../../context/translations';
 
@@ -12,21 +12,13 @@ export const Header = () => {
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [isPhoneHighlighted, setIsPhoneHighlighted] = useState(false);
   
-  // Инициализируем стейт сразу из localStorage, чтобы избежать мигания при перезагрузке
-  // Языковой стейт
-  const [currentLang, setCurrentLang] = useState('RU');
-  const languages = [
-    { code: 'EN', name: 'English' },
-    { code: 'PL', name: 'Polski' },
-    { code: 'RU', name: 'Русский' },
-    { code: 'UA', name: 'Українська' }
-  ];
-
+  // Инициализируем стейт сразу из localStorage, чтобы избежать мигания темы
   const [isDarkMode, setIsDarkMode] = useState(() => {
     const savedTheme = localStorage.getItem('theme');
     return savedTheme === 'dark';
   });
 
+  // Следим за скроллом для эффекта "парения" шапки
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 15);
@@ -35,7 +27,7 @@ export const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Синхронизируем состояние с тегом HTML и сохраняем выбор в localStorage
+  // Синхронизируем состояние с тегом HTML
   useEffect(() => {
     const root = window.document.documentElement;
     if (isDarkMode) {
@@ -51,23 +43,18 @@ export const Header = () => {
   const handleCallClick = (e: React.MouseEvent) => {
     e.preventDefault();
     const confirmCall = window.confirm(t.header.callConfirm);
-  // Функция для безопасного и интерактивного звонка
-  const handleCallClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    const confirmCall = window.confirm("Вы хотите позвонить Анастасии Лапо?");
     if (confirmCall) {
       window.location.href = "tel:+48571053915";
     }
   };
 
   // Эффект подсветки номера телефона при клике на "Консультация"
-  // Эффект подсветки номера при клике на Консультацию
   const handleConsultationClick = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsPhoneHighlighted(true);
     setTimeout(() => {
       setIsPhoneHighlighted(false);
-    }, 2500);
+    }, 2500); // ИСПРАВЛЕНО: Таймер теперь находится строго внутри своей функции
   };
 
   // Массив языков для рендеринга в селекторах
@@ -79,9 +66,6 @@ export const Header = () => {
   ];
 
   // Динамическая навигация, подключенная к i18n словарям
-    }, 2500); // Подсветка горит 2.5 секунды
-  };
-
   const navigation = [
     { name: t.header.main, href: '#' },
     { name: t.header.about, href: '#about' },
@@ -115,7 +99,6 @@ export const Header = () => {
                 </span>
               </div>
             </div>
-
             {/* Навигация (Десктоп) */}
             <div className="hidden md:flex items-center gap-8">
               {navigation.map((item) => (
@@ -129,11 +112,11 @@ export const Header = () => {
                 </a>
               ))}
             </div>
+
             {/* Контакты + Языки + Тема + Кнопка (Десктоп) */}
             <div className="hidden md:flex items-center gap-6">
               
               {/* Переключатель языков (Десктоп) */}
-              {/* Переключатель языков */}
               <div className="relative">
                 <button 
                   onClick={() => setIsLangOpen(!isLangOpen)}
@@ -141,7 +124,6 @@ export const Header = () => {
                 >
                   <Globe size={14} />
                   <span>{lang}</span>
-                  <span>{currentLang}</span>
                   <ChevronDown size={12} className={`transition-transform duration-200 ${isLangOpen ? 'rotate-180' : ''}`} />
                 </button>
                 
@@ -157,17 +139,6 @@ export const Header = () => {
                         className={`w-full text-left px-3 py-1.5 text-xs transition-colors hover:bg-gold-accent/10 cursor-pointer ${lang === item.code ? 'text-gold-hover font-bold' : 'text-luxury-text/80 dark:text-cream-bg/80'}`}
                       >
                         {item.name}
-                  <div className="absolute right-0 mt-2 w-32 bg-cream-bg dark:bg-emerald-luxury border border-gold-accent/20 rounded-xl shadow-lg py-1 z-50 animate-in fade-in slide-in-from-top-1 duration-200">
-                    {languages.map((lang) => (
-                      <button
-                        key={lang.code}
-                        onClick={() => {
-                          setCurrentLang(lang.code);
-                          setIsLangOpen(false);
-                        }}
-                        className={`w-full text-left px-3 py-1.5 text-xs transition-colors hover:bg-gold-accent/10 ${currentLang === lang.code ? 'text-gold-hover font-bold' : 'text-luxury-text/80 dark:text-cream-bg/80'}`}
-                      >
-                        {lang.name}
                       </button>
                     ))}
                   </div>
@@ -190,13 +161,6 @@ export const Header = () => {
                 className={`text-xs font-semibold transition-all duration-300 flex items-center gap-1.5 cursor-pointer ${
                   isPhoneHighlighted 
                     ? 'text-gold-hover dark:text-gold-accent scale-110 font-bold' 
-              {/* Реальный телефон Анастасии с анимацией подсветки */}
-              <a 
-                href="tel:+48571053915" 
-                onClick={handleCallClick}
-                className={`text-xs font-semibold transition-all duration-300 flex items-center gap-1.5 ${
-                  isPhoneHighlighted 
-                    ? 'text-gold-hover dark:text-gold-accent scale-115 animate-bounce font-bold' 
                     : 'text-luxury-text/60 dark:text-cream-bg/60 hover:text-emerald-luxury dark:hover:text-cream-bg'
                 }`}
               >
@@ -204,24 +168,18 @@ export const Header = () => {
                 +48 571 053 915
               </a>
               
-              {/* Реальный Telegram Анастасии (Десктоп) — пофикшен регистр букв */}
-              
               {/* Реальный Telegram Анастасии */}
               <a 
-                href="https://t.me/AnastaziALappo" 
+                href="https://t.me" 
                 target="_blank" 
                 rel="noreferrer"
                 className="relative z-30 inline-flex items-center justify-center text-luxury-text/60 dark:text-cream-bg/60 hover:text-gold-hover dark:hover:text-gold-accent transition-colors p-2 cursor-pointer"
-                rel="noopener noreferrer"
-                className="relative z-20 inline-flex items-center justify-center text-luxury-text/60 dark:text-cream-bg/60 hover:text-gold-hover dark:hover:text-gold-accent transition-colors p-2 cursor-pointer"
                 title="Написать в Telegram Анастасии"
               >
                 <Send size={16} className="transform rotate-45 pointer-events-none" />
               </a>
-
-              {/* Кнопка Консультация */}
               
-              {/* Кнопка активации триггера подсветки номера */}
+              {/* Кнопка Консультация */}
               <button 
                 onClick={handleConsultationClick} 
                 className="relative overflow-hidden bg-emerald-luxury dark:bg-gold-accent text-cream-bg dark:text-emerald-luxury font-bold px-4 py-2 rounded-lg text-xs transition-all cursor-pointer shadow-sm group/btn"
@@ -232,11 +190,6 @@ export const Header = () => {
             </div>
 
             {/* Правый блок мобилки */}
-                <span className="relative z-10">Консультация</span>
-              </button>
-            </div>
-
-            {/* Правый блок мобилки (Языки + Бургер + Тема) */}
             <div className="flex items-center gap-2 md:hidden">
               <button onClick={() => setIsDarkMode(!isDarkMode)} className="p-2 text-luxury-text/80 dark:text-cream-bg/80 cursor-pointer">
                 {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
@@ -261,17 +214,11 @@ export const Header = () => {
           ))}
           
           <div className="pt-4 border-t border-gold-accent/20 space-y-4">
-            
             {/* Телефон на мобилке */}
             <a 
               href="tel:+48571053915" 
               onClick={handleCallClick}
               className={`flex items-center gap-2 text-sm transition-all duration-300 cursor-pointer ${
-            {/* Интерактивный телефон Анастасии на мобилке */}
-            <a 
-              href="tel:+48571053915" 
-              onClick={handleCallClick}
-              className={`flex items-center gap-2 text-sm transition-all duration-300 ${
                 isPhoneHighlighted ? 'text-gold-hover font-bold scale-105' : 'text-luxury-text/60 dark:text-cream-bg/60'
               }`}
             >
@@ -292,56 +239,34 @@ export const Header = () => {
                     }}
                     className={`text-xs py-1.5 rounded-md border text-center transition-colors cursor-pointer ${
                       lang === item.code 
-            {/* Мобильный выбор языков */}
-            <div className="space-y-1.5">
-              <span className="text-xs text-luxury-text/40 dark:text-cream-bg/40 block">Выберите язык / Wybierz język:</span>
-              <div className="grid grid-cols-4 gap-1">
-                {languages.map((lang) => (
-                  <button
-                    key={lang.code}
-                    onClick={() => {
-                      setCurrentLang(lang.code);
-                      setIsOpen(false);
-                    }}
-                    className={`text-xs py-1.5 rounded-md border text-center transition-colors ${
-                      currentLang === lang.code 
                         ? 'border-gold-accent bg-gold-accent/10 text-gold-hover font-bold' 
                         : 'border-gold-accent/10 text-luxury-text/70 dark:text-cream-bg/70'
                     }`}
                   >
                     {item.code}
-                    {lang.code}
                   </button>
                 ))}
               </div>
             </div>
 
-              {/* Мессенджеры на мобилке — пофикшен регистр букв */}
-              <div className="grid grid-cols-2 gap-2 pt-1">
-                <a 
-                  href="https://t.me/AnastaziALappo" 
-                  target="_blank" 
-                  rel="noreferrer"
-                  onClick={() => setIsOpen(false)} // Закрываем шторку меню при клике
-              {/* Мессенджеры на мобилке */}
-              <div className="grid grid-cols-2 gap-2 pt-1">
-                <a 
-                  href="https://t.me" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="bg-cream-card dark:bg-emerald-medium text-luxury-text/80 dark:text-cream-bg text-center py-2.5 rounded-lg text-xs font-medium border border-gold-accent/10 flex items-center justify-center cursor-pointer"
-                >
-                  Telegram
-                </a>
-                <button 
-                  onClick={handleConsultationClick}
-                  className="bg-gold-accent text-emerald-luxury text-center py-2.5 rounded-lg text-xs font-bold cursor-pointer"
-                >
-                  {t.header.consultation}
-                  Консультация
-                </button>
-              </div>
-
+            {/* Мессенджеры на мобилке */}
+            <div className="grid grid-cols-2 gap-2 pt-1">
+              <a 
+                href="https://t.me" 
+                target="_blank" 
+                rel="noreferrer"
+                onClick={() => setIsOpen(false)}
+                className="bg-cream-card dark:bg-emerald-medium text-luxury-text/80 dark:text-cream-bg text-center py-2.5 rounded-lg text-xs font-medium border border-gold-accent/10 flex items-center justify-center cursor-pointer"
+              >
+                Telegram
+              </a>
+              <button 
+                onClick={handleConsultationClick}
+                className="bg-gold-accent text-emerald-luxury text-center py-2.5 rounded-lg text-xs font-bold cursor-pointer"
+              >
+                {t.header.consultation}
+              </button>
+            </div>
           </div>
         </div>
 
