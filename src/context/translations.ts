@@ -29,7 +29,6 @@ export interface AboutSectionSchema {
   };
 }
 
-// ИСПРАВЛЕНО: Дописали форму данных для главной страницы Hero
 export interface HomeSectionSchema {
   badge: string;
   titlePre: string;
@@ -40,6 +39,32 @@ export interface HomeSectionSchema {
   btnPrograms: string;
   quizTitle: string;
   quizDesc: string;
+}
+
+// ИСПРАВЛЕНО: Добавлены строгие типы для секции услуг
+export interface ServiceItemSchema {
+  title: string;
+  desc: string;
+  price: string;
+  time: string;
+}
+
+export interface ServicesSectionSchema {
+  titlePre: string;
+  titleAccent: string;
+  description: string;
+  topChoice: string;
+  btnMore: string;
+  items: {
+    nomad: ServiceItemSchema;
+    startup: ServiceItemSchema;
+    passive: ServiceItemSchema;
+    investor: ServiceItemSchema;
+    origin: ServiceItemSchema;
+    family: ServiceItemSchema;
+    compliance: ServiceItemSchema;
+    appeal: ServiceItemSchema;
+  };
 }
 
 export interface TranslationSchema {
@@ -62,8 +87,8 @@ export interface TranslationSchema {
     steps: QuizStepSchema[];
   };
   about: AboutSectionSchema;
-  // ИСПРАВЛЕНО: Связали главную страницу со схемой
   home: HomeSectionSchema;
+  services: ServicesSectionSchema; // <-- ИСПРАВЛЕНО: Связали со схемой
 }
 
 export const translations: Record<LanguageCode, TranslationSchema> = {
@@ -141,7 +166,6 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         rateDesc: "За счет жесткого отбора профилей"
       }
     },
-    // ИСПРАВЛЕНО: Добавлен русский перевод главной страницы
     home: {
       badge: "Официальная легализация и релокация под ключ",
       titlePre: "Ваш надежный путь к ",
@@ -155,6 +179,24 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       btnPrograms: "Посмотреть программы",
       quizTitle: "Проверить шансы на ВНЖ",
       quizDesc: "Ответьте на 3 вопроса профиля для экспресс-оценки вашего кейса экспертом."
+    },
+    // ИСПРАВЛЕНО: Добавлен перевод секции услуг на русский язык
+    services: {
+      titlePre: "Направления работы и ",
+      titleAccent: "стоимость",
+      description: "Прозрачные условия без скрытых комиссий. Фиксируем финальную стоимость в официальном договоре до начала процесса.",
+      topChoice: "Топ выбор",
+      btnMore: "Подробнее",
+      items: {
+        nomad: { title: 'ВНЖ Цифрового Кочевника', desc: 'Для фрилансеров и удаленщиков с доходом от €2,500. Полный аудит контрактов, сбор документов и подача под ключ.', price: 'от €1,200', time: 'Срок: 3–6 недель' },
+        startup: { title: 'Стартап-Виза и Бизнес ВНЖ', desc: 'Разработка инновационного бизнес-плана, одобрение в министерстве и защита вашего проекта перед комиссией.', price: 'от €2,500', time: 'Срок: 2–4 месяца' },
+        passive: { title: 'ВНЖ без права на работу', desc: 'Для финансово независимых лиц со стабильным пассивным доходом вне страны (аренда, дивиденды, проценты).', price: 'от €1,500', time: 'Срок: 1–2 месяца' },
+        investor: { title: 'Золотая виза / ВНЖ инвестора', desc: 'Сопровождение инвестиций в недвижимость, государственные облигации или фонды для получения постоянного статуса.', price: 'от €4,000', time: 'Срок: 1–3 месяца' },
+        origin: { title: 'Гражданство по происхождению', desc: 'Архивный поиск, подтверждение корней, восстановление исторических прав и полное ведение дела вплоть до присяги.', price: 'от €3,000', time: 'Срок: от 6 месяцев' },
+        family: { title: 'Воссоединение семьи', desc: 'Оформление документов для супругов, детей и зависимых родителей главного заявителя по любым типам виз.', price: 'от €700', time: 'Срок: 2–4 недели' },
+        compliance: { title: 'Открытие счетов и комплаенс', desc: 'Подготовка справок о происхождении средств (Source of Funds), прохождение проверок KYC и открытие счетов в банках.', price: 'от €600', time: 'Срок: 5–10 дней' },
+        appeal: { title: 'Апелляции и сложные кейсы', desc: 'Глубокий анализ причин отказа, составление юридически грамотной жалобы и повторное сопровождение дела.', price: 'от €800', time: 'Срок: индивидуально' }
+      }
     }
   },
   PL: {
@@ -231,7 +273,6 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         rateDesc: "Dzięki rygorystycznej weryfikacji profili"
       }
     },
-    // ИСПРАВЛЕНО: Добавлен польский перевод главной страницы
     home: {
       badge: "Oficjalna legalizacja i relokacja kompleksowo",
       titlePre: "Twoja bezpieczna droga do ",
@@ -245,6 +286,24 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       btnPrograms: "Zobacz programy",
       quizTitle: "Sprawdź szanse na pobyt",
       quizDesc: "Odpowiedz na 3 pytania profilowe w celu ekspresowej oceny Twojej sprawy przez eksperta."
+    },
+    // ИСПРАВЛЕНО: Добавлен перевод секции услуг на польский язык
+    services: {
+      titlePre: "Kierunki pracy i ",
+      titleAccent: "koszt",
+      description: "Przejrzyste warunki bez ukrytych opłat. Ostateczny koszt ustalamy w oficjalnej umowie przed rozpoczęciem procesu.",
+      topChoice: "Top wybór",
+      btnMore: "Więcej",
+      items: {
+        nomad: { title: "Karta Pobytu – Digital Nomad", desc: "Dla freelancerów i osób pracujących zdalnie z dochodem od 2500 €. Pełny audyt kontraktów, kompletowanie dokumentów i składanie wniosku.", price: "od €1,200", time: "Czas: 3–6 tygodni" },
+        startup: { title: "Wiza Startupowa i Pobyt Biznesowy", desc: "Opracowanie innowacyjnego biznesplanu, uzyskanie akceptacji ministerstwa oraz obrona projektu przed komisją.", price: "od €2,500", time: "Czas: 2–4 miesiące" },
+        passive: { title: "Rezydent bez prawa do pracy", desc: "Dla osób niezależnych finansowo ze stałym dochodem pasywnym poza krajem (wynajem, dywidendy, odsetki).", price: "od €1,500", time: "Czas: 1–2 miesiące" },
+        investor: { title: "Złota Wiza / Pobyt dla Inwestora", desc: "Wsparcie przy inwestycjach w nieruchomości, obligacje państwowe lub fundusze w celu uzyskania stałego statusu.", price: "od €4,000", time: "Czas: 1–3 miesiące" },
+        origin: { title: "Obywatelstwo po pochodzeniu", desc: "Poszukiwania archiwalne, potwierdzenie korzeni, przywrócenie praw historycznych i pełne prowadzenie sprawy aż do przysięgi.", price: "od €3,000", time: "Czas: od 6 miesięcy" },
+        family: { title: "Łączenie rodzin", desc: "Formalności dokumentowe dla małżonków, dzieci i niesamodzielnych rodziców głównego wnioskodawcy dla każdego rodzaju wizy.", price: "od €700", time: "Czas: 2–4 tygodnie" },
+        compliance: { title: "Otwieranie kont i compliance", desc: "Przygotowanie potwierdzeń źródła pochodzenia środków (Source of Funds), przejście procedur KYC i otwarcie kont bankowych.", price: "od €600", time: "Czas: 5–10 dni" },
+        appeal: { title: "Odwołania i trudne przypadki", desc: "Głęboka analiza przyczyn odmowy, sporządzenie poprawnego prawnie odwołania oraz ponowne prowadzenie całej sprawy.", price: "od €800", time: "Czas: indywidualnie" }
+      }
     }
   },
   EN: {
@@ -321,7 +380,6 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         rateDesc: "Due to strict profile selection"
       }
     },
-    // ИСПРАВЛЕНО: Добавлен английский перевод главной страницы
     home: {
       badge: "Official legalization and turnkey relocation",
       titlePre: "Your reliable path to ",
@@ -335,6 +393,24 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       btnPrograms: "View programs",
       quizTitle: "Check eligibility for residency",
       quizDesc: "Answer 3 profile questions for an express assessment of your case by an expert."
+    },
+    // ИСПРАВЛЕНО: Добавлен перевод секции услуг на английский язык
+    services: {
+      titlePre: "Areas of Expertise & ",
+      titleAccent: "Pricing",
+      description: "Transparent conditions without hidden fees. We fix the final cost in an official contract before the process starts.",
+      topChoice: "Top choice",
+      btnMore: "Details",
+      items: {
+        nomad: { title: "Digital Nomad Residence Permit", desc: "For freelancers and remote workers with income from €2,500. Full contract audit, document collection, and turnkey submission.", price: "from €1,200", time: "Timeline: 3–6 weeks" },
+        startup: { title: "Startup Visa & Business Residence", desc: "Development of an innovative business plan, ministerial approval, and project defense before the committee.", price: "from €2,500", time: "Timeline: 2–4 months" },
+        passive: { title: "Residence Permit without Right to Work", desc: "For financially independent individuals with stable passive income outside the country (rent, dividends, interests).", price: "from €1,500", time: "Timeline: 1–2 months" },
+        investor: { title: "Golden Visa / Investor Residence", desc: "Support for investments in real estate, government bonds, or funds to obtain a permanent status.", price: "from €4,000", time: "Timeline: 1–3 months" },
+        origin: { title: "Citizenship by Descent", desc: "Archival search, confirmation of roots, restoration of historical rights, and full case management up to the oath.", price: "from €3,000", time: "Timeline: from 6 months" },
+        family: { title: "Family Reunification", desc: "Document processing for spouses, children, and dependent parents of the main applicant for any visa types.", price: "from €700", time: "Timeline: 2–4 weeks" },
+        compliance: { title: "Bank Account Opening & Compliance", desc: "Preparation of Source of Funds statements, passing KYC checks, and opening corporate/personal bank accounts.", price: "from €600", time: "Timeline: 5–10 days" },
+        appeal: { title: "Appeals & Complex Cases", desc: "In-depth analysis of refusal reasons, drafting a legally sound complaint, and re-submitting the case.", price: "from €800", time: "Timeline: individual" }
+      }
     }
   },
   UA: {
@@ -377,7 +453,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         },
         {
           id: 'education',
-          question: 'Ваш рівень освіти?',
+          question: 'Ваш уровень освіти?',
           subtitle: 'Для низки програм важливий профільний диплом',
           options: [
             { value: 'higher', label: 'Вища (бакалавр, магістр)' },
@@ -397,7 +473,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       badge: "Особистий бренд та стандарти",
       role: "Засновниця проєкту",
       titlePre: "Особистий досвід та ",
-      titleAccent: "юридична точність",
+      titleAccent: "юридическая точность",
       titlePost: " на вашому боці",
       description: "Я спеціалізуюся на міжнародному міграційному правві понад 8 років. Моя работа полягає в тому, щоб прибрати з процесу релокації всю бюрократичну невизначеність. Я не просто заповнює анкти, а вибудовую для вас легальний, безпечний та прогнозований трек отримання статусу.",
       features: [
@@ -411,7 +487,6 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         rateDesc: "Завдяки жорсткому відбору профілів"
       }
     },
-    // ІСПРАВЛЕНО: Добавлен украинский перевод главной страницы
     home: {
       badge: "Офіційна легалізація та релокація під ключ",
       titlePre: "Ваш надійний шлях до ",
@@ -425,9 +500,28 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       btnPrograms: "Переглянути програми",
       quizTitle: "Перевірити шанси на посвідку",
       quizDesc: "Дайте відповідь на 3 питання профілю для експрес-оценки вашого кейсу експертом."
+    },
+    // ІСПРАВЛЕНО: Добавлен перевод секции услуг на украинский язык
+    services: {
+      titlePre: "Напрямки роботи та ",
+      titleAccent: "вартість",
+      description: "Прозорі умови без прихованих комісій. Фіксуємо фінальну вартість в офіційному договорі до початку процесу.",
+      topChoice: "Топ вибір",
+      btnMore: "Детальніше",
+      items: {
+        nomad: { title: "Посвідка Цифрового Кочівника", desc: "Для фрілансерів та віддалених працівників із доходом від €2,500. Повний аудит контрактів, збір документів та подача під ключ.", price: "від €1,200", time: "Термін: 3–6 тижнів" },
+        startup: { title: "Стартап-Віза та Бізнес Посвідка", desc: "Розробка інноваційного бізнес-плану, схвалення в міністерстві та захист вашого проєкту перед комісією.", price: "від €2,500", time: "Термін: 2–4 місяці" },
+        passive: { title: "Посвідка без права на роботу", desc: "Для фінансово незалежних осіб зі стабільним пассивним доходом поза межами країни (оренда, дивіденди, відсотки).", price: "від €1,500", time: "Термін: 1–2 місяці" },
+        investor: { title: "Золота віза / Посвідка інвестора", desc: "Супрівід інвестицій у нерухомість, державні облігації або фонди для отримання постійного статусу.", price: "від €4,000", time: "Термін: 1–3 місяці" },
+        origin: { title: "Громадянство за походженням", desc: "Архівний пошук, підтвердження коріння, відновлення історичних прав та повне ведення справи аж до присяги.", price: "від €3,000", time: "Термін: від 6 місяців" },
+        family: { title: "Возз’єднання сім’ї", desc: "Оформлення документів для подружжя, дітей та залежних батьків головного заявника за будь-якими типами віз.", price: "від €700", time: "Термін: 2–4 тижні" },
+        compliance: { title: "Відкриття рахунків та комплаєнс", desc: "Підготовка довідок про походження коштів (Source of Funds), проходження перевірок KYC та відкриття рахунків у банках.", price: "від €600", time: "Термін: 5–10 днів" },
+        appeal: { title: "Апеляції та складні кейси", desc: "Глубокий аналіз причин відмови, складання юридично грамотної скарги та повторний супровід справи.", price: "від €800", time: "Термін: індивідуально" }
+      }
     }
   }
 };
+
 
 
 
