@@ -66,7 +66,6 @@ export interface ServicesSectionSchema {
   };
 }
 
-// ИСПРАВЛЕНО: Добавлены строгие типы для секции отзывов
 export interface ReviewItemSchema {
   name: string;
   program: string;
@@ -85,6 +84,20 @@ export interface ReviewsSectionSchema {
     igorOlga: ReviewItemSchema;
     tatiana: ReviewItemSchema;
   };
+}
+
+export interface FooterSectionSchema {
+  brandTitle: string;
+  brandDesc: string;
+  requisitesTitle: string;
+  requisitesLawyer: string;
+  requisitesAddress: string;
+  contactsTitle: string;
+  docsTitle: string;
+  docsCookies: string;
+  docsAgreement: string;
+  copyrightPost: string;
+  sslText: string;
 }
 
 export interface TranslationSchema {
@@ -109,9 +122,9 @@ export interface TranslationSchema {
   about: AboutSectionSchema;
   home: HomeSectionSchema;
   services: ServicesSectionSchema;
-  reviews: ReviewsSectionSchema; // <-- ИСПРАВЛЕНО: Связали со схемой
+  reviews: ReviewsSectionSchema;
+  footer: FooterSectionSchema;
 }
-
 export const translations: Record<LanguageCode, TranslationSchema> = {
   RU: {
     header: {
@@ -218,7 +231,6 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         appeal: { title: 'Апелляции и сложные кейсы', desc: 'Глубокий анализ причин отказа, составление юридически грамотной жалобы и повторное сопровождение дела.', price: 'от €800', time: 'Срок: индивидуально' }
       }
     },
-    // ИСПРАВЛЕНО: Добавлен перевод секции отзывов на русский
     reviews: {
       titlePre: "Что говорят ",
       titleAccent: "клиенты",
@@ -231,6 +243,19 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         igorOlga: { name: 'Игорь и Ольга', program: 'Бизнес-инкубатор, Польша', text: 'Релоцировали IT-стартап в Варшаву. Анастазья Лапо идеально провела нас через весь процесс: от регистрации компании (Sp. z o.o.) до получения пластика карты побыту на 3 года. Сберегли тонну нервов.' },
         tatiana: { name: 'Татьяна Ш.', program: 'Гражданство по корням, Румыния', text: 'Процесс восстановления корней казался нереальным из-за утерянных архивов. Анастасия организовала профессиональный поиск, нашла свидетельства дедушки и полностью вела дело до присяги в Бухаресте. Паспорт в руках!' }
       }
+    },
+    footer: {
+      brandTitle: "Легализация с Анастасией Лапо",
+      brandDesc: "Экспертное сопровождение миграционных процессов, оформление ВНЖ, релокация бизнеса и комплаенс. Лёгкий путь в любую точку мира.",
+      requisitesTitle: "Реквизиты и адрес",
+      requisitesLawyer: "Юрист Анастасия Лапо (Kancelaria Prawna)",
+      requisitesAddress: "Адрес офиса: Al. Jerozolimskie 56, 00-803 Warszawa, Polska",
+      contactsTitle: "Быстрая связь",
+      docsTitle: "Документы",
+      docsCookies: "Политика куки",
+      docsAgreement: "Соглашение",
+      copyrightPost: " Лёгкая легализация с Анастасией Лапо. Все права защищены.",
+      sslText: "Защищено SSL шифрованием"
     }
   },
   PL: {
@@ -338,7 +363,6 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         appeal: { title: "Odwołania i trudne przypadki", desc: "Głęboka analiza przyczyn odmowy, sporządzenie poprawnego prawnie odwołania oraz ponowne prowadzenie całej sprawy.", price: "od €800", time: "Czas: indywidualnie" }
       }
     },
-    // ИСПРАВЛЕНО: Добавлен перевод секции отзывов на польский
     reviews: {
       titlePre: "Co mówią ",
       titleAccent: "klienci",
@@ -351,6 +375,19 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         igorOlga: { name: 'Igor i Olga', program: 'Inkubator Biznesowy, Polska', text: 'Relokowaliśmy IT startup do Warszawy. Anastazja Łapo idealnie przeprowadziła nas przez cały proces: od rejestracji spółki (Sp. z o.o.) do odebrania plastikowej karty pobytu na 3 lata. Oszczędziło nam to mnóstwo nerwów.' },
         tatiana: { name: 'Tatiana Sz.', program: 'Obywatelstwo przez korzenie, Rumunia', text: 'Proces przywracania korzeni wydawał się nierealny z powodu zagubionych archiwów. Anastazja zorganizowała profesjonalne poszukiwania, znalazła akty dziadka i w pełni prowadziła sprawę aż do przysięgi w Bukareszcie. Paszport w ręku!' }
       }
+    },
+    footer: {
+      brandTitle: "Legalizacja z Anastazją Łapo",
+      brandDesc: "Eksperckie wsparcie procesów migracyjnych, karty pobytu, relokacja biznesu i compliance. Łatwa droga w dowolne miejsce na świecie.",
+      requisitesTitle: "Dane firmy i adres",
+      requisitesLawyer: "Prawnik Anastazja Łapo (Kancelaria Prawna)",
+      requisitesAddress: "Adres biura: Al. Jerozolimskie 56, 00-803 Warszawa, Polska",
+      contactsTitle: "Szybki kontakt",
+      docsTitle: "Dokumenty",
+      docsCookies: "Polika cookies",
+      docsAgreement: "Regulamin",
+      copyrightPost: " Łatwa legalizacja z Anastazją Łapo. Wszelkie prawa zastrzeżone.",
+      sslText: "Chronione szyfrowaniem SSL"
     }
   },
   EN: {
@@ -458,7 +495,6 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         appeal: { title: "Appeals & Complex Cases", desc: "In-depth analysis of refusal reasons, drafting a legally sound complaint, and re-submitting the case.", price: "from €800", time: "Timeline: individual" }
       }
     },
-    // ИСПРАВЛЕНО: Добавлен перевод секции отзывов на английский
     reviews: {
       titlePre: "What ",
       titleAccent: "clients say",
@@ -471,6 +507,20 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         igorOlga: { name: 'Igor & Olga', program: 'Business Incubator, Poland', text: 'Relocated our IT startup to Warsaw. Anastazja Łapo perfectly guided us through the entire process: from company registration (Sp. z o.o.) to getting our 3-year residence card plastics. Saved us a ton of nerves.' },
         tatiana: { name: 'Tatiana S.', program: 'Citizenship by Descent, Romania', text: 'The root restoration process seemed impossible due to lost archives. Anastazja organized a professional search, found my grandfather\'s certificates, and fully managed the case until the oath in Bucharest. Passport in hand!' }
       }
+    },
+    // ИСПРАВЛЕНО: Добавлен перевод футера на английский язык
+    footer: {
+      brandTitle: "Legalization with Anastazja Łapo",
+      brandDesc: "Expert guidance on migration processes, residence permits, business relocation, and compliance. An easy path to anywhere in the world.",
+      requisitesTitle: "Company Details & Address",
+      requisitesLawyer: "Lawyer Anastazja Łapo (Kancelaria Prawna)",
+      requisitesAddress: "Office address: Al. Jerozolimskie 56, 00-803 Warszawa, Poland",
+      contactsTitle: "Quick Contact",
+      docsTitle: "Documents",
+      docsCookies: "Cookies Policy",
+      docsAgreement: "Terms of Service",
+      copyrightPost: " Easy legalization with Anastazja Łapo. All rights reserved.",
+      sslText: "Secured with SSL encryption"
     }
   },
   UA: {
@@ -504,7 +554,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         {
           id: 'income',
           question: 'Який середньомісячний дохід ви можете підтвердити офіційно?',
-          subtitle: 'Показник на головного заявника',
+          subtitle: 'Показник на главного заявника',
           options: [
             { value: 'low', label: 'До €2 000' },
             { value: 'medium', label: '€2 000 — €4 000' },
@@ -535,7 +585,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       titlePre: "Особистий досвід та ",
       titleAccent: "юридическая точность",
       titlePost: " на вашому боці",
-      description: "Я спеціалізуюся на міжнародному міграційному правві понад 8 років. Моя работа полягає в тому, щоб прибрати з процесу релокації всю бюрократичну невизначеність. Я не просто заповнює анкти, а вибудовую для вас легальний, безпечний та прогнозований трек отримання статусу.",
+      description: "Я спеціалізуюся на міжнародному міграційному правві понад 8 років. Моя работа полягає в тому, щоб прибрати з процесу релокації всю бюрократичную невизначеність. Я не просто заповнює анкти, а вибудовую для вас легальний, безпечний та прогнозований трек отримання статусу.",
       features: [
         "Глубокий пре-аудит документів до підписання договору",
         "Прямий зв'язок з експертом без менеджерів та посередників"
@@ -568,7 +618,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       topChoice: "Топ вибір",
       btnMore: "Детальніше",
       items: {
-        nomad: { title: "Посвідка Цифрового Кочівника", desc: "Для фрілансерів та віддалених працівників із доходом від €2,500. Повний аудит контрактів, збір документів та подача под ключ.", price: "від €1,200", time: "Термін: 3–6 тижнів" },
+        nomad: { title: "Посвідка Цифрового Кочівника", desc: "Для фрілансерів та віддалених працівників із доходом від €2,500. Повний аудит контрактів, збір документів та подача під ключ.", price: "від €1,200", time: "Термін: 3–6 тижнів" },
         startup: { title: "Стартап-Віза та Бізнес Посвідка", desc: "Розробка інноваційного бізнес-плану, схвалення в міністерстві та захист вашого проєкту перед комісією.", price: "від €2,500", time: "Термін: 2–4 місяці" },
         passive: { title: "Посвідка без права на роботу", desc: "Для фінансово незалежних осіб зі стабільним пассивним доходом поза межами країни (оренда, дивіденди, відсотки).", price: "від €1,500", time: "Термін: 1–2 місяці" },
         investor: { title: "Золотая віза / Посвідка інвестора", desc: "Супрівід інвестицій у нерухомість, державні облігації або фонди для отримання постійного статусу.", price: "від €4,000", time: "Термін: 1–3 місяці" },
@@ -578,22 +628,36 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         appeal: { title: "Апелляции та складні кейси", desc: "Глубокий аналіз причин відмови, складання юридично грамотної скарги та повторний супровід справи.", price: "від €800", time: "Термін: індивідуально" }
       }
     },
-    // ІСПРАВЛЕНО: Добавлен перевод секции отзывов на украинский язык
     reviews: {
       titlePre: "Що говорять ",
       titleAccent: "клієнти",
       description: "Реальні історії людей, які успішно пройшли процес легалізації та довірили свій переїзд експерту.",
       dragHint: "Затисніть і тягніть убік або гортайте",
       items: {
-        markAnna: { name: 'Марк та Анна', program: 'Посвідка Digital Nomad, Іспанія', text: 'Звернулися до Анастасії після самостійної відмови через неправильно оформлений контракт. Вона повністю переформатувала наші документи з американським замовником та склала пояснювальний лист для UGE. Подали знову — схвалення прийшло за 18 днів! Справжній професіонал.' },
+        markAnna: { name: 'Марк та Анна', program: 'Посвідка Digital Nomad, Іспанія', text: 'Звернулися до Анастасії після самостійної відмови через неправильно оформлений контракт. Вона повністю переформатувала наши документи з американським замовником та склала пояснювальний лист для UGE. Подали знову — схвалення прийшло за 18 днів! Справжній професіонал.' },
         dmitry: { name: 'Дмитро К.', program: 'Стартап-віза, Португалія', text: 'Анастасія допомогла докрутити нашу бізнес-модель під жорсткі вимоги інституту IAPMEI. Супроводжувала на кожному кроці: від збору довідок до відкриття рахунку. Завжди на зв’язку в Telegram, пояснює складні закони простою мовою. Рекомендую.' },
         elena: { name: 'Олена Б.', program: 'Посвідка без права на роботу, Італія', text: 'Для мене було критично встигнути подати документи до зміни правил щодо пасивного доходу. Анастасія підготувала кейс за 2 тижні. Аудит доходів був зроблений ідеально — консульство в Москві видало візу D без жодного запитання.' },
         igorOlga: { name: 'Ігор та Ольга', program: 'Бізнес-інкубатор, Польша', text: 'Релокували IT-стартап у Варшаву. Анастазія Лапо ідеально провела нас через увесь процес: від реєстрації компанії (Sp. z o.o.) до отримання пластику посвідки на проживання на 3 роки. Зберегли тонну нервів.' },
-        tatiana: { name: 'Тетяна Ш.', program: 'Громадянство за корінням, Румунія', text: 'Процес відновлення коріння здавався нереальним через втрачені архіви. Анастасія організувала професійний пошук, знайшла свідоцтва дідуся та повністю вела справу до присяги в Бухаресте. Паспорт у руках!' }
+        tatiana: { name: 'Тетяна Ш.', program: 'Громадянство за корінням, Румунія', text: 'Процесс відновлення коріння здавався нереальним через втрачені архіви. Анастасія організувала професійний пошук, знайшла свідоцтва дідуся та повністю вела справу до присяги в Бухаресте. Паспорт у руках!' }
       }
+    },
+    // ИСПРАВЛЕНО: Добавлен перевод футера на украинский язык
+    footer: {
+      brandTitle: "Легалізація з Анастасією Лапо",
+      brandDesc: "Експертний супровід міграційних процесів, оформлення посвідок, релокація бізнесу та комплаєнс. Легкий шлях у будь-яку точку світу.",
+      requisitesTitle: "Реквізити та адреса",
+      requisitesLawyer: "Юрист Анастасія Лапо (Kancelaria Prawna)",
+      requisitesAddress: "Адреса офісу: Al. Jerozolimskie 56, 00-803 Warszawa, Polska",
+      contactsTitle: "Швидкий зв'язок",
+      docsTitle: "Документи",
+      docsCookies: "Політика кукі",
+      docsAgreement: "Угода",
+      copyrightPost: " Легка легалізація з Анастасією Лапо. Всі права захищені.",
+      sslText: "Захищено SSL шифруванням"
     }
   }
 };
+
 
 
 

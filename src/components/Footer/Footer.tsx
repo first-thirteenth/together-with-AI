@@ -1,6 +1,11 @@
 import { Feather, ShieldCheck, Send, MessageCircle } from 'lucide-react';
+// ИСПРАВЛЕНО: Импортируем хук локализации из папки context, которая находится на два уровня выше
+import { useLang } from '../../context/useLang';
 
 export const Footer = () => {
+  // ИСПРАВЛЕНО: Извлекаем объект перевода t
+  const { t } = useLang();
+
   return (
     <footer className="bg-emerald-luxury border-t border-gold-accent/20 text-cream-bg/60 text-xs py-12 relative z-20" id="contacts">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
@@ -10,24 +15,30 @@ export const Footer = () => {
           <div className="md:col-span-4 space-y-3">
             <div className="flex items-center gap-2 text-cream-bg">
               <Feather size={20} className="text-gold-accent" />
-              <span className="font-bold text-sm tracking-tight">Легализация с Анастасией Лапо</span>
+              {/* ИСПРАВЛЕНО: Локализация названия бренда */}
+              <span className="font-bold text-sm tracking-tight">{t.footer.brandTitle}</span>
             </div>
+            {/* ИСПРАВЛЕНО: Локализация описания бренда */}
             <p className="text-cream-bg/80 max-w-sm leading-relaxed text-[11px]">
-              Экспертное сопровождение миграционных процессов, оформление ВНЖ, релокация бизнеса и комплаенс. Лёгкий путь в любую точку мира.
+              {t.footer.brandDesc}
             </p>
           </div>
 
           {/* Колонка 2: Официальные реквизиты */}
           <div className="md:col-span-3 space-y-2">
-            <h4 className="text-gold-accent font-semibold text-xs uppercase tracking-wider mb-1">Реквизиты и адрес</h4>
-            <p className="text-cream-bg/80">Юрист Анастасия Лапо (Kancelaria Prawna)</p>
+            {/* ИСПРАВЛЕНО: Локализация заголовка реквизитов */}
+            <h4 className="text-gold-accent font-semibold text-xs uppercase tracking-wider mb-1">{t.footer.requisitesTitle}</h4>
+            {/* ИСПРАВЛЕНО: Локализация имени и формы канцелярии */}
+            <p className="text-cream-bg/80">{t.footer.requisitesLawyer}</p>
             <p>NIP: 5250000000 / KRS: 0000000000</p>
-            <p className="text-cream-bg/80">Адрес офиса: Al. Jerozolimskie 56, 00-803 Warszawa, Polska</p>
+            {/* ИСПРАВЛЕНО: Локализация адреса */}
+            <p className="text-cream-bg/80">{t.footer.requisitesAddress}</p>
           </div>
 
           {/* КОЛОНКА 3: Мессенджеры и Нативный Instagram */}
           <div className="md:col-span-3 space-y-3">
-            <h4 className="text-gold-accent font-semibold text-xs uppercase tracking-wider mb-1">Быстрая связь</h4>
+            {/* ИСПРАВЛЕНО: Локализация заголовка контактов */}
+            <h4 className="text-gold-accent font-semibold text-xs uppercase tracking-wider mb-1">{t.footer.contactsTitle}</h4>
             <div className="flex flex-col gap-2">
               <a 
                 href="https://t.me" 
@@ -46,7 +57,7 @@ export const Footer = () => {
                 <MessageCircle size={14} className="text-gold-accent" /> WhatsApp
               </a>
               
-              {/* Чистый SVG логотип Instagram — Безупречное кроссплатформенное решение */}
+              {/* Чистый SVG логотип Instagram */}
               <a 
                 href="https://instagram.com" 
                 target="_blank" 
@@ -73,19 +84,24 @@ export const Footer = () => {
 
           {/* Колонка 4: Юридические ссылки */}
           <div className="md:col-span-2 space-y-2">
-            <h4 className="text-gold-accent font-semibold text-xs uppercase tracking-wider mb-1">Документы</h4>
-            <a href="#" className="block hover:text-cream-bg transition-colors">Политика куки</a>
-            <a href="#" className="block hover:text-cream-bg transition-colors">Соглашение</a>
+            {/* ИСПРАВЛЕНО: Локализация заголовка документов */}
+            <h4 className="text-gold-accent font-semibold text-xs uppercase tracking-wider mb-1">{t.footer.docsTitle}</h4>
+            {/* ИСПРАВЛЕНО: Локализация ссылок */}
+            <a href="#" className="block hover:text-cream-bg transition-colors">{t.footer.docsCookies}</a>
+            <a href="#" className="block hover:text-cream-bg transition-colors">{t.footer.docsAgreement}</a>
           </div>
         </div>
 
         {/* Копирайт */}
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-cream-bg/40 text-[11px]">
-          <p>© {new Date().getFullYear()} Лёгкая легализация с Анастасией Лапо. Все права защищены.</p>
-          <p className="flex items-center gap-1"><ShieldCheck size={12} className="text-gold-accent/60" /> Защищено SSL шифрованием</p>
+          {/* ИСПРАВЛЕНО: Локализованный копирайт с автоматическим годом */}
+          <p>© {new Date().getFullYear()}{t.footer.copyrightPost}</p>
+          {/* ИСПРАВЛЕНО: Локализация текста SSL */}
+          <p className="flex items-center gap-1"><ShieldCheck size={12} className="text-gold-accent/60" /> {t.footer.sslText}</p>
         </div>
       </div>
     </footer>
   );
 };
+
 
