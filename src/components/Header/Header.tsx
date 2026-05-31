@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { Feather, Menu, X, Phone, Send, Moon, Sun, ChevronDown } from 'lucide-react';
-
+// ИСПРАВЛЕНО: Добавлен импорт AnimatePresence для плавной анимации закрытия меню
+import { motion, AnimatePresence } from 'framer-motion';
 
 // Сеньорские импорты, разделенные по файлам для поддержки Fast Refresh и verbatimModuleSyntax
 import { useLang } from '../../context/useLang';
 import type { LanguageCode } from '../../context/translations';
 
-// ИСПРАВЛЕНО: Премиум-флаги в виде легких векторных SVG
+// Премиум-флаги в виде легких векторных SVG
 const FlagIcon = ({ code }: { code: LanguageCode }) => {
   if (code === 'RU') {
     return (
@@ -247,79 +248,116 @@ export const Header = () => {
           </div>
         </div>
 
-        {/* Мобильное меню */}
-        <div 
-          className="absolute left-0 right-0 top-full mt-2 bg-cream-bg/95 dark:bg-emerald-luxury/95 backdrop-blur-md border border-gold-accent/20 px-4 pt-4 pb-6 space-y-4 shadow-xl rounded-2xl md:hidden transition-all duration-300"
-          style={{ display: isOpen ? 'block' : 'none' }}
-        >
-          {navigation.map((item) => (
-            <a key={item.name} href={item.href} onClick={() => setIsOpen(false)} className="block text-base font-medium text-luxury-text/80 dark:text-cream-bg/80 hover:text-gold-hover py-1 transition-colors duration-200">
-              {item.name}
-            </a>
-          ))}
-          
-          <div className="pt-4 border-t border-gold-accent/20 space-y-4">
-            {/* Телефон на мобилке */}
-            <a 
-              href="tel:+48571053915" 
-              onClick={handleCallClick}
-              className={`flex items-center gap-2 text-sm transition-all duration-300 cursor-pointer ${
-                isPhoneHighlighted ? 'text-gold-hover font-bold scale-105' : 'text-luxury-text/60 dark:text-cream-bg/60'
-              }`}
+        {/* ИСПРАВЛЕНО: Гипнотический, ультра-медленный 3D-эффект таяния (1.5 секунды) */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div 
+              // 3D ЭФФЕКТ: Глубокое размытие (20px), сжатие до 85% и сильный завал по оси X на -35 градусов
+              initial={{ opacity: 0, scale: 0.85, rotateX: -35, filter: 'blur(20px)' }}
+              animate={{ opacity: 1, scale: 1, rotateX: 0, filter: 'blur(0px)' }}
+              exit={{ opacity: 0, scale: 0.85, rotateX: -35, filter: 'blur(20px)' }}
+              // ИСПРАВЛЕНО: Выставили экстремальные 1.5 секунды с ультра-растянутой кривой замедления
+              transition={{ duration: 1.5, ease: [0.1, 1, 0.2, 1] }}
+              style={{ transformOrigin: 'top center', perspective: '1500px' }}
+              className="absolute left-0 right-0 top-full mt-2 bg-cream-bg/95 dark:bg-emerald-luxury/95 backdrop-blur-md border border-gold-accent/20 px-4 pt-4 pb-6 space-y-4 shadow-xl rounded-2xl md:hidden z-50 will-change-[transform,opacity,filter]"
             >
-              <Phone size={14} className={isPhoneHighlighted ? 'animate-pulse' : ''} /> 
-              +48 571 053 915
-            </a>
-
-            {/* Мобильный селектор языков */}
-            <div className="space-y-1.5">
-              <span className="text-xs text-luxury-text/40 dark:text-cream-bg/40 block">{t.header.langSelect}:</span>
-              <div className="grid grid-cols-2 gap-2">
-                {languages.map((item) => (
-                  <button
-                    key={item.code}
-                    onClick={() => {
-                      setLang(item.code);
-                      setIsOpen(false);
+              {/* Контейнер для ссылок навигации */}
+              <motion.div 
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  visible: { transition: { staggerChildren: 0.04 } }
+                }}
+                className="flex flex-col gap-3"
+              >
+                {navigation.map((item) => (
+                  <motion.a 
+                    key={item.name} 
+                    href={item.href} 
+                    onClick={() => setIsOpen(false)} 
+                    variants={{
+                      hidden: { opacity: 0, x: -12 },
+                      visible: { opacity: 1, x: 0 }
                     }}
-                    className={`text-xs py-2 rounded-xl border px-3 transition-colors cursor-pointer flex items-center justify-center gap-2 ${
-                      lang === item.code 
-                        ? 'border-gold-accent bg-gold-accent/10 text-gold-hover font-bold' 
-                        : 'border-gold-accent/10 text-luxury-text/70 dark:text-cream-bg/70'
-                    }`}
+                    transition={{ duration: 0.4, ease: 'easeOut' }}
+                    className="block text-base font-medium text-luxury-text/80 dark:text-cream-bg/80 hover:text-gold-hover py-1 transition-colors duration-200"
                   >
-                    <FlagIcon code={item.code} />
-                    <span className="tracking-wider">{item.name}</span>
-                  </button>
+                    {item.name}
+                  </motion.a>
                 ))}
-              </div>
-            </div>
+              </motion.div>
+              
+              {/* Блок контактов и языков, плавно поднимающийся снизу */}
+              <motion.div 
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.12, duration: 0.45, ease: 'easeOut' }}
+                className="pt-4 border-t border-gold-accent/20 space-y-4"
+              >
+                {/* Телефон на мобилке */}
+                <a 
+                  href="tel:+48571053915" 
+                  onClick={handleCallClick}
+                  className={`flex items-center gap-2 text-sm transition-all duration-300 cursor-pointer ${
+                    isPhoneHighlighted ? 'text-gold-hover font-bold scale-105' : 'text-luxury-text/60 dark:text-cream-bg/60'
+                  }`}
+                >
+                  <Phone size={14} className={isPhoneHighlighted ? 'animate-pulse' : ''} /> 
+                  +48 571 053 915
+                </a>
 
-            {/* Мессенджеры на мобилке */}
-            <div className="grid grid-cols-2 gap-2 pt-1">
-              <a 
-                href="https://t.me" 
-                target="_blank" 
-                rel="noreferrer"
-                onClick={() => setIsOpen(false)}
-                className="bg-cream-card dark:bg-emerald-medium text-luxury-text/80 dark:text-cream-bg text-center py-2.5 rounded-lg text-xs font-medium border border-gold-accent/10 flex items-center justify-center cursor-pointer"
-              >
-                Telegram
-              </a>
-              <button 
-                onClick={handleConsultationClick}
-                className="bg-gold-accent text-emerald-luxury text-center py-2.5 rounded-lg text-xs font-bold cursor-pointer"
-              >
-                {t.header.consultation}
-              </button>
-            </div>
-          </div>
-        </div>
+                {/* Мобильный селектор языков */}
+                <div className="space-y-1.5">
+                  <span className="text-xs text-luxury-text/40 dark:text-cream-bg/40 block">{t.header.langSelect}:</span>
+                  <div className="grid grid-cols-2 gap-2">
+                    {languages.map((item) => (
+                      <button
+                        key={item.code}
+                        onClick={() => {
+                          setLang(item.code);
+                          setIsOpen(false);
+                        }}
+                        className={`text-xs py-2 rounded-xl border px-3 transition-colors cursor-pointer flex items-center justify-center gap-2 ${
+                          lang === item.code 
+                            ? 'border-gold-accent bg-gold-accent/10 text-gold-hover font-bold' 
+                            : 'border-gold-accent/10 text-luxury-text/70 dark:text-cream-bg/70'
+                        }`}
+                      >
+                        <FlagIcon code={item.code} />
+                        <span className="tracking-wider">{item.name}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Мессенджеры на мобилке */}
+                <div className="grid grid-cols-2 gap-2 pt-1">
+                  <a 
+                    href="https://t.me" 
+                    target="_blank" 
+                    rel="noreferrer"
+                    onClick={() => setIsOpen(false)}
+                    className="bg-cream-card dark:bg-emerald-medium text-luxury-text/80 dark:text-cream-bg text-center py-2.5 rounded-lg text-xs font-medium border border-gold-accent/10 flex items-center justify-center cursor-pointer"
+                  >
+                    Telegram
+                  </a>
+                  <button 
+                    onClick={handleConsultationClick}
+                    className="bg-gold-accent text-emerald-luxury text-center py-2.5 rounded-lg text-xs font-bold cursor-pointer"
+                  >
+                    {t.header.consultation}
+                  </button>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
       </nav>
     </div>
   );
 };
+
 
 
 
