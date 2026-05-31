@@ -1,9 +1,54 @@
 import { useState, useEffect } from 'react';
-import { Feather, Menu, X, Phone, Send, Moon, Sun, Globe, ChevronDown } from 'lucide-react';
+import { Feather, Menu, X, Phone, Send, Moon, Sun, ChevronDown } from 'lucide-react';
+
 
 // Сеньорские импорты, разделенные по файлам для поддержки Fast Refresh и verbatimModuleSyntax
 import { useLang } from '../../context/useLang';
 import type { LanguageCode } from '../../context/translations';
+
+// ИСПРАВЛЕНО: Премиум-флаги в виде легких векторных SVG
+const FlagIcon = ({ code }: { code: LanguageCode }) => {
+  if (code === 'RU') {
+    return (
+      <svg className="w-4 h-3 rounded-sm shadow-sm object-cover flex-shrink-0" viewBox="0 0 9 6">
+        <rect width="9" height="2" fill="#fff"/>
+        <rect y="2" width="9" height="2" fill="#0039a6"/>
+        <rect y="4" width="9" height="2" fill="#d52b1e"/>
+      </svg>
+    );
+  }
+  if (code === 'PL') {
+    return (
+      <svg className="w-4 h-3 rounded-sm shadow-sm object-cover flex-shrink-0 border border-black/5 dark:border-white/10" viewBox="0 0 16 10">
+        <rect width="16" height="5" fill="#fff"/>
+        <rect y="5" width="16" height="5" fill="#dc143c"/>
+      </svg>
+    );
+  }
+  if (code === 'EN') {
+    return (
+      <svg className="w-4 h-3 rounded-sm shadow-sm object-cover flex-shrink-0" viewBox="0 0 50 30">
+        <clipPath id="t"><path d="M0 0v30h50V0z"/></clipPath>
+        <g clipPath="url(#t)">
+          <path d="M0 0v30h50V0z" fill="#012169"/>
+          <path d="M0 0l50 30M50 0L0 30" stroke="#fff" strokeWidth="6"/>
+          <path d="M0 0l50 30M50 0L0 30" stroke="#C8102E" strokeWidth="4"/>
+          <path d="M25 0v30M0 15h50" stroke="#fff" strokeWidth="10"/>
+          <path d="M25 0v30M0 15h50" stroke="#C8102E" strokeWidth="6"/>
+        </g>
+      </svg>
+    );
+  }
+  if (code === 'UA') {
+    return (
+      <svg className="w-4 h-3 rounded-sm shadow-sm object-cover flex-shrink-0" viewBox="0 0 3 2">
+        <rect width="3" height="1" fill="#0057b7"/>
+        <rect y="1" width="3" height="1" fill="#ffd700"/>
+      </svg>
+    );
+  }
+  return null;
+};
 
 export const Header = () => {
   const { lang, setLang, t } = useLang();
@@ -17,7 +62,6 @@ export const Header = () => {
     const savedTheme = localStorage.getItem('theme');
     return savedTheme === 'dark';
   });
-
   // Следим за скроллом для эффекта "парения" шапки
   useEffect(() => {
     const handleScroll = () => {
@@ -57,12 +101,12 @@ export const Header = () => {
     }, 2500);
   };
 
-  // Массив языков для рендеринга в селекторах
+  // Массив языков для селектора
   const languages: { code: LanguageCode; name: string }[] = [
-    { code: 'EN', name: 'English' },
-    { code: 'PL', name: 'Polski' },
-    { code: 'RU', name: 'Русский' },
-    { code: 'UA', name: 'Українська' }
+    { code: 'EN', name: 'EN' },
+    { code: 'PL', name: 'PL' },
+    { code: 'RU', name: 'RU' },
+    { code: 'UA', name: 'UA' }
   ];
 
   // Динамическая навигация, подключенная к i18n словарям
@@ -99,6 +143,7 @@ export const Header = () => {
                 </span>
               </div>
             </div>
+
             {/* Навигация (Десктоп) */}
             <div className="hidden md:flex items-center gap-8">
               {navigation.map((item) => (
@@ -120,10 +165,10 @@ export const Header = () => {
               <div className="relative">
                 <button 
                   onClick={() => setIsLangOpen(!isLangOpen)}
-                  className="text-xs font-medium text-luxury-text/70 dark:text-cream-bg/70 hover:text-gold-hover dark:hover:text-gold-accent flex items-center gap-1 transition-colors cursor-pointer"
+                  className="text-xs font-medium text-luxury-text/70 dark:text-cream-bg/70 hover:text-gold-hover dark:hover:text-gold-accent flex items-center gap-2 transition-colors cursor-pointer select-none"
                 >
-                  <Globe size={14} />
-                  <span>{lang}</span>
+                  <FlagIcon code={lang} />
+                  <span className="tracking-wide">{lang}</span>
                   <ChevronDown size={12} className={`transition-transform duration-200 ${isLangOpen ? 'rotate-180' : ''}`} />
                 </button>
                 
@@ -136,9 +181,10 @@ export const Header = () => {
                           setLang(item.code);
                           setIsLangOpen(false);
                         }}
-                        className={`w-full text-left px-3 py-1.5 text-xs transition-colors hover:bg-gold-accent/10 cursor-pointer ${lang === item.code ? 'text-gold-hover font-bold' : 'text-luxury-text/80 dark:text-cream-bg/80'}`}
+                        className={`w-full text-left px-3 py-2 text-xs transition-colors hover:bg-gold-accent/10 cursor-pointer flex items-center gap-2 ${lang === item.code ? 'text-gold-hover font-bold bg-gold-accent/5' : 'text-luxury-text/80 dark:text-cream-bg/80'}`}
                       >
-                        {item.name}
+                        <FlagIcon code={item.code} />
+                        <span>{item.name}</span>
                       </button>
                     ))}
                   </div>
@@ -170,7 +216,7 @@ export const Header = () => {
               
               {/* Телеграм Анастасии */}
               <a 
-                href="https://t.me/AnastaziALappo" 
+                href="https://t.me" 
                 target="_blank" 
                 rel="noreferrer"
                 className="relative z-30 inline-flex items-center justify-center text-luxury-text/60 dark:text-cream-bg/60 hover:text-gold-hover dark:hover:text-gold-accent transition-colors p-2 cursor-pointer"
@@ -184,11 +230,10 @@ export const Header = () => {
                 onClick={handleConsultationClick} 
                 className="relative overflow-hidden bg-emerald-luxury dark:bg-gold-accent text-cream-bg dark:text-emerald-luxury font-bold px-4 py-2 rounded-lg text-xs transition-all cursor-pointer shadow-sm group/btn"
               >
-                <span className="absolute top-0 -inset-full h-full w-1/2 block transform -skew-x-12 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover/btn:opacity-100 group-hover/btn:animate-[shine_0.8s_ease-in-out]" />
+                <span className="absolute top-0 -inset-full h-full w-1/2 block transform -skew-x-12 bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-0 group-hover/btn:opacity-100 group-hover/btn:animate-[shine_0.8s_ease-in-out]" />
                 <span className="relative z-10">{t.header.consultation}</span>
               </button>
             </div>
-
             {/* Правый блок мобилки */}
             <div className="flex items-center gap-2 md:hidden">
               <button onClick={() => setIsDarkMode(!isDarkMode)} className="p-2 text-luxury-text/80 dark:text-cream-bg/80 cursor-pointer">
@@ -229,7 +274,7 @@ export const Header = () => {
             {/* Мобильный селектор языков */}
             <div className="space-y-1.5">
               <span className="text-xs text-luxury-text/40 dark:text-cream-bg/40 block">{t.header.langSelect}:</span>
-              <div className="grid grid-cols-4 gap-1">
+              <div className="grid grid-cols-2 gap-2">
                 {languages.map((item) => (
                   <button
                     key={item.code}
@@ -237,13 +282,14 @@ export const Header = () => {
                       setLang(item.code);
                       setIsOpen(false);
                     }}
-                    className={`text-xs py-1.5 rounded-md border text-center transition-colors cursor-pointer ${
+                    className={`text-xs py-2 rounded-xl border px-3 transition-colors cursor-pointer flex items-center justify-center gap-2 ${
                       lang === item.code 
                         ? 'border-gold-accent bg-gold-accent/10 text-gold-hover font-bold' 
                         : 'border-gold-accent/10 text-luxury-text/70 dark:text-cream-bg/70'
                     }`}
                   >
-                    {item.code}
+                    <FlagIcon code={item.code} />
+                    <span className="tracking-wider">{item.name}</span>
                   </button>
                 ))}
               </div>
@@ -251,7 +297,6 @@ export const Header = () => {
 
             {/* Мессенджеры на мобилке */}
             <div className="grid grid-cols-2 gap-2 pt-1">
-              {/* ИСПРАВЛЕНО: Ссылка-близнец из SocialLinks для мобильного меню */}
               <a 
                 href="https://t.me" 
                 target="_blank" 
@@ -275,6 +320,7 @@ export const Header = () => {
     </div>
   );
 };
+
 
 
 
