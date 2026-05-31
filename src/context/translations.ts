@@ -13,6 +13,22 @@ export interface QuizStepSchema {
   options?: QuizOptionSchema[];
 }
 
+export interface AboutSectionSchema {
+  badge: string;
+  role: string;
+  titlePre: string;
+  titleAccent: string;
+  titlePost: string;
+  description: string;
+  features: string[];
+  stats: {
+    casesTitle: string;
+    casesDesc: string;
+    rateTitle: string;
+    rateDesc: string;
+  };
+}
+
 export interface TranslationSchema {
   header: {
     main: string;
@@ -32,6 +48,7 @@ export interface TranslationSchema {
     thanksSub: string;
     steps: QuizStepSchema[];
   };
+  about: AboutSectionSchema;
 }
 
 export const translations: Record<LanguageCode, TranslationSchema> = {
@@ -90,6 +107,24 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           placeholder: 'Ваше имя и Telegram / WhatsApp'
         }
       ]
+    },
+    about: {
+      badge: "Личный бренд и стандарты",
+      role: "Основатель проекта",
+      titlePre: "Личный опыт и ",
+      titleAccent: "юридическая точность",
+      titlePost: " на вашей стороне",
+      description: "Я специализируюсь на международном миграционном праве более 8 лет. Моя работа заключается в том, чтобы убрать из процесса релокации всю бюрократическую неопределенность. Я не просто заполняю анкеты, а выстраиваю для вас легальный, безопасный и прогнозируемый трек получения статуса.",
+      features: [
+        "Глубокий пре-аудит документов до подписания договора",
+        "Прямая связь с экспертом без менеджеров и посредников"
+      ],
+      stats: {
+        casesTitle: "350+ успешных кейсов",
+        casesDesc: "Одобренных ВНЖ и ПМЖ в ЕС",
+        rateTitle: "98.6% одобрений",
+        rateDesc: "За счет жесткого отбора профилей"
+      }
     }
   },
   PL: {
@@ -147,6 +182,24 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           placeholder: 'Twoje imię oraz Telegram / WhatsApp'
         }
       ]
+    },
+    about: {
+      badge: "Marka osobista i standardy",
+      role: "Założycielka projektu",
+      titlePre: "Osobiste doświadczenie i ",
+      titleAccent: "precyzja prawna",
+      titlePost: " po Twojej stronie",
+      description: "Specjalizuję się w międzynarodowym prawie migracyjnym od ponad 8 lat. Moim zadaniem jest wyeliminowanie wszelkiej niepewności biurokratycznej z procesu relokacji. Nie tylko wypełniam wnioski, ale buduję dla Ciebie legalną, bezpieczną i przewidywalną ścieżkę uzyskania statusu.",
+      features: [
+        "Głęboki audyt wstępny dokumentów przed podpisaniem umowy",
+        "Bezpośredni kontakt z ekspertem, bez menedżerów i pośredników"
+      ],
+      stats: {
+        casesTitle: "350+ sukcesów",
+        casesDesc: "Zatwierdzonych kart pobytu i rezydentów w UE",
+        rateTitle: "98.6% skuteczności",
+        rateDesc: "Dzięki rygorystycznej weryfikacji profili"
+      }
     }
   },
   EN: {
@@ -204,6 +257,24 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           placeholder: 'Your name and Telegram / WhatsApp'
         }
       ]
+    },
+    about: {
+      badge: "Personal brand and standards",
+      role: "Project Founder",
+      titlePre: "Personal experience and ",
+      titleAccent: "legal precision",
+      titlePost: " on your side",
+      description: "I have been specializing in international migration law for over 8 years. My job is to eliminate all bureaucratic uncertainty from the relocation process. I do not just fill out forms, but build a legal, safe, and predictable track for you to obtain your status.",
+      features: [
+        "Deep pre-audit of documents before signing the contract",
+        "Direct communication with the expert without managers or intermediaries"
+      ],
+      stats: {
+        casesTitle: "350+ successful cases",
+        casesDesc: "Approved residence permits and permanent residences in the EU",
+        rateTitle: "98.6% approval rate",
+        rateDesc: "Due to strict profile selection"
+      }
     }
   },
   UA: {
@@ -230,7 +301,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           options: [
             { value: 'remote', label: 'Віддалена робота / Фріланс (контракти поза країною)' },
             { value: 'business', label: 'Власний бізнес / Дивіденди' },
-            { value: 'local', label: 'Планую шукати роботу на місці' },
+            { value: 'local', label: 'Планирую шукати роботу на місці' },
             { value: 'passive', label: 'Пасивний дохід (оренда, пенсія)' },
           ]
         },
@@ -246,7 +317,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         },
         {
           id: 'education',
-          question: 'Ваш рівень освіти?',
+          question: 'Ваш уровень освіти?',
           subtitle: 'Для низки програм важливий профільний диплом',
           options: [
             { value: 'higher', label: 'Вища (бакалавр, магістр)' },
@@ -261,6 +332,24 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           placeholder: 'Ваше ім’я та Telegram / WhatsApp'
         }
       ]
+    },
+    about: {
+      badge: "Особистий бренд та стандарти",
+      role: "Засновниця проєкту",
+      titlePre: "Особистий досвід та ",
+      titleAccent: "юридична точність",
+      titlePost: " на вашому боці",
+      description: "Я спеціалізуюся на міжнародному міграційному правві понад 8 років. Моя работа полягає в тому, щоб прибрати з процесу релокації всю бюрократичну невизначеність. Я не просто заповнюю анкети, а вибудовую для вас легальний, безпечний та прогнозований трек отримання статусу.",
+      features: [
+        "Глубокий пре-аудит документів до підписання договору",
+        "Прямий зв'язок з експертом без менеджерів та посередників"
+      ],
+      stats: {
+        casesTitle: "350+ успішних кейсів",
+        casesDesc: "Схвалених посвідок на проживання та ПМП в ЄС",
+        rateTitle: "98.6% схвалень",
+        rateDesc: "Завдяки жорсткому відбору профілів"
+      }
     }
   }
 };
