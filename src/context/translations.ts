@@ -29,6 +29,19 @@ export interface AboutSectionSchema {
   };
 }
 
+// ИСПРАВЛЕНО: Дописали форму данных для главной страницы Hero
+export interface HomeSectionSchema {
+  badge: string;
+  titlePre: string;
+  titleAccent: string;
+  description: string;
+  features: string[];
+  btnAudit: string;
+  btnPrograms: string;
+  quizTitle: string;
+  quizDesc: string;
+}
+
 export interface TranslationSchema {
   header: {
     main: string;
@@ -49,6 +62,8 @@ export interface TranslationSchema {
     steps: QuizStepSchema[];
   };
   about: AboutSectionSchema;
+  // ИСПРАВЛЕНО: Связали главную страницу со схемой
+  home: HomeSectionSchema;
 }
 
 export const translations: Record<LanguageCode, TranslationSchema> = {
@@ -125,6 +140,21 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         rateTitle: "98.6% одобрений",
         rateDesc: "За счет жесткого отбора профилей"
       }
+    },
+    // ИСПРАВЛЕНО: Добавлен русский перевод главной страницы
+    home: {
+      badge: "Официальная легализация и релокация под ключ",
+      titlePre: "Ваш надежный путь к ",
+      titleAccent: "ВНЖ и гражданству",
+      description: "Комплексное юридическое сопровождение: от анализа документов до гарантированного получения статуса. Минимизируем риски отказов на 99%.",
+      features: [
+        "Оценка шансов до заключения договора",
+        "Работаем со сложными кейсами после отказов"
+      ],
+      btnAudit: "Получить аудит кейса",
+      btnPrograms: "Посмотреть программы",
+      quizTitle: "Проверить шансы на ВНЖ",
+      quizDesc: "Ответьте на 3 вопроса профиля для экспресс-оценки вашего кейса экспертом."
     }
   },
   PL: {
@@ -200,6 +230,21 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         rateTitle: "98.6% skuteczności",
         rateDesc: "Dzięki rygorystycznej weryfikacji profili"
       }
+    },
+    // ИСПРАВЛЕНО: Добавлен польский перевод главной страницы
+    home: {
+      badge: "Oficjalna legalizacja i relokacja kompleksowo",
+      titlePre: "Twoja bezpieczna droga do ",
+      titleAccent: "karty pobytu i obywatelstwa",
+      description: "Kompleksowe wsparcie prawne: od analizy dokumentów do gwarantowanego uzyskania statusu. Minimalizujemy ryzyko odmowy o 99%.",
+      features: [
+        "Ocena szans przed podpisaniem umowy",
+        "Pracujemy ze złożonymi przypadkami po odmowach"
+      ],
+      btnAudit: "Uzyskaj audyt sprawy",
+      btnPrograms: "Zobacz programy",
+      quizTitle: "Sprawdź szanse na pobyt",
+      quizDesc: "Odpowiedz na 3 pytania profilowe w celu ekspresowej oceny Twojej sprawy przez eksperta."
     }
   },
   EN: {
@@ -275,6 +320,21 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         rateTitle: "98.6% approval rate",
         rateDesc: "Due to strict profile selection"
       }
+    },
+    // ИСПРАВЛЕНО: Добавлен английский перевод главной страницы
+    home: {
+      badge: "Official legalization and turnkey relocation",
+      titlePre: "Your reliable path to ",
+      titleAccent: "residence permit and citizenship",
+      description: "Comprehensive legal support: from document analysis to guaranteed status acquisition. We minimize the risk of refusal by 99%.",
+      features: [
+        "Assessment of chances before signing the contract",
+        "We handle complex cases after prior refusals"
+      ],
+      btnAudit: "Get a case audit",
+      btnPrograms: "View programs",
+      quizTitle: "Check eligibility for residency",
+      quizDesc: "Answer 3 profile questions for an express assessment of your case by an expert."
     }
   },
   UA: {
@@ -302,7 +362,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
             { value: 'remote', label: 'Віддалена робота / Фріланс (контракти поза країною)' },
             { value: 'business', label: 'Власний бізнес / Дивіденди' },
             { value: 'local', label: 'Планирую шукати роботу на місці' },
-            { value: 'passive', label: 'Пасивний дохід (оренда, пенсія)' },
+            { value: 'passive', label: 'Пассивний дохід (оренда, пенсія)' },
           ]
         },
         {
@@ -317,7 +377,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         },
         {
           id: 'education',
-          question: 'Ваш уровень освіти?',
+          question: 'Ваш рівень освіти?',
           subtitle: 'Для низки програм важливий профільний диплом',
           options: [
             { value: 'higher', label: 'Вища (бакалавр, магістр)' },
@@ -328,7 +388,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         {
           id: 'contacts',
           question: 'Залиште ваші контактні дані',
-          subtitle: 'Анастасія зв’яжеться з вами для розбору вашої ситуації',
+          subtitle: 'Анастасія зв’яжеться з вами для розбору вашої ситуации',
           placeholder: 'Ваше ім’я та Telegram / WhatsApp'
         }
       ]
@@ -339,7 +399,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       titlePre: "Особистий досвід та ",
       titleAccent: "юридична точність",
       titlePost: " на вашому боці",
-      description: "Я спеціалізуюся на міжнародному міграційному правві понад 8 років. Моя работа полягає в тому, щоб прибрати з процесу релокації всю бюрократичну невизначеність. Я не просто заповнюю анкети, а вибудовую для вас легальний, безпечний та прогнозований трек отримання статусу.",
+      description: "Я спеціалізуюся на міжнародному міграційному правві понад 8 років. Моя работа полягає в тому, щоб прибрати з процесу релокації всю бюрократичну невизначеність. Я не просто заповнює анкти, а вибудовую для вас легальний, безпечний та прогнозований трек отримання статусу.",
       features: [
         "Глубокий пре-аудит документів до підписання договору",
         "Прямий зв'язок з експертом без менеджерів та посередників"
@@ -350,9 +410,25 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         rateTitle: "98.6% схвалень",
         rateDesc: "Завдяки жорсткому відбору профілів"
       }
+    },
+    // ІСПРАВЛЕНО: Добавлен украинский перевод главной страницы
+    home: {
+      badge: "Офіційна легалізація та релокація під ключ",
+      titlePre: "Ваш надійний шлях до ",
+      titleAccent: "посвідки та громадянства",
+      description: "Комплексний юридичний супровід: від аналізу документів до гарантованого отримання статусу. Мінімізуємо ризики відмов на 99%.",
+      features: [
+        "Оцінка шансів до укладання договору",
+        "Працюємо зі складними кейсами після відмов"
+      ],
+      btnAudit: "Отримати аудит кейсу",
+      btnPrograms: "Переглянути програми",
+      quizTitle: "Перевірити шанси на посвідку",
+      quizDesc: "Дайте відповідь на 3 питання профілю для експрес-оценки вашого кейсу експертом."
     }
   }
 };
+
 
 
 
