@@ -41,7 +41,6 @@ export interface HomeSectionSchema {
   quizDesc: string;
 }
 
-// ИСПРАВЛЕНО: Добавлены строгие типы для секции услуг
 export interface ServiceItemSchema {
   title: string;
   desc: string;
@@ -67,6 +66,27 @@ export interface ServicesSectionSchema {
   };
 }
 
+// ИСПРАВЛЕНО: Добавлены строгие типы для секции отзывов
+export interface ReviewItemSchema {
+  name: string;
+  program: string;
+  text: string;
+}
+
+export interface ReviewsSectionSchema {
+  titlePre: string;
+  titleAccent: string;
+  description: string;
+  dragHint: string;
+  items: {
+    markAnna: ReviewItemSchema;
+    dmitry: ReviewItemSchema;
+    elena: ReviewItemSchema;
+    igorOlga: ReviewItemSchema;
+    tatiana: ReviewItemSchema;
+  };
+}
+
 export interface TranslationSchema {
   header: {
     main: string;
@@ -88,7 +108,8 @@ export interface TranslationSchema {
   };
   about: AboutSectionSchema;
   home: HomeSectionSchema;
-  services: ServicesSectionSchema; // <-- ИСПРАВЛЕНО: Связали со схемой
+  services: ServicesSectionSchema;
+  reviews: ReviewsSectionSchema; // <-- ИСПРАВЛЕНО: Связали со схемой
 }
 
 export const translations: Record<LanguageCode, TranslationSchema> = {
@@ -180,7 +201,6 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       quizTitle: "Проверить шансы на ВНЖ",
       quizDesc: "Ответьте на 3 вопроса профиля для экспресс-оценки вашего кейса экспертом."
     },
-    // ИСПРАВЛЕНО: Добавлен перевод секции услуг на русский язык
     services: {
       titlePre: "Направления работы и ",
       titleAccent: "стоимость",
@@ -196,6 +216,20 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         family: { title: 'Воссоединение семьи', desc: 'Оформление документов для супругов, детей и зависимых родителей главного заявителя по любым типам виз.', price: 'от €700', time: 'Срок: 2–4 недели' },
         compliance: { title: 'Открытие счетов и комплаенс', desc: 'Подготовка справок о происхождении средств (Source of Funds), прохождение проверок KYC и открытие счетов в банках.', price: 'от €600', time: 'Срок: 5–10 дней' },
         appeal: { title: 'Апелляции и сложные кейсы', desc: 'Глубокий анализ причин отказа, составление юридически грамотной жалобы и повторное сопровождение дела.', price: 'от €800', time: 'Срок: индивидуально' }
+      }
+    },
+    // ИСПРАВЛЕНО: Добавлен перевод секции отзывов на русский
+    reviews: {
+      titlePre: "Что говорят ",
+      titleAccent: "клиенты",
+      description: "Реальные истории людей, которые успешно прошли процесс легализации и доверили свой переезд эксперту.",
+      dragHint: "Зажмите и тяните вбок или листайте",
+      items: {
+        markAnna: { name: 'Марк и Анна', program: 'ВНЖ Digital Nomad, Испания', text: 'Обратились к Анастасии после самостоятельного отказа из-за неправильно оформленного контракта. Она полностью переформатировала наши документы с американским заказчиком и составила пояснительное письмо для UGE. Подали заново — одобрение пришло через 18 дней! Настоящий профессионал.' },
+        dmitry: { name: 'Дмитрий К.', program: 'Стартап-виза, Португалия', text: 'Анастасия помогла докрутить нашу бизнес-модель под жесткие требования института IAPMEI. Сопровождала на каждом шагу: от сбора справок до открытия счета. Всегда на связи в Telegram, объясняет сложные законы простым языком. Рекомендую.' },
+        elena: { name: 'Елена Б.', program: 'ВНЖ без права на работу, Италия', text: 'Для меня было критично успеть подать документы до изменения правил по пассивному доходу. Анастасия подготовила кейс за 2 недели. Аудит доходов был сделан идеально — консульство в Москве выдало визу D без единого вопроса.' },
+        igorOlga: { name: 'Игорь и Ольга', program: 'Бизнес-инкубатор, Польша', text: 'Релоцировали IT-стартап в Варшаву. Анастазья Лапо идеально провела нас через весь процесс: от регистрации компании (Sp. z o.o.) до получения пластика карты побыту на 3 года. Сберегли тонну нервов.' },
+        tatiana: { name: 'Татьяна Ш.', program: 'Гражданство по корням, Румыния', text: 'Процесс восстановления корней казался нереальным из-за утерянных архивов. Анастасия организовала профессиональный поиск, нашла свидетельства дедушки и полностью вела дело до присяги в Бухаресте. Паспорт в руках!' }
       }
     }
   },
@@ -287,7 +321,6 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       quizTitle: "Sprawdź szanse na pobyt",
       quizDesc: "Odpowiedz na 3 pytania profilowe w celu ekspresowej oceny Twojej sprawy przez eksperta."
     },
-    // ИСПРАВЛЕНО: Добавлен перевод секции услуг на польский язык
     services: {
       titlePre: "Kierunki pracy i ",
       titleAccent: "koszt",
@@ -303,6 +336,20 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         family: { title: "Łączenie rodzin", desc: "Formalności dokumentowe dla małżonków, dzieci i niesamodzielnych rodziców głównego wnioskodawcy dla każdego rodzaju wizy.", price: "od €700", time: "Czas: 2–4 tygodnie" },
         compliance: { title: "Otwieranie kont i compliance", desc: "Przygotowanie potwierdzeń źródła pochodzenia środków (Source of Funds), przejście procedur KYC i otwarcie kont bankowych.", price: "od €600", time: "Czas: 5–10 dni" },
         appeal: { title: "Odwołania i trudne przypadki", desc: "Głęboka analiza przyczyn odmowy, sporządzenie poprawnego prawnie odwołania oraz ponowne prowadzenie całej sprawy.", price: "od €800", time: "Czas: indywidualnie" }
+      }
+    },
+    // ИСПРАВЛЕНО: Добавлен перевод секции отзывов на польский
+    reviews: {
+      titlePre: "Co mówią ",
+      titleAccent: "klienci",
+      description: "Prawdziwe historie osób, które z sukcesem przeszły proces legalizacji i powierzyły swoją przeprowadzkę ekspertowi.",
+      dragHint: "Kliknij i przeciągnij w bok lub przewijaj",
+      items: {
+        markAnna: { name: 'Mark i Anna', program: 'Karta Pobytu Digital Nomad, Hiszpania', text: 'Zwróciliśmy się do Anastazji po samodzielnej odmowie z powodu błędnie sformułowanego kontraktu. Całkowicie przeformatowała nasze dokumenty z amerykańskim zleceniodawcą i napisała list wyjaśniający do UGE. Złożyliśmy ponownie — zatwierdzenie przyszło po 18 dniach! Prawdziwy profesjonalista.' },
+        dmitry: { name: 'Dmitry K.', program: 'Wiza Startupowa, Portugalia', text: 'Anastazja pomogła nam dopracować nasz model biznesowy pod rygorystyczne wymagania instytutu IAPMEI. Towarzyszyła nam na każdym kroku: od zbierania zaświadczeń po otwarcie konta. Zawsze dostępna na Telegramie, tłumaczy skomplikowane prawo prostym językiem. Polecam.' },
+        elena: { name: 'Elena B.', program: 'Rezydent bez prawa do pracy, Włochy', text: 'Dla mnie kluczowe było zdążenie ze złożeniem dokumentów przed zmianą przepisów dotyczących dochodu pasywnego. Anastazja przygotowała sprawę w 2 tygodnie. Audyt dochodów został przeprowadzony idealnie — konsulat w Moskwie wydał wizę D bez żadnych pytań.' },
+        igorOlga: { name: 'Igor i Olga', program: 'Inkubator Biznesowy, Polska', text: 'Relokowaliśmy IT startup do Warszawy. Anastazja Łapo idealnie przeprowadziła nas przez cały proces: od rejestracji spółki (Sp. z o.o.) do odebrania plastikowej karty pobytu na 3 lata. Oszczędziło nam to mnóstwo nerwów.' },
+        tatiana: { name: 'Tatiana Sz.', program: 'Obywatelstwo przez korzenie, Rumunia', text: 'Proces przywracania korzeni wydawał się nierealny z powodu zagubionych archiwów. Anastazja zorganizowała profesjonalne poszukiwania, znalazła akty dziadka i w pełni prowadziła sprawę aż do przysięgi w Bukareszcie. Paszport w ręku!' }
       }
     }
   },
@@ -394,7 +441,6 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       quizTitle: "Check eligibility for residency",
       quizDesc: "Answer 3 profile questions for an express assessment of your case by an expert."
     },
-    // ИСПРАВЛЕНО: Добавлен перевод секции услуг на английский язык
     services: {
       titlePre: "Areas of Expertise & ",
       titleAccent: "Pricing",
@@ -410,6 +456,20 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         family: { title: "Family Reunification", desc: "Document processing for spouses, children, and dependent parents of the main applicant for any visa types.", price: "from €700", time: "Timeline: 2–4 weeks" },
         compliance: { title: "Bank Account Opening & Compliance", desc: "Preparation of Source of Funds statements, passing KYC checks, and opening corporate/personal bank accounts.", price: "from €600", time: "Timeline: 5–10 days" },
         appeal: { title: "Appeals & Complex Cases", desc: "In-depth analysis of refusal reasons, drafting a legally sound complaint, and re-submitting the case.", price: "from €800", time: "Timeline: individual" }
+      }
+    },
+    // ИСПРАВЛЕНО: Добавлен перевод секции отзывов на английский
+    reviews: {
+      titlePre: "What ",
+      titleAccent: "clients say",
+      description: "Real stories of people who have successfully gone through the legalization process and trusted their relocation to an expert.",
+      dragHint: "Click and drag sideways or scroll",
+      items: {
+        markAnna: { name: 'Mark & Anna', program: 'Digital Nomad Residence Permit, Spain', text: 'We turned to Anastazja after a self-application rejection caused by an incorrectly structured contract. She completely reformatted our documents with the US client and drafted an explanatory letter for UGE. Re-submitted — approved in 18 days! A true professional.' },
+        dmitry: { name: 'Dmitry K.', program: 'Startup Visa, Portugal', text: 'Anastazja helped us fine-tune our business model for the strict requirements of the IAPMEI institute. Supported us at every step: from collecting certificates to account opening. Always responsive on Telegram, explains complex laws in simple terms. Highly recommend.' },
+        elena: { name: 'Elena B.', program: 'Residency without Right to Work, Italy', text: 'It was critical for me to submit documents before the passive income rules changed. Anastazja prepared the case in 2 weeks. The income audit was flawlessly executed — the consulate in Moscow issued the D-visa without a single question.' },
+        igorOlga: { name: 'Igor & Olga', program: 'Business Incubator, Poland', text: 'Relocated our IT startup to Warsaw. Anastazja Łapo perfectly guided us through the entire process: from company registration (Sp. z o.o.) to getting our 3-year residence card plastics. Saved us a ton of nerves.' },
+        tatiana: { name: 'Tatiana S.', program: 'Citizenship by Descent, Romania', text: 'The root restoration process seemed impossible due to lost archives. Anastazja organized a professional search, found my grandfather\'s certificates, and fully managed the case until the oath in Bucharest. Passport in hand!' }
       }
     }
   },
@@ -463,7 +523,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         },
         {
           id: 'contacts',
-          question: 'Залиште ваші контактні дані',
+          question: 'Залиште ваші контактные дані',
           subtitle: 'Анастасія зв’яжеться з вами для розбору вашої ситуации',
           placeholder: 'Ваше ім’я та Telegram / WhatsApp'
         }
@@ -494,14 +554,13 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       description: "Комплексний юридичний супровід: від аналізу документів до гарантованого отримання статусу. Мінімізуємо ризики відмов на 99%.",
       features: [
         "Оцінка шансів до укладання договору",
-        "Працюємо зі складними кейсами після відмов"
+        "Працюємо зі складними кейсами после відмов"
       ],
       btnAudit: "Отримати аудит кейсу",
       btnPrograms: "Переглянути програми",
       quizTitle: "Перевірити шанси на посвідку",
       quizDesc: "Дайте відповідь на 3 питання профілю для експрес-оценки вашого кейсу експертом."
     },
-    // ІСПРАВЛЕНО: Добавлен перевод секции услуг на украинский язык
     services: {
       titlePre: "Напрямки роботи та ",
       titleAccent: "вартість",
@@ -509,18 +568,33 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       topChoice: "Топ вибір",
       btnMore: "Детальніше",
       items: {
-        nomad: { title: "Посвідка Цифрового Кочівника", desc: "Для фрілансерів та віддалених працівників із доходом від €2,500. Повний аудит контрактів, збір документів та подача під ключ.", price: "від €1,200", time: "Термін: 3–6 тижнів" },
+        nomad: { title: "Посвідка Цифрового Кочівника", desc: "Для фрілансерів та віддалених працівників із доходом від €2,500. Повний аудит контрактів, збір документів та подача под ключ.", price: "від €1,200", time: "Термін: 3–6 тижнів" },
         startup: { title: "Стартап-Віза та Бізнес Посвідка", desc: "Розробка інноваційного бізнес-плану, схвалення в міністерстві та захист вашого проєкту перед комісією.", price: "від €2,500", time: "Термін: 2–4 місяці" },
         passive: { title: "Посвідка без права на роботу", desc: "Для фінансово незалежних осіб зі стабільним пассивним доходом поза межами країни (оренда, дивіденди, відсотки).", price: "від €1,500", time: "Термін: 1–2 місяці" },
-        investor: { title: "Золота віза / Посвідка інвестора", desc: "Супрівід інвестицій у нерухомість, державні облігації або фонди для отримання постійного статусу.", price: "від €4,000", time: "Термін: 1–3 місяці" },
+        investor: { title: "Золотая віза / Посвідка інвестора", desc: "Супрівід інвестицій у нерухомість, державні облігації або фонди для отримання постійного статусу.", price: "від €4,000", time: "Термін: 1–3 місяці" },
         origin: { title: "Громадянство за походженням", desc: "Архівний пошук, підтвердження коріння, відновлення історичних прав та повне ведення справи аж до присяги.", price: "від €3,000", time: "Термін: від 6 місяців" },
         family: { title: "Возз’єднання сім’ї", desc: "Оформлення документів для подружжя, дітей та залежних батьків головного заявника за будь-якими типами віз.", price: "від €700", time: "Термін: 2–4 тижні" },
         compliance: { title: "Відкриття рахунків та комплаєнс", desc: "Підготовка довідок про походження коштів (Source of Funds), проходження перевірок KYC та відкриття рахунків у банках.", price: "від €600", time: "Термін: 5–10 днів" },
-        appeal: { title: "Апеляції та складні кейси", desc: "Глубокий аналіз причин відмови, складання юридично грамотної скарги та повторний супровід справи.", price: "від €800", time: "Термін: індивідуально" }
+        appeal: { title: "Апелляции та складні кейси", desc: "Глубокий аналіз причин відмови, складання юридично грамотної скарги та повторний супровід справи.", price: "від €800", time: "Термін: індивідуально" }
+      }
+    },
+    // ІСПРАВЛЕНО: Добавлен перевод секции отзывов на украинский язык
+    reviews: {
+      titlePre: "Що говорять ",
+      titleAccent: "клієнти",
+      description: "Реальні історії людей, які успішно пройшли процес легалізації та довірили свій переїзд експерту.",
+      dragHint: "Затисніть і тягніть убік або гортайте",
+      items: {
+        markAnna: { name: 'Марк та Анна', program: 'Посвідка Digital Nomad, Іспанія', text: 'Звернулися до Анастасії після самостійної відмови через неправильно оформлений контракт. Вона повністю переформатувала наші документи з американським замовником та склала пояснювальний лист для UGE. Подали знову — схвалення прийшло за 18 днів! Справжній професіонал.' },
+        dmitry: { name: 'Дмитро К.', program: 'Стартап-віза, Португалія', text: 'Анастасія допомогла докрутити нашу бізнес-модель під жорсткі вимоги інституту IAPMEI. Супроводжувала на кожному кроці: від збору довідок до відкриття рахунку. Завжди на зв’язку в Telegram, пояснює складні закони простою мовою. Рекомендую.' },
+        elena: { name: 'Олена Б.', program: 'Посвідка без права на роботу, Італія', text: 'Для мене було критично встигнути подати документи до зміни правил щодо пасивного доходу. Анастасія підготувала кейс за 2 тижні. Аудит доходів був зроблений ідеально — консульство в Москві видало візу D без жодного запитання.' },
+        igorOlga: { name: 'Ігор та Ольга', program: 'Бізнес-інкубатор, Польша', text: 'Релокували IT-стартап у Варшаву. Анастазія Лапо ідеально провела нас через увесь процес: від реєстрації компанії (Sp. z o.o.) до отримання пластику посвідки на проживання на 3 роки. Зберегли тонну нервів.' },
+        tatiana: { name: 'Тетяна Ш.', program: 'Громадянство за корінням, Румунія', text: 'Процес відновлення коріння здавався нереальним через втрачені архіви. Анастасія організувала професійний пошук, знайшла свідоцтва дідуся та повністю вела справу до присяги в Бухаресте. Паспорт у руках!' }
       }
     }
   }
 };
+
 
 
 
