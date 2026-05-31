@@ -333,7 +333,7 @@ export const Header = () => {
                 {/* Мессенджеры на мобилке */}
                 <div className="grid grid-cols-2 gap-2 pt-1">
                   <a 
-                    href="https://t.me" 
+                    href="https://t.me/AnastaziALappo" 
                     target="_blank" 
                     rel="noreferrer"
                     onClick={() => setIsOpen(false)}
