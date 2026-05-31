@@ -217,7 +217,7 @@ export const Header = () => {
               
               {/* Телеграм Анастасии */}
               <a 
-                href="https://t.me" 
+                href="https://t.me/AnastaziALappo" 
                 target="_blank" 
                 rel="noreferrer"
                 className="relative z-30 inline-flex items-center justify-center text-luxury-text/60 dark:text-cream-bg/60 hover:text-gold-hover dark:hover:text-gold-accent transition-colors p-2 cursor-pointer"
