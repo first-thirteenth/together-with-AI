@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
+// ИСПРАВЛЕНО: Подключаем хук локализации из папки context
+import { useLang } from '../../context/useLang';
 
 // Компонент для отдельной карточки отзыва с независимым Observer для затушёвывания
 const ReviewItem = ({ rev }: { rev: { text: string; name: string; program: string } }) => {
@@ -60,6 +62,9 @@ export const Reviews = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   
+  // ИСПРАВЛЕНО: Извлекаем объект перевода t
+  const { t } = useLang();
+  
   // Умный хук от Framer Motion: понимает, когда секция зашла в экран
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
@@ -67,12 +72,13 @@ export const Reviews = () => {
   const startX = useRef(0);
   const scrollLeft = useRef(0);
 
+  // ИСПРАВЛЕНО: Массив отзывов теперь собирается динамически из строго типизированного объекта переводов t.reviews.items
   const baseReviews = [
-    { name: 'Марк и Анна', program: 'ВНЖ Digital Nomad, Испания', text: 'Обратились к Анастасии после самостоятельного отказа из-за неправильно оформленного контракта. Она полностью переформатировала наши документы с американским заказчиком и составила пояснительное письмо для UGE. Подали заново — одобрение пришло через 18 дней! Настоящий профессионал.' },
-    { name: 'Дмитрий К.', program: 'Стартап-виза, Португалия', text: 'Анастасия помогла докрутить нашу бизнес-модель под жесткие требования института IAPMEI. Сопровождала на каждом шагу: от сбора справок до открытия счета. Всегда на связи в Telegram, объясняет сложные законы простым языком. Рекомендую.' },
-    { name: 'Елена Б.', program: 'ВНЖ без права на работу, Италия', text: 'Для меня было критично успеть подать документы до изменения правил по пассивному доходу. Анастасия подготовила кейс за 2 недели. Аудит доходов был сделан идеально — консульство в Москве выдало визу D без единого вопроса.' },
-    { name: 'Игорь и Ольга', program: 'Бизнес-инкубатор, Польша', text: 'Релоцировали IT-стартап в Варшаву. Анастазья Лапо идеально провела нас через весь процесс: от регистрации компании (Sp. z o.o.) до получения пластика карты побыту на 3 года. Сберегли тонну нервов.' },
-    { name: 'Татьяна Ш.', program: 'Гражданство по корням, Румыния', text: 'Процесс восстановления корней казался нереальным из-за утерянных архивов. Анастасия организовала профессиональный поиск, нашла свидетельства дедушки и полностью вела дело до присяги в Бухаресте. Паспорт в руках!' }
+    t.reviews.items.markAnna,
+    t.reviews.items.dmitry,
+    t.reviews.items.elena,
+    t.reviews.items.igorOlga,
+    t.reviews.items.tatiana,
   ];
 
   const totalReviewsCount = 50;
@@ -127,11 +133,13 @@ export const Reviews = () => {
           transition={{ duration: 2.0, ease: [0.16, 1, 0.3, 1] }}
           className="text-center space-y-4 max-w-xl mx-auto"
         >
+          {/* ИСПРАВЛЕНО: Локализация заголовка */}
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-emerald-luxury dark:text-cream-bg transition-colors duration-500">
-            Что говорят <span className="text-gold-hover dark:text-gold-accent">клиенты</span>
+            {t.reviews.titlePre}<span className="text-gold-hover dark:text-gold-accent">{t.reviews.titleAccent}</span>
           </h2>
+          {/* ИСПРАВЛЕНО: Локализация описания */}
           <p className="text-sm text-luxury-text/70 dark:text-cream-bg/70 leading-relaxed mt-4 transition-colors duration-500">
-            Реальные истории людей, которые успешно прошли процесс легализации и доверили свой переезд эксперту.
+            {t.reviews.description}
           </p>
         </motion.div>
 
@@ -161,7 +169,8 @@ export const Reviews = () => {
           </div>
 
           <div className="flex justify-center items-center gap-1.5 pt-4 text-[10px] uppercase font-bold text-gold-hover tracking-widest opacity-60 animate-pulse select-none">
-            <span>Зажмите и тяните вбок или листайте</span>
+            {/* ИСПРАВЛЕНО: Локализация подсказки по скроллу */}
+            <span>{t.reviews.dragHint}</span>
           </div>
         </motion.div>
         
