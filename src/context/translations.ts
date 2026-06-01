@@ -1,4 +1,4 @@
-export type LanguageCode = 'EN' | 'PL' | 'RU' | 'UA';
+export type LanguageCode = "EN" | "PL" | "RU" | "UA";
 
 export interface QuizOptionSchema {
   value: string;
@@ -117,6 +117,12 @@ export interface TranslationSchema {
     progress: string;
     thanks: string;
     thanksSub: string;
+    startOver: string;
+    profileDone: string;
+    profileSub: string;
+    namePlaceholder: string;
+    contactPlaceholder: string;
+    sending: string;
     steps: QuizStepSchema[];
   };
   about: AboutSectionSchema;
@@ -128,59 +134,73 @@ export interface TranslationSchema {
 export const translations: Record<LanguageCode, TranslationSchema> = {
   RU: {
     header: {
-      main: 'Главная',
-      about: 'Обо мне',
-      services: 'Услуги и цены',
-      reviews: 'Отзывы',
-      consultation: 'Консультация',
-      callConfirm: 'Вы хотите позвонить Анастасии Лапо?',
-      langSelect: 'Выберите язык',
+      main: "Главная",
+      about: "Обо мне",
+      services: "Услуги и цены",
+      reviews: "Отзывы",
+      consultation: "Консультация",
+      callConfirm: "Вы хотите позвонить Анастасии Лапо?",
+      langSelect: "Выберите язык",
     },
     quiz: {
-      next: 'Далее',
-      back: 'Назад',
-      submit: 'Отправить ответы',
-      progress: 'Шаг',
-      thanks: 'Спасибо!',
-      thanksSub: 'Анастасия уже изучает ваши ответы и скоро свяжется с вами.',
+      next: "Далее",
+      back: "Назад",
+      submit: "Отправить ответы",
+      progress: "Шаг",
+      thanks: "Спасибо!",
+      thanksSub: "Анастасия уже изучает ваши ответы и скоро свяжется с вами.",
+      startOver: "Пройти заново",
+      profileDone: "Анализ профиля завершен",
+      profileSub:
+        "Мы подобрали оптимальные программы. Оставьте контакты для связи.",
+      namePlaceholder: "Ваше имя",
+      contactPlaceholder: "Telegram (@username) или телефон",
+      sending: "Отправка...",
       steps: [
         {
-          id: 'source',
-          question: 'Какой у вас основной источник дохода?',
+          id: "source",
+          question: "Какой у вас основной источник дохода?",
           options: [
-            { value: 'remote', label: 'Удаленная работа / Фриланс (контракты вне страны)' },
-            { value: 'business', label: 'Собственный бизнес / Дивиденды' },
-            { value: 'local', label: 'Планирую искать работу на месте' },
-            { value: 'passive', label: 'Пассивный доход (аренда, пенсия)' },
-          ]
+            {
+              value: "remote",
+              label: "Удаленная работа / Фриланс (контракты вне страны)",
+            },
+            { value: "business", label: "Собственный бизнес / Дивиденды" },
+            { value: "local", label: "Планирую искать работу на месте" },
+            { value: "passive", label: "Пассивный доход (аренда, пенсия)" },
+          ],
         },
         {
-          id: 'income',
-          question: 'Какой среднемесячный доход вы можете подтвердить официально?',
-          subtitle: 'Показатель на главного заявителя',
+          id: "income",
+          question:
+            "Какой среднемесячный доход вы можете подтвердить официально?",
+          subtitle: "Показатель на главного заявителя",
           options: [
-            { value: 'low', label: 'До €2 000' },
-            { value: 'medium', label: '€2 000 — €4 000' },
-            { value: 'high', label: 'Более €4 000' },
-          ]
+            { value: "low", label: "До €2 000" },
+            { value: "medium", label: "€2 000 — €4 000" },
+            { value: "high", label: "Более €4 000" },
+          ],
         },
         {
-          id: 'education',
-          question: 'Ваш уровень образования?',
-          subtitle: 'Для ряда программ важен профильный диплом',
+          id: "education",
+          question: "Ваш уровень образования?",
+          subtitle: "Для ряда программ важен профильный диплом",
           options: [
-            { value: 'higher', label: 'Высшее (бакалавр, магистр)' },
-            { value: 'secondary', label: 'Среднее специальное / Опыт работы от 3 лет' },
-            { value: 'none', label: 'Нет диплома и подтвержденного опыта' },
-          ]
+            { value: "higher", label: "Высшее (бакалавр, магистр)" },
+            {
+              value: "secondary",
+              label: "Среднее специальное / Опыт работы от 3 лет",
+            },
+            { value: "none", label: "Нет диплома и подтвержденного опыта" },
+          ],
         },
         {
-          id: 'contacts',
-          question: 'Оставьте ваши контактные данные',
-          subtitle: 'Анастасия свяжется с вами для разбора вашей ситуации',
-          placeholder: 'Ваше имя и Telegram / WhatsApp'
-        }
-      ]
+          id: "contacts",
+          question: "Оставьте ваши контактные данные",
+          subtitle: "Анастасия свяжется с вами для разбора вашей ситуации",
+          placeholder: "Ваше имя и Telegram / WhatsApp",
+        },
+      ],
     },
     about: {
       badge: "Личный бренд и стандарты",
@@ -188,131 +208,218 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       titlePre: "Личный опыт и ",
       titleAccent: "юридическая точность",
       titlePost: " на вашей стороне",
-      description: "Я специализируюсь на международном миграционном праве более 8 лет. Моя работа заключается в том, чтобы убрать из процесса релокации всю бюрократическую неопределенность. Я не просто заполняю анкеты, а выстраиваю для вас легальный, безопасный и прогнозируемый трек получения статуса.",
+      description:
+        "Я специализируюсь на международном миграционном праве более 8 лет. Моя работа заключается в том, чтобы убрать из процесса релокации всю бюрократическую неопределенность. Я не просто заполняю анкеты, а выстраиваю для вас легальный, безопасный и прогнозируемый трек получения статуса.",
       features: [
         "Глубокий пре-аудит документов до подписания договора",
-        "Прямая связь с экспертом без менеджеров и посредников"
+        "Прямая связь с экспертом без менеджеров и посредников",
       ],
       stats: {
         casesTitle: "350+ успешных кейсов",
         casesDesc: "Одобренных ВНЖ и ПМЖ в ЕС",
         rateTitle: "98.6% одобрений",
-        rateDesc: "За счет жесткого отбора профилей"
-      }
+        rateDesc: "За счет жесткого отбора профилей",
+      },
     },
     home: {
       badge: "Официальная легализация и релокация под ключ",
       titlePre: "Ваш надежный путь к ",
       titleAccent: "ВНЖ и гражданству",
-      description: "Комплексное юридическое сопровождение: от анализа документов до гарантированного получения статуса. Минимизируем риски отказов на 99%.",
+      description:
+        "Комплексное юридическое сопровождение: от анализа документов до гарантированного получения статуса. Минимизируем риски отказов на 99%.",
       features: [
         "Оценка шансов до заключения договора",
-        "Работаем со сложными кейсами после отказов"
+        "Работаем со сложными кейсами после отказов",
       ],
       btnAudit: "Получить аудит кейса",
       btnPrograms: "Посмотреть программы",
       quizTitle: "Проверить шансы на ВНЖ",
-      quizDesc: "Ответьте на 3 вопроса профиля для экспресс-оценки вашего кейса экспертом."
+      quizDesc:
+        "Ответьте на 3 вопроса профиля для экспресс-оценки вашего кейса экспертом.",
     },
     services: {
       titlePre: "Направления работы и ",
       titleAccent: "стоимость",
-      description: "Прозрачные условия без скрытых комиссий. Фиксируем финальную стоимость в официальном договоре до начала процесса.",
+      description:
+        "Прозрачные условия без скрытых комиссий. Фиксируем финальную стоимость в официальном договоре до начала процесса.",
       topChoice: "Топ выбор",
       btnMore: "Подробнее",
       items: {
-        nomad: { title: 'ВНЖ Цифрового Кочевника', desc: 'Для фрилансеров и удаленщиков с доходом от €2,500. Полный аудит контрактов, сбор документов и подача под ключ.', price: 'от €1,200', time: 'Срок: 3–6 недель' },
-        startup: { title: 'Стартап-Виза и Бизнес ВНЖ', desc: 'Разработка инновационного бизнес-плана, одобрение в министерстве и защита вашего проекта перед комиссией.', price: 'от €2,500', time: 'Срок: 2–4 месяца' },
-        passive: { title: 'ВНЖ без права на работу', desc: 'Для финансово независимых лиц со стабильным пассивным доходом вне страны (аренда, дивиденды, проценты).', price: 'от €1,500', time: 'Срок: 1–2 месяца' },
-        investor: { title: 'Золотая виза / ВНЖ инвестора', desc: 'Сопровождение инвестиций в недвижимость, государственные облигации или фонды для получения постоянного статуса.', price: 'от €4,000', time: 'Срок: 1–3 месяца' },
-        origin: { title: 'Гражданство по происхождению', desc: 'Архивный поиск, подтверждение корней, восстановление исторических прав и полное ведение дела вплоть до присяги.', price: 'от €3,000', time: 'Срок: от 6 месяцев' },
-        family: { title: 'Воссоединение семьи', desc: 'Оформление документов для супругов, детей и зависимых родителей главного заявителя по любым типам виз.', price: 'от €700', time: 'Срок: 2–4 недели' },
-        compliance: { title: 'Открытие счетов и комплаенс', desc: 'Подготовка справок о происхождении средств (Source of Funds), прохождение проверок KYC и открытие счетов в банках.', price: 'от €600', time: 'Срок: 5–10 дней' },
-        appeal: { title: 'Апелляции и сложные кейсы', desc: 'Глубокий анализ причин отказа, составление юридически грамотной жалобы и повторное сопровождение дела.', price: 'от €800', time: 'Срок: индивидуально' }
-      }
+        nomad: {
+          title: "ВНЖ Цифрового Кочевника",
+          desc: "Для фрилансеров и удаленщиков с доходом от €2,500. Полный аудит контрактов, сбор документов и подача под ключ.",
+          price: "от €1,200",
+          time: "Срок: 3–6 недель",
+        },
+        startup: {
+          title: "Стартап-Виза и Бизнес ВНЖ",
+          desc: "Разработка инновационного бизнес-плана, одобрение в министерстве и защита вашего проекта перед комиссией.",
+          price: "от €2,500",
+          time: "Срок: 2–4 месяца",
+        },
+        passive: {
+          title: "ВНЖ без права на работу",
+          desc: "Для финансово независимых лиц со стабильным пассивным доходом вне страны (аренда, дивиденды, проценты).",
+          price: "от €1,500",
+          time: "Срок: 1–2 месяца",
+        },
+        investor: {
+          title: "Золотая виза / ВНЖ инвестора",
+          desc: "Сопровождение инвестиций в недвижимость, государственные облигации или фонды для получения постоянного статуса.",
+          price: "от €4,000",
+          time: "Срок: 1–3 месяца",
+        },
+        origin: {
+          title: "Гражданство по происхождению",
+          desc: "Архивный поиск, подтверждение корней, восстановление исторических прав и полное ведение дела вплоть до присяги.",
+          price: "от €3,000",
+          time: "Срок: от 6 месяцев",
+        },
+        family: {
+          title: "Воссоединение семьи",
+          desc: "Оформление документов для супругов, детей и зависимых родителей главного заявителя по любым типам виз.",
+          price: "от €700",
+          time: "Срок: 2–4 недели",
+        },
+        compliance: {
+          title: "Открытие счетов и комплаенс",
+          desc: "Подготовка справок о происхождении средств (Source of Funds), прохождение проверок KYC и открытие счетов в банках.",
+          price: "от €600",
+          time: "Срок: 5–10 дней",
+        },
+        appeal: {
+          title: "Апелляции и сложные кейсы",
+          desc: "Глубокий анализ причин отказа, составление юридически грамотной жалобы и повторное сопровождение дела.",
+          price: "от €800",
+          time: "Срок: индивидуально",
+        },
+      },
     },
     reviews: {
       titlePre: "Что говорят ",
       titleAccent: "клиенты",
-      description: "Реальные истории людей, которые успешно прошли процесс легализации и доверили свой переезд эксперту.",
+      description:
+        "Реальные истории людей, которые успешно прошли процесс легализации и доверили свой переезд эксперту.",
       dragHint: "Зажмите и тяните вбок или листайте",
       items: {
-        markAnna: { name: 'Марк и Анна', program: 'ВНЖ Digital Nomad, Испания', text: 'Обратились к Анастасии после самостоятельного отказа из-за неправильно оформленного контракта. Она полностью переформатировала наши документы с американским заказчиком и составила пояснительное письмо для UGE. Подали заново — одобрение пришло через 18 дней! Настоящий профессионал.' },
-        dmitry: { name: 'Дмитрий К.', program: 'Стартап-виза, Португалия', text: 'Анастасия помогла докрутить нашу бизнес-модель под жесткие требования института IAPMEI. Сопровождала на каждом шагу: от сбора справок до открытия счета. Всегда на связи в Telegram, объясняет сложные законы простым языком. Рекомендую.' },
-        elena: { name: 'Елена Б.', program: 'ВНЖ без права на работу, Италия', text: 'Для меня было критично успеть подать документы до изменения правил по пассивному доходу. Анастасия подготовила кейс за 2 недели. Аудит доходов был сделан идеально — консульство в Москве выдало визу D без единого вопроса.' },
-        igorOlga: { name: 'Игорь и Ольга', program: 'Бизнес-инкубатор, Польша', text: 'Релоцировали IT-стартап в Варшаву. Анастазья Лапо идеально провела нас через весь процесс: от регистрации компании (Sp. z o.o.) до получения пластика карты побыту на 3 года. Сберегли тонну нервов.' },
-        tatiana: { name: 'Татьяна Ш.', program: 'Гражданство по корням, Румыния', text: 'Процесс восстановления корней казался нереальным из-за утерянных архивов. Анастасия организовала профессиональный поиск, нашла свидетельства дедушки и полностью вела дело до присяги в Бухаресте. Паспорт в руках!' }
-      }
+        markAnna: {
+          name: "Марк и Анна",
+          program: "ВНЖ Digital Nomad, Испания",
+          text: "Обратились к Анастасии после самостоятельного отказа из-за неправильно оформленного контракта. Она полностью переформатировала наши документы с американским заказчиком и составила пояснительное письмо для UGE. Подали заново — одобрение пришло через 18 дней! Настоящий профессионал.",
+        },
+        dmitry: {
+          name: "Дмитрий К.",
+          program: "Стартап-виза, Португалия",
+          text: "Анастасия помогла докрутить нашу бизнес-модель под жесткие требования института IAPMEI. Сопровождала на каждом шагу: от сбора справок до открытия счета. Всегда на связи в Telegram, объясняет сложные законы простым языком. Рекомендую.",
+        },
+        elena: {
+          name: "Елена Б.",
+          program: "ВНЖ без права на работу, Италия",
+          text: "Для меня было критично успеть подать документы до изменения правил по пассивному доходу. Анастасия подготовила кейс за 2 недели. Аудит доходов был сделан идеально — консульство в Москве выдало визу D без единого вопроса.",
+        },
+        igorOlga: {
+          name: "Игорь и Ольга",
+          program: "Бизнес-инкубатор, Польша",
+          text: "Релоцировали IT-стартап в Варшаву. Анастазья Лапо идеально провела нас через весь процесс: от регистрации компании (Sp. z o.o.) до получения пластика карты побыту на 3 года. Сберегли тонну нервов.",
+        },
+        tatiana: {
+          name: "Татьяна Ш.",
+          program: "Гражданство по корням, Румыния",
+          text: "Процесс восстановления корней казался нереальным из-за утерянных архивов. Анастасия организовала профессиональный поиск, нашла свидетельства дедушки и полностью вела дело до присяги в Бухаресте. Паспорт в руках!",
+        },
+      },
     },
     footer: {
       brandTitle: "Легализация с Анастасией Лапо",
-      brandDesc: "Экспертное сопровождение миграционных процессов, оформление ВНЖ, релокация бизнеса и комплаенс. Лёгкий путь в любую точку мира.",
+      brandDesc:
+        "Экспертное сопровождение миграционных процессов, оформление ВНЖ, релокация бизнеса и комплаенс. Лёгкий путь в любую точку мира.",
       requisitesTitle: "Реквизиты и адрес",
       requisitesLawyer: "Юрист Анастасия Лапо (Kancelaria Prawna)",
-      requisitesAddress: "Адрес офиса: Al. Jerozolimskie 56, 00-803 Warszawa, Polska",
+      requisitesAddress:
+        "Адрес офиса: Al. Jerozolimskie 56, 00-803 Warszawa, Polska",
       contactsTitle: "Быстрая связь",
       docsTitle: "Документы",
       docsCookies: "Политика куки",
       docsAgreement: "Соглашение",
-      copyrightPost: " Лёгкая легализация с Анастасией Лапо. Все права защищены.",
-      sslText: "Защищено SSL шифрованием"
-    }
+      copyrightPost:
+        " Лёгкая легализация с Анастасией Лапо. Все права защищены.",
+      sslText: "Защищено SSL шифрованием",
+    },
   },
   PL: {
     header: {
-      main: 'Główna',
-      about: 'O mnie',
-      services: 'Usługi i ceny',
-      reviews: 'Opinie',
-      consultation: 'Konsultacja',
-      callConfirm: 'Czy chcesz zadzwonić do Anastazji Łapo?',
-      langSelect: 'Wybierz język',
+      main: "Główna",
+      about: "O mnie",
+      services: "Usługi i ceny",
+      reviews: "Opinie",
+      consultation: "Konsultacja",
+      callConfirm: "Czy chcesz zadzwonić do Anastazji Łapo?",
+      langSelect: "Wybierz język",
     },
     quiz: {
-      next: 'Dalej',
-      back: 'Wstecz',
-      submit: 'Wyślij odpowiedzi',
-      progress: 'Krok',
-      thanks: 'Dziękujemy!',
-      thanksSub: 'Anastazja już analizuje Twoje odpowiedzi i wkrótce się z Tobą skontaktuje.',
+      next: "Dalej",
+      back: "Wstecz",
+      submit: "Wyślij odpowiedzi",
+      progress: "Krok",
+      thanks: "Dziękujemy!",
+      thanksSub:
+        "Anastazja już analizuje Twoje odpowiedzi i wkrótce się z Tobą skontaktuje.",
+      startOver: "Rozpocznij ponownie",
+      profileDone: "Analiza profilu zakończona",
+      profileSub: "Dopasowaliśmy optymalne programy. Zostaw kontakt do siebie.",
+      namePlaceholder: "Twoje imię",
+      contactPlaceholder: "Telegram (@username) lub numer telefonu",
+      sending: "Wysyłanie...",
       steps: [
         {
-          id: 'source',
-          question: 'Jakie jest Twoje główne źródło dochodu?',
+          id: "source",
+          question: "Jakie jest Twoje główne źródło dochodu?",
           options: [
-            { value: 'remote', label: 'Praca zdalna / Freelance (kontrakty zagraniczne)' },
-            { value: 'business', label: 'Własny biznes / Dywidendy' },
-            { value: 'local', label: 'Planuję szukać pracy na miejscu' },
-            { value: 'passive', label: 'Dochód pasywny (wynajem, emerytura)' },
-          ]
+            {
+              value: "remote",
+              label: "Praca zdalna / Freelance (kontrakty zagraniczne)",
+            },
+            { value: "business", label: "Własny biznes / Dywidendy" },
+            { value: "local", label: "Planuję szukać pracy na miejscu" },
+            { value: "passive", label: "Dochód pasywny (wynajem, emerytura)" },
+          ],
         },
         {
-          id: 'income',
-          question: 'Jaki średniomiesięczny dochód możesz potwierdzić oficjalnie?',
-          subtitle: 'Wskaźnik na głównego wnioskodawcę',
+          id: "income",
+          question:
+            "Jaki średniomiesięczny dochód możesz potwierdzić oficjalnie?",
+          subtitle: "Wskaźnik na głównego wnioskodawcę",
           options: [
-            { value: 'low', label: 'Do 2 000 €' },
-            { value: 'medium', label: '2 000 € — 4 000 €' },
-            { value: 'high', label: 'Powyżej 4 000 €' },
-          ]
+            { value: "low", label: "Do 2 000 €" },
+            { value: "medium", label: "2 000 € — 4 000 €" },
+            { value: "high", label: "Powyżej 4 000 €" },
+          ],
         },
         {
-          id: 'education',
-          question: 'Twój poziom wykształcenia?',
-          subtitle: 'W przypadku niektórych programów ważny jest dyplom kierunkowy',
+          id: "education",
+          question: "Twój poziom wykształcenia?",
+          subtitle:
+            "W przypadku niektórych programów ważny jest dyplom kierunkowy",
           options: [
-            { value: 'higher', label: 'Wyższe (licencjat, magister)' },
-            { value: 'secondary', label: 'Średnie specjalistyczne / Doświadczenie od 3 lat' },
-            { value: 'none', label: 'Brak dyplomu i potwierdzonego doświadczenia' },
-          ]
+            { value: "higher", label: "Wyższe (licencjat, magister)" },
+            {
+              value: "secondary",
+              label: "Średnie specjalistyczne / Doświadczenie od 3 lat",
+            },
+            {
+              value: "none",
+              label: "Brak dyplomu i potwierdzonego doświadczenia",
+            },
+          ],
         },
         {
-          id: 'contacts',
-          question: 'Zostaw swoje dane kontaktowe',
-          subtitle: 'Anastazja skontaktuje się z Tobą w celu analizy Twojej sytuacji',
-          placeholder: 'Twoje imię oraz Telegram / WhatsApp'
-        }
-      ]
+          id: "contacts",
+          question: "Zostaw swoje dane kontaktowe",
+          subtitle:
+            "Anastazja skontaktuje się z Tobą w celu analizy Twojej sytuacji",
+          placeholder: "Twoje imię oraz Telegram / WhatsApp",
+        },
+      ],
     },
     about: {
       badge: "Marka osobista i standardy",
@@ -320,131 +427,213 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       titlePre: "Osobiste doświadczenie i ",
       titleAccent: "precyzja prawna",
       titlePost: " po Twojej stronie",
-      description: "Specjalizuję się w międzynarodowym prawie migracyjnym od ponad 8 lat. Moim zadaniem jest wyeliminowanie wszelkiej niepewności biurokratycznej z procesu relokacji. Nie tylko wypełniam wnioski, ale buduję dla Ciebie legalną, bezpieczną i przewidywalną ścieżkę uzyskania statusu.",
+      description:
+        "Specjalizuję się w międzynarodowym prawie migracyjnym od ponad 8 lat. Moim zadaniem jest wyeliminowanie wszelkiej niepewności biurokratycznej z procesu relokacji. Nie tylko wypełniam wnioski, ale buduję dla Ciebie legalną, bezpieczną i przewidywalną ścieżkę uzyskania statusu.",
       features: [
         "Głęboki audyt wstępny dokumentów przed podpisaniem umowy",
-        "Bezpośredni kontakt z ekspertem, bez menedżerów i pośredników"
+        "Bezpośredni kontakt z ekspertem, bez menedżerów i pośredników",
       ],
       stats: {
         casesTitle: "350+ sukcesów",
         casesDesc: "Zatwierdzonych kart pobytu i rezydentów w UE",
         rateTitle: "98.6% skuteczności",
-        rateDesc: "Dzięki rygorystycznej weryfikacji profili"
-      }
+        rateDesc: "Dzięki rygorystycznej weryfikacji profili",
+      },
     },
     home: {
       badge: "Oficjalna legalizacja i relokacja kompleksowo",
       titlePre: "Twoja bezpieczna droga do ",
       titleAccent: "karty pobytu i obywatelstwa",
-      description: "Kompleksowe wsparcie prawne: od analizy dokumentów do gwarantowanego uzyskania statusu. Minimalizujemy ryzyko odmowy o 99%.",
+      description:
+        "Kompleksowe wsparcie prawne: od analizy dokumentów do gwarantowanego uzyskania statusu. Minimalizujemy ryzyko odmowy o 99%.",
       features: [
         "Ocena szans przed podpisaniem umowy",
-        "Pracujemy ze złożonymi przypadkami po odmowach"
+        "Pracujemy ze złożonymi przypadkami po odmowach",
       ],
       btnAudit: "Uzyskaj audyt sprawy",
       btnPrograms: "Zobacz programy",
       quizTitle: "Sprawdź szanse na pobyt",
-      quizDesc: "Odpowiedz na 3 pytania profilowe w celu ekspresowej oceny Twojej sprawy przez eksperta."
+      quizDesc:
+        "Odpowiedz na 3 pytania profilowe w celu ekspresowej oceny Twojej sprawy przez eksperta.",
     },
     services: {
       titlePre: "Kierunki pracy i ",
       titleAccent: "koszt",
-      description: "Przejrzyste warunki bez ukrytych opłat. Ostateczny koszt ustalamy w oficjalnej umowie przed rozpoczęciem procesu.",
+      description:
+        "Przejrzyste warunki bez ukrytych opłat. Ostateczny koszt ustalamy w oficjalnej umowie przed rozpoczęciem procesu.",
       topChoice: "Top wybór",
       btnMore: "Więcej",
       items: {
-        nomad: { title: "Karta Pobytu – Digital Nomad", desc: "Dla freelancerów i osób pracujących zdalnie z dochodem od 2500 €. Pełny audyt kontraktów, kompletowanie dokumentów i składanie wniosku.", price: "od €1,200", time: "Czas: 3–6 tygodni" },
-        startup: { title: "Wiza Startupowa i Pobyt Biznesowy", desc: "Opracowanie innowacyjnego biznesplanu, uzyskanie akceptacji ministerstwa oraz obrona projektu przed komisją.", price: "od €2,500", time: "Czas: 2–4 miesiące" },
-        passive: { title: "Rezydent bez prawa do pracy", desc: "Dla osób niezależnych finansowo ze stałym dochodem pasywnym poza krajem (wynajem, dywidendy, odsetki).", price: "od €1,500", time: "Czas: 1–2 miesiące" },
-        investor: { title: "Złota Wiza / Pobyt dla Inwestora", desc: "Wsparcie przy inwestycjach w nieruchomości, obligacje państwowe lub fundusze w celu uzyskania stałego statusu.", price: "od €4,000", time: "Czas: 1–3 miesiące" },
-        origin: { title: "Obywatelstwo po pochodzeniu", desc: "Poszukiwania archiwalne, potwierdzenie korzeni, przywrócenie praw historycznych i pełne prowadzenie sprawy aż do przysięgi.", price: "od €3,000", time: "Czas: od 6 miesięcy" },
-        family: { title: "Łączenie rodzin", desc: "Formalności dokumentowe dla małżonków, dzieci i niesamodzielnych rodziców głównego wnioskodawcy dla każdego rodzaju wizy.", price: "od €700", time: "Czas: 2–4 tygodnie" },
-        compliance: { title: "Otwieranie kont i compliance", desc: "Przygotowanie potwierdzeń źródła pochodzenia środków (Source of Funds), przejście procedur KYC i otwarcie kont bankowych.", price: "od €600", time: "Czas: 5–10 dni" },
-        appeal: { title: "Odwołania i trudne przypadki", desc: "Głęboka analiza przyczyn odmowy, sporządzenie poprawnego prawnie odwołania oraz ponowne prowadzenie całej sprawy.", price: "od €800", time: "Czas: indywidualnie" }
-      }
+        nomad: {
+          title: "Karta Pobytu – Digital Nomad",
+          desc: "Dla freelancerów i osób pracujących zdalnie z dochodem od 2500 €. Pełny audyt kontraktów, kompletowanie dokumentów i składanie wniosku.",
+          price: "od €1,200",
+          time: "Czas: 3–6 tygodni",
+        },
+        startup: {
+          title: "Wiza Startupowa i Pobyt Biznesowy",
+          desc: "Opracowanie innowacyjnego biznesplanu, uzyskanie akceptacji ministerstwa oraz obrona projektu przed komisją.",
+          price: "od €2,500",
+          time: "Czas: 2–4 miesiące",
+        },
+        passive: {
+          title: "Rezydent bez prawa do pracy",
+          desc: "Dla osób niezależnych finansowo ze stałym dochodem pasywnym poza krajem (wynajem, dywidendy, odsetki).",
+          price: "od €1,500",
+          time: "Czas: 1–2 miesiące",
+        },
+        investor: {
+          title: "Złota Wiza / Pobyt dla Inwestora",
+          desc: "Wsparcie przy inwestycjach w nieruchomości, obligacje państwowe lub fundusze w celu uzyskania stałego statusu.",
+          price: "od €4,000",
+          time: "Czas: 1–3 miesiące",
+        },
+        origin: {
+          title: "Obywatelstwo po pochodzeniu",
+          desc: "Poszukiwania archiwalne, potwierdzenie korzeni, przywrócenie praw historycznych i pełne prowadzenie sprawy aż do przysięgi.",
+          price: "od €3,000",
+          time: "Czas: od 6 miesięcy",
+        },
+        family: {
+          title: "Łączenie rodzin",
+          desc: "Formalności dokumentowe dla małżonków, dzieci i niesamodzielnych rodziców głównego wnioskodawcy dla każdego rodzaju wizy.",
+          price: "od €700",
+          time: "Czas: 2–4 tygodnie",
+        },
+        compliance: {
+          title: "Otwieranie kont i compliance",
+          desc: "Przygotowanie potwierdzeń źródła pochodzenia środków (Source of Funds), przejście procedur KYC i otwarcie kont bankowych.",
+          price: "od €600",
+          time: "Czas: 5–10 dni",
+        },
+        appeal: {
+          title: "Odwołania i trudne przypadki",
+          desc: "Głęboka analiza przyczyn odmowy, sporządzenie poprawnego prawnie odwołania oraz ponowne prowadzenie całej sprawy.",
+          price: "od €800",
+          time: "Czas: indywidualnie",
+        },
+      },
     },
     reviews: {
       titlePre: "Co mówią ",
       titleAccent: "klienci",
-      description: "Prawdziwe historie osób, które z sukcesem przeszły proces legalizacji i powierzyły swoją przeprowadzkę ekspertowi.",
+      description:
+        "Prawdziwe historie osób, które z sukcesem przeszły proces legalizacji i powierzyły swoją przeprowadzkę ekspertowi.",
       dragHint: "Kliknij i przeciągnij w bok lub przewijaj",
       items: {
-        markAnna: { name: 'Mark i Anna', program: 'Karta Pobytu Digital Nomad, Hiszpania', text: 'Zwróciliśmy się do Anastazji po samodzielnej odmowie z powodu błędnie sformułowanego kontraktu. Całkowicie przeformatowała nasze dokumenty z amerykańskim zleceniodawcą i napisała list wyjaśniający do UGE. Złożyliśmy ponownie — zatwierdzenie przyszło po 18 dniach! Prawdziwy profesjonalista.' },
-        dmitry: { name: 'Dmitry K.', program: 'Wiza Startupowa, Portugalia', text: 'Anastazja pomogła nam dopracować nasz model biznesowy pod rygorystyczne wymagania instytutu IAPMEI. Towarzyszyła nam na każdym kroku: od zbierania zaświadczeń po otwarcie konta. Zawsze dostępna na Telegramie, tłumaczy skomplikowane prawo prostym językiem. Polecam.' },
-        elena: { name: 'Elena B.', program: 'Rezydent bez prawa do pracy, Włochy', text: 'Dla mnie kluczowe było zdążenie ze złożeniem dokumentów przed zmianą przepisów dotyczących dochodu pasywnego. Anastazja przygotowała sprawę w 2 tygodnie. Audyt dochodów został przeprowadzony idealnie — konsulat w Moskwie wydał wizę D bez żadnych pytań.' },
-        igorOlga: { name: 'Igor i Olga', program: 'Inkubator Biznesowy, Polska', text: 'Relokowaliśmy IT startup do Warszawy. Anastazja Łapo idealnie przeprowadziła nas przez cały proces: od rejestracji spółki (Sp. z o.o.) do odebrania plastikowej karty pobytu na 3 lata. Oszczędziło nam to mnóstwo nerwów.' },
-        tatiana: { name: 'Tatiana Sz.', program: 'Obywatelstwo przez korzenie, Rumunia', text: 'Proces przywracania korzeni wydawał się nierealny z powodu zagubionych archiwów. Anastazja zorganizowała profesjonalne poszukiwania, znalazła akty dziadka i w pełni prowadziła sprawę aż do przysięgi w Bukareszcie. Paszport w ręku!' }
-      }
+        markAnna: {
+          name: "Mark i Anna",
+          program: "Karta Pobytu Digital Nomad, Hiszpania",
+          text: "Zwróciliśmy się do Anastazji po samodzielnej odmowie z powodu błędnie sformułowanego kontraktu. Całkowicie przeformatowała nasze dokumenty z amerykańskim zleceniodawcą i napisała list wyjaśniający do UGE. Złożyliśmy ponownie — zatwierdzenie przyszło po 18 dniach! Prawdziwy profesjonalista.",
+        },
+        dmitry: {
+          name: "Dmitry K.",
+          program: "Wiza Startupowa, Portugalia",
+          text: "Anastazja pomogła nam dopracować nasz model biznesowy pod rygorystyczne wymagania instytutu IAPMEI. Towarzyszyła nam na każdym kroku: od zbierania zaświadczeń po otwarcie konta. Zawsze dostępna na Telegramie, tłumaczy skomplikowane prawo prostym językiem. Polecam.",
+        },
+        elena: {
+          name: "Elena B.",
+          program: "Rezydent bez prawa do pracy, Włochy",
+          text: "Dla mnie kluczowe było zdążenie ze złożeniem dokumentów przed zmianą przepisów dotyczących dochodu pasywnego. Anastazja przygotowała sprawę w 2 tygodnie. Audyt dochodów został przeprowadzony idealnie — konsulat w Moskwie wydał wizę D bez żadnych pytań.",
+        },
+        igorOlga: {
+          name: "Igor i Olga",
+          program: "Inkubator Biznesowy, Polska",
+          text: "Relokowaliśmy IT startup do Warszawy. Anastazja Łapo idealnie przeprowadziła nas przez cały proces: od rejestracji spółki (Sp. z o.o.) do odebrania plastikowej karty pobytu na 3 lata. Oszczędziło nam to mnóstwo nerwów.",
+        },
+        tatiana: {
+          name: "Tatiana Sz.",
+          program: "Obywatelstwo przez korzenie, Rumunia",
+          text: "Proces przywracania korzeni wydawał się nierealny z powodu zagubionych archiwów. Anastazja zorganizowała profesjonalne poszukiwania, znalazła akty dziadka i w pełni prowadziła sprawę aż do przysięgi w Bukareszcie. Paszport w ręku!",
+        },
+      },
     },
     footer: {
       brandTitle: "Legalizacja z Anastazją Łapo",
-      brandDesc: "Eksperckie wsparcie procesów migracyjnych, karty pobytu, relokacja biznesu i compliance. Łatwa droga w dowolne miejsce na świecie.",
+      brandDesc:
+        "Eksperckie wsparcie procesów migracyjnych, karty pobytu, relokacja biznesu i compliance. Łatwa droga w dowolne miejsce na świecie.",
       requisitesTitle: "Dane firmy i adres",
       requisitesLawyer: "Prawnik Anastazja Łapo (Kancelaria Prawna)",
-      requisitesAddress: "Adres biura: Al. Jerozolimskie 56, 00-803 Warszawa, Polska",
+      requisitesAddress:
+        "Adres biura: Al. Jerozolimskie 56, 00-803 Warszawa, Polska",
       contactsTitle: "Szybki kontakt",
       docsTitle: "Dokumenty",
       docsCookies: "Polika cookies",
       docsAgreement: "Regulamin",
-      copyrightPost: " Łatwa legalizacja z Anastazją Łapo. Wszelkie prawa zastrzeżone.",
-      sslText: "Chronione szyfrowaniem SSL"
-    }
+      copyrightPost:
+        " Łatwa legalizacja z Anastazją Łapo. Wszelkie prawa zastrzeżone.",
+      sslText: "Chronione szyfrowaniem SSL",
+    },
   },
   EN: {
     header: {
-      main: 'Home',
-      about: 'About Me',
-      services: 'Services & Prices',
-      reviews: 'Reviews',
-      consultation: 'Consultation',
-      callConfirm: 'Do you want to call Anastazja Łapo?',
-      langSelect: 'Select language',
+      main: "Home",
+      about: "About Me",
+      services: "Services & Prices",
+      reviews: "Reviews",
+      consultation: "Consultation",
+      callConfirm: "Do you want to call Anastazja Łapo?",
+      langSelect: "Select language",
     },
     quiz: {
-      next: 'Next',
-      back: 'Back',
-      submit: 'Submit answers',
-      progress: 'Step',
-      thanks: 'Thank you!',
-      thanksSub: 'Anastazja is already reviewing your answers and will contact you shortly.',
+      next: "Next",
+      back: "Back",
+      submit: "Submit answers",
+      progress: "Step",
+      thanks: "Thank you!",
+      thanksSub:
+        "Anastazja is already reviewing your answers and will contact you shortly.",
+      startOver: "Start over",
+      profileDone: "Profile analysis completed",
+      profileSub:
+        "We have selected the optimal programs. Leave your contacts to get in touch.",
+      namePlaceholder: "Your name",
+      contactPlaceholder: "Telegram (@username) or phone number",
+      sending: "Sending...",
       steps: [
         {
-          id: 'source',
-          question: 'What is your primary source of income?',
+          id: "source",
+          question: "What is your primary source of income?",
           options: [
-            { value: 'remote', label: 'Remote work / Freelance (foreign contracts)' },
-            { value: 'business', label: 'Own business / Dividends' },
-            { value: 'local', label: 'I plan to look for a job locally' },
-            { value: 'passive', label: 'Passive income (rent, pension)' },
-          ]
+            {
+              value: "remote",
+              label: "Remote work / Freelance (foreign contracts)",
+            },
+            { value: "business", label: "Own business / Dividends" },
+            { value: "local", label: "I plan to look for a job locally" },
+            { value: "passive", label: "Passive income (rent, pension)" },
+          ],
         },
         {
-          id: 'income',
-          question: 'What average monthly income can you officially prove?',
-          subtitle: 'Based on the primary applicant',
+          id: "income",
+          question: "What average monthly income can you officially prove?",
+          subtitle: "Based on the primary applicant",
           options: [
-            { value: 'low', label: 'Up to €2,000' },
-            { value: 'medium', label: '€2,000 — €4,000' },
-            { value: 'high', label: 'More than €4,000' },
-          ]
+            { value: "low", label: "Up to €2,000" },
+            { value: "medium", label: "€2,000 — €4,000" },
+            { value: "high", label: "More than €4,000" },
+          ],
         },
         {
-          id: 'education',
-          question: 'What is your level of education?',
-          subtitle: 'A relevant diploma is important for a number of programs',
+          id: "education",
+          question: "What is your level of education?",
+          subtitle: "A relevant diploma is important for a number of programs",
           options: [
-            { value: 'higher', label: 'Higher education (Bachelor, Master)' },
-            { value: 'secondary', label: 'Specialized secondary / 3+ years of experience' },
-            { value: 'none', label: 'No diploma or confirmed experience' },
-          ]
+            { value: "higher", label: "Higher education (Bachelor, Master)" },
+            {
+              value: "secondary",
+              label: "Specialized secondary / 3+ years of experience",
+            },
+            { value: "none", label: "No diploma or confirmed experience" },
+          ],
         },
         {
-          id: 'contacts',
-          question: 'Leave your contact details',
-          subtitle: 'Anastazja will contact you to analyze your case',
-          placeholder: 'Your name and Telegram / WhatsApp'
-        }
-      ]
+          id: "contacts",
+          question: "Leave your contact details",
+          subtitle: "Anastazja will contact you to analyze your case",
+          placeholder: "Your name and Telegram / WhatsApp",
+        },
+      ],
     },
     about: {
       badge: "Personal brand and standards",
@@ -452,132 +641,216 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       titlePre: "Personal experience and ",
       titleAccent: "legal precision",
       titlePost: " on your side",
-      description: "I have been specializing in international migration law for over 8 years. My job is to eliminate all bureaucratic uncertainty from the relocation process. I do not just fill out forms, but build a legal, safe, and predictable track for you to obtain your status.",
+      description:
+        "I have been specializing in international migration law for over 8 years. My job is to eliminate all bureaucratic uncertainty from the relocation process. I do not just fill out forms, but build a legal, safe, and predictable track for you to obtain your status.",
       features: [
         "Deep pre-audit of documents before signing the contract",
-        "Direct communication with the expert without managers or intermediaries"
+        "Direct communication with the expert without managers or intermediaries",
       ],
       stats: {
         casesTitle: "350+ successful cases",
-        casesDesc: "Approved residence permits and permanent residences in the EU",
+        casesDesc:
+          "Approved residence permits and permanent residences in the EU",
         rateTitle: "98.6% approval rate",
-        rateDesc: "Due to strict profile selection"
-      }
+        rateDesc: "Due to strict profile selection",
+      },
     },
     home: {
       badge: "Official legalization and turnkey relocation",
       titlePre: "Your reliable path to ",
       titleAccent: "residence permit and citizenship",
-      description: "Comprehensive legal support: from document analysis to guaranteed status acquisition. We minimize the risk of refusal by 99%.",
+      description:
+        "Comprehensive legal support: from document analysis to guaranteed status acquisition. We minimize the risk of refusal by 99%.",
       features: [
         "Assessment of chances before signing the contract",
-        "We handle complex cases after prior refusals"
+        "We handle complex cases after prior refusals",
       ],
       btnAudit: "Get a case audit",
       btnPrograms: "View programs",
       quizTitle: "Check eligibility for residency",
-      quizDesc: "Answer 3 profile questions for an express assessment of your case by an expert."
+      quizDesc:
+        "Answer 3 profile questions for an express assessment of your case by an expert.",
     },
     services: {
       titlePre: "Areas of Expertise & ",
       titleAccent: "Pricing",
-      description: "Transparent conditions without hidden fees. We fix the final cost in an official contract before the process starts.",
+      description:
+        "Transparent conditions without hidden fees. We fix the final cost in an official contract before the process starts.",
       topChoice: "Top choice",
       btnMore: "Details",
       items: {
-        nomad: { title: "Digital Nomad Residence Permit", desc: "For freelancers and remote workers with income from €2,500. Full contract audit, document collection, and turnkey submission.", price: "from €1,200", time: "Timeline: 3–6 weeks" },
-        startup: { title: "Startup Visa & Business Residence", desc: "Development of an innovative business plan, ministerial approval, and project defense before the committee.", price: "from €2,500", time: "Timeline: 2–4 months" },
-        passive: { title: "Residence Permit without Right to Work", desc: "For financially independent individuals with stable passive income outside the country (rent, dividends, interests).", price: "from €1,500", time: "Timeline: 1–2 months" },
-        investor: { title: "Golden Visa / Investor Residence", desc: "Support for investments in real estate, government bonds, or funds to obtain a permanent status.", price: "from €4,000", time: "Timeline: 1–3 months" },
-        origin: { title: "Citizenship by Descent", desc: "Archival search, confirmation of roots, restoration of historical rights, and full case management up to the oath.", price: "from €3,000", time: "Timeline: from 6 months" },
-        family: { title: "Family Reunification", desc: "Document processing for spouses, children, and dependent parents of the main applicant for any visa types.", price: "from €700", time: "Timeline: 2–4 weeks" },
-        compliance: { title: "Bank Account Opening & Compliance", desc: "Preparation of Source of Funds statements, passing KYC checks, and opening corporate/personal bank accounts.", price: "from €600", time: "Timeline: 5–10 days" },
-        appeal: { title: "Appeals & Complex Cases", desc: "In-depth analysis of refusal reasons, drafting a legally sound complaint, and re-submitting the case.", price: "from €800", time: "Timeline: individual" }
-      }
+        nomad: {
+          title: "Digital Nomad Residence Permit",
+          desc: "For freelancers and remote workers with income from €2,500. Full contract audit, document collection, and turnkey submission.",
+          price: "from €1,200",
+          time: "Timeline: 3–6 weeks",
+        },
+        startup: {
+          title: "Startup Visa & Business Residence",
+          desc: "Development of an innovative business plan, ministerial approval, and project defense before the committee.",
+          price: "from €2,500",
+          time: "Timeline: 2–4 months",
+        },
+        passive: {
+          title: "Residence Permit without Right to Work",
+          desc: "For financially independent individuals with stable passive income outside the country (rent, dividends, interests).",
+          price: "from €1,500",
+          time: "Timeline: 1–2 months",
+        },
+        investor: {
+          title: "Golden Visa / Investor Residence",
+          desc: "Support for investments in real estate, government bonds, or funds to obtain a permanent status.",
+          price: "from €4,000",
+          time: "Timeline: 1–3 months",
+        },
+        origin: {
+          title: "Citizenship by Descent",
+          desc: "Archival search, confirmation of roots, restoration of historical rights, and full case management up to the oath.",
+          price: "from €3,000",
+          time: "Timeline: from 6 months",
+        },
+        family: {
+          title: "Family Reunification",
+          desc: "Document processing for spouses, children, and dependent parents of the main applicant for any visa types.",
+          price: "from €700",
+          time: "Timeline: 2–4 weeks",
+        },
+        compliance: {
+          title: "Bank Account Opening & Compliance",
+          desc: "Preparation of Source of Funds statements, passing KYC checks, and opening corporate/personal bank accounts.",
+          price: "from €600",
+          time: "Timeline: 5–10 days",
+        },
+        appeal: {
+          title: "Appeals & Complex Cases",
+          desc: "In-depth analysis of refusal reasons, drafting a legally sound complaint, and re-submitting the case.",
+          price: "from €800",
+          time: "Timeline: individual",
+        },
+      },
     },
     reviews: {
       titlePre: "What ",
       titleAccent: "clients say",
-      description: "Real stories of people who have successfully gone through the legalization process and trusted their relocation to an expert.",
+      description:
+        "Real stories of people who have successfully gone through the legalization process and trusted their relocation to an expert.",
       dragHint: "Click and drag sideways or scroll",
       items: {
-        markAnna: { name: 'Mark & Anna', program: 'Digital Nomad Residence Permit, Spain', text: 'We turned to Anastazja after a self-application rejection caused by an incorrectly structured contract. She completely reformatted our documents with the US client and drafted an explanatory letter for UGE. Re-submitted — approved in 18 days! A true professional.' },
-        dmitry: { name: 'Dmitry K.', program: 'Startup Visa, Portugal', text: 'Anastazja helped us fine-tune our business model for the strict requirements of the IAPMEI institute. Supported us at every step: from collecting certificates to account opening. Always responsive on Telegram, explains complex laws in simple terms. Highly recommend.' },
-        elena: { name: 'Elena B.', program: 'Residency without Right to Work, Italy', text: 'It was critical for me to submit documents before the passive income rules changed. Anastazja prepared the case in 2 weeks. The income audit was flawlessly executed — the consulate in Moscow issued the D-visa without a single question.' },
-        igorOlga: { name: 'Igor & Olga', program: 'Business Incubator, Poland', text: 'Relocated our IT startup to Warsaw. Anastazja Łapo perfectly guided us through the entire process: from company registration (Sp. z o.o.) to getting our 3-year residence card plastics. Saved us a ton of nerves.' },
-        tatiana: { name: 'Tatiana S.', program: 'Citizenship by Descent, Romania', text: 'The root restoration process seemed impossible due to lost archives. Anastazja organized a professional search, found my grandfather\'s certificates, and fully managed the case until the oath in Bucharest. Passport in hand!' }
-      }
+        markAnna: {
+          name: "Mark & Anna",
+          program: "Digital Nomad Residence Permit, Spain",
+          text: "We turned to Anastazja after a self-application rejection caused by an incorrectly structured contract. She completely reformatted our documents with the US client and drafted an explanatory letter for UGE. Re-submitted — approved in 18 days! A true professional.",
+        },
+        dmitry: {
+          name: "Dmitry K.",
+          program: "Startup Visa, Portugal",
+          text: "Anastazja helped us fine-tune our business model for the strict requirements of the IAPMEI institute. Supported us at every step: from collecting certificates to account opening. Always responsive on Telegram, explains complex laws in simple terms. Highly recommend.",
+        },
+        elena: {
+          name: "Elena B.",
+          program: "Residency without Right to Work, Italy",
+          text: "It was critical for me to submit documents before the passive income rules changed. Anastazja prepared the case in 2 weeks. The income audit was flawlessly executed — the consulate in Moscow issued the D-visa without a single question.",
+        },
+        igorOlga: {
+          name: "Igor & Olga",
+          program: "Business Incubator, Poland",
+          text: "Relocated our IT startup to Warsaw. Anastazja Łapo perfectly guided us through the entire process: from company registration (Sp. z o.o.) to getting our 3-year residence card plastics. Saved us a ton of nerves.",
+        },
+        tatiana: {
+          name: "Tatiana S.",
+          program: "Citizenship by Descent, Romania",
+          text: "The root restoration process seemed impossible due to lost archives. Anastazja organized a professional search, found my grandfather's certificates, and fully managed the case until the oath in Bucharest. Passport in hand!",
+        },
+      },
     },
     // ИСПРАВЛЕНО: Добавлен перевод футера на английский язык
     footer: {
       brandTitle: "Legalization with Anastazja Łapo",
-      brandDesc: "Expert guidance on migration processes, residence permits, business relocation, and compliance. An easy path to anywhere in the world.",
+      brandDesc:
+        "Expert guidance on migration processes, residence permits, business relocation, and compliance. An easy path to anywhere in the world.",
       requisitesTitle: "Company Details & Address",
       requisitesLawyer: "Lawyer Anastazja Łapo (Kancelaria Prawna)",
-      requisitesAddress: "Office address: Al. Jerozolimskie 56, 00-803 Warszawa, Poland",
+      requisitesAddress:
+        "Office address: Al. Jerozolimskie 56, 00-803 Warszawa, Poland",
       contactsTitle: "Quick Contact",
       docsTitle: "Documents",
       docsCookies: "Cookies Policy",
       docsAgreement: "Terms of Service",
-      copyrightPost: " Easy legalization with Anastazja Łapo. All rights reserved.",
-      sslText: "Secured with SSL encryption"
-    }
+      copyrightPost:
+        " Easy legalization with Anastazja Łapo. All rights reserved.",
+      sslText: "Secured with SSL encryption",
+    },
   },
   UA: {
     header: {
-      main: 'Головна',
-      about: 'Про мене',
-      services: 'Послуги та ціни',
-      reviews: 'Відгуки',
-      consultation: 'Консультація',
-      callConfirm: 'Ви хочете зателефонувати Анастасії Лапо?',
-      langSelect: 'Оберіть мову',
+      main: "Головна",
+      about: "Про мене",
+      services: "Послуги та ціни",
+      reviews: "Відгуки",
+      consultation: "Консультація",
+      callConfirm: "Ви хочете зателефонувати Анастасії Лапо?",
+      langSelect: "Оберіть мову",
     },
     quiz: {
-      next: 'Далі',
-      back: 'Назад',
-      submit: 'Надіслати відповіді',
-      progress: 'Крок',
-      thanks: 'Дякуємо!',
-      thanksSub: 'Анастасія вже вивчає ваші відповіді та скоро зв’яжеться з вами.',
+      next: "Далі",
+      back: "Назад",
+      submit: "Надіслати відповіді",
+      progress: "Крок",
+      thanks: "Дякуємо!",
+      thanksSub:
+        "Анастасія вже вивчає ваші відповіді та скоро зв’яжеться з вами.",
+      startOver: "Пройти знову",
+      profileDone: "Аналіз профілю завершено",
+      profileSub:
+        "Ми підібрали оптимальні програми. Залиште контакти для зв’язку.",
+      namePlaceholder: "Ваше ім’я",
+      contactPlaceholder: "Telegram (@username) або телефон",
+      sending: "Надсилання...",
       steps: [
         {
-          id: 'source',
-          question: 'Яке у вас основне джерело доходу?',
+          id: "source",
+          question: "Яке у вас основне джерело доходу?",
           options: [
-            { value: 'remote', label: 'Віддалена робота / Фріланс (контракти поза країною)' },
-            { value: 'business', label: 'Власний бізнес / Дивіденди' },
-            { value: 'local', label: 'Планирую шукати роботу на місці' },
-            { value: 'passive', label: 'Пассивний дохід (оренда, пенсія)' },
-          ]
+            {
+              value: "remote",
+              label: "Віддалена робота / Фріланс (контракти поза країною)",
+            },
+            { value: "business", label: "Власний бізнес / Дивіденди" },
+            { value: "local", label: "Планирую шукати роботу на місці" },
+            { value: "passive", label: "Пассивний дохід (оренда, пенсія)" },
+          ],
         },
         {
-          id: 'income',
-          question: 'Який середньомісячний дохід ви можете підтвердити офіційно?',
-          subtitle: 'Показник на главного заявника',
+          id: "income",
+          question:
+            "Який середньомісячний дохід ви можете підтвердити офіційно?",
+          subtitle: "Показник на главного заявника",
           options: [
-            { value: 'low', label: 'До €2 000' },
-            { value: 'medium', label: '€2 000 — €4 000' },
-            { value: 'high', label: 'Понад €4 000' },
-          ]
+            { value: "low", label: "До €2 000" },
+            { value: "medium", label: "€2 000 — €4 000" },
+            { value: "high", label: "Понад €4 000" },
+          ],
         },
         {
-          id: 'education',
-          question: 'Ваш уровень освіти?',
-          subtitle: 'Для низки програм важливий профільний диплом',
+          id: "education",
+          question: "Ваш уровень освіти?",
+          subtitle: "Для низки програм важливий профільний диплом",
           options: [
-            { value: 'higher', label: 'Вища (бакалавр, магістр)' },
-            { value: 'secondary', label: 'Середня спеціальна / Досвід роботи від 3 років' },
-            { value: 'none', label: 'Немає диплома та підтвердженого досвіду' },
-          ]
+            { value: "higher", label: "Вища (бакалавр, магістр)" },
+            {
+              value: "secondary",
+              label: "Середня спеціальна / Досвід роботи від 3 років",
+            },
+            { value: "none", label: "Немає диплома та підтвердженого досвіду" },
+          ],
         },
         {
-          id: 'contacts',
-          question: 'Залиште ваші контактные дані',
-          subtitle: 'Анастасія зв’яжеться з вами для розбору вашої ситуации',
-          placeholder: 'Ваше ім’я та Telegram / WhatsApp'
-        }
-      ]
+          id: "contacts",
+          question: "Залиште ваші контактные дані",
+          subtitle: "Анастасія зв’яжеться з вами для розбору вашої ситуации",
+          placeholder: "Ваше ім’я та Telegram / WhatsApp",
+        },
+      ],
     },
     about: {
       badge: "Особистий бренд та стандарти",
@@ -585,82 +858,143 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       titlePre: "Особистий досвід та ",
       titleAccent: "юридическая точность",
       titlePost: " на вашому боці",
-      description: "Я спеціалізуюся на міжнародному міграційному правві понад 8 років. Моя работа полягає в тому, щоб прибрати з процесу релокації всю бюрократичную невизначеність. Я не просто заповнює анкти, а вибудовую для вас легальний, безпечний та прогнозований трек отримання статусу.",
+      description:
+        "Я спеціалізуюся на міжнародному міграційному правві понад 8 років. Моя работа полягає в тому, щоб прибрати з процесу релокації всю бюрократичную невизначеність. Я не просто заповнює анкти, а вибудовую для вас легальний, безпечний та прогнозований трек отримання статусу.",
       features: [
         "Глубокий пре-аудит документів до підписання договору",
-        "Прямий зв'язок з експертом без менеджерів та посередників"
+        "Прямий зв'язок з експертом без менеджерів та посередників",
       ],
       stats: {
         casesTitle: "350+ успішних кейсів",
         casesDesc: "Схвалених посвідок на проживання та ПМП в ЄС",
         rateTitle: "98.6% схвалень",
-        rateDesc: "Завдяки жорсткому відбору профілів"
-      }
+        rateDesc: "Завдяки жорсткому відбору профілів",
+      },
     },
     home: {
       badge: "Офіційна легалізація та релокація під ключ",
       titlePre: "Ваш надійний шлях до ",
       titleAccent: "посвідки та громадянства",
-      description: "Комплексний юридичний супровід: від аналізу документів до гарантованого отримання статусу. Мінімізуємо ризики відмов на 99%.",
+      description:
+        "Комплексний юридичний супровід: від аналізу документів до гарантованого отримання статусу. Мінімізуємо ризики відмов на 99%.",
       features: [
         "Оцінка шансів до укладання договору",
-        "Працюємо зі складними кейсами после відмов"
+        "Працюємо зі складними кейсами после відмов",
       ],
       btnAudit: "Отримати аудит кейсу",
       btnPrograms: "Переглянути програми",
       quizTitle: "Перевірити шанси на посвідку",
-      quizDesc: "Дайте відповідь на 3 питання профілю для експрес-оценки вашого кейсу експертом."
+      quizDesc:
+        "Дайте відповідь на 3 питання профілю для експрес-оценки вашого кейсу експертом.",
     },
     services: {
       titlePre: "Напрямки роботи та ",
       titleAccent: "вартість",
-      description: "Прозорі умови без прихованих комісій. Фіксуємо фінальну вартість в офіційному договорі до початку процесу.",
+      description:
+        "Прозорі умови без прихованих комісій. Фіксуємо фінальну вартість в офіційному договорі до початку процесу.",
       topChoice: "Топ вибір",
       btnMore: "Детальніше",
       items: {
-        nomad: { title: "Посвідка Цифрового Кочівника", desc: "Для фрілансерів та віддалених працівників із доходом від €2,500. Повний аудит контрактів, збір документів та подача під ключ.", price: "від €1,200", time: "Термін: 3–6 тижнів" },
-        startup: { title: "Стартап-Віза та Бізнес Посвідка", desc: "Розробка інноваційного бізнес-плану, схвалення в міністерстві та захист вашого проєкту перед комісією.", price: "від €2,500", time: "Термін: 2–4 місяці" },
-        passive: { title: "Посвідка без права на роботу", desc: "Для фінансово незалежних осіб зі стабільним пассивним доходом поза межами країни (оренда, дивіденди, відсотки).", price: "від €1,500", time: "Термін: 1–2 місяці" },
-        investor: { title: "Золотая віза / Посвідка інвестора", desc: "Супрівід інвестицій у нерухомість, державні облігації або фонди для отримання постійного статусу.", price: "від €4,000", time: "Термін: 1–3 місяці" },
-        origin: { title: "Громадянство за походженням", desc: "Архівний пошук, підтвердження коріння, відновлення історичних прав та повне ведення справи аж до присяги.", price: "від €3,000", time: "Термін: від 6 місяців" },
-        family: { title: "Возз’єднання сім’ї", desc: "Оформлення документів для подружжя, дітей та залежних батьків головного заявника за будь-якими типами віз.", price: "від €700", time: "Термін: 2–4 тижні" },
-        compliance: { title: "Відкриття рахунків та комплаєнс", desc: "Підготовка довідок про походження коштів (Source of Funds), проходження перевірок KYC та відкриття рахунків у банках.", price: "від €600", time: "Термін: 5–10 днів" },
-        appeal: { title: "Апелляции та складні кейси", desc: "Глубокий аналіз причин відмови, складання юридично грамотної скарги та повторний супровід справи.", price: "від €800", time: "Термін: індивідуально" }
-      }
+        nomad: {
+          title: "Посвідка Цифрового Кочівника",
+          desc: "Для фрілансерів та віддалених працівників із доходом від €2,500. Повний аудит контрактів, збір документів та подача під ключ.",
+          price: "від €1,200",
+          time: "Термін: 3–6 тижнів",
+        },
+        startup: {
+          title: "Стартап-Віза та Бізнес Посвідка",
+          desc: "Розробка інноваційного бізнес-плану, схвалення в міністерстві та захист вашого проєкту перед комісією.",
+          price: "від €2,500",
+          time: "Термін: 2–4 місяці",
+        },
+        passive: {
+          title: "Посвідка без права на роботу",
+          desc: "Для фінансово незалежних осіб зі стабільним пассивним доходом поза межами країни (оренда, дивіденди, відсотки).",
+          price: "від €1,500",
+          time: "Термін: 1–2 місяці",
+        },
+        investor: {
+          title: "Золотая віза / Посвідка інвестора",
+          desc: "Супрівід інвестицій у нерухомість, державні облігації або фонди для отримання постійного статусу.",
+          price: "від €4,000",
+          time: "Термін: 1–3 місяці",
+        },
+        origin: {
+          title: "Громадянство за походженням",
+          desc: "Архівний пошук, підтвердження коріння, відновлення історичних прав та повне ведення справи аж до присяги.",
+          price: "від €3,000",
+          time: "Термін: від 6 місяців",
+        },
+        family: {
+          title: "Возз’єднання сім’ї",
+          desc: "Оформлення документів для подружжя, дітей та залежних батьків головного заявника за будь-якими типами віз.",
+          price: "від €700",
+          time: "Термін: 2–4 тижні",
+        },
+        compliance: {
+          title: "Відкриття рахунків та комплаєнс",
+          desc: "Підготовка довідок про походження коштів (Source of Funds), проходження перевірок KYC та відкриття рахунків у банках.",
+          price: "від €600",
+          time: "Термін: 5–10 днів",
+        },
+        appeal: {
+          title: "Апелляции та складні кейси",
+          desc: "Глубокий аналіз причин відмови, складання юридично грамотної скарги та повторний супровід справи.",
+          price: "від €800",
+          time: "Термін: індивідуально",
+        },
+      },
     },
     reviews: {
       titlePre: "Що говорять ",
       titleAccent: "клієнти",
-      description: "Реальні історії людей, які успішно пройшли процес легалізації та довірили свій переїзд експерту.",
+      description:
+        "Реальні історії людей, які успішно пройшли процес легалізації та довірили свій переїзд експерту.",
       dragHint: "Затисніть і тягніть убік або гортайте",
       items: {
-        markAnna: { name: 'Марк та Анна', program: 'Посвідка Digital Nomad, Іспанія', text: 'Звернулися до Анастасії після самостійної відмови через неправильно оформлений контракт. Вона повністю переформатувала наши документи з американським замовником та склала пояснювальний лист для UGE. Подали знову — схвалення прийшло за 18 днів! Справжній професіонал.' },
-        dmitry: { name: 'Дмитро К.', program: 'Стартап-віза, Португалія', text: 'Анастасія допомогла докрутити нашу бізнес-модель під жорсткі вимоги інституту IAPMEI. Супроводжувала на кожному кроці: від збору довідок до відкриття рахунку. Завжди на зв’язку в Telegram, пояснює складні закони простою мовою. Рекомендую.' },
-        elena: { name: 'Олена Б.', program: 'Посвідка без права на роботу, Італія', text: 'Для мене було критично встигнути подати документи до зміни правил щодо пасивного доходу. Анастасія підготувала кейс за 2 тижні. Аудит доходів був зроблений ідеально — консульство в Москві видало візу D без жодного запитання.' },
-        igorOlga: { name: 'Ігор та Ольга', program: 'Бізнес-інкубатор, Польша', text: 'Релокували IT-стартап у Варшаву. Анастазія Лапо ідеально провела нас через увесь процес: від реєстрації компанії (Sp. z o.o.) до отримання пластику посвідки на проживання на 3 роки. Зберегли тонну нервів.' },
-        tatiana: { name: 'Тетяна Ш.', program: 'Громадянство за корінням, Румунія', text: 'Процесс відновлення коріння здавався нереальним через втрачені архіви. Анастасія організувала професійний пошук, знайшла свідоцтва дідуся та повністю вела справу до присяги в Бухаресте. Паспорт у руках!' }
-      }
+        markAnna: {
+          name: "Марк та Анна",
+          program: "Посвідка Digital Nomad, Іспанія",
+          text: "Звернулися до Анастасії після самостійної відмови через неправильно оформлений контракт. Вона повністю переформатувала наши документи з американським замовником та склала пояснювальний лист для UGE. Подали знову — схвалення прийшло за 18 днів! Справжній професіонал.",
+        },
+        dmitry: {
+          name: "Дмитро К.",
+          program: "Стартап-віза, Португалія",
+          text: "Анастасія допомогла докрутити нашу бізнес-модель під жорсткі вимоги інституту IAPMEI. Супроводжувала на кожному кроці: від збору довідок до відкриття рахунку. Завжди на зв’язку в Telegram, пояснює складні закони простою мовою. Рекомендую.",
+        },
+        elena: {
+          name: "Олена Б.",
+          program: "Посвідка без права на роботу, Італія",
+          text: "Для мене було критично встигнути подати документи до зміни правил щодо пасивного доходу. Анастасія підготувала кейс за 2 тижні. Аудит доходів був зроблений ідеально — консульство в Москві видало візу D без жодного запитання.",
+        },
+        igorOlga: {
+          name: "Ігор та Ольга",
+          program: "Бізнес-інкубатор, Польша",
+          text: "Релокували IT-стартап у Варшаву. Анастазія Лапо ідеально провела нас через увесь процес: від реєстрації компанії (Sp. z o.o.) до отримання пластику посвідки на проживання на 3 роки. Зберегли тонну нервів.",
+        },
+        tatiana: {
+          name: "Тетяна Ш.",
+          program: "Громадянство за корінням, Румунія",
+          text: "Процесс відновлення коріння здавався нереальним через втрачені архіви. Анастасія організувала професійний пошук, знайшла свідоцтва дідуся та повністю вела справу до присяги в Бухаресте. Паспорт у руках!",
+        },
+      },
     },
     // ИСПРАВЛЕНО: Добавлен перевод футера на украинский язык
     footer: {
       brandTitle: "Легалізація з Анастасією Лапо",
-      brandDesc: "Експертний супровід міграційних процесів, оформлення посвідок, релокація бізнесу та комплаєнс. Легкий шлях у будь-яку точку світу.",
+      brandDesc:
+        "Експертний супровід міграційних процесів, оформлення посвідок, релокація бізнесу та комплаєнс. Легкий шлях у будь-яку точку світу.",
       requisitesTitle: "Реквізити та адреса",
       requisitesLawyer: "Юрист Анастасія Лапо (Kancelaria Prawna)",
-      requisitesAddress: "Адреса офісу: Al. Jerozolimskie 56, 00-803 Warszawa, Polska",
+      requisitesAddress:
+        "Адреса офісу: Al. Jerozolimskie 56, 00-803 Warszawa, Polska",
       contactsTitle: "Швидкий зв'язок",
       docsTitle: "Документи",
       docsCookies: "Політика кукі",
       docsAgreement: "Угода",
-      copyrightPost: " Легка легалізація з Анастасією Лапо. Всі права захищені.",
-      sslText: "Захищено SSL шифруванням"
-    }
-  }
+      copyrightPost:
+        " Легка легалізація з Анастасією Лапо. Всі права захищені.",
+      sslText: "Захищено SSL шифруванням",
+    },
+  },
 };
-
-
-
-
-
-
-

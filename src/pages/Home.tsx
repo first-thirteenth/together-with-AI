@@ -1,8 +1,8 @@
-import { useRef } from 'react';
-import { Shield, ArrowRight, CheckCircle2 } from 'lucide-react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { Quiz } from '../components/Quiz/Quiz.tsx';
-import { useLang } from '../context/useLang';
+import { useRef } from "react";
+import { Shield, ArrowRight, CheckCircle2 } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Quiz } from "../components/Quiz/Quiz.tsx";
+import { useLang } from "../context/useLang";
 
 export const Home = () => {
   const { t } = useLang();
@@ -10,36 +10,48 @@ export const Home = () => {
 
   const { scrollYProgress } = useScroll({
     target: trackRef,
-    offset: ["start start", "end end"]
+    offset: ["start start", "end end"],
   });
 
   const textY = useTransform(scrollYProgress, [0, 0.3], [0, -120]);
   const textOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
 
-  // СЕНЬОРСКИЕ ТАЙМИНГИ: Квиз удерживается на месте от 0.3 до 0.75 диапазона скролла
-  const quizY = useTransform(scrollYProgress, [0, 0.3, 0.75, 0.9], [150, 0, 0, -150]);
-  const quizOpacity = useTransform(scrollYProgress, [0, 0.15, 0.75, 0.9], [0, 1, 1, 0]);
+  // Квиз удерживается на месте от 0.3 до 0.75 диапазона скролла
+  const quizY = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.75, 0.9],
+    [150, 0, 0, -150],
+  );
+  const quizOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.15, 0.75, 0.9],
+    [0, 1, 1, 0],
+  );
 
   const handleConsultation = () => {
-    console.log('Open consultation');
+    console.log("Open consultation");
   };
 
   return (
-    <div 
-      ref={trackRef} 
+    <div
+      ref={trackRef}
       className="relative w-full h-[170vh] lg:h-screen bg-cream-bg dark:bg-emerald-luxury text-luxury-text dark:text-cream-bg font-sans lg:sticky lg:top-0 z-10 transition-colors duration-500"
     >
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-gold-accent/10 rounded-full blur-3xl pointer-events-none"></div>
-      
-      <div className="fixed top-0 left-0 w-full h-screen lg:absolute lg:h-full overflow-hidden flex items-center">
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-40 pb-24 lg:pt-0 lg:pb-0">
+
+      <div className="fixed top-0 left-0 w-full h-screen lg:absolute lg:h-full overflow-hidden flex items-start lg:items-center">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-28 pb-10 lg:pt-0 lg:pb-0">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center w-full relative">
-            
-            {/* Левая колонка: Оффер и Преимущества */}
-            <motion.div 
-              style={{ 
-                y: typeof window !== 'undefined' && window.innerWidth < 1024 ? textY : 0, 
-                opacity: typeof window !== 'undefined' && window.innerWidth < 1024 ? textOpacity : 1 
+            <motion.div
+              style={{
+                y:
+                  typeof window !== "undefined" && window.innerWidth < 1024
+                    ? textY
+                    : 0,
+                opacity:
+                  typeof window !== "undefined" && window.innerWidth < 1024
+                    ? textOpacity
+                    : 1,
               }}
               className="space-y-4 lg:space-y-6 will-change-[transform,opacity] mt-6 lg:mt-0"
             >
@@ -47,27 +59,32 @@ export const Home = () => {
                 <Shield size={14} className="text-gold-accent" />
                 <span>{t.home.badge}</span>
               </div>
-              
-              <h1 className="text-xl sm:text-3xl lg:text-6xl font-extrabold tracking-tight leading-tight text-emerald-luxury dark:text-cream-bg transition-colors duration-500">
-                {t.home.titlePre}{' '}
-                <span className="text-gold-hover dark:text-gold-accent">{t.home.titleAccent}</span>
+
+              <h1 className="text-2xl sm:text-4xl lg:text-6xl font-extrabold tracking-tight leading-tight text-emerald-luxury dark:text-cream-bg transition-colors duration-500">
+                {t.home.titlePre}{" "}
+                <span className="text-gold-hover dark:text-gold-accent">
+                  {t.home.titleAccent}
+                </span>
               </h1>
-              
-              <p className="text-xs sm:text-base text-luxury-text/80 dark:text-cream-bg/80 max-w-xl leading-relaxed transition-colors duration-500">
+
+              <p className="text-sm sm:text-base text-luxury-text/80 dark:text-cream-bg/80 max-w-xl leading-relaxed transition-colors duration-500">
                 {t.home.description}
               </p>
 
-              <ul className="hidden sm:block space-y-2 lg:space-y-3 text-xs sm:text-sm text-luxury-text/90 dark:text-cream-bg/90 pt-1 transition-colors duration-500">
+              <ul className="space-y-2 lg:space-y-3 text-xs sm:text-sm text-luxury-text/90 dark:text-cream-bg/90 pt-1 transition-colors duration-500">
                 {t.home.features.map((feature: string, index: number) => (
                   <li key={index} className="flex items-center gap-3">
-                    <CheckCircle2 size={16} className="text-gold-accent flex-shrink-0" />
+                    <CheckCircle2
+                      size={16}
+                      className="text-gold-accent flex-shrink-0"
+                    />
                     <span>{feature}</span>
                   </li>
                 ))}
               </ul>
 
               <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                <button 
+                <button
                   onClick={handleConsultation}
                   className="relative overflow-hidden inline-flex items-center justify-center gap-2 bg-gold-accent hover:bg-gold-hover text-emerald-luxury font-bold px-6 py-3 rounded-lg text-sm shadow-sm active:scale-98 cursor-pointer group w-full sm:w-auto"
                 >
@@ -84,39 +101,34 @@ export const Home = () => {
               </div>
             </motion.div>
 
-            {/* Правая колонка: Интерактивный Квиз */}
-            <motion.div 
-              style={{ 
-                y: typeof window !== 'undefined' && window.innerWidth < 1024 ? quizY : 0, 
-                opacity: typeof window !== 'undefined' && window.innerWidth < 1024 ? quizOpacity : 1 
+            <motion.div
+              style={{
+                y:
+                  typeof window !== "undefined" && window.innerWidth < 1024
+                    ? quizY
+                    : 0,
+                opacity:
+                  typeof window !== "undefined" && window.innerWidth < 1024
+                    ? quizOpacity
+                    : 1,
               }}
               className="relative justify-self-center lg:justify-self-end w-full max-w-md mt-2 lg:mt-0 z-10 will-change-[transform,opacity]"
             >
               <div className="absolute -inset-1 bg-gradient-to-r from-gold-accent/20 to-transparent rounded-2xl blur opacity-30"></div>
-              
+
               <div className="relative bg-emerald-luxury dark:bg-[#081b15] p-5 sm:p-8 rounded-2xl shadow-2xl border border-gold-accent/15 dark:border-gold-accent/20 transition-colors duration-500">
-                <h3 className="text-lg sm:text-xl font-bold mb-1 text-cream-bg">{t.home.quizTitle}</h3>
-                <p className="text-[11px] sm:text-xs text-cream-bg/60 mb-4 sm:mb-5">{t.home.quizDesc}</p>
-                
+                <h3 className="text-lg sm:text-xl font-bold mb-1 text-cream-bg">
+                  {t.home.quizTitle}
+                </h3>
+                <p className="text-[11px] sm:text-xs text-cream-bg/60 mb-4 sm:mb-5">
+                  {t.home.quizDesc}
+                </p>
                 <Quiz />
               </div>
             </motion.div>
-
           </div>
         </section>
       </div>
     </div>
   );
 };
-
-
-
-
-
-
-
-
-
-
-
-
