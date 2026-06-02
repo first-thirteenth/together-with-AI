@@ -34,10 +34,12 @@ export const Home = () => {
     const isMobile = window.innerWidth < 1024;
 
     if (isMobile && trackRef.current) {
-      // На мобиле скроллим до середины 170vh секции — там квиз виден
-      const top = trackRef.current.offsetTop + window.innerHeight * 0.75;
+      // scrollYProgress = (scrollTop - trackTop) / (trackHeight - viewportHeight)
+      // Квиз виден при progress 0.3–0.75, целимся в 0.5 (середина)
+      const scrollable = trackRef.current.offsetHeight - window.innerHeight;
+      const top = trackRef.current.offsetTop + scrollable * 0.5;
       window.scrollTo({ top, behavior: "smooth" });
-      await new Promise((r) => setTimeout(r, 600));
+      await new Promise((r) => setTimeout(r, 700));
     }
 
     // Эффект привлечения внимания к квизу
