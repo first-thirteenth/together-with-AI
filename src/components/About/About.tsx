@@ -3,25 +3,35 @@ import { motion } from "framer-motion";
 import anastasiaPhoto from "../../assets/anastasia.jpg";
 import { useLang } from "../../context/useLang";
 
+const slideInLeft = {
+  hidden: { opacity: 0, x: -60, filter: "blur(8px)" },
+  visible: {
+    opacity: 1,
+    x: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] },
+  },
+} as const;
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 32, filter: "blur(4px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1] },
+  },
+} as const;
+
+const staggerContainer = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.11, delayChildren: 0.05 },
+  },
+} as const;
+
 export const About = () => {
   const { t } = useLang();
-
-  const fadeInUpVariants = {
-    hidden: {
-      opacity: 0,
-      y: 40,
-      filter: "blur(4px)",
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      filter: "blur(0px)",
-      transition: {
-        duration: 0.8,
-        ease: [0.16, 1, 0.3, 1],
-      },
-    },
-  } as const;
 
   return (
     <section
@@ -30,7 +40,14 @@ export const About = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-5 relative justify-self-center lg:justify-self-start w-full max-w-md">
+          {/* Photo column — slides in from left */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={slideInLeft}
+            className="lg:col-span-5 relative justify-self-center lg:justify-self-start w-full max-w-md will-change-[transform,opacity,filter]"
+          >
             <div className="absolute -inset-2 bg-gradient-to-tr from-gold-accent/20 to-transparent rounded-2xl blur-lg"></div>
 
             <div className="relative w-full aspect-[4/5] bg-gradient-to-b from-cream-card to-white dark:from-emerald-medium dark:to-emerald-luxury rounded-2xl border border-gold-accent/20 dark:border-gold-accent/30 overflow-hidden shadow-xl group transition-colors duration-500">
@@ -50,32 +67,45 @@ export const About = () => {
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
 
+          {/* Text column — stagger cascade for each child */}
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={fadeInUpVariants}
+            viewport={{ once: true, margin: "-80px" }}
+            variants={staggerContainer}
             className="lg:col-span-7 space-y-6 will-change-[transform,opacity]"
           >
-            <div className="inline-flex items-center gap-2 bg-cream-card dark:bg-emerald-medium border border-gold-accent/20 dark:border-gold-accent/30 px-3 py-1 rounded-full text-xs text-gold-hover font-medium shadow-sm transition-colors duration-500">
+            <motion.div
+              variants={fadeInUp}
+              className="inline-flex items-center gap-2 bg-cream-card dark:bg-emerald-medium border border-gold-accent/20 dark:border-gold-accent/30 px-3 py-1 rounded-full text-xs text-gold-hover font-medium shadow-sm transition-colors duration-500"
+            >
               <span>{t.about.badge}</span>
-            </div>
+            </motion.div>
 
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-emerald-luxury dark:text-cream-bg leading-tight transition-colors duration-500">
+            <motion.h2
+              variants={fadeInUp}
+              className="text-3xl sm:text-4xl font-extrabold tracking-tight text-emerald-luxury dark:text-cream-bg leading-tight transition-colors duration-500"
+            >
               {t.about.titlePre}{" "}
               <span className="text-gold-hover dark:text-gold-accent">
                 {t.about.titleAccent}
               </span>{" "}
               {t.about.titlePost}
-            </h2>
+            </motion.h2>
 
-            <p className="text-base text-luxury-text/80 dark:text-cream-bg/80 leading-relaxed transition-colors duration-500">
+            <motion.p
+              variants={fadeInUp}
+              className="text-base text-luxury-text/80 dark:text-cream-bg/80 leading-relaxed transition-colors duration-500"
+            >
               {t.about.description}
-            </p>
+            </motion.p>
 
-            <ul className="space-y-2 text-sm text-luxury-text/90 dark:text-cream-bg/90 transition-colors duration-500">
+            <motion.ul
+              variants={fadeInUp}
+              className="space-y-2 text-sm text-luxury-text/90 dark:text-cream-bg/90 transition-colors duration-500"
+            >
               {t.about.features.map((feature: string, index: number) => (
                 <li key={index} className="flex items-center gap-2.5">
                   <CheckCircle
@@ -85,11 +115,15 @@ export const About = () => {
                   <span>{feature}</span>
                 </li>
               ))}
-            </ul>
+            </motion.ul>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+            {/* Stats cards — nested stagger */}
+            <motion.div
+              variants={staggerContainer}
+              className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4"
+            >
               <motion.div
-                variants={fadeInUpVariants}
+                variants={fadeInUp}
                 className="flex gap-3.5 bg-cream-card dark:bg-emerald-medium p-4 rounded-xl border border-gold-accent/20 dark:border-gold-accent/30 shadow-sm transition-colors duration-500"
               >
                 <Award className="text-gold-hover flex-shrink-0" size={22} />
@@ -104,7 +138,7 @@ export const About = () => {
               </motion.div>
 
               <motion.div
-                variants={fadeInUpVariants}
+                variants={fadeInUp}
                 className="flex gap-3.5 bg-cream-card dark:bg-emerald-medium p-4 rounded-xl border border-gold-accent/20 dark:border-gold-accent/30 shadow-sm transition-colors duration-500"
               >
                 <BookOpen className="text-gold-hover flex-shrink-0" size={22} />
@@ -117,7 +151,7 @@ export const About = () => {
                   </p>
                 </div>
               </motion.div>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>
