@@ -136,6 +136,14 @@ export interface TranslationSchema {
   floatingContact: {
     label: string;
   };
+  ticker: {
+    cases: string;
+    rate: string;
+    languages: string;
+    city: string;
+    vnj: string;
+    online: string;
+  };
 }
 export const translations: Record<LanguageCode, TranslationSchema> = {
   RU: {
@@ -356,6 +364,14 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
     },
     floatingContact: {
       label: "Написать в Telegram",
+    },
+    ticker: {
+      cases: "350+ кейсов",
+      rate: "98.6% успех",
+      languages: "4 языка",
+      city: "Варшава · Польша",
+      vnj: "ВНЖ от 30 дней",
+      online: "Консультация онлайн",
     },
   },
   PL: {
@@ -582,6 +598,14 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
     floatingContact: {
       label: "Napisz na Telegram",
     },
+    ticker: {
+      cases: "350+ sukcesów",
+      rate: "98.6% skuteczności",
+      languages: "4 języki",
+      city: "Warszawa · Polska",
+      vnj: "Karta pobytu od 30 dni",
+      online: "Konsultacja online",
+    },
   },
   EN: {
     header: {
@@ -804,6 +828,14 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
     floatingContact: {
       label: "Message on Telegram",
     },
+    ticker: {
+      cases: "350+ cases",
+      rate: "98.6% success rate",
+      languages: "4 languages",
+      city: "Warsaw · Poland",
+      vnj: "Residence permit from 30 days",
+      online: "Online consultation",
+    },
   },
   UA: {
     header: {
@@ -1025,6 +1057,14 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
     },
     floatingContact: {
       label: "Написати в Telegram",
+    },
+    ticker: {
+      cases: "350+ кейсів",
+      rate: "98.6% успіх",
+      languages: "4 мови",
+      city: "Варшава · Польща",
+      vnj: "ВНЖ від 30 днів",
+      online: "Онлайн-консультація",
     },
   },
 };

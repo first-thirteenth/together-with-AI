@@ -134,6 +134,13 @@ export const Home = () => {
                     ? quizOpacity
                     : 1,
               }}
+              animate={{ scale: [1, 1.013, 1] }}
+              transition={{
+                repeat: Infinity,
+                duration: 4,
+                ease: "easeInOut",
+                repeatDelay: 2,
+              }}
               className="relative justify-self-center lg:justify-self-end w-full max-w-md mt-2 lg:mt-0 z-10 will-change-[transform,opacity]"
             >
               <div className="absolute -inset-1 bg-gradient-to-r from-gold-accent/20 to-transparent rounded-2xl blur opacity-30"></div>

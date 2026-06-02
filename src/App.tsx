@@ -7,6 +7,7 @@ import { Reviews } from "./components/Reviews/Reviews";
 import { Footer } from "./components/Footer/Footer";
 import { LangProvider } from "./context/LangProvider";
 import { FloatingContact } from "./components/FloatingContact/FloatingContact";
+import { TrustTicker } from "./components/TrustTicker/TrustTicker";
 
 function App() {
   const { scrollYProgress } = useScroll();
@@ -28,6 +29,7 @@ function App() {
         <div className="relative">
           <main>
             <Home />
+            <TrustTicker />
             <About />
             <Services />
             <Reviews />
