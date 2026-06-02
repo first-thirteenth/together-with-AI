@@ -1,6 +1,7 @@
 import { ArrowRight, Sparkles, Check } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { useLang } from "../../context/useLang";
+import { CONTACTS } from "../../config/contacts";
 
 export const Services = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -101,7 +102,12 @@ export const Services = () => {
                     <Check size={12} className="text-gold-accent" />
                     {service.time}
                   </span>
-                  <button className="text-emerald-medium dark:text-cream-bg/80 group-hover:text-gold-hover transition-colors duration-200 cursor-pointer text-xs flex items-center gap-1">
+                  <button
+                    onClick={() => {
+                      const msg = encodeURIComponent(`Здравствуйте! Меня интересует услуга "${service.title}".`);
+                      window.open(`${CONTACTS.telegram}?text=${msg}`, "_blank", "noreferrer");
+                    }}
+                    className="text-emerald-medium dark:text-cream-bg/80 group-hover:text-gold-hover transition-colors duration-200 cursor-pointer text-xs flex items-center gap-1">
                     {t.services.btnMore}{" "}
                     <ArrowRight
                       size={12}

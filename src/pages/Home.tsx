@@ -1,12 +1,14 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Shield, ArrowRight, CheckCircle2 } from "lucide-react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useAnimate } from "framer-motion";
 import { Quiz } from "../components/Quiz/Quiz.tsx";
 import { useLang } from "../context/useLang";
 
 export const Home = () => {
   const { t } = useLang();
   const trackRef = useRef<HTMLDivElement>(null);
+  const [quizRef, animateQuiz] = useAnimate();
+  const [isHighlighted, setIsHighlighted] = useState(false);
 
   const { scrollYProgress } = useScroll({
     target: trackRef,
@@ -16,11 +18,13 @@ export const Home = () => {
   const textY = useTransform(scrollYProgress, [0, 0.3], [0, -120]);
   const textOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
 
-  // Квиз удерживается на месте от 0.3 до 0.75 диапазона скролла
+  // Квиз удерживается на месте от 0.3 до 0.75 диапазона скролла.
+  // В удерживаемой фазе поднимаем его вверх (-130), чтобы он встал
+  // по центру экрана поверх уже скрытого текста.
   const quizY = useTransform(
     scrollYProgress,
     [0, 0.3, 0.75, 0.9],
-    [150, 0, 0, -150],
+    [150, -130, -130, -300],
   );
   const quizOpacity = useTransform(
     scrollYProgress,
@@ -28,8 +32,26 @@ export const Home = () => {
     [0, 1, 1, 0],
   );
 
-  const handleConsultation = () => {
-    console.log("Open consultation");
+  const handleConsultation = async () => {
+    const isMobile = window.innerWidth < 1024;
+
+    if (isMobile && trackRef.current) {
+      // scrollYProgress = (scrollTop - trackTop) / (trackHeight - viewportHeight)
+      // Квиз виден при progress 0.3–0.75, целимся в 0.5 (середина)
+      const scrollable = trackRef.current.offsetHeight - window.innerHeight;
+      const top = trackRef.current.offsetTop + scrollable * 0.5;
+      window.scrollTo({ top, behavior: "smooth" });
+      await new Promise((r) => setTimeout(r, 700));
+    }
+
+    // Эффект привлечения внимания к квизу
+    setIsHighlighted(true);
+    await animateQuiz(
+      quizRef.current,
+      { scale: [1, 1.03, 1.01, 1], boxShadow: ["0 0 0px #c5a880", "0 0 40px #c5a88088", "0 0 20px #c5a88044", "0 0 0px #c5a880"] },
+      { duration: 0.7, ease: "easeInOut" },
+    );
+    setTimeout(() => setIsHighlighted(false), 2000);
   };
 
   return (
@@ -95,7 +117,7 @@ export const Home = () => {
                   </span>
                 </button>
 
-                <button className="hidden sm:inline-flex items-center justify-center bg-cream-card dark:bg-emerald-medium hover:bg-white dark:hover:bg-emerald-medium/50 border border-gold-accent/20 dark:border-gold-accent/30 text-emerald-medium dark:text-cream-bg font-semibold px-6 py-3 rounded-lg text-sm transition-all cursor-pointer shadow-sm w-full sm:w-auto">
+                <button className="hidden sm:inline-flex items-center justify-center bg-cream-card dark:bg-emerald-medium hover:bg-white dark:hover:bg-emerald-medium/50 border border-gold-accent/20 dark:border-gold-accent/30 text-emerald-medium dark:text-cream-bg font-semibold px-6 py-3 rounded-lg text-sm transition-all cursor-pointer shadow-sm w-full sm:w-auto" onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}>
                   {t.home.btnPrograms}
                 </button>
               </div>
@@ -116,7 +138,15 @@ export const Home = () => {
             >
               <div className="absolute -inset-1 bg-gradient-to-r from-gold-accent/20 to-transparent rounded-2xl blur opacity-30"></div>
 
-              <div className="relative bg-emerald-luxury dark:bg-[#081b15] p-5 sm:p-8 rounded-2xl shadow-2xl border border-gold-accent/15 dark:border-gold-accent/20 transition-colors duration-500">
+              <div
+                ref={quizRef}
+                id="quiz"
+                className={`relative bg-emerald-luxury dark:bg-[#081b15] p-5 sm:p-8 rounded-2xl shadow-2xl border transition-colors duration-500 ${
+                  isHighlighted
+                    ? "border-gold-accent/60 dark:border-gold-accent/70"
+                    : "border-gold-accent/15 dark:border-gold-accent/20"
+                }`}
+              >
                 <h3 className="text-lg sm:text-xl font-bold mb-1 text-cream-bg">
                   {t.home.quizTitle}
                 </h3>
