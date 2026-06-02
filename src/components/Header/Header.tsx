@@ -78,6 +78,7 @@ export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
+  const [isPhoneHighlighted, setIsPhoneHighlighted] = useState(false);
 
   // Инициализируем стейт сразу из localStorage, чтобы избежать мигания темы
   const [isDarkMode, setIsDarkMode] = useState(() => {
@@ -114,10 +115,10 @@ export const Header = () => {
     }
   };
 
-  // Кнопка "Консультация" — открываем Telegram напрямую
-  const handleConsultationClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    window.open(CONTACTS.telegram, "_blank", "noreferrer");
+  // Кнопка "Консультация" — подсвечиваем телефон на 2.5s
+  const handleConsultationClick = () => {
+    setIsPhoneHighlighted(true);
+    setTimeout(() => setIsPhoneHighlighted(false), 2500);
   };
 
   // Массив языков для селектора
@@ -226,14 +227,34 @@ export const Header = () => {
               </button>
 
               {/* Реальный телефон Анастасии */}
-              <a
+              <motion.a
                 href={`tel:${CONTACTS.phoneRaw}`}
                 onClick={handleCallClick}
-                className="text-xs font-semibold transition-all duration-300 flex items-center gap-1.5 cursor-pointer text-luxury-text/60 dark:text-cream-bg/60 hover:text-emerald-luxury dark:hover:text-cream-bg"
+                animate={
+                  isPhoneHighlighted
+                    ? {
+                        color: ["#b89a4e", "#d4af37", "#b89a4e"],
+                        scale: [1, 1.08, 1.04, 1.08, 1],
+                        textShadow: [
+                          "0 0 0px #d4af3700",
+                          "0 0 12px #d4af37aa",
+                          "0 0 6px #d4af3766",
+                          "0 0 14px #d4af37cc",
+                          "0 0 0px #d4af3700",
+                        ],
+                      }
+                    : { scale: 1, textShadow: "0 0 0px #d4af3700" }
+                }
+                transition={
+                  isPhoneHighlighted
+                    ? { duration: 2.2, ease: "easeInOut" }
+                    : { duration: 0.4 }
+                }
+                className="text-xs font-semibold flex items-center gap-1.5 cursor-pointer text-luxury-text/60 dark:text-cream-bg/60 transition-colors duration-300"
               >
                 <Phone size={12} />
                 {CONTACTS.phoneDisplay}
-              </a>
+              </motion.a>
 
               <a
                 href={CONTACTS.telegram}
@@ -334,14 +355,14 @@ export const Header = () => {
                 className="pt-4 border-t border-gold-accent/20 space-y-4"
               >
                 {/* Телефон на мобилке */}
-                <a
-                  href={`tel:${CONTACTS.phoneRaw}`}
-                  onClick={handleCallClick}
-                  className="flex items-center gap-2 text-sm transition-colors duration-300 cursor-pointer text-luxury-text/60 dark:text-cream-bg/60 hover:text-gold-hover"
-                >
-                  <Phone size={14} />
-                  {CONTACTS.phoneDisplay}
-                </a>
+                  <a
+                    href={`tel:${CONTACTS.phoneRaw}`}
+                    onClick={handleCallClick}
+                    className="flex items-center gap-2 text-sm transition-colors duration-300 cursor-pointer text-luxury-text/60 dark:text-cream-bg/60 hover:text-gold-hover"
+                  >
+                    <Phone size={14} />
+                    {CONTACTS.phoneDisplay}
+                  </a>
 
                 {/* Мобильный селектор языков */}
                 <div className="space-y-1.5">
@@ -381,7 +402,10 @@ export const Header = () => {
                     Telegram
                   </a>
                   <button
-                    onClick={handleConsultationClick}
+                    onClick={() => {
+                      setIsOpen(false);
+                      handleConsultationClick();
+                    }}
                     className="bg-gold-accent text-emerald-luxury text-center py-2.5 rounded-lg text-xs font-bold cursor-pointer"
                   >
                     {t.header.consultation}
