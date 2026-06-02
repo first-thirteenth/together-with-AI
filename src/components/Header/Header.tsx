@@ -220,9 +220,7 @@ export const Header = () => {
               <button
                 onClick={() => setIsDarkMode(!isDarkMode)}
                 className="p-2 text-luxury-text/70 dark:text-cream-bg/70 hover:text-gold-hover dark:hover:text-gold-accent transition-colors cursor-pointer rounded-lg hover:bg-gold-accent/5 flex items-center justify-center"
-                title={
-                  isDarkMode ? "Включить светлую тему" : "Включить тёмную тему"
-                }
+                title={isDarkMode ? t.header.themeLight : t.header.themeDark}
               >
                 {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
               </button>
@@ -242,7 +240,7 @@ export const Header = () => {
                 target="_blank"
                 rel="noreferrer"
                 className="relative z-30 inline-flex items-center justify-center text-luxury-text/60 dark:text-cream-bg/60 hover:text-gold-hover dark:hover:text-gold-accent transition-colors p-2 cursor-pointer"
-                title="Написать в Telegram Анастасии"
+                title={t.header.telegramTitle}
               >
                 <Send
                   size={16}
