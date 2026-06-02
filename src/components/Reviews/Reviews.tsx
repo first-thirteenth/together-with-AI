@@ -88,7 +88,10 @@ export const Reviews = () => {
       const el = child as HTMLElement;
       const cardCenter = el.offsetLeft + el.offsetWidth / 2;
       const dist = Math.abs(cardCenter - containerCenter);
-      if (dist < minDist) { minDist = dist; closest = i; }
+      if (dist < minDist) {
+        minDist = dist;
+        closest = i;
+      }
     });
     setActiveIndex(closest);
   }, []);
@@ -177,7 +180,11 @@ export const Reviews = () => {
               style={{ scrollbarWidth: "none" }}
             >
               {infiniteReviews.map((rev, i) => (
-                <ReviewItem key={rev.id} rev={rev} isActive={i === activeIndex} />
+                <ReviewItem
+                  key={rev.id}
+                  rev={rev}
+                  isActive={i === activeIndex}
+                />
               ))}
             </div>
           </div>
@@ -190,4 +197,3 @@ export const Reviews = () => {
     </section>
   );
 };
-

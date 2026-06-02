@@ -11,7 +11,10 @@ const fadeInUp: Variants = {
     opacity: 1,
     y: 0,
     filter: "blur(0px)",
-    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
+    transition: {
+      duration: 0.7,
+      ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+    },
   },
 };
 
@@ -21,7 +24,10 @@ const slideFromSide = (fromLeft: boolean): Variants => ({
     opacity: 1,
     x: 0,
     filter: "blur(0px)",
-    transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
+    transition: {
+      duration: 0.75,
+      ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+    },
   },
 });
 
@@ -52,7 +58,6 @@ export const Services = () => {
       id="services"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
         {/* Section heading with stagger */}
         <motion.div
           initial="hidden"
@@ -130,8 +135,14 @@ export const Services = () => {
                   </span>
                   <button
                     onClick={() => {
-                      const msg = encodeURIComponent(`Здравствуйте! Меня интересует услуга "${service.title}".`);
-                      window.open(`${CONTACTS.telegram}?text=${msg}`, "_blank", "noreferrer");
+                      const msg = encodeURIComponent(
+                        `Здравствуйте! Меня интересует услуга "${service.title}".`,
+                      );
+                      window.open(
+                        `${CONTACTS.telegram}?text=${msg}`,
+                        "_blank",
+                        "noreferrer",
+                      );
                     }}
                     className="text-emerald-medium dark:text-cream-bg/80 group-hover:text-gold-hover transition-colors duration-200 cursor-pointer text-xs flex items-center gap-1"
                   >
@@ -150,4 +161,3 @@ export const Services = () => {
     </section>
   );
 };
-
