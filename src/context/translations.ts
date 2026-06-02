@@ -133,6 +133,9 @@ export interface TranslationSchema {
   services: ServicesSectionSchema;
   reviews: ReviewsSectionSchema;
   footer: FooterSectionSchema;
+  floatingContact: {
+    label: string;
+  };
 }
 export const translations: Record<LanguageCode, TranslationSchema> = {
   RU: {
@@ -350,6 +353,9 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       copyrightPost:
         " Лёгкая легализация с Анастасией Лапо. Все права защищены.",
       sslText: "Защищено SSL шифрованием",
+    },
+    floatingContact: {
+      label: "Написать в Telegram",
     },
   },
   PL: {
@@ -573,6 +579,9 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         " Łatwa legalizacja z Anastazją Łapo. Wszelkie prawa zastrzeżone.",
       sslText: "Chronione szyfrowaniem SSL",
     },
+    floatingContact: {
+      label: "Napisz na Telegram",
+    },
   },
   EN: {
     header: {
@@ -792,6 +801,9 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         " Easy legalization with Anastazja Łapo. All rights reserved.",
       sslText: "Secured with SSL encryption",
     },
+    floatingContact: {
+      label: "Message on Telegram",
+    },
   },
   UA: {
     header: {
@@ -1010,6 +1022,9 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       copyrightPost:
         " Легка легалізація з Анастасією Лапо. Всі права захищені.",
       sslText: "Захищено SSL шифруванням",
+    },
+    floatingContact: {
+      label: "Написати в Telegram",
     },
   },
 };
