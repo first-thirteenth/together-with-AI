@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { useLang } from "../../context/useLang";
 
@@ -21,65 +21,40 @@ const staggerContainer = {
 
 const ReviewItem = ({
   rev,
+  isActive,
 }: {
   rev: { text: string; name: string; program: string };
-}) => {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [isActive, setIsActive] = useState(false);
-
-  useEffect(() => {
-    const card = cardRef.current;
-    if (!card) return;
-
-    const isMobile = window.innerWidth < 768;
-    const margin = isMobile ? "0px -5% 0px -5%" : "0px -40% 0px -40%";
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsActive(entry.isIntersecting);
-      },
-      {
-        root: null,
-        rootMargin: margin,
-        threshold: isMobile ? 0.2 : 0.5,
-      },
-    );
-
-    observer.observe(card);
-    return () => observer.unobserve(card);
-  }, []);
-
-  return (
-    <div
-      ref={cardRef}
-      className={`w-[290px] sm:w-[500px] shrink-0 flex flex-col justify-center text-center snap-center transition-all duration-700 ease-out min-h-[220px] will-change-[opacity,transform,filter] md:blur-0 ${
-        isActive
-          ? "opacity-100 scale-100 md:blur-0 z-30"
-          : "md:opacity-35 scale-95 md:blur-[2px] z-10 select-none max-md:opacity-100"
-      }`}
-    >
-      <div className="space-y-6">
-        <p className="text-sm sm:text-base text-luxury-text dark:text-cream-bg/90 font-medium leading-relaxed italic transition-colors duration-500">
-          "{rev.text}"
+  isActive: boolean;
+}) => (
+  <div
+    className={`w-[290px] sm:w-[500px] shrink-0 flex flex-col justify-center text-center snap-center transition-all duration-700 ease-out min-h-[220px] will-change-[opacity,transform,filter] ${
+      isActive
+        ? "opacity-100 scale-100 blur-none z-30"
+        : "opacity-100 scale-95 md:opacity-35 md:blur-[2px] z-10 select-none"
+    }`}
+  >
+    <div className="space-y-6">
+      <p className="text-sm sm:text-base text-luxury-text dark:text-cream-bg/90 font-medium leading-relaxed italic transition-colors duration-500">
+        "{rev.text}"
+      </p>
+      <div>
+        <h4 className="font-bold text-emerald-luxury dark:text-cream-bg text-sm tracking-wide transition-colors duration-500">
+          {rev.name}
+        </h4>
+        <p className="text-[11px] text-gold-hover font-semibold uppercase tracking-wider mt-1">
+          {rev.program}
         </p>
-        <div>
-          <h4 className="font-bold text-emerald-luxury dark:text-cream-bg text-sm tracking-wide transition-colors duration-500">
-            {rev.name}
-          </h4>
-          <p className="text-[11px] text-gold-hover font-semibold uppercase tracking-wider mt-1">
-            {rev.program}
-          </p>
-        </div>
       </div>
     </div>
-  );
-};
+  </div>
+);
 
 export const Reviews = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const { t } = useLang();
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
+  const [activeIndex, setActiveIndex] = useState<number>(-1);
 
   const isDown = useRef(false);
   const startX = useRef(0);
@@ -102,17 +77,36 @@ export const Reviews = () => {
     },
   );
 
+  /** Find whichever card's center is closest to the container's center */
+  const updateActiveCard = useCallback(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+    const containerCenter = container.scrollLeft + container.offsetWidth / 2;
+    let closest = 0;
+    let minDist = Infinity;
+    Array.from(container.children).forEach((child, i) => {
+      const el = child as HTMLElement;
+      const cardCenter = el.offsetLeft + el.offsetWidth / 2;
+      const dist = Math.abs(cardCenter - containerCenter);
+      if (dist < minDist) { minDist = dist; closest = i; }
+    });
+    setActiveIndex(closest);
+  }, []);
+
+  /** Scroll to the middle of the infinite array and set active card */
   useEffect(() => {
     const container = scrollContainerRef.current;
     if (!container) return;
-    const targetChild = container.children[3] as HTMLElement;
+    const midIndex = Math.floor(totalReviewsCount / 2);
+    const targetChild = container.children[midIndex] as HTMLElement;
     if (targetChild) {
       container.scrollLeft =
         targetChild.offsetLeft -
         container.offsetWidth / 2 +
         targetChild.offsetWidth / 2;
     }
-  }, []);
+    updateActiveCard();
+  }, [updateActiveCard]);
 
   const handleMouseDown = (e: React.MouseEvent) => {
     if (!scrollContainerRef.current) return;
@@ -124,9 +118,7 @@ export const Reviews = () => {
 
   const handleMouseLeaveOrUp = () => {
     isDown.current = false;
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.classList.remove("active");
-    }
+    scrollContainerRef.current?.classList.remove("active");
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -176,15 +168,16 @@ export const Reviews = () => {
           <div className="w-full md:mask-gradient">
             <div
               ref={scrollContainerRef}
+              onScroll={updateActiveCard}
               onMouseDown={handleMouseDown}
               onMouseLeave={handleMouseLeaveOrUp}
               onMouseUp={handleMouseLeaveOrUp}
               onMouseMove={handleMouseMove}
-              className="flex gap-12 sm:gap-24 overflow-x-auto no-scrollbar py-8 px-4 md:px-[35vw] snap-x snap-mandatory scroll-smooth cursor-grab active:cursor-grabbing select-none"
+              className="flex gap-12 sm:gap-24 overflow-x-auto no-scrollbar py-8 px-4 md:px-[calc(50%-250px)] snap-x snap-mandatory scroll-smooth cursor-grab active:cursor-grabbing select-none"
               style={{ scrollbarWidth: "none" }}
             >
-              {infiniteReviews.map((rev) => (
-                <ReviewItem key={rev.id} rev={rev} />
+              {infiniteReviews.map((rev, i) => (
+                <ReviewItem key={rev.id} rev={rev} isActive={i === activeIndex} />
               ))}
             </div>
           </div>
@@ -197,3 +190,4 @@ export const Reviews = () => {
     </section>
   );
 };
+
