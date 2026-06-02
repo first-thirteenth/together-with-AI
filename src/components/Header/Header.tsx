@@ -79,7 +79,6 @@ export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [isPhoneHighlighted, setIsPhoneHighlighted] = useState(false);
-  const [showMobilePhone, setShowMobilePhone] = useState(false);
 
   // Инициализируем стейт сразу из localStorage, чтобы избежать мигания темы
   const [isDarkMode, setIsDarkMode] = useState(() => {
@@ -120,19 +119,6 @@ export const Header = () => {
   const handleConsultationClick = () => {
     setIsPhoneHighlighted(true);
     setTimeout(() => setIsPhoneHighlighted(false), 2500);
-  };
-
-  // Мобильная версия: закрыть меню, показать подсвеченный телефон под шапкой
-  const handleMobileConsultationClick = () => {
-    setIsOpen(false);
-    setTimeout(() => {
-      setIsPhoneHighlighted(true);
-      setShowMobilePhone(true);
-      setTimeout(() => {
-        setIsPhoneHighlighted(false);
-        setShowMobilePhone(false);
-      }, 2800);
-    }, 300); // дать меню закрыться
   };
 
   // Массив языков для селектора
@@ -312,39 +298,6 @@ export const Header = () => {
           </div>
         </div>
 
-        {/* Мобильный телефон — появляется после нажатия Консультация */}
-        <AnimatePresence>
-          {showMobilePhone && (
-            <motion.div
-              initial={{ opacity: 0, y: -10, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -10, scale: 0.95 }}
-              transition={{ duration: 0.35, ease: [0.25, 1, 0.5, 1] }}
-              className="absolute left-0 right-0 top-full mt-2 mx-0 xl:hidden z-50"
-            >
-              <motion.a
-                href={`tel:${CONTACTS.phoneRaw}`}
-                onClick={handleCallClick}
-                animate={{
-                  color: ["#b89a4e", "#d4af37", "#b89a4e"],
-                  boxShadow: [
-                    "0 0 0px #d4af3700",
-                    "0 0 18px #d4af3788",
-                    "0 0 8px #d4af3744",
-                    "0 0 22px #d4af37aa",
-                    "0 0 0px #d4af3700",
-                  ],
-                }}
-                transition={{ duration: 2.2, ease: "easeInOut" }}
-                className="flex items-center justify-center gap-2 bg-cream-bg/95 dark:bg-emerald-luxury/95 backdrop-blur-md border border-gold-accent/40 rounded-2xl py-3 px-6 text-sm font-bold shadow-lg cursor-pointer"
-              >
-                <Phone size={15} />
-                {CONTACTS.phoneDisplay}
-              </motion.a>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
         <AnimatePresence>
           {isOpen && (
             <motion.div
@@ -404,14 +357,34 @@ export const Header = () => {
                 className="pt-4 border-t border-gold-accent/20 space-y-4"
               >
                 {/* Телефон на мобилке */}
-                  <a
+                  <motion.a
                     href={`tel:${CONTACTS.phoneRaw}`}
                     onClick={handleCallClick}
-                    className="flex items-center gap-2 text-sm transition-colors duration-300 cursor-pointer text-luxury-text/60 dark:text-cream-bg/60 hover:text-gold-hover"
+                    animate={
+                      isPhoneHighlighted
+                        ? {
+                            color: ["#b89a4e", "#d4af37", "#b89a4e"],
+                            scale: [1, 1.08, 1.04, 1.08, 1],
+                            textShadow: [
+                              "0 0 0px #d4af3700",
+                              "0 0 12px #d4af37aa",
+                              "0 0 6px #d4af3766",
+                              "0 0 14px #d4af37cc",
+                              "0 0 0px #d4af3700",
+                            ],
+                          }
+                        : { scale: 1, textShadow: "0 0 0px #d4af3700" }
+                    }
+                    transition={
+                      isPhoneHighlighted
+                        ? { duration: 2.2, ease: "easeInOut" }
+                        : { duration: 0.4 }
+                    }
+                    className="flex items-center gap-2 text-sm transition-colors duration-300 cursor-pointer text-luxury-text/60 dark:text-cream-bg/60"
                   >
                     <Phone size={14} />
                     {CONTACTS.phoneDisplay}
-                  </a>
+                  </motion.a>
 
                 {/* Мобильный селектор языков */}
                 <div className="space-y-1.5">
@@ -453,10 +426,7 @@ export const Header = () => {
                     Telegram
                   </a>
                   <button
-                     onClick={() => {
-                       setIsOpen(false);
-                       handleMobileConsultationClick();
-                     }}
+                     onClick={handleConsultationClick}
                      className="bg-gold-accent text-emerald-luxury text-center py-2.5 rounded-lg text-xs font-bold cursor-pointer active:scale-95 transition-transform"
                    >
                     {t.header.consultation}
