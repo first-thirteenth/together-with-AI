@@ -1,12 +1,14 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Shield, ArrowRight, CheckCircle2 } from "lucide-react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useAnimate } from "framer-motion";
 import { Quiz } from "../components/Quiz/Quiz.tsx";
 import { useLang } from "../context/useLang";
 
 export const Home = () => {
   const { t } = useLang();
   const trackRef = useRef<HTMLDivElement>(null);
+  const [quizRef, animateQuiz] = useAnimate();
+  const [isHighlighted, setIsHighlighted] = useState(false);
 
   const { scrollYProgress } = useScroll({
     target: trackRef,
@@ -28,10 +30,24 @@ export const Home = () => {
     [0, 1, 1, 0],
   );
 
-  const handleConsultation = () => {
-    document
-      .getElementById("quiz")
-      ?.scrollIntoView({ behavior: "smooth", block: "center" });
+  const handleConsultation = async () => {
+    const isMobile = window.innerWidth < 1024;
+
+    if (isMobile && trackRef.current) {
+      // На мобиле скроллим до середины 170vh секции — там квиз виден
+      const top = trackRef.current.offsetTop + window.innerHeight * 0.75;
+      window.scrollTo({ top, behavior: "smooth" });
+      await new Promise((r) => setTimeout(r, 600));
+    }
+
+    // Эффект привлечения внимания к квизу
+    setIsHighlighted(true);
+    await animateQuiz(
+      quizRef.current,
+      { scale: [1, 1.03, 1.01, 1], boxShadow: ["0 0 0px #c5a880", "0 0 40px #c5a88088", "0 0 20px #c5a88044", "0 0 0px #c5a880"] },
+      { duration: 0.7, ease: "easeInOut" },
+    );
+    setTimeout(() => setIsHighlighted(false), 2000);
   };
 
   return (
@@ -118,7 +134,15 @@ export const Home = () => {
             >
               <div className="absolute -inset-1 bg-gradient-to-r from-gold-accent/20 to-transparent rounded-2xl blur opacity-30"></div>
 
-              <div className="relative bg-emerald-luxury dark:bg-[#081b15] p-5 sm:p-8 rounded-2xl shadow-2xl border border-gold-accent/15 dark:border-gold-accent/20 transition-colors duration-500" id="quiz">
+              <div
+                ref={quizRef}
+                id="quiz"
+                className={`relative bg-emerald-luxury dark:bg-[#081b15] p-5 sm:p-8 rounded-2xl shadow-2xl border transition-colors duration-500 ${
+                  isHighlighted
+                    ? "border-gold-accent/60 dark:border-gold-accent/70"
+                    : "border-gold-accent/15 dark:border-gold-accent/20"
+                }`}
+              >
                 <h3 className="text-lg sm:text-xl font-bold mb-1 text-cream-bg">
                   {t.home.quizTitle}
                 </h3>
