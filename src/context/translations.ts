@@ -354,7 +354,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       },
     },
     footer: {
-      brandTitle: "Легализация с Анастасией Лапо",
+      brandTitle: "Легализация с Anastazja Łapo",
       brandDesc:
         "Экспертное сопровождение миграционных процессов, оформление ВНЖ, релокация бизнеса и комплаенс. Лёгкий путь в любую точку мира.",
       requisitesTitle: "Реквизиты и адрес",
@@ -1068,7 +1068,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
     },
     // ИСПРАВЛЕНО: Добавлен перевод футера на украинский язык
     footer: {
-      brandTitle: "Легалізація з Анастасією Лапо",
+      brandTitle: "Легалізація з Anastazja Łapo",
       brandDesc:
         "Експертний супровід міграційних процесів, оформлення посвідок, релокація бізнесу та комплаєнс. Легкий шлях у будь-яку точку світу.",
       requisitesTitle: "Реквізити та адреса",
