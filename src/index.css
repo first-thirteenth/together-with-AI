@@ -165,6 +165,94 @@ html.dark body {
   display: none;
 }
 
+/* =====================================================
+   ANIMATED BACKGROUND — mesh gradient + floating blobs
+   ===================================================== */
+
+.bg-mesh-gradient {
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 20%, rgba(197, 168, 128, 0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 80% 80%, rgba(27, 77, 62, 0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 50% 10%, rgba(197, 168, 128, 0.08) 0%, transparent 50%);
+}
+
+@keyframes meshShift {
+  0%   { background-position: 0% 0%, 100% 100%, 50% 0%; }
+  33%  { background-position: 10% 30%, 90% 70%, 60% 20%; }
+  66%  { background-position: 5% 60%, 80% 40%, 45% 10%; }
+  100% { background-position: 0% 0%, 100% 100%, 50% 0%; }
+}
+
+.animate-mesh {
+  background-size: 200% 200%;
+  animation: meshShift 20s ease-in-out infinite;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  will-change: transform;
+}
+
+.blob-1 {
+  width: 480px;
+  height: 480px;
+  top: -120px;
+  left: -80px;
+  background: radial-gradient(circle, rgba(197, 168, 128, 0.14) 0%, transparent 70%);
+  animation: blobDrift1 18s ease-in-out infinite;
+}
+
+.blob-2 {
+  width: 380px;
+  height: 380px;
+  bottom: -100px;
+  right: -60px;
+  background: radial-gradient(circle, rgba(27, 77, 62, 0.12) 0%, transparent 70%);
+  animation: blobDrift2 22s ease-in-out infinite;
+}
+
+.blob-3 {
+  width: 240px;
+  height: 240px;
+  top: 40%;
+  left: 55%;
+  background: radial-gradient(circle, rgba(197, 168, 128, 0.10) 0%, transparent 70%);
+  animation: blobDrift3 14s ease-in-out infinite;
+}
+
+.blob-4 {
+  width: 160px;
+  height: 160px;
+  top: 8%;
+  right: 12%;
+  background: radial-gradient(circle, rgba(197, 168, 128, 0.12) 0%, transparent 70%);
+  animation: blobDrift4 16s ease-in-out infinite;
+}
+
+@keyframes blobDrift1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(30px, 40px) scale(1.04); }
+  66%       { transform: translate(-20px, 20px) scale(0.97); }
+}
+
+@keyframes blobDrift2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  40%       { transform: translate(-40px, -30px) scale(1.06); }
+  70%       { transform: translate(20px, -15px) scale(0.96); }
+}
+
+@keyframes blobDrift3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%       { transform: translate(-25px, 35px) scale(1.08); }
+}
+
+@keyframes blobDrift4 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  45%       { transform: translate(20px, 25px) scale(1.1); }
+}
+
 /* Мягкое размытие по краям экрана для бесшовного растворения отзывов */
 .mask-gradient {
   mask-image: linear-gradient(to right, transparent, white 25%, white 75%, transparent);

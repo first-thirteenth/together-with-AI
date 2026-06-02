@@ -3,6 +3,7 @@ import { Shield, ArrowRight, CheckCircle2 } from "lucide-react";
 import { motion, useScroll, useTransform, useAnimate } from "framer-motion";
 import { Quiz } from "../components/Quiz/Quiz.tsx";
 import { useLang } from "../context/useLang";
+import { AnimatedBackground } from "../components/AnimatedBackground/AnimatedBackground";
 
 // Variants for page-load assembly animation
 const fromLeft = {
@@ -85,7 +86,7 @@ export const Home = () => {
       ref={trackRef}
       className="relative w-full h-[170vh] lg:h-screen bg-cream-bg dark:bg-emerald-luxury text-luxury-text dark:text-cream-bg font-sans lg:sticky lg:top-0 z-10 transition-colors duration-500"
     >
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-gold-accent/10 rounded-full blur-3xl pointer-events-none"></div>
+      <AnimatedBackground />
 
       <div className="fixed top-0 left-0 w-full h-screen lg:absolute lg:h-full overflow-hidden flex items-start lg:items-center">
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-28 pb-10 lg:pt-0 lg:pb-0">
