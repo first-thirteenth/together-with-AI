@@ -109,6 +109,9 @@ export interface TranslationSchema {
     consultation: string;
     callConfirm: string;
     langSelect: string;
+    themeLight: string;
+    themeDark: string;
+    telegramTitle: string;
   };
   quiz: {
     next: string;
@@ -141,6 +144,9 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       consultation: "Консультация",
       callConfirm: "Вы хотите позвонить Анастасии Лапо?",
       langSelect: "Выберите язык",
+      themeLight: "Включить светлую тему",
+      themeDark: "Включить тёмную тему",
+      telegramTitle: "Написать в Telegram",
     },
     quiz: {
       next: "Далее",
@@ -355,6 +361,9 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       consultation: "Konsultacja",
       callConfirm: "Czy chcesz zadzwonić do Anastazji Łapo?",
       langSelect: "Wybierz język",
+      themeLight: "Włącz jasny motyw",
+      themeDark: "Włącz ciemny motyw",
+      telegramTitle: "Napisz na Telegram",
     },
     quiz: {
       next: "Dalej",
@@ -574,6 +583,9 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       consultation: "Consultation",
       callConfirm: "Do you want to call Anastazja Łapo?",
       langSelect: "Select language",
+      themeLight: "Switch to light theme",
+      themeDark: "Switch to dark theme",
+      telegramTitle: "Message on Telegram",
     },
     quiz: {
       next: "Next",
@@ -790,6 +802,9 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       consultation: "Консультація",
       callConfirm: "Ви хочете зателефонувати Анастасії Лапо?",
       langSelect: "Оберіть мову",
+      themeLight: "Увімкнути світлу тему",
+      themeDark: "Увімкнути темну тему",
+      telegramTitle: "Написати в Telegram",
     },
     quiz: {
       next: "Далі",
