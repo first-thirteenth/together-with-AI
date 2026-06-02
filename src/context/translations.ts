@@ -136,6 +136,13 @@ export interface TranslationSchema {
   floatingContact: {
     label: string;
   };
+  cookie: {
+    title: string;
+    text: string;
+    acceptAll: string;
+    acceptNecessary: string;
+    learnMore: string;
+  };
   ticker: {
     cases: string;
     rate: string;
@@ -347,7 +354,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       },
     },
     footer: {
-      brandTitle: "Легализация с Анастасией Лапо",
+      brandTitle: "Легализация с Anastazja Łapo",
       brandDesc:
         "Экспертное сопровождение миграционных процессов, оформление ВНЖ, релокация бизнеса и комплаенс. Лёгкий путь в любую точку мира.",
       requisitesTitle: "Реквизиты и адрес",
@@ -364,6 +371,13 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
     },
     floatingContact: {
       label: "Написать в Telegram",
+    },
+    cookie: {
+      title: "Мы используем файлы cookie",
+      text: "Этот сайт использует cookie для улучшения работы, аналитики и персонализации. Нажмите «Принять все» для полного опыта или «Только необходимые» для базовой работы сайта.",
+      acceptAll: "Принять все",
+      acceptNecessary: "Только необходимые",
+      learnMore: "Подробнее",
     },
     ticker: {
       cases: "350+ кейсов",
@@ -598,6 +612,13 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
     floatingContact: {
       label: "Napisz na Telegram",
     },
+    cookie: {
+      title: "Używamy plików cookie",
+      text: "Ta strona używa plików cookie w celu poprawy działania, analizy i personalizacji. Kliknij «Akceptuj wszystkie» dla pełnego doświadczenia lub «Tylko niezbędne» dla podstawowego działania strony.",
+      acceptAll: "Akceptuj wszystkie",
+      acceptNecessary: "Tylko niezbędne",
+      learnMore: "Dowiedz się więcej",
+    },
     ticker: {
       cases: "350+ sukcesów",
       rate: "98.6% skuteczności",
@@ -828,6 +849,13 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
     floatingContact: {
       label: "Message on Telegram",
     },
+    cookie: {
+      title: "We use cookies",
+      text: "This site uses cookies to improve functionality, analytics and personalisation. Click «Accept all» for the full experience or «Necessary only» for basic site operation.",
+      acceptAll: "Accept all",
+      acceptNecessary: "Necessary only",
+      learnMore: "Learn more",
+    },
     ticker: {
       cases: "350+ cases",
       rate: "98.6% success rate",
@@ -1040,7 +1068,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
     },
     // ИСПРАВЛЕНО: Добавлен перевод футера на украинский язык
     footer: {
-      brandTitle: "Легалізація з Анастасією Лапо",
+      brandTitle: "Легалізація з Anastazja Łapo",
       brandDesc:
         "Експертний супровід міграційних процесів, оформлення посвідок, релокація бізнесу та комплаєнс. Легкий шлях у будь-яку точку світу.",
       requisitesTitle: "Реквізити та адреса",
@@ -1057,6 +1085,13 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
     },
     floatingContact: {
       label: "Написати в Telegram",
+    },
+    cookie: {
+      title: "Ми використовуємо файли cookie",
+      text: "Цей сайт використовує файли cookie для покращення роботи, аналітики та персоналізації. Натисніть «Прийняти всі» для повного досвіду або «Лише необхідні» для базової роботи сайту.",
+      acceptAll: "Прийняти всі",
+      acceptNecessary: "Лише необхідні",
+      learnMore: "Докладніше",
     },
     ticker: {
       cases: "350+ кейсів",

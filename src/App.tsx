@@ -7,6 +7,7 @@ import { Reviews } from "./components/Reviews/Reviews";
 import { Footer } from "./components/Footer/Footer";
 import { LangProvider } from "./context/LangProvider";
 import { FloatingContact } from "./components/FloatingContact/FloatingContact";
+import { CookieBanner } from "./components/CookieBanner/CookieBanner";
 
 function App() {
   const { scrollYProgress } = useScroll();
@@ -25,6 +26,7 @@ function App() {
         />
         <Header />
         <FloatingContact />
+        <CookieBanner />
         <div className="relative">
           <main>
             <Home />
