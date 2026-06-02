@@ -2,6 +2,23 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { useLang } from "../../context/useLang";
 
+const fadeInUp = {
+  hidden: { opacity: 0, y: 24, filter: "blur(4px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
+  },
+} as const;
+
+const staggerContainer = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.14 },
+  },
+} as const;
+
 const ReviewItem = ({
   rev,
 }: {
@@ -128,20 +145,26 @@ export const Reviews = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <motion.div
-          initial={{ opacity: 0, filter: "blur(10px)" }}
-          animate={isInView ? { opacity: 1, filter: "blur(0px)" } : {}}
-          transition={{ duration: 2.0, ease: [0.16, 1, 0.3, 1] }}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={staggerContainer}
           className="text-center space-y-4 max-w-xl mx-auto"
         >
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-emerald-luxury dark:text-cream-bg transition-colors duration-500">
+          <motion.h2
+            variants={fadeInUp}
+            className="text-3xl sm:text-4xl font-extrabold tracking-tight text-emerald-luxury dark:text-cream-bg transition-colors duration-500"
+          >
             {t.reviews.titlePre}
             <span className="text-gold-hover dark:text-gold-accent">
               {t.reviews.titleAccent}
             </span>
-          </h2>
-          <p className="text-sm text-luxury-text/70 dark:text-cream-bg/70 leading-relaxed mt-4 transition-colors duration-500">
+          </motion.h2>
+          <motion.p
+            variants={fadeInUp}
+            className="text-sm text-luxury-text/70 dark:text-cream-bg/70 leading-relaxed mt-4 transition-colors duration-500"
+          >
             {t.reviews.description}
-          </p>
+          </motion.p>
         </motion.div>
 
         <motion.div
