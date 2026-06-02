@@ -117,7 +117,7 @@ export const Home = () => {
                   </span>
                 </button>
 
-                <button className="hidden sm:inline-flex items-center justify-center bg-cream-card dark:bg-emerald-medium hover:bg-white dark:hover:bg-emerald-medium/50 border border-gold-accent/20 dark:border-gold-accent/30 text-emerald-medium dark:text-cream-bg font-semibold px-6 py-3 rounded-lg text-sm transition-all cursor-pointer shadow-sm w-full sm:w-auto" onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}>
+                <button className="inline-flex items-center justify-center bg-cream-card dark:bg-emerald-medium hover:bg-white dark:hover:bg-emerald-medium/50 border border-gold-accent/20 dark:border-gold-accent/30 text-emerald-medium dark:text-cream-bg font-semibold px-6 py-3 rounded-lg text-sm transition-all cursor-pointer shadow-sm w-full sm:w-auto" onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}>
                   {t.home.btnPrograms}
                 </button>
               </div>

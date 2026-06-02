@@ -78,7 +78,6 @@ export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
-  const [isPhoneHighlighted, setIsPhoneHighlighted] = useState(false);
 
   // Инициализируем стейт сразу из localStorage, чтобы избежать мигания темы
   const [isDarkMode, setIsDarkMode] = useState(() => {
@@ -115,13 +114,10 @@ export const Header = () => {
     }
   };
 
-  // Эффект подсветки номера телефона при клике на "Консультация"
+  // Кнопка "Консультация" — открываем Telegram напрямую
   const handleConsultationClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    setIsPhoneHighlighted(true);
-    setTimeout(() => {
-      setIsPhoneHighlighted(false);
-    }, 2500);
+    window.open(CONTACTS.telegram, "_blank", "noreferrer");
   };
 
   // Массив языков для селектора
@@ -235,16 +231,9 @@ export const Header = () => {
               <a
                 href={`tel:${CONTACTS.phoneRaw}`}
                 onClick={handleCallClick}
-                className={`text-xs font-semibold transition-all duration-300 flex items-center gap-1.5 cursor-pointer ${
-                  isPhoneHighlighted
-                    ? "text-gold-hover dark:text-gold-accent scale-110 font-bold"
-                    : "text-luxury-text/60 dark:text-cream-bg/60 hover:text-emerald-luxury dark:hover:text-cream-bg"
-                }`}
+                className="text-xs font-semibold transition-all duration-300 flex items-center gap-1.5 cursor-pointer text-luxury-text/60 dark:text-cream-bg/60 hover:text-emerald-luxury dark:hover:text-cream-bg"
               >
-                <Phone
-                  size={12}
-                  className={isPhoneHighlighted ? "animate-pulse" : ""}
-                />
+                <Phone size={12} />
                 {CONTACTS.phoneDisplay}
               </a>
 
@@ -350,16 +339,9 @@ export const Header = () => {
                 <a
                   href={`tel:${CONTACTS.phoneRaw}`}
                   onClick={handleCallClick}
-                  className={`flex items-center gap-2 text-sm transition-all duration-300 cursor-pointer ${
-                    isPhoneHighlighted
-                      ? "text-gold-hover font-bold scale-105"
-                      : "text-luxury-text/60 dark:text-cream-bg/60"
-                  }`}
+                  className="flex items-center gap-2 text-sm transition-colors duration-300 cursor-pointer text-luxury-text/60 dark:text-cream-bg/60 hover:text-gold-hover"
                 >
-                  <Phone
-                    size={14}
-                    className={isPhoneHighlighted ? "animate-pulse" : ""}
-                  />
+                  <Phone size={14} />
                   {CONTACTS.phoneDisplay}
                 </a>
 
