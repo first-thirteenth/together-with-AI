@@ -6,6 +6,7 @@ import { Services } from "./components/Services/Services";
 import { Reviews } from "./components/Reviews/Reviews";
 import { Footer } from "./components/Footer/Footer";
 import { LangProvider } from "./context/LangProvider";
+import { FloatingContact } from "./components/FloatingContact/FloatingContact";
 
 function App() {
   const { scrollYProgress } = useScroll();
@@ -23,6 +24,7 @@ function App() {
           className="fixed top-0 left-0 right-0 h-[2px] bg-gold-accent origin-left z-50 shadow-[0_0_8px_#c5a880]"
         />
         <Header />
+        <FloatingContact />
         <div className="relative">
           <main>
             <Home />
