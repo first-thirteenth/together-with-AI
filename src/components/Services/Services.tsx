@@ -1,10 +1,38 @@
 import { ArrowRight, Sparkles, Check } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import { useLang } from "../../context/useLang";
 import { CONTACTS } from "../../config/contacts";
 
+import type { Variants } from "framer-motion";
+
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 36, filter: "blur(4px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
+  },
+};
+
+const slideFromSide = (fromLeft: boolean): Variants => ({
+  hidden: { opacity: 0, x: fromLeft ? -48 : 48, filter: "blur(4px)" },
+  visible: {
+    opacity: 1,
+    x: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
+  },
+});
+
+const staggerGrid: Variants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.09, delayChildren: 0.1 },
+  },
+};
+
 export const Services = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
   const { t } = useLang();
 
   const services = [
@@ -18,58 +46,56 @@ export const Services = () => {
     { id: "appeal", ...t.services.items.appeal, popular: false },
   ];
 
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const cards = container.querySelectorAll(".fly-card");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entriesItem) => {
-          if (entriesItem.isIntersecting) {
-            entriesItem.target.classList.add("is-visible");
-          } else {
-            entriesItem.target.classList.remove("is-visible");
-          }
-        });
-      },
-      { threshold: 0.05, rootMargin: "0px 0px -20px 0px" },
-    );
-
-    cards.forEach((card) => observer.observe(card));
-    return () => cards.forEach((card) => observer.unobserve(card));
-  }, []);
-
   return (
     <section
       className="py-24 bg-cream-bg dark:bg-emerald-luxury transition-colors duration-500 relative z-20 overflow-hidden"
       id="services"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center space-y-4 mb-16">
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-emerald-luxury dark:text-cream-bg transition-colors duration-500">
+
+        {/* Section heading with stagger */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.14 } },
+          }}
+          className="text-center space-y-4 mb-16"
+        >
+          <motion.h2
+            variants={fadeInUp}
+            className="text-3xl sm:text-4xl font-extrabold tracking-tight text-emerald-luxury dark:text-cream-bg transition-colors duration-500"
+          >
             {t.services.titlePre}
             <span className="text-gold-hover dark:text-gold-accent">
               {t.services.titleAccent}
             </span>
-          </h2>
-          <p className="text-sm text-luxury-text/70 dark:text-cream-bg/70 max-w-xl mx-auto leading-relaxed transition-colors duration-500">
+          </motion.h2>
+          <motion.p
+            variants={fadeInUp}
+            className="text-sm text-luxury-text/70 dark:text-cream-bg/70 max-w-xl mx-auto leading-relaxed transition-colors duration-500"
+          >
             {t.services.description}
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
-        <div
-          ref={containerRef}
+        {/* Cards grid with stagger */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          variants={staggerGrid}
           className="grid grid-cols-1 md:grid-cols-2 gap-6"
         >
           {services.map((service, index) => {
             const isLeft = index % 2 === 0;
             return (
-              <div
+              <motion.div
                 key={service.id}
-                className={`bg-cream-card dark:bg-emerald-medium rounded-2xl p-6 sm:p-8 flex flex-col justify-between group transition-all duration-300 shadow-sm hover:shadow-md relative overflow-hidden fly-card ${
-                  isLeft ? "fly-from-left" : "fly-from-right"
-                } ${
+                variants={slideFromSide(isLeft)}
+                className={`bg-cream-card dark:bg-emerald-medium rounded-2xl p-6 sm:p-8 flex flex-col justify-between group transition-all duration-300 shadow-sm hover:shadow-md relative overflow-hidden will-change-[transform,opacity,filter] ${
                   service.popular
                     ? "border-2 border-gold-accent dark:border-gold-accent ring-1 ring-gold-accent/20"
                     : "border border-gold-accent/10 dark:border-gold-accent/20"
@@ -107,7 +133,8 @@ export const Services = () => {
                       const msg = encodeURIComponent(`Здравствуйте! Меня интересует услуга "${service.title}".`);
                       window.open(`${CONTACTS.telegram}?text=${msg}`, "_blank", "noreferrer");
                     }}
-                    className="text-emerald-medium dark:text-cream-bg/80 group-hover:text-gold-hover transition-colors duration-200 cursor-pointer text-xs flex items-center gap-1">
+                    className="text-emerald-medium dark:text-cream-bg/80 group-hover:text-gold-hover transition-colors duration-200 cursor-pointer text-xs flex items-center gap-1"
+                  >
                     {t.services.btnMore}{" "}
                     <ArrowRight
                       size={12}
@@ -115,11 +142,12 @@ export const Services = () => {
                     />
                   </button>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
 };
+

@@ -2,14 +2,15 @@ import { Award, BookOpen, CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import anastasiaPhoto from "../../assets/anastasia.jpg";
 import { useLang } from "../../context/useLang";
+import { AnimatedCounter } from "../AnimatedCounter/AnimatedCounter";
 
 const slideInLeft = {
-  hidden: { opacity: 0, x: -60, filter: "blur(8px)" },
+  hidden: { opacity: 0, x: -24, filter: "blur(6px)" },
   visible: {
     opacity: 1,
     x: 0,
     filter: "blur(0px)",
-    transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 1.1, ease: [0.25, 1, 0.5, 1] },
   },
 } as const;
 
@@ -44,7 +45,7 @@ export const About = () => {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
+            viewport={{ once: true, margin: "-40px" }}
             variants={slideInLeft}
             className="lg:col-span-5 relative justify-self-center lg:justify-self-start w-full max-w-md will-change-[transform,opacity,filter]"
           >
@@ -129,7 +130,8 @@ export const About = () => {
                 <Award className="text-gold-hover flex-shrink-0" size={22} />
                 <div>
                   <h4 className="font-bold text-emerald-luxury dark:text-cream-bg text-sm transition-colors duration-500">
-                    {t.about.stats.casesTitle}
+                    <AnimatedCounter target={350} suffix="+" />
+                    {" "}{t.about.stats.casesTitle.replace(/^[\d+.]+\s*/, "")}
                   </h4>
                   <p className="text-xs text-luxury-text/60 dark:text-cream-bg/60 transition-colors duration-500">
                     {t.about.stats.casesDesc}
@@ -144,7 +146,8 @@ export const About = () => {
                 <BookOpen className="text-gold-hover flex-shrink-0" size={22} />
                 <div>
                   <h4 className="font-bold text-emerald-luxury dark:text-cream-bg text-sm transition-colors duration-500">
-                    {t.about.stats.rateTitle}
+                    <AnimatedCounter target={98.6} suffix="%" decimals={1} />
+                    {" "}{t.about.stats.rateTitle.replace(/^[\d.]+%\s*/, "")}
                   </h4>
                   <p className="text-xs text-luxury-text/60 dark:text-cream-bg/60 transition-colors duration-500">
                     {t.about.stats.rateDesc}
