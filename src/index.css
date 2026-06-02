@@ -196,38 +196,38 @@ html.dark body {
 }
 
 .blob-1 {
-  width: 480px;
-  height: 480px;
-  top: -120px;
-  left: -80px;
-  background: radial-gradient(circle, rgba(197, 168, 128, 0.14) 0%, transparent 70%);
+  width: 600px;
+  height: 600px;
+  top: -150px;
+  left: -100px;
+  background: radial-gradient(circle, rgba(197, 168, 128, 0.45) 0%, rgba(197, 168, 128, 0.15) 40%, transparent 70%);
   animation: blobDrift1 18s ease-in-out infinite;
 }
 
 .blob-2 {
-  width: 380px;
-  height: 380px;
-  bottom: -100px;
-  right: -60px;
-  background: radial-gradient(circle, rgba(27, 77, 62, 0.12) 0%, transparent 70%);
+  width: 500px;
+  height: 500px;
+  bottom: -120px;
+  right: -80px;
+  background: radial-gradient(circle, rgba(27, 77, 62, 0.35) 0%, rgba(27, 77, 62, 0.12) 40%, transparent 70%);
   animation: blobDrift2 22s ease-in-out infinite;
 }
 
 .blob-3 {
-  width: 240px;
-  height: 240px;
-  top: 40%;
-  left: 55%;
-  background: radial-gradient(circle, rgba(197, 168, 128, 0.10) 0%, transparent 70%);
+  width: 320px;
+  height: 320px;
+  top: 35%;
+  left: 50%;
+  background: radial-gradient(circle, rgba(197, 168, 128, 0.30) 0%, transparent 70%);
   animation: blobDrift3 14s ease-in-out infinite;
 }
 
 .blob-4 {
-  width: 160px;
-  height: 160px;
-  top: 8%;
-  right: 12%;
-  background: radial-gradient(circle, rgba(197, 168, 128, 0.12) 0%, transparent 70%);
+  width: 220px;
+  height: 220px;
+  top: 5%;
+  right: 10%;
+  background: radial-gradient(circle, rgba(197, 168, 128, 0.35) 0%, transparent 70%);
   animation: blobDrift4 16s ease-in-out infinite;
 }
 
