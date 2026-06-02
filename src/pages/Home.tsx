@@ -18,11 +18,13 @@ export const Home = () => {
   const textY = useTransform(scrollYProgress, [0, 0.3], [0, -120]);
   const textOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
 
-  // Квиз удерживается на месте от 0.3 до 0.75 диапазона скролла
+  // Квиз удерживается на месте от 0.3 до 0.75 диапазона скролла.
+  // В удерживаемой фазе поднимаем его вверх (-130), чтобы он встал
+  // по центру экрана поверх уже скрытого текста.
   const quizY = useTransform(
     scrollYProgress,
     [0, 0.3, 0.75, 0.9],
-    [150, 0, 0, -150],
+    [150, -130, -130, -300],
   );
   const quizOpacity = useTransform(
     scrollYProgress,
