@@ -29,7 +29,9 @@ export const Home = () => {
   );
 
   const handleConsultation = () => {
-    console.log("Open consultation");
+    document
+      .getElementById("quiz")
+      ?.scrollIntoView({ behavior: "smooth", block: "center" });
   };
 
   return (
@@ -95,7 +97,7 @@ export const Home = () => {
                   </span>
                 </button>
 
-                <button className="hidden sm:inline-flex items-center justify-center bg-cream-card dark:bg-emerald-medium hover:bg-white dark:hover:bg-emerald-medium/50 border border-gold-accent/20 dark:border-gold-accent/30 text-emerald-medium dark:text-cream-bg font-semibold px-6 py-3 rounded-lg text-sm transition-all cursor-pointer shadow-sm w-full sm:w-auto">
+                <button className="hidden sm:inline-flex items-center justify-center bg-cream-card dark:bg-emerald-medium hover:bg-white dark:hover:bg-emerald-medium/50 border border-gold-accent/20 dark:border-gold-accent/30 text-emerald-medium dark:text-cream-bg font-semibold px-6 py-3 rounded-lg text-sm transition-all cursor-pointer shadow-sm w-full sm:w-auto" onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}>
                   {t.home.btnPrograms}
                 </button>
               </div>
@@ -116,7 +118,7 @@ export const Home = () => {
             >
               <div className="absolute -inset-1 bg-gradient-to-r from-gold-accent/20 to-transparent rounded-2xl blur opacity-30"></div>
 
-              <div className="relative bg-emerald-luxury dark:bg-[#081b15] p-5 sm:p-8 rounded-2xl shadow-2xl border border-gold-accent/15 dark:border-gold-accent/20 transition-colors duration-500">
+              <div className="relative bg-emerald-luxury dark:bg-[#081b15] p-5 sm:p-8 rounded-2xl shadow-2xl border border-gold-accent/15 dark:border-gold-accent/20 transition-colors duration-500" id="quiz">
                 <h3 className="text-lg sm:text-xl font-bold mb-1 text-cream-bg">
                   {t.home.quizTitle}
                 </h3>
