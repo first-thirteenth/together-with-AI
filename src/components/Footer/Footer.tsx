@@ -1,15 +1,20 @@
+import { useState } from "react";
 import { Feather, ShieldCheck, Send, MessageCircle } from "lucide-react";
 import { useLang } from "../../context/useLang";
 import { CONTACTS } from "../../config/contacts";
+import { LegalModal } from "../LegalModal/LegalModal";
 
 export const Footer = () => {
   const { t } = useLang();
+  const [legalDoc, setLegalDoc] = useState<"privacy" | "terms" | null>(null);
 
   return (
-    <footer
-      className="bg-emerald-luxury border-t border-gold-accent/20 text-cream-bg/60 text-xs py-12 relative z-20"
-      id="contacts"
-    >
+    <>
+      <LegalModal doc={legalDoc} onClose={() => setLegalDoc(null)} />
+      <footer
+        className="bg-emerald-luxury border-t border-gold-accent/20 text-cream-bg/60 text-xs py-12 relative z-20"
+        id="contacts"
+      >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 border-b border-gold-accent/10 pb-8">
           <div className="md:col-span-4 space-y-3">
@@ -29,7 +34,7 @@ export const Footer = () => {
               {t.footer.requisitesTitle}
             </h4>
             <p className="text-cream-bg/80">{t.footer.requisitesLawyer}</p>
-            <p>NIP: 5250000000 / KRS: 0000000000</p>
+            <p>NIP: 5833480794 / REGON: 525583417</p>
             <p className="text-cream-bg/80">{t.footer.requisitesAddress}</p>
           </div>
 
@@ -87,12 +92,18 @@ export const Footer = () => {
             <h4 className="text-gold-accent font-semibold text-xs uppercase tracking-wider mb-1">
               {t.footer.docsTitle}
             </h4>
-            <a href="#" className="block hover:text-cream-bg transition-colors">
+            <button
+              onClick={() => setLegalDoc("privacy")}
+              className="block hover:text-cream-bg transition-colors text-left"
+            >
               {t.footer.docsCookies}
-            </a>
-            <a href="#" className="block hover:text-cream-bg transition-colors">
+            </button>
+            <button
+              onClick={() => setLegalDoc("terms")}
+              className="block hover:text-cream-bg transition-colors text-left"
+            >
               {t.footer.docsAgreement}
-            </a>
+            </button>
           </div>
         </div>
 
@@ -108,5 +119,6 @@ export const Footer = () => {
         </div>
       </div>
     </footer>
+    </>
   );
 };
