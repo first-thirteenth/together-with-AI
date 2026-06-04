@@ -387,7 +387,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       docsCookies: "Политика куки",
       docsAgreement: "Соглашение",
       copyrightPost:
-        " Лёгкая легализация с Анастасией Лапо. Все права защищены.",
+        " Лёгкая легализация с Anastazja Łapo. Все права защищены.",
       sslText: "Защищено SSL шифрованием",
     },
     floatingContact: {
@@ -1306,7 +1306,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       docsCookies: "Політика кукі",
       docsAgreement: "Угода",
       copyrightPost:
-        " Легка легалізація з Анастасією Лапо. Всі права захищені.",
+        " Легка легалізація з Anastazja Łapo. Всі права захищені.",
       sslText: "Захищено SSL шифруванням",
     },
     floatingContact: {
