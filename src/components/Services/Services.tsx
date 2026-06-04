@@ -10,23 +10,26 @@ const fadeInUp: Variants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: {
-      type: "spring",
-      stiffness: 260,
-      damping: 24,
-    },
+    transition: { type: "spring", stiffness: 300, damping: 22 },
   },
 };
 
-const cardWave: Variants = {
-  hidden: { opacity: 0, y: 60 },
+const cardPop: Variants = {
+  hidden: {
+    opacity: 0,
+    scale: 0.6,
+    y: 40,
+    rotate: -4,
+  },
   visible: {
     opacity: 1,
+    scale: 1,
     y: 0,
+    rotate: 0,
     transition: {
       type: "spring",
-      stiffness: 180,
-      damping: 18,
+      stiffness: 400,
+      damping: 16,
     },
   },
 };
@@ -34,7 +37,7 @@ const cardWave: Variants = {
 const staggerGrid: Variants = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.1, delayChildren: 0.05 },
+    transition: { staggerChildren: 0.07, delayChildren: 0.05 },
   },
 };
 
@@ -98,7 +101,7 @@ export const Services = () => {
             return (
               <motion.div
                 key={service.id}
-                variants={cardWave}
+                variants={cardPop}
                 className={`bg-cream-card dark:bg-emerald-medium rounded-2xl p-6 sm:p-8 flex flex-col justify-between group transition-all duration-300 shadow-sm hover:shadow-md relative overflow-hidden will-change-[transform,opacity,filter] ${
                   service.popular
                     ? "border-2 border-gold-accent dark:border-gold-accent ring-1 ring-gold-accent/20"
