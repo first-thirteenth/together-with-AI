@@ -100,6 +100,12 @@ export interface FooterSectionSchema {
   sslText: string;
 }
 
+export interface LegalDocSchema {
+  title: string;
+  lastUpdated: string;
+  sections: { heading: string; body: string }[];
+}
+
 export interface TranslationSchema {
   header: {
     main: string;
@@ -135,6 +141,11 @@ export interface TranslationSchema {
   footer: FooterSectionSchema;
   floatingContact: {
     label: string;
+  };
+  legalModal: {
+    close: string;
+    privacyPolicy: LegalDocSchema;
+    terms: LegalDocSchema;
   };
   cookie: {
     title: string;
@@ -358,7 +369,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       brandDesc:
         "Экспертное сопровождение миграционных процессов, оформление ВНЖ, релокация бизнеса и комплаенс. Лёгкий путь в любую точку мира.",
       requisitesTitle: "Реквизиты и адрес",
-      requisitesLawyer: "Юрист Анастасия Лапо (Kancelaria Prawna)",
+      requisitesLawyer: "Анастасия Лапо (ИП, Wpis do CEIDG)",
       requisitesAddress:
         "Адрес офиса: Al. Jerozolimskie 56, 00-803 Warszawa, Polska",
       contactsTitle: "Быстрая связь",
@@ -371,6 +382,69 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
     },
     floatingContact: {
       label: "Написать в Telegram",
+    },
+    legalModal: {
+      close: "Закрыть",
+      privacyPolicy: {
+        title: "Политика конфиденциальности",
+        lastUpdated: "Последнее обновление: 1 июня 2025 г.",
+        sections: [
+          {
+            heading: "1. Администратор данных",
+            body: "Администратором ваших персональных данных является Анастасия Лапо, осуществляющая деятельность на основании записи в CEIDG, NIP: 5833480794, REGON: 525583417. Контактный e-mail: anastazja.lapo@gmail.com.",
+          },
+          {
+            heading: "2. Какие данные мы собираем",
+            body: "При заполнении анкеты-квиза мы собираем: ваше имя, номер телефона или логин Telegram, а также ответы на вопросы анкеты о вашей ситуации с легализацией.",
+          },
+          {
+            heading: "3. Цель обработки данных",
+            body: "Данные используются исключительно для предоставления юридической консультации по вопросам легализации в Польше. Основание — ст. 6(1)(b) GDPR (выполнение договора / преддоговорные действия).",
+          },
+          {
+            heading: "4. Передача данных третьим лицам",
+            body: "Данные из формы передаются через защищённый Telegram-бот непосредственно юристу Анастасии Лапо. Данные не продаются, не передаются и не используются в маркетинговых целях.",
+          },
+          {
+            heading: "5. Файлы cookie",
+            body: "Сайт использует технические cookie (необходимые для работы) и аналитические cookie (при вашем согласии). Вы можете управлять cookie через баннер в нижней части страницы.",
+          },
+          {
+            heading: "6. Ваши права",
+            body: "Вы имеете право на доступ к данным, их исправление, удаление, ограничение обработки и возражение против обработки. Чтобы воспользоваться правами, напишите на e-mail администратора.",
+          },
+          {
+            heading: "7. Хранение данных",
+            body: "Данные хранятся не дольше, чем необходимо для оказания услуги и выполнения правовых обязательств. По вашему запросу данные будут удалены.",
+          },
+        ],
+      },
+      terms: {
+        title: "Пользовательское соглашение",
+        lastUpdated: "Последнее обновление: 1 июня 2025 г.",
+        sections: [
+          {
+            heading: "1. Предоставляемые услуги",
+            body: "Анастасия Лапо оказывает юридические консультации по вопросам легализации пребывания в Польше: ВНЖ, карта побыту, рабочие разрешения, воссоединение семьи и иные миграционные вопросы.",
+          },
+          {
+            heading: "2. Консультация через сайт",
+            body: "Заполняя анкету на сайте, вы инициируете запрос на консультацию. Это не является заключением договора на оказание юридических услуг. Договор заключается отдельно после первичного контакта.",
+          },
+          {
+            heading: "3. Ответственность",
+            body: "Информация на сайте носит общий ознакомительный характер и не является юридической консультацией. Результат дела зависит от индивидуальных обстоятельств и не может быть гарантирован.",
+          },
+          {
+            heading: "4. Оплата",
+            body: "Стоимость услуг согласовывается индивидуально в ходе первичной консультации. Указанные на сайте цены являются ориентировочными и могут меняться в зависимости от сложности дела.",
+          },
+          {
+            heading: "5. Контактные данные",
+            body: "ANASTAZJA ŁAPO, Wpis do CEIDG, NIP: 5833480794, REGON: 525583417. Тел.: +48 571 053 915. Telegram: @AnastaziALappo.",
+          },
+        ],
+      },
     },
     cookie: {
       title: "Мы используем файлы cookie",
@@ -598,7 +672,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       brandDesc:
         "Eksperckie wsparcie procesów migracyjnych, karty pobytu, relokacja biznesu i compliance. Łatwa droga w dowolne miejsce na świecie.",
       requisitesTitle: "Dane firmy i adres",
-      requisitesLawyer: "Prawnik Anastazja Łapo (Kancelaria Prawna)",
+      requisitesLawyer: "Anastazja Łapo (działalność gosp., Wpis do CEIDG)",
       requisitesAddress:
         "Adres biura: Al. Jerozolimskie 56, 00-803 Warszawa, Polska",
       contactsTitle: "Szybki kontakt",
@@ -611,6 +685,69 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
     },
     floatingContact: {
       label: "Napisz na Telegram",
+    },
+    legalModal: {
+      close: "Zamknij",
+      privacyPolicy: {
+        title: "Polityka prywatności",
+        lastUpdated: "Ostatnia aktualizacja: 1 czerwca 2025 r.",
+        sections: [
+          {
+            heading: "1. Administrator danych",
+            body: "Administratorem Twoich danych osobowych jest Anastazja Łapo, prowadząca działalność gospodarczą wpisaną do CEIDG, NIP: 5833480794, REGON: 525583417. Kontakt e-mail: anastazja.lapo@gmail.com.",
+          },
+          {
+            heading: "2. Jakie dane zbieramy",
+            body: "Wypełniając formularz-quiz, zbieramy: Twoje imię, numer telefonu lub login Telegram oraz odpowiedzi na pytania dotyczące Twojej sytuacji legalizacyjnej.",
+          },
+          {
+            heading: "3. Cel przetwarzania danych",
+            body: "Dane są wykorzystywane wyłącznie w celu udzielenia porady prawnej w zakresie legalizacji pobytu w Polsce. Podstawa prawna — art. 6(1)(b) RODO (wykonanie umowy / działania przedumowne).",
+          },
+          {
+            heading: "4. Przekazywanie danych",
+            body: "Dane z formularza są przekazywane za pośrednictwem zabezpieczonego bota Telegram bezpośrednio do prawnika Anastazji Łapo. Dane nie są sprzedawane ani udostępniane w celach marketingowych.",
+          },
+          {
+            heading: "5. Pliki cookie",
+            body: "Strona używa technicznych plików cookie (niezbędnych do działania) oraz analitycznych (za Twoją zgodą). Możesz zarządzać plikami cookie przez baner na dole strony.",
+          },
+          {
+            heading: "6. Twoje prawa",
+            body: "Przysługuje Ci prawo dostępu do danych, ich sprostowania, usunięcia, ograniczenia przetwarzania oraz sprzeciwu wobec przetwarzania. Aby skorzystać z praw, napisz na adres e-mail administratora.",
+          },
+          {
+            heading: "7. Przechowywanie danych",
+            body: "Dane są przechowywane nie dłużej niż jest to konieczne do świadczenia usługi i wypełnienia obowiązków prawnych. Na Twój wniosek dane zostaną usunięte.",
+          },
+        ],
+      },
+      terms: {
+        title: "Regulamin",
+        lastUpdated: "Ostatnia aktualizacja: 1 czerwca 2025 r.",
+        sections: [
+          {
+            heading: "1. Świadczone usługi",
+            body: "Anastazja Łapo świadczy porady prawne w zakresie legalizacji pobytu w Polsce: karta pobytu, zezwolenie na pracę, łączenie rodzin i inne kwestie migracyjne.",
+          },
+          {
+            heading: "2. Konsultacja przez stronę",
+            body: "Wypełniając formularz na stronie, inicjujesz zapytanie o konsultację. Nie stanowi to zawarcia umowy o świadczenie usług prawnych. Umowa jest zawierana oddzielnie po pierwszym kontakcie.",
+          },
+          {
+            heading: "3. Odpowiedzialność",
+            body: "Informacje na stronie mają charakter ogólnoinformacyjny i nie stanowią porady prawnej. Wynik sprawy zależy od indywidualnych okoliczności i nie może być gwarantowany.",
+          },
+          {
+            heading: "4. Wynagrodzenie",
+            body: "Ceny usług są ustalane indywidualnie podczas pierwszej konsultacji. Podane na stronie ceny są orientacyjne i mogą się różnić w zależności od złożoności sprawy.",
+          },
+          {
+            heading: "5. Dane kontaktowe",
+            body: "ANASTAZJA ŁAPO, Wpis do CEIDG, NIP: 5833480794, REGON: 525583417. Tel.: +48 571 053 915. Telegram: @AnastaziALappo.",
+          },
+        ],
+      },
     },
     cookie: {
       title: "Używamy plików cookie",
@@ -835,7 +972,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       brandDesc:
         "Expert guidance on migration processes, residence permits, business relocation, and compliance. An easy path to anywhere in the world.",
       requisitesTitle: "Company Details & Address",
-      requisitesLawyer: "Lawyer Anastazja Łapo (Kancelaria Prawna)",
+      requisitesLawyer: "Anastazja Łapo (sole trader, Wpis do CEIDG)",
       requisitesAddress:
         "Office address: Al. Jerozolimskie 56, 00-803 Warszawa, Poland",
       contactsTitle: "Quick Contact",
@@ -848,6 +985,69 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
     },
     floatingContact: {
       label: "Message on Telegram",
+    },
+    legalModal: {
+      close: "Close",
+      privacyPolicy: {
+        title: "Privacy Policy",
+        lastUpdated: "Last updated: 1 June 2025",
+        sections: [
+          {
+            heading: "1. Data Controller",
+            body: "The data controller is Anastazja Łapo, sole trader registered in CEIDG, NIP: 5833480794, REGON: 525583417. Contact e-mail: anastazja.lapo@gmail.com.",
+          },
+          {
+            heading: "2. Data We Collect",
+            body: "When completing the quiz form, we collect: your name, phone number or Telegram username, and your answers regarding your legalisation situation.",
+          },
+          {
+            heading: "3. Purpose of Processing",
+            body: "Data is used solely to provide legal advice on legalisation in Poland. Legal basis — Art. 6(1)(b) GDPR (performance of a contract / pre-contractual steps).",
+          },
+          {
+            heading: "4. Data Sharing",
+            body: "Form data is transmitted via a secure Telegram bot directly to lawyer Anastazja Łapo. Data is never sold or shared for marketing purposes.",
+          },
+          {
+            heading: "5. Cookies",
+            body: "This site uses technical cookies (necessary for operation) and analytical cookies (with your consent). You can manage cookies via the banner at the bottom of the page.",
+          },
+          {
+            heading: "6. Your Rights",
+            body: "You have the right to access, rectify, erase, restrict, and object to processing of your data. To exercise your rights, contact the data controller by e-mail.",
+          },
+          {
+            heading: "7. Data Retention",
+            body: "Data is retained only as long as necessary to provide the service and fulfil legal obligations. Upon your request, data will be deleted.",
+          },
+        ],
+      },
+      terms: {
+        title: "Terms of Service",
+        lastUpdated: "Last updated: 1 June 2025",
+        sections: [
+          {
+            heading: "1. Services Provided",
+            body: "Anastazja Łapo provides legal consultations on legalisation of stay in Poland: residence permits, work permits, family reunification, and other migration matters.",
+          },
+          {
+            heading: "2. Consultation via Website",
+            body: "By completing the form on this site, you initiate a consultation request. This does not constitute a legal services agreement. A contract is concluded separately after initial contact.",
+          },
+          {
+            heading: "3. Liability",
+            body: "Information on this site is for general informational purposes only and does not constitute legal advice. Outcomes depend on individual circumstances and cannot be guaranteed.",
+          },
+          {
+            heading: "4. Fees",
+            body: "Service fees are agreed individually during the initial consultation. Prices shown on the site are indicative and may vary depending on case complexity.",
+          },
+          {
+            heading: "5. Contact Details",
+            body: "ANASTAZJA ŁAPO, Wpis do CEIDG, NIP: 5833480794, REGON: 525583417. Tel.: +48 571 053 915. Telegram: @AnastaziALappo.",
+          },
+        ],
+      },
     },
     cookie: {
       title: "We use cookies",
@@ -1072,7 +1272,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       brandDesc:
         "Експертний супровід міграційних процесів, оформлення посвідок, релокація бізнесу та комплаєнс. Легкий шлях у будь-яку точку світу.",
       requisitesTitle: "Реквізити та адреса",
-      requisitesLawyer: "Юрист Анастасія Лапо (Kancelaria Prawna)",
+      requisitesLawyer: "Анастасія Лапо (ФОП, Wpis do CEIDG)",
       requisitesAddress:
         "Адреса офісу: Al. Jerozolimskie 56, 00-803 Warszawa, Polska",
       contactsTitle: "Швидкий зв'язок",
@@ -1085,6 +1285,69 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
     },
     floatingContact: {
       label: "Написати в Telegram",
+    },
+    legalModal: {
+      close: "Закрити",
+      privacyPolicy: {
+        title: "Політика конфіденційності",
+        lastUpdated: "Останнє оновлення: 1 червня 2025 р.",
+        sections: [
+          {
+            heading: "1. Адміністратор даних",
+            body: "Адміністратором ваших персональних даних є Анастасія Лапо, яка провадить діяльність на підставі запису до CEIDG, NIP: 5833480794, REGON: 525583417. Контактний e-mail: anastazja.lapo@gmail.com.",
+          },
+          {
+            heading: "2. Які дані ми збираємо",
+            body: "При заповненні анкети-квізу ми збираємо: ваше ім'я, номер телефону або логін Telegram, а також відповіді на запитання про вашу ситуацію з легалізацією.",
+          },
+          {
+            heading: "3. Мета обробки даних",
+            body: "Дані використовуються виключно для надання юридичної консультації з питань легалізації в Польщі. Підстава — ст. 6(1)(b) GDPR (виконання договору / передддоговірні дії).",
+          },
+          {
+            heading: "4. Передача даних",
+            body: "Дані з форми передаються через захищений Telegram-бот безпосередньо юристу Анастасії Лапо. Дані не продаються і не передаються для маркетингових цілей.",
+          },
+          {
+            heading: "5. Файли cookie",
+            body: "Сайт використовує технічні файли cookie (необхідні для роботи) та аналітичні (за вашою згодою). Ви можете керувати cookie через банер у нижній частині сторінки.",
+          },
+          {
+            heading: "6. Ваші права",
+            body: "Ви маєте право на доступ до даних, їх виправлення, видалення, обмеження обробки та заперечення проти обробки. Щоб скористатися правами, напишіть на e-mail адміністратора.",
+          },
+          {
+            heading: "7. Зберігання даних",
+            body: "Дані зберігаються не довше, ніж необхідно для надання послуги та виконання правових зобов'язань. На ваш запит дані будуть видалені.",
+          },
+        ],
+      },
+      terms: {
+        title: "Угода про використання",
+        lastUpdated: "Останнє оновлення: 1 червня 2025 р.",
+        sections: [
+          {
+            heading: "1. Послуги, що надаються",
+            body: "Анастасія Лапо надає юридичні консультації з питань легалізації перебування в Польщі: посвідка на проживання, дозвіл на роботу, возз'єднання сім'ї та інші міграційні питання.",
+          },
+          {
+            heading: "2. Консультація через сайт",
+            body: "Заповнюючи анкету на сайті, ви ініціюєте запит на консультацію. Це не є укладенням договору про надання юридичних послуг. Договір укладається окремо після першого контакту.",
+          },
+          {
+            heading: "3. Відповідальність",
+            body: "Інформація на сайті має загальний ознайомчий характер і не є юридичною консультацією. Результат справи залежить від індивідуальних обставин і не може бути гарантований.",
+          },
+          {
+            heading: "4. Оплата",
+            body: "Вартість послуг узгоджується індивідуально під час першої консультації. Зазначені на сайті ціни є орієнтовними і можуть змінюватися залежно від складності справи.",
+          },
+          {
+            heading: "5. Контактні дані",
+            body: "ANASTAZJA ŁAPO, Wpis do CEIDG, NIP: 5833480794, REGON: 525583417. Тел.: +48 571 053 915. Telegram: @AnastaziALappo.",
+          },
+        ],
+      },
     },
     cookie: {
       title: "Ми використовуємо файли cookie",
