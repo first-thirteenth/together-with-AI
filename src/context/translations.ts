@@ -371,7 +371,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       requisitesTitle: "Реквизиты и адрес",
       requisitesLawyer: "Анастасия Лапо (ИП, Wpis do CEIDG)",
       requisitesAddress:
-        "Адрес офиса: Al. Jerozolimskie 56, 00-803 Warszawa, Polska",
+        "Адрес офиса: ul. Lawendowe Wzgórze 33/8, 80-175 Gdańsk, Polska",
       contactsTitle: "Быстрая связь",
       docsTitle: "Документы",
       docsCookies: "Политика куки",
@@ -674,7 +674,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       requisitesTitle: "Dane firmy i adres",
       requisitesLawyer: "Anastazja Łapo (działalność gosp., Wpis do CEIDG)",
       requisitesAddress:
-        "Adres biura: Al. Jerozolimskie 56, 00-803 Warszawa, Polska",
+        "Adres biura: ul. Lawendowe Wzgórze 33/8, 80-175 Gdańsk, Polska",
       contactsTitle: "Szybki kontakt",
       docsTitle: "Dokumenty",
       docsCookies: "Polika cookies",
@@ -974,7 +974,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       requisitesTitle: "Company Details & Address",
       requisitesLawyer: "Anastazja Łapo (sole trader, Wpis do CEIDG)",
       requisitesAddress:
-        "Office address: Al. Jerozolimskie 56, 00-803 Warszawa, Poland",
+        "Office address: ul. Lawendowe Wzgórze 33/8, 80-175 Gdańsk, Poland",
       contactsTitle: "Quick Contact",
       docsTitle: "Documents",
       docsCookies: "Cookies Policy",
@@ -1274,7 +1274,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       requisitesTitle: "Реквізити та адреса",
       requisitesLawyer: "Анастасія Лапо (ФОП, Wpis do CEIDG)",
       requisitesAddress:
-        "Адреса офісу: Al. Jerozolimskie 56, 00-803 Warszawa, Polska",
+        "Адреса офісу: ul. Lawendowe Wzgórze 33/8, 80-175 Gdańsk, Polska",
       contactsTitle: "Швидкий зв'язок",
       docsTitle: "Документи",
       docsCookies: "Політика кукі",
