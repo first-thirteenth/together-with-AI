@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useAnimate } from "framer-motion";
 import { Send, Coffee } from "lucide-react";
 import { CONTACTS } from "../../config/contacts";
 import { useLang } from "../../context/useLang";
@@ -9,6 +9,7 @@ export const FloatingContact = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isDismissed, setIsDismissed] = useState(false);
   const [showCoffeeTooltip, setShowCoffeeTooltip] = useState(false);
+  const [coffeeScope, coffeeAnimate] = useAnimate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,6 +18,30 @@ export const FloatingContact = () => {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Wiggle loop: spin in on mount, then wiggle every 4s
+  useEffect(() => {
+    if (!isVisible || isDismissed) return;
+
+    let cancelled = false;
+
+    const runLoop = async () => {
+      await new Promise((r) => setTimeout(r, 600));
+      while (!cancelled) {
+        await coffeeAnimate(
+          coffeeScope.current,
+          { rotate: [0, -18, 18, -12, 12, -6, 6, 0] },
+          { duration: 0.7, ease: "easeInOut" },
+        );
+        await new Promise((r) => setTimeout(r, 4000));
+      }
+    };
+
+    runLoop();
+    return () => {
+      cancelled = true;
+    };
+  }, [isVisible, isDismissed, coffeeAnimate, coffeeScope]);
 
   if (isDismissed) return null;
 
@@ -30,11 +55,11 @@ export const FloatingContact = () => {
           transition={{ type: "spring", stiffness: 260, damping: 20 }}
           className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3"
         >
-          {/* Coffee button — round with tooltip */}
+          {/* Coffee button — round with tooltip and wiggle */}
           <motion.div
-            initial={{ opacity: 0, scale: 0, y: 10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ delay: 0.15, type: "spring", stiffness: 300, damping: 22 }}
+            initial={{ opacity: 0, scale: 0, rotate: -180 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            transition={{ delay: 0.15, type: "spring", stiffness: 280, damping: 14 }}
             className="relative"
             onMouseEnter={() => setShowCoffeeTooltip(true)}
             onMouseLeave={() => setShowCoffeeTooltip(false)}
@@ -53,7 +78,6 @@ export const FloatingContact = () => {
                     pointer-events-none"
                 >
                   {t.floatingContact.coffeeLabel}
-                  {/* Arrow */}
                   <span className="absolute right-[-6px] top-1/2 -translate-y-1/2 w-0 h-0
                     border-t-[6px] border-t-transparent
                     border-b-[6px] border-b-transparent
@@ -64,6 +88,7 @@ export const FloatingContact = () => {
             </AnimatePresence>
 
             <a
+              ref={coffeeScope}
               href={CONTACTS.buycoffee}
               target="_blank"
               rel="noreferrer"
@@ -72,7 +97,7 @@ export const FloatingContact = () => {
                 bg-gold-accent text-emerald-luxury
                 dark:bg-emerald-medium dark:text-gold-accent
                 hover:scale-110 active:scale-95
-                transition-all duration-300 hover:shadow-xl
+                transition-[transform,box-shadow] duration-300 hover:shadow-xl
                 will-change-[transform]"
             >
               <Coffee size={20} strokeWidth={2} />
@@ -92,7 +117,6 @@ export const FloatingContact = () => {
               <span className="text-[10px] leading-none">✕</span>
             </motion.button>
 
-            {/* Telegram main button */}
             <a
               href={CONTACTS.telegram}
               target="_blank"
