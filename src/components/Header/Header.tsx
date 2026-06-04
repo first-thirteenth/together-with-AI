@@ -363,24 +363,34 @@ export const Header = () => {
                   animate={
                     isPhoneHighlighted
                       ? {
-                          color: ["#b89a4e", "#d4af37", "#b89a4e"],
-                          scale: [1, 1.08, 1.04, 1.08, 1],
-                          textShadow: [
-                            "0 0 0px #d4af3700",
-                            "0 0 12px #d4af37aa",
-                            "0 0 6px #d4af3766",
-                            "0 0 14px #d4af37cc",
-                            "0 0 0px #d4af3700",
+                          color: ["#b89a4e", "#d4af37", "#b89a4e", "#d4af37", "#b89a4e"],
+                          backgroundColor: [
+                            "rgba(212,175,55,0)",
+                            "rgba(212,175,55,0.12)",
+                            "rgba(212,175,55,0.06)",
+                            "rgba(212,175,55,0.14)",
+                            "rgba(212,175,55,0)",
+                          ],
+                          boxShadow: [
+                            "0 0 0px rgba(212,175,55,0)",
+                            "0 0 0 2px rgba(212,175,55,0.4)",
+                            "0 0 0 1px rgba(212,175,55,0.2)",
+                            "0 0 0 2px rgba(212,175,55,0.5)",
+                            "0 0 0px rgba(212,175,55,0)",
                           ],
                         }
-                      : { scale: 1, textShadow: "0 0 0px #d4af3700" }
+                      : {
+                          color: "inherit",
+                          backgroundColor: "rgba(212,175,55,0)",
+                          boxShadow: "0 0 0px rgba(212,175,55,0)",
+                        }
                   }
                   transition={
                     isPhoneHighlighted
                       ? { duration: 2.2, ease: "easeInOut" }
                       : { duration: 0.4 }
                   }
-                  className="flex items-center gap-2 text-sm transition-colors duration-300 cursor-pointer text-luxury-text/60 dark:text-cream-bg/60"
+                  className="flex items-center gap-2 text-sm cursor-pointer text-luxury-text/60 dark:text-cream-bg/60 rounded-lg px-2 py-1 -mx-2 -my-1"
                 >
                   <Phone size={14} />
                   {CONTACTS.phoneDisplay}
