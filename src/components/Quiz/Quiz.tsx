@@ -51,7 +51,7 @@ export const Quiz = () => {
     const TELEGRAM_CHAT_ID = import.meta.env.VITE_TELEGRAM_CHAT_ID as string;
 
     if (!TELEGRAM_TOKEN || !TELEGRAM_CHAT_ID) {
-      alert("Ошибка конфигурации формы. Пожалуйста, свяжитесь напрямую.");
+      alert(t.quiz.configError);
       setIsSending(false);
       return;
     }
@@ -118,9 +118,7 @@ export const Quiz = () => {
       }
     } catch (error) {
       console.error("Network error:", error);
-      alert(
-        "Произошла ошибка при отправке данных. Проверьте сеть или включите VPN, если Telegram заблокирован вашим провайдером.",
-      );
+      alert(t.quiz.networkError);
     } finally {
       setIsSending(false);
     }

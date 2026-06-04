@@ -136,7 +136,7 @@ export const Services = () => {
                   <button
                     onClick={() => {
                       const msg = encodeURIComponent(
-                        `Здравствуйте! Меня интересует услуга "${service.title}".`,
+                        `${t.quiz.inquiryMessage} "${service.title}".`,
                       );
                       window.open(
                         `${CONTACTS.telegram}?text=${msg}`,
