@@ -386,36 +386,36 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
     legalModal: {
       close: "Закрыть",
       privacyPolicy: {
-        title: "Политика конфиденциальности",
-        lastUpdated: "Последнее обновление: 1 июня 2025 г.",
+        title: "Информация GDPR / Согласие на обработку персональных данных",
+        lastUpdated: "В соответствии с Регламентом ЕС 2016/679 (GDPR)",
         sections: [
           {
             heading: "1. Администратор данных",
-            body: "Администратором ваших персональных данных является Анастасия Лапо, осуществляющая деятельность на основании записи в CEIDG, NIP: 5833480794, REGON: 525583417. Контактный e-mail: anastazja.lapo@gmail.com.",
+            body: "Администратором ваших персональных данных являюсь я — Анастасия Лапо, осуществляющая предпринимательскую деятельность в сфере услуг по легализации.",
           },
           {
-            heading: "2. Какие данные мы собираем",
-            body: "При заполнении анкеты-квиза мы собираем: ваше имя, номер телефона или логин Telegram, а также ответы на вопросы анкеты о вашей ситуации с легализацией.",
+            heading: "2. Цель обработки данных",
+            body: "Ваши персональные данные (в частности: имя и фамилия, дата рождения, гражданство, номер паспорта, PESEL, адрес проживания, контактные данные и копии документов) будут обрабатываться исключительно в целях: подготовки и ведения дел, связанных с легализацией пребывания и/или работы в Польше; контакта с клиентом в рамках оказания услуги.",
           },
           {
-            heading: "3. Цель обработки данных",
-            body: "Данные используются исключительно для предоставления юридической консультации по вопросам легализации в Польше. Основание — ст. 6(1)(b) GDPR (выполнение договора / преддоговорные действия).",
+            heading: "3. Добровольность предоставления данных",
+            body: "Предоставление персональных данных является добровольным, однако необходимым для оказания услуги.",
           },
           {
             heading: "4. Передача данных третьим лицам",
-            body: "Данные из формы передаются через защищённый Telegram-бот непосредственно юристу Анастасии Лапо. Данные не продаются, не передаются и не используются в маркетинговых целях.",
+            body: "Данные не будут передаваться третьим лицам, за исключением государственных органов, уполномоченных законодательством (например, воеводское управление).",
           },
           {
-            heading: "5. Файлы cookie",
-            body: "Сайт использует технические cookie (необходимые для работы) и аналитические cookie (при вашем согласии). Вы можете управлять cookie через баннер в нижней части страницы.",
+            heading: "5. Хранение данных",
+            body: "Данные будут храниться исключительно в течение срока, необходимого для оказания услуги, а также установленного действующим законодательством.",
           },
           {
             heading: "6. Ваши права",
-            body: "Вы имеете право на доступ к данным, их исправление, удаление, ограничение обработки и возражение против обработки. Чтобы воспользоваться правами, напишите на e-mail администратора.",
+            body: "Вы имеете право на доступ к своим данным, их исправление, удаление, ограничение обработки, а также на возражение против обработки.",
           },
           {
-            heading: "7. Хранение данных",
-            body: "Данные хранятся не дольше, чем необходимо для оказания услуги и выполнения правовых обязательств. По вашему запросу данные будут удалены.",
+            heading: "7. Согласие",
+            body: "Отправка документов и персональных данных в электронном виде означает согласие на их обработку в соответствии с настоящей информацией.",
           },
         ],
       },
@@ -689,36 +689,36 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
     legalModal: {
       close: "Zamknij",
       privacyPolicy: {
-        title: "Polityka prywatności",
-        lastUpdated: "Ostatnia aktualizacja: 1 czerwca 2025 r.",
+        title: "Informacja RODO / Zgoda na przetwarzanie danych osobowych",
+        lastUpdated: "Zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 (RODO)",
         sections: [
           {
-            heading: "1. Administrator danych",
-            body: "Administratorem Twoich danych osobowych jest Anastazja Łapo, prowadząca działalność gospodarczą wpisaną do CEIDG, NIP: 5833480794, REGON: 525583417. Kontakt e-mail: anastazja.lapo@gmail.com.",
+            heading: "1. Administrator danych osobowych",
+            body: "Administratorem Państwa danych osobowych jestem ja – Anastazja Łapo, prowadząca działalność gospodarczą w zakresie usług legalizacyjnych.",
           },
           {
-            heading: "2. Jakie dane zbieramy",
-            body: "Wypełniając formularz-quiz, zbieramy: Twoje imię, numer telefonu lub login Telegram oraz odpowiedzi na pytania dotyczące Twojej sytuacji legalizacyjnej.",
+            heading: "2. Cel przetwarzania danych",
+            body: "Państwa dane osobowe (w szczególności: imię i nazwisko, data urodzenia, obywatelstwo, numer paszportu, PESEL, adres zamieszkania, dane kontaktowe oraz kopie dokumentów) będą przetwarzane wyłącznie w celu: przygotowania i prowadzenia spraw związanych z legalizacją pobytu i/lub pracy w Polsce; kontaktu z klientem w ramach realizacji usługi.",
           },
           {
-            heading: "3. Cel przetwarzania danych",
-            body: "Dane są wykorzystywane wyłącznie w celu udzielenia porady prawnej w zakresie legalizacji pobytu w Polsce. Podstawa prawna — art. 6(1)(b) RODO (wykonanie umowy / działania przedumowne).",
+            heading: "3. Dobrowolność podania danych",
+            body: "Podanie danych osobowych jest dobrowolne, ale niezbędne do realizacji usługi.",
           },
           {
-            heading: "4. Przekazywanie danych",
-            body: "Dane z formularza są przekazywane za pośrednictwem zabezpieczonego bota Telegram bezpośrednio do prawnika Anastazji Łapo. Dane nie są sprzedawane ani udostępniane w celach marketingowych.",
+            heading: "4. Przekazywanie danych osobom trzecim",
+            body: "Dane nie będą przekazywane osobom trzecim, z wyjątkiem instytucji publicznych uprawnionych na podstawie przepisów prawa (np. urząd wojewódzki).",
           },
           {
-            heading: "5. Pliki cookie",
-            body: "Strona używa technicznych plików cookie (niezbędnych do działania) oraz analitycznych (za Twoją zgodą). Możesz zarządzać plikami cookie przez baner na dole strony.",
+            heading: "5. Okres przechowywania danych",
+            body: "Dane będą przechowywane wyłącznie przez okres niezbędny do realizacji usługi oraz wynikający z obowiązujących przepisów prawa.",
           },
           {
-            heading: "6. Twoje prawa",
-            body: "Przysługuje Ci prawo dostępu do danych, ich sprostowania, usunięcia, ograniczenia przetwarzania oraz sprzeciwu wobec przetwarzania. Aby skorzystać z praw, napisz na adres e-mail administratora.",
+            heading: "6. Prawa przysługujące osobie, której dane dotyczą",
+            body: "Mają Państwo prawo dostępu do swoich danych, ich poprawiania, usunięcia, ograniczenia przetwarzania oraz wniesienia sprzeciwu.",
           },
           {
-            heading: "7. Przechowywanie danych",
-            body: "Dane są przechowywane nie dłużej niż jest to konieczne do świadczenia usługi i wypełnienia obowiązków prawnych. Na Twój wniosek dane zostaną usunięte.",
+            heading: "7. Zgoda na przetwarzanie",
+            body: "Przesłanie dokumentów i danych osobowych drogą elektroniczną oznacza wyrażenie zgody na ich przetwarzanie zgodnie z powyższą informacją.",
           },
         ],
       },
@@ -989,36 +989,36 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
     legalModal: {
       close: "Close",
       privacyPolicy: {
-        title: "Privacy Policy",
-        lastUpdated: "Last updated: 1 June 2025",
+        title: "GDPR Information / Consent to Personal Data Processing",
+        lastUpdated: "Pursuant to Regulation (EU) 2016/679 of the European Parliament and of the Council (GDPR)",
         sections: [
           {
             heading: "1. Data Controller",
-            body: "The data controller is Anastazja Łapo, sole trader registered in CEIDG, NIP: 5833480794, REGON: 525583417. Contact e-mail: anastazja.lapo@gmail.com.",
+            body: "The data controller is Anastazja Łapo, conducting business activity in the field of legalisation services.",
           },
           {
-            heading: "2. Data We Collect",
-            body: "When completing the quiz form, we collect: your name, phone number or Telegram username, and your answers regarding your legalisation situation.",
+            heading: "2. Purpose of Processing",
+            body: "Your personal data (in particular: name and surname, date of birth, citizenship, passport number, PESEL, residential address, contact details and copies of documents) will be processed solely for the purpose of: preparing and handling cases related to the legalisation of residence and/or work in Poland; contacting the client in the course of providing the service.",
           },
           {
-            heading: "3. Purpose of Processing",
-            body: "Data is used solely to provide legal advice on legalisation in Poland. Legal basis — Art. 6(1)(b) GDPR (performance of a contract / pre-contractual steps).",
+            heading: "3. Voluntary Provision of Data",
+            body: "Providing personal data is voluntary, but necessary for the provision of the service.",
           },
           {
-            heading: "4. Data Sharing",
-            body: "Form data is transmitted via a secure Telegram bot directly to lawyer Anastazja Łapo. Data is never sold or shared for marketing purposes.",
+            heading: "4. Sharing Data with Third Parties",
+            body: "Data will not be transferred to third parties, except for public institutions authorised under applicable law (e.g. voivodeship office).",
           },
           {
-            heading: "5. Cookies",
-            body: "This site uses technical cookies (necessary for operation) and analytical cookies (with your consent). You can manage cookies via the banner at the bottom of the page.",
+            heading: "5. Data Retention",
+            body: "Data will be stored only for the period necessary to perform the service and as required by applicable law.",
           },
           {
             heading: "6. Your Rights",
-            body: "You have the right to access, rectify, erase, restrict, and object to processing of your data. To exercise your rights, contact the data controller by e-mail.",
+            body: "You have the right to access your data, rectify, delete, restrict processing, and object to processing.",
           },
           {
-            heading: "7. Data Retention",
-            body: "Data is retained only as long as necessary to provide the service and fulfil legal obligations. Upon your request, data will be deleted.",
+            heading: "7. Consent",
+            body: "Sending documents and personal data electronically constitutes consent to their processing in accordance with the above information.",
           },
         ],
       },
@@ -1289,36 +1289,36 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
     legalModal: {
       close: "Закрити",
       privacyPolicy: {
-        title: "Політика конфіденційності",
-        lastUpdated: "Останнє оновлення: 1 червня 2025 р.",
+        title: "Інформація GDPR / Згода на обробку персональних даних",
+        lastUpdated: "Відповідно до Регламенту ЄС 2016/679 (GDPR)",
         sections: [
           {
             heading: "1. Адміністратор даних",
-            body: "Адміністратором ваших персональних даних є Анастасія Лапо, яка провадить діяльність на підставі запису до CEIDG, NIP: 5833480794, REGON: 525583417. Контактний e-mail: anastazja.lapo@gmail.com.",
+            body: "Адміністратором ваших персональних даних є я — Анастасія Лапо, яка провадить підприємницьку діяльність у сфері послуг з легалізації.",
           },
           {
-            heading: "2. Які дані ми збираємо",
-            body: "При заповненні анкети-квізу ми збираємо: ваше ім'я, номер телефону або логін Telegram, а також відповіді на запитання про вашу ситуацію з легалізацією.",
+            heading: "2. Мета обробки даних",
+            body: "Ваші персональні дані (зокрема: ім'я та прізвище, дата народження, громадянство, номер паспорта, PESEL, адреса проживання, контактні дані та копії документів) оброблятимуться виключно з метою: підготовки та ведення справ, пов'язаних із легалізацією перебування та/або роботи в Польщі; зв'язку з клієнтом у межах надання послуги.",
           },
           {
-            heading: "3. Мета обробки даних",
-            body: "Дані використовуються виключно для надання юридичної консультації з питань легалізації в Польщі. Підстава — ст. 6(1)(b) GDPR (виконання договору / передддоговірні дії).",
+            heading: "3. Добровільність надання даних",
+            body: "Надання персональних даних є добровільним, але необхідним для надання послуги.",
           },
           {
-            heading: "4. Передача даних",
-            body: "Дані з форми передаються через захищений Telegram-бот безпосередньо юристу Анастасії Лапо. Дані не продаються і не передаються для маркетингових цілей.",
+            heading: "4. Передача даних третім особам",
+            body: "Дані не передаватимуться третім особам, за винятком державних органів, уповноважених законодавством (наприклад, воєводське управління).",
           },
           {
-            heading: "5. Файли cookie",
-            body: "Сайт використовує технічні файли cookie (необхідні для роботи) та аналітичні (за вашою згодою). Ви можете керувати cookie через банер у нижній частині сторінки.",
+            heading: "5. Зберігання даних",
+            body: "Дані зберігатимуться виключно протягом терміну, необхідного для надання послуги, а також передбаченого чинним законодавством.",
           },
           {
             heading: "6. Ваші права",
-            body: "Ви маєте право на доступ до даних, їх виправлення, видалення, обмеження обробки та заперечення проти обробки. Щоб скористатися правами, напишіть на e-mail адміністратора.",
+            body: "Ви маєте право на доступ до своїх даних, їх виправлення, видалення, обмеження обробки та заперечення проти обробки.",
           },
           {
-            heading: "7. Зберігання даних",
-            body: "Дані зберігаються не довше, ніж необхідно для надання послуги та виконання правових зобов'язань. На ваш запит дані будуть видалені.",
+            heading: "7. Згода",
+            body: "Надсилання документів і персональних даних в електронному вигляді означає надання згоди на їх обробку відповідно до наведеної інформації.",
           },
         ],
       },
