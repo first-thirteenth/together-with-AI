@@ -9,42 +9,54 @@ html {
 
 @theme {
   /* Наши фирменные цвета под юридическую тематику */
-  --color-legal-navy: #0f172a;  /* Глубокий строгий синий */
-  --color-legal-gold: #b45309;  /* Премиальный золотой */
-  
+  --color-legal-navy: #0f172a; /* Глубокий строгий синий */
+  --color-legal-gold: #b45309; /* Премиальный золотой */
+
   /* Благородный изумрудный для заголовков, главного бренда и плашек */
   --color-emerald-luxury: #0f2e24;
   --color-emerald-medium: #1b4d3e;
-  
+
   /* Мягкий кремовый/песочный для дорогого, не режущего глаза фона */
   --color-cream-bg: #fbf9f4;
   --color-cream-card: #f4f0e6;
-  
+
   /* Мягкое золото для кнопок, акцентов, активных чекбоксов в квизе */
   --color-gold-accent: #c5a880;
   --color-gold-hover: #b3946b;
-  
+
   /* Глубокий графит для основного текста (вместо чисто чёрного) */
   --color-luxury-text: #2c3531;
 
   /* 1. Премиальная анимация глянцевого блика на кнопках */
   @keyframes shine {
-    0% { left: -50%; }
-    100% { left: 125%; }
+    0% {
+      left: -50%;
+    }
+    100% {
+      left: 125%;
+    }
   }
 
   /* 2. Анимация бесконечной бегущей строки */
   @keyframes marquee {
-    0% { transform: translate3d(0, 0, 0); }
-    100% { transform: translate3d(-50%, 0, 0); }
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(-50%, 0, 0);
+    }
   }
 
   /* 3. НАША ОБНОВЛЕННАЯ АНИМАЦИЯ: Мощный вылет заголовка слева с -250px */
   @keyframes slideInLeft {
     0% {
-      transform: translate3d(-250px, 0, 0); /* Увеличили размах вылета для заметности */
+      transform: translate3d(
+        -250px,
+        0,
+        0
+      ); /* Увеличили размах вылета для заметности */
       opacity: 0;
-      filter: blur(8px);                     /* Усилили размытие для дорогой динамики */
+      filter: blur(8px); /* Усилили размытие для дорогой динамики */
     }
     100% {
       transform: translate3d(0, 0, 0);
@@ -66,10 +78,15 @@ html {
 
 body {
   margin: 0;
-  background-color: #fbf9f4; 
-  color: #2c3531;            
-  font-family: system-ui, -apple-system, sans-serif;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: #fbf9f4;
+  color: #2c3531;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 /* Переопределяем глобальный фон body, когда на html вешается класс .dark */
@@ -81,7 +98,9 @@ html.dark body {
 .reveal-hidden {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
 }
 
 .reveal-visible {
@@ -107,7 +126,7 @@ html.dark body {
   animation-name: fadeInUp;
   animation-fill-mode: both;
   animation-timeline: --block;
-  animation-range: entry 0% cover 20%; 
+  animation-range: entry 0% cover 20%;
 }
 
 /* Анимация плавного проявления сверху вниз */
@@ -136,7 +155,9 @@ html.dark body {
 .fly-card {
   opacity: 0;
   will-change: transform, opacity;
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
+  transition:
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.8s ease;
 }
 
 /* Левая карточка ждет за экраном слева (-60px) */
@@ -157,7 +178,7 @@ html.dark body {
 
 /* Применяем анимацию к контейнеру с отзывами */
 .animate-marquee {
-  animation: marquee 160s linear infinite; 
+  animation: marquee 160s linear infinite;
 }
 
 /* Прячем системный скроллбар для Chrome, Safari и Opera */
@@ -171,16 +192,48 @@ html.dark body {
 
 .bg-mesh-gradient {
   background:
-    radial-gradient(ellipse 80% 60% at 20% 20%, rgba(197, 168, 128, 0.18) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 80% at 80% 80%, rgba(27, 77, 62, 0.12) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 50% at 50% 10%, rgba(197, 168, 128, 0.08) 0%, transparent 50%);
+    radial-gradient(
+      ellipse 80% 60% at 20% 20%,
+      rgba(197, 168, 128, 0.18) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 60% 80% at 80% 80%,
+      rgba(27, 77, 62, 0.12) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 50% 50% at 50% 10%,
+      rgba(197, 168, 128, 0.08) 0%,
+      transparent 50%
+    );
 }
 
 @keyframes meshShift {
-  0%   { background-position: 0% 0%, 100% 100%, 50% 0%; }
-  33%  { background-position: 10% 30%, 90% 70%, 60% 20%; }
-  66%  { background-position: 5% 60%, 80% 40%, 45% 10%; }
-  100% { background-position: 0% 0%, 100% 100%, 50% 0%; }
+  0% {
+    background-position:
+      0% 0%,
+      100% 100%,
+      50% 0%;
+  }
+  33% {
+    background-position:
+      10% 30%,
+      90% 70%,
+      60% 20%;
+  }
+  66% {
+    background-position:
+      5% 60%,
+      80% 40%,
+      45% 10%;
+  }
+  100% {
+    background-position:
+      0% 0%,
+      100% 100%,
+      50% 0%;
+  }
 }
 
 .animate-mesh {
@@ -200,7 +253,12 @@ html.dark body {
   height: 600px;
   top: -150px;
   left: -100px;
-  background: radial-gradient(circle, rgba(180, 130, 50, 0.55) 0%, rgba(180, 130, 50, 0.25) 45%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(180, 130, 50, 0.55) 0%,
+    rgba(180, 130, 50, 0.25) 45%,
+    transparent 70%
+  );
   filter: blur(40px);
   animation: blobDrift1 18s ease-in-out infinite;
 }
@@ -210,7 +268,12 @@ html.dark body {
   height: 500px;
   bottom: -120px;
   right: -80px;
-  background: radial-gradient(circle, rgba(15, 80, 55, 0.22) 0%, rgba(15, 80, 55, 0.08) 45%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(15, 80, 55, 0.22) 0%,
+    rgba(15, 80, 55, 0.08) 45%,
+    transparent 70%
+  );
   filter: blur(40px);
   animation: blobDrift2 22s ease-in-out infinite;
 }
@@ -220,7 +283,12 @@ html.dark body {
   height: 320px;
   top: 35%;
   left: 50%;
-  background: radial-gradient(circle, rgba(180, 130, 50, 0.42) 0%, rgba(180, 130, 50, 0.14) 50%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(180, 130, 50, 0.42) 0%,
+    rgba(180, 130, 50, 0.14) 50%,
+    transparent 70%
+  );
   filter: blur(35px);
   animation: blobDrift3 14s ease-in-out infinite;
 }
@@ -230,59 +298,114 @@ html.dark body {
   height: 220px;
   top: 5%;
   right: 10%;
-  background: radial-gradient(circle, rgba(180, 130, 50, 0.48) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(180, 130, 50, 0.48) 0%,
+    transparent 70%
+  );
   filter: blur(30px);
   animation: blobDrift4 16s ease-in-out infinite;
 }
 
 /* Dark theme — более мягкие (blur сильнее, цвета светлее) */
 :where(.dark, .dark *) .blob-1 {
-  background: radial-gradient(circle, rgba(197, 168, 128, 0.55) 0%, rgba(197, 168, 128, 0.20) 40%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(197, 168, 128, 0.55) 0%,
+    rgba(197, 168, 128, 0.2) 40%,
+    transparent 70%
+  );
   filter: blur(60px);
 }
 
 :where(.dark, .dark *) .blob-2 {
-  background: radial-gradient(circle, rgba(27, 120, 80, 0.50) 0%, rgba(27, 120, 80, 0.18) 40%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(27, 120, 80, 0.5) 0%,
+    rgba(27, 120, 80, 0.18) 40%,
+    transparent 70%
+  );
   filter: blur(60px);
 }
 
 :where(.dark, .dark *) .blob-3 {
-  background: radial-gradient(circle, rgba(197, 168, 128, 0.38) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(197, 168, 128, 0.38) 0%,
+    transparent 70%
+  );
   filter: blur(50px);
 }
 
 :where(.dark, .dark *) .blob-4 {
-  background: radial-gradient(circle, rgba(197, 168, 128, 0.42) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(197, 168, 128, 0.42) 0%,
+    transparent 70%
+  );
   filter: blur(40px);
 }
 
 @keyframes blobDrift1 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33%       { transform: translate(30px, 40px) scale(1.04); }
-  66%       { transform: translate(-20px, 20px) scale(0.97); }
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, 40px) scale(1.04);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.97);
+  }
 }
 
 @keyframes blobDrift2 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  40%       { transform: translate(-40px, -30px) scale(1.06); }
-  70%       { transform: translate(20px, -15px) scale(0.96); }
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  40% {
+    transform: translate(-40px, -30px) scale(1.06);
+  }
+  70% {
+    transform: translate(20px, -15px) scale(0.96);
+  }
 }
 
 @keyframes blobDrift3 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50%       { transform: translate(-25px, 35px) scale(1.08); }
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-25px, 35px) scale(1.08);
+  }
 }
 
 @keyframes blobDrift4 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  45%       { transform: translate(20px, 25px) scale(1.1); }
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  45% {
+    transform: translate(20px, 25px) scale(1.1);
+  }
 }
 
 /* Мягкое размытие по краям экрана для бесшовного растворения отзывов */
 .mask-gradient {
-  mask-image: linear-gradient(to right, transparent, white 25%, white 75%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, white 25%, white 75%, transparent);
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    white 25%,
+    white 75%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    white 25%,
+    white 75%,
+    transparent
+  );
 }
-
-
-

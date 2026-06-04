@@ -130,8 +130,8 @@ export const About = () => {
                 <Award className="text-gold-hover flex-shrink-0" size={22} />
                 <div>
                   <h4 className="font-bold text-emerald-luxury dark:text-cream-bg text-sm transition-colors duration-500">
-                    <AnimatedCounter target={350} suffix="+" />
-                    {" "}{t.about.stats.casesTitle.replace(/^[\d+.]+\s*/, "")}
+                    <AnimatedCounter target={350} suffix="+" />{" "}
+                    {t.about.stats.casesTitle.replace(/^[\d+.]+\s*/, "")}
                   </h4>
                   <p className="text-xs text-luxury-text/60 dark:text-cream-bg/60 transition-colors duration-500">
                     {t.about.stats.casesDesc}
@@ -146,8 +146,8 @@ export const About = () => {
                 <BookOpen className="text-gold-hover flex-shrink-0" size={22} />
                 <div>
                   <h4 className="font-bold text-emerald-luxury dark:text-cream-bg text-sm transition-colors duration-500">
-                    <AnimatedCounter target={98.6} suffix="%" decimals={1} />
-                    {" "}{t.about.stats.rateTitle.replace(/^[\d.]+%\s*/, "")}
+                    <AnimatedCounter target={98.6} suffix="%" decimals={1} />{" "}
+                    {t.about.stats.rateTitle.replace(/^[\d.]+%\s*/, "")}
                   </h4>
                   <p className="text-xs text-luxury-text/60 dark:text-cream-bg/60 transition-colors duration-500">
                     {t.about.stats.rateDesc}

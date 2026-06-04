@@ -696,7 +696,8 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       close: "Zamknij",
       privacyPolicy: {
         title: "Informacja RODO / Zgoda na przetwarzanie danych osobowych",
-        lastUpdated: "Zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 (RODO)",
+        lastUpdated:
+          "Zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 (RODO)",
         sections: [
           {
             heading: "1. Administrator danych osobowych",
@@ -998,7 +999,8 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       close: "Close",
       privacyPolicy: {
         title: "GDPR Information / Consent to Personal Data Processing",
-        lastUpdated: "Pursuant to Regulation (EU) 2016/679 of the European Parliament and of the Council (GDPR)",
+        lastUpdated:
+          "Pursuant to Regulation (EU) 2016/679 of the European Parliament and of the Council (GDPR)",
         sections: [
           {
             heading: "1. Data Controller",
