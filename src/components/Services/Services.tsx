@@ -6,11 +6,26 @@ import { CONTACTS } from "../../config/contacts";
 import type { Variants } from "framer-motion";
 
 const fadeInUp: Variants = {
-  hidden: { opacity: 0, y: 36, filter: "blur(4px)" },
+  hidden: { opacity: 0, y: 24, filter: "blur(8px)", scale: 0.94 },
   visible: {
     opacity: 1,
     y: 0,
     filter: "blur(0px)",
+    scale: 1,
+    transition: {
+      duration: 0.65,
+      ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+    },
+  },
+};
+
+const cardReveal: Variants = {
+  hidden: { opacity: 0, filter: "blur(12px)", scale: 0.92, y: 16 },
+  visible: {
+    opacity: 1,
+    filter: "blur(0px)",
+    scale: 1,
+    y: 0,
     transition: {
       duration: 0.7,
       ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
@@ -18,23 +33,10 @@ const fadeInUp: Variants = {
   },
 };
 
-const slideFromSide = (fromLeft: boolean): Variants => ({
-  hidden: { opacity: 0, x: fromLeft ? -48 : 48, filter: "blur(4px)" },
-  visible: {
-    opacity: 1,
-    x: 0,
-    filter: "blur(0px)",
-    transition: {
-      duration: 0.75,
-      ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
-    },
-  },
-});
-
 const staggerGrid: Variants = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.09, delayChildren: 0.1 },
+    transition: { staggerChildren: 0.08, delayChildren: 0.05 },
   },
 };
 
@@ -94,12 +96,11 @@ export const Services = () => {
           variants={staggerGrid}
           className="grid grid-cols-1 md:grid-cols-2 gap-6"
         >
-          {services.map((service, index) => {
-            const isLeft = index % 2 === 0;
+          {services.map((service) => {
             return (
               <motion.div
                 key={service.id}
-                variants={slideFromSide(isLeft)}
+                variants={cardReveal}
                 className={`bg-cream-card dark:bg-emerald-medium rounded-2xl p-6 sm:p-8 flex flex-col justify-between group transition-all duration-300 shadow-sm hover:shadow-md relative overflow-hidden will-change-[transform,opacity,filter] ${
                   service.popular
                     ? "border-2 border-gold-accent dark:border-gold-accent ring-1 ring-gold-accent/20"
