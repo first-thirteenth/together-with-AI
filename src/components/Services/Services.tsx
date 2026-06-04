@@ -6,29 +6,27 @@ import { CONTACTS } from "../../config/contacts";
 import type { Variants } from "framer-motion";
 
 const fadeInUp: Variants = {
-  hidden: { opacity: 0, y: 24, filter: "blur(8px)", scale: 0.94 },
+  hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
-    scale: 1,
     transition: {
-      duration: 0.65,
-      ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+      type: "spring",
+      stiffness: 260,
+      damping: 24,
     },
   },
 };
 
-const cardReveal: Variants = {
-  hidden: { opacity: 0, filter: "blur(12px)", scale: 0.92, y: 16 },
+const cardWave: Variants = {
+  hidden: { opacity: 0, y: 60 },
   visible: {
     opacity: 1,
-    filter: "blur(0px)",
-    scale: 1,
     y: 0,
     transition: {
-      duration: 0.7,
-      ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+      type: "spring",
+      stiffness: 180,
+      damping: 18,
     },
   },
 };
@@ -36,7 +34,7 @@ const cardReveal: Variants = {
 const staggerGrid: Variants = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.08, delayChildren: 0.05 },
+    transition: { staggerChildren: 0.1, delayChildren: 0.05 },
   },
 };
 
@@ -100,7 +98,7 @@ export const Services = () => {
             return (
               <motion.div
                 key={service.id}
-                variants={cardReveal}
+                variants={cardWave}
                 className={`bg-cream-card dark:bg-emerald-medium rounded-2xl p-6 sm:p-8 flex flex-col justify-between group transition-all duration-300 shadow-sm hover:shadow-md relative overflow-hidden will-change-[transform,opacity,filter] ${
                   service.popular
                     ? "border-2 border-gold-accent dark:border-gold-accent ring-1 ring-gold-accent/20"
