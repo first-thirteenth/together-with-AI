@@ -134,6 +134,9 @@ export interface TranslationSchema {
     namePlaceholder: string;
     contactPlaceholder: string;
     sending: string;
+    configError: string;
+    networkError: string;
+    inquiryMessage: string;
     steps: QuizStepSchema[];
   };
   about: AboutSectionSchema;
@@ -193,6 +196,9 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       namePlaceholder: "Ваше имя",
       contactPlaceholder: "Telegram (@username) или телефон",
       sending: "Отправка...",
+      configError: "Ошибка конфигурации формы. Пожалуйста, свяжитесь напрямую.",
+      networkError: "Произошла ошибка при отправке данных. Проверьте сеть или включите VPN, если Telegram заблокирован вашим провайдером.",
+      inquiryMessage: "Здравствуйте! Меня интересует услуга",
       steps: [
         {
           id: "source",
@@ -452,7 +458,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
     },
     cookie: {
       title: "Мы используем файлы cookie",
-      text: "Этот сайт использует cookie для улучшения работы, аналитики и персонализации. Нажмите «Принять все» для полного опыта или «Только необходимые» для базовой работы сайта.",
+      text: "Этот сайт использует только необходимые технические cookie для корректной работы. Нажмите «Принять», чтобы продолжить.",
       acceptAll: "Принять все",
       acceptNecessary: "Только необходимые",
       learnMore: "Подробнее",
@@ -493,6 +499,9 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       namePlaceholder: "Twoje imię",
       contactPlaceholder: "Telegram (@username) lub numer telefonu",
       sending: "Wysyłanie...",
+      configError: "Błąd konfiguracji formularza. Prosimy o bezpośredni kontakt.",
+      networkError: "Wystąpił błąd podczas wysyłania danych. Sprawdź połączenie internetowe lub włącz VPN, jeśli Telegram jest zablokowany przez dostawcę.",
+      inquiryMessage: "Dzień dobry! Interesuje mnie usługa",
       steps: [
         {
           id: "source",
@@ -683,7 +692,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         "Adres biura: ul. Lawendowe Wzgórze 33/8, 80-175 Gdańsk, Polska",
       contactsTitle: "Szybki kontakt",
       docsTitle: "Dokumenty",
-      docsCookies: "Polika cookies",
+      docsCookies: "Polityka cookies",
       docsAgreement: "Regulamin",
       copyrightPost:
         " Łatwa legalizacja z Anastazją Łapo. Wszelkie prawa zastrzeżone.",
@@ -758,7 +767,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
     },
     cookie: {
       title: "Używamy plików cookie",
-      text: "Ta strona używa plików cookie w celu poprawy działania, analizy i personalizacji. Kliknij «Akceptuj wszystkie» dla pełnego doświadczenia lub «Tylko niezbędne» dla podstawowego działania strony.",
+      text: "Ta strona używa wyłącznie niezbędnych plików cookie do prawidłowego działania. Kliknij «Akceptuj», aby kontynuować.",
       acceptAll: "Akceptuj wszystkie",
       acceptNecessary: "Tylko niezbędne",
       learnMore: "Dowiedz się więcej",
@@ -800,6 +809,9 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       namePlaceholder: "Your name",
       contactPlaceholder: "Telegram (@username) or phone number",
       sending: "Sending...",
+      configError: "Form configuration error. Please contact us directly.",
+      networkError: "An error occurred while sending your data. Please check your connection or use a VPN if Telegram is blocked by your provider.",
+      inquiryMessage: "Hello! I am interested in the service",
       steps: [
         {
           id: "source",
@@ -1061,7 +1073,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
     },
     cookie: {
       title: "We use cookies",
-      text: "This site uses cookies to improve functionality, analytics and personalisation. Click «Accept all» for the full experience or «Necessary only» for basic site operation.",
+      text: "This site uses only essential technical cookies for proper functionality. Click «Accept» to continue.",
       acceptAll: "Accept all",
       acceptNecessary: "Necessary only",
       learnMore: "Learn more",
@@ -1103,6 +1115,9 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       namePlaceholder: "Ваше ім’я",
       contactPlaceholder: "Telegram (@username) або телефон",
       sending: "Надсилання...",
+      configError: "Помилка конфігурації форми. Будь ласка, зв'яжіться напряму.",
+      networkError: "Виникла помилка під час надсилання даних. Перевірте мережу або увімкніть VPN, якщо Telegram заблокований вашим провайдером.",
+      inquiryMessage: "Доброго дня! Мене цікавить послуга",
       steps: [
         {
           id: "source",
@@ -1363,7 +1378,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
     },
     cookie: {
       title: "Ми використовуємо файли cookie",
-      text: "Цей сайт використовує файли cookie для покращення роботи, аналітики та персоналізації. Натисніть «Прийняти всі» для повного досвіду або «Лише необхідні» для базової роботи сайту.",
+      text: "Цей сайт використовує лише необхідні технічні файли cookie для коректної роботи. Натисніть «Прийняти», щоб продовжити.",
       acceptAll: "Прийняти всі",
       acceptNecessary: "Лише необхідні",
       learnMore: "Докладніше",
