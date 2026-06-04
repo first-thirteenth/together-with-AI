@@ -445,7 +445,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           },
           {
             heading: "5. Контактные данные",
-            body: "ANASTAZJA ŁAPO, Wpis do CEIDG, NIP: 5833480794, REGON: 525583417. Тел.: +48 571 053 915. Telegram: @AnastaziALappo.",
+            body: "ANASTAZJA ŁAPO, Wpis do CEIDG, NIP: 5833480794, REGON: 525583417. Тел.: +48 571 086 455. Telegram: @AnastaziALappo.",
           },
         ],
       },
@@ -750,7 +750,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           },
           {
             heading: "5. Dane kontaktowe",
-            body: "ANASTAZJA ŁAPO, Wpis do CEIDG, NIP: 5833480794, REGON: 525583417. Tel.: +48 571 053 915. Telegram: @AnastaziALappo.",
+            body: "ANASTAZJA ŁAPO, Wpis do CEIDG, NIP: 5833480794, REGON: 525583417. Tel.: +48 571 086 455. Telegram: @AnastaziALappo.",
           },
         ],
       },
@@ -1052,7 +1052,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           },
           {
             heading: "5. Contact Details",
-            body: "ANASTAZJA ŁAPO, Wpis do CEIDG, NIP: 5833480794, REGON: 525583417. Tel.: +48 571 053 915. Telegram: @AnastaziALappo.",
+            body: "ANASTAZJA ŁAPO, Wpis do CEIDG, NIP: 5833480794, REGON: 525583417. Tel.: +48 571 086 455. Telegram: @AnastaziALappo.",
           },
         ],
       },
@@ -1354,7 +1354,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           },
           {
             heading: "5. Контактні дані",
-            body: "ANASTAZJA ŁAPO, Wpis do CEIDG, NIP: 5833480794, REGON: 525583417. Тел.: +48 571 053 915. Telegram: @AnastaziALappo.",
+            body: "ANASTAZJA ŁAPO, Wpis do CEIDG, NIP: 5833480794, REGON: 525583417. Тел.: +48 571 086 455. Telegram: @AnastaziALappo.",
           },
         ],
       },
