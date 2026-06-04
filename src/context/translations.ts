@@ -380,7 +380,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       brandDesc:
         "Экспертное сопровождение миграционных процессов, оформление ВНЖ, релокация бизнеса и комплаенс. Лёгкий путь в любую точку мира.",
       requisitesTitle: "Реквизиты и адрес",
-      requisitesLawyer: "Anastazja Łapo (ИП, Wpis do CEIDG)",
+      requisitesLawyer: "Anastazja Łapo (ИП, запись в реестре CEIDG)",
       requisitesAddress:
         "Адрес офиса: ul. Lawendowe Wzgórze 33/8, 80-175 Gdańsk, Polska",
       contactsTitle: "Быстрая связь",
@@ -996,7 +996,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       brandDesc:
         "Expert guidance on migration processes, residence permits, business relocation, and compliance. An easy path to anywhere in the world.",
       requisitesTitle: "Company Details & Address",
-      requisitesLawyer: "Anastazja Łapo (sole trader, Wpis do CEIDG)",
+      requisitesLawyer: "Anastazja Łapo (sole trader, CEIDG registered)",
       requisitesAddress:
         "Office address: ul. Lawendowe Wzgórze 33/8, 80-175 Gdańsk, Poland",
       contactsTitle: "Quick Contact",
@@ -1302,7 +1302,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       brandDesc:
         "Експертний супровід міграційних процесів, оформлення посвідок, релокація бізнесу та комплаєнс. Легкий шлях у будь-яку точку світу.",
       requisitesTitle: "Реквізити та адреса",
-      requisitesLawyer: "Anastazja Łapo (ФОП, Wpis do CEIDG)",
+      requisitesLawyer: "Anastazja Łapo (ФОП, запис у реєстрі CEIDG)",
       requisitesAddress:
         "Адреса офісу: ul. Lawendowe Wzgórze 33/8, 80-175 Gdańsk, Polska",
       contactsTitle: "Швидкий зв'язок",
