@@ -321,7 +321,7 @@ export const Header = () => {
               }}
               transition={{ duration: 1.5, ease: [0.1, 1, 0.2, 1] }}
               style={{ transformOrigin: "top center", perspective: "1500px" }}
-              className="absolute left-0 right-0 top-full mt-2 bg-cream-bg/95 dark:bg-emerald-luxury/95 backdrop-blur-md border border-gold-accent/20 px-4 pt-4 pb-6 space-y-4 shadow-xl rounded-2xl xl:hidden z-50 will-change-[transform,opacity,filter]"
+              className="absolute left-0 right-0 top-full mt-2 bg-cream-bg dark:bg-emerald-luxury/[0.98] backdrop-blur-sm border border-gold-accent/20 px-4 pt-4 pb-6 space-y-4 shadow-xl rounded-2xl xl:hidden z-50 will-change-[transform,opacity,filter]"
             >
               {/* Контейнер для ссылок навигации */}
               <motion.div
