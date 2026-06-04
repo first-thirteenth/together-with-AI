@@ -62,7 +62,7 @@ export const Services = () => {
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
+          viewport={{ once: false, margin: "-80px" }}
           variants={{
             hidden: {},
             visible: { transition: { staggerChildren: 0.14 } },
@@ -90,7 +90,7 @@ export const Services = () => {
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-60px" }}
+          viewport={{ once: false, margin: "-60px" }}
           variants={staggerGrid}
           className="grid grid-cols-1 md:grid-cols-2 gap-6"
         >
