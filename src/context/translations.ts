@@ -171,7 +171,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       services: "Услуги и цены",
       reviews: "Отзывы",
       consultation: "Консультация",
-      callConfirm: "Вы хотите позвонить Анастасии Лапо?",
+      callConfirm: "Вы хотите позвонить Anastazja Łapo?",
       langSelect: "Выберите язык",
       themeLight: "Включить светлую тему",
       themeDark: "Включить тёмную тему",
@@ -369,7 +369,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       brandDesc:
         "Экспертное сопровождение миграционных процессов, оформление ВНЖ, релокация бизнеса и комплаенс. Лёгкий путь в любую точку мира.",
       requisitesTitle: "Реквизиты и адрес",
-      requisitesLawyer: "Анастасия Лапо (ИП, Wpis do CEIDG)",
+      requisitesLawyer: "Anastazja Łapo (ИП, Wpis do CEIDG)",
       requisitesAddress:
         "Адрес офиса: ul. Lawendowe Wzgórze 33/8, 80-175 Gdańsk, Polska",
       contactsTitle: "Быстрая связь",
@@ -391,7 +391,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         sections: [
           {
             heading: "1. Администратор данных",
-            body: "Администратором ваших персональных данных являюсь я — Анастасия Лапо, осуществляющая предпринимательскую деятельность в сфере услуг по легализации.",
+            body: "Администратором ваших персональных данных являюсь я — Anastazja Łapo, осуществляющая предпринимательскую деятельность в сфере услуг по легализации.",
           },
           {
             heading: "2. Цель обработки данных",
@@ -425,7 +425,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         sections: [
           {
             heading: "1. Предоставляемые услуги",
-            body: "Анастасия Лапо оказывает юридические консультации по вопросам легализации пребывания в Польше: ВНЖ, карта побыту, рабочие разрешения, воссоединение семьи и иные миграционные вопросы.",
+            body: "Anastazja Łapo оказывает юридические консультации по вопросам легализации пребывания в Польше: ВНЖ, карта побыту, рабочие разрешения, воссоединение семьи и иные миграционные вопросы.",
           },
           {
             heading: "2. Консультация через сайт",
@@ -1072,7 +1072,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       services: "Послуги та ціни",
       reviews: "Відгуки",
       consultation: "Консультація",
-      callConfirm: "Ви хочете зателефонувати Анастасії Лапо?",
+      callConfirm: "Ви хочете зателефонувати Anastazja Łapo?",
       langSelect: "Оберіть мову",
       themeLight: "Увімкнути світлу тему",
       themeDark: "Увімкнути темну тему",
@@ -1272,7 +1272,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       brandDesc:
         "Експертний супровід міграційних процесів, оформлення посвідок, релокація бізнесу та комплаєнс. Легкий шлях у будь-яку точку світу.",
       requisitesTitle: "Реквізити та адреса",
-      requisitesLawyer: "Анастасія Лапо (ФОП, Wpis do CEIDG)",
+      requisitesLawyer: "Anastazja Łapo (ФОП, Wpis do CEIDG)",
       requisitesAddress:
         "Адреса офісу: ul. Lawendowe Wzgórze 33/8, 80-175 Gdańsk, Polska",
       contactsTitle: "Швидкий зв'язок",
@@ -1294,7 +1294,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         sections: [
           {
             heading: "1. Адміністратор даних",
-            body: "Адміністратором ваших персональних даних є я — Анастасія Лапо, яка провадить підприємницьку діяльність у сфері послуг з легалізації.",
+            body: "Адміністратором ваших персональних даних є я — Anastazja Łapo, яка провадить підприємницьку діяльність у сфері послуг з легалізації.",
           },
           {
             heading: "2. Мета обробки даних",
@@ -1328,7 +1328,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         sections: [
           {
             heading: "1. Послуги, що надаються",
-            body: "Анастасія Лапо надає юридичні консультації з питань легалізації перебування в Польщі: посвідка на проживання, дозвіл на роботу, возз'єднання сім'ї та інші міграційні питання.",
+            body: "Anastazja Łapo надає юридичні консультації з питань легалізації перебування в Польщі: посвідка на проживання, дозвіл на роботу, возз'єднання сім'ї та інші міграційні питання.",
           },
           {
             heading: "2. Консультація через сайт",
