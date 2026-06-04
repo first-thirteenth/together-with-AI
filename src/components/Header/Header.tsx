@@ -364,6 +364,7 @@ export const Header = () => {
                     isPhoneHighlighted
                       ? {
                           color: ["#b89a4e", "#d4af37", "#b89a4e"],
+                          scale: [1, 1.05, 1.02, 1.05, 1],
                           textShadow: [
                             "0 0 0px #d4af3700",
                             "0 0 12px #d4af37aa",
@@ -372,13 +373,14 @@ export const Header = () => {
                             "0 0 0px #d4af3700",
                           ],
                         }
-                      : { textShadow: "0 0 0px #d4af3700" }
+                      : { scale: 1, textShadow: "0 0 0px #d4af3700" }
                   }
                   transition={
                     isPhoneHighlighted
                       ? { duration: 2.2, ease: "easeInOut" }
                       : { duration: 0.4 }
                   }
+                  style={{ transformOrigin: "left center" }}
                   className="flex items-center gap-2 text-sm cursor-pointer text-luxury-text/60 dark:text-cream-bg/60"
                 >
                   <Phone size={14} />
