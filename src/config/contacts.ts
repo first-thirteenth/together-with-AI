@@ -4,4 +4,5 @@ export const CONTACTS = {
   telegram: "https://t.me/AnastaziALappo",
   whatsapp: "https://wa.me/48571086455",
   instagram: "https://www.instagram.com/lapoanastazja/",
+  buycoffee: "https://buycoffee.to/lapoanastazja",
 };

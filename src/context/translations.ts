@@ -146,6 +146,7 @@ export interface TranslationSchema {
   footer: FooterSectionSchema;
   floatingContact: {
     label: string;
+    coffeeLabel: string;
   };
   legalModal: {
     close: string;
@@ -392,6 +393,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
     },
     floatingContact: {
       label: "Написать в Telegram",
+      coffeeLabel: "Угостить кофе ☕",
     },
     legalModal: {
       close: "Закрыть",
@@ -700,6 +702,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
     },
     floatingContact: {
       label: "Napisz na Telegram",
+      coffeeLabel: "Postaw kawę ☕",
     },
     legalModal: {
       close: "Zamknij",
@@ -1006,6 +1009,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
     },
     floatingContact: {
       label: "Message on Telegram",
+      coffeeLabel: "Buy a coffee ☕",
     },
     legalModal: {
       close: "Close",
@@ -1311,6 +1315,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
     },
     floatingContact: {
       label: "Написати в Telegram",
+      coffeeLabel: "Пригостити кавою ☕",
     },
     legalModal: {
       close: "Закрити",
