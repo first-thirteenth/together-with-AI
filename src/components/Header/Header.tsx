@@ -160,10 +160,10 @@ export const Header = () => {
               </div>
               <div>
                 <span className="font-bold text-emerald-luxury dark:text-cream-bg tracking-tight block text-sm sm:text-base transition-colors duration-300">
-                  Лёгкая легализация
+                  {t.footer.headerBrand}
                 </span>
                 <span className="text-[10px] text-gold-hover block font-medium uppercase tracking-widest -mt-0.5">
-                  с Anastazja Łapo
+                  {t.footer.brandSubtitle}
                 </span>
               </div>
             </div>
@@ -357,34 +357,34 @@ export const Header = () => {
                 className="pt-4 border-t border-gold-accent/20 space-y-4"
               >
                 {/* Телефон на мобилке */}
-                  <motion.a
-                    href={`tel:${CONTACTS.phoneRaw}`}
-                    onClick={handleCallClick}
-                    animate={
-                      isPhoneHighlighted
-                        ? {
-                            color: ["#b89a4e", "#d4af37", "#b89a4e"],
-                            scale: [1, 1.08, 1.04, 1.08, 1],
-                            textShadow: [
-                              "0 0 0px #d4af3700",
-                              "0 0 12px #d4af37aa",
-                              "0 0 6px #d4af3766",
-                              "0 0 14px #d4af37cc",
-                              "0 0 0px #d4af3700",
-                            ],
-                          }
-                        : { scale: 1, textShadow: "0 0 0px #d4af3700" }
-                    }
-                    transition={
-                      isPhoneHighlighted
-                        ? { duration: 2.2, ease: "easeInOut" }
-                        : { duration: 0.4 }
-                    }
-                    className="flex items-center gap-2 text-sm transition-colors duration-300 cursor-pointer text-luxury-text/60 dark:text-cream-bg/60"
-                  >
-                    <Phone size={14} />
-                    {CONTACTS.phoneDisplay}
-                  </motion.a>
+                <motion.a
+                  href={`tel:${CONTACTS.phoneRaw}`}
+                  onClick={handleCallClick}
+                  animate={
+                    isPhoneHighlighted
+                      ? {
+                          color: ["#b89a4e", "#d4af37", "#b89a4e"],
+                          scale: [1, 1.08, 1.04, 1.08, 1],
+                          textShadow: [
+                            "0 0 0px #d4af3700",
+                            "0 0 12px #d4af37aa",
+                            "0 0 6px #d4af3766",
+                            "0 0 14px #d4af37cc",
+                            "0 0 0px #d4af3700",
+                          ],
+                        }
+                      : { scale: 1, textShadow: "0 0 0px #d4af3700" }
+                  }
+                  transition={
+                    isPhoneHighlighted
+                      ? { duration: 2.2, ease: "easeInOut" }
+                      : { duration: 0.4 }
+                  }
+                  className="flex items-center gap-2 text-sm transition-colors duration-300 cursor-pointer text-luxury-text/60 dark:text-cream-bg/60"
+                >
+                  <Phone size={14} />
+                  {CONTACTS.phoneDisplay}
+                </motion.a>
 
                 {/* Мобильный селектор языков */}
                 <div className="space-y-1.5">
@@ -395,7 +395,7 @@ export const Header = () => {
                     {languages.map((item) => (
                       <motion.button
                         key={item.code}
-                        whileTap={{ scale: 0.90, opacity: 0.8 }}
+                        whileTap={{ scale: 0.9, opacity: 0.8 }}
                         transition={{ duration: 0.12 }}
                         onClick={() => {
                           setLang(item.code);
@@ -426,9 +426,9 @@ export const Header = () => {
                     Telegram
                   </a>
                   <button
-                     onClick={handleConsultationClick}
-                     className="bg-gold-accent text-emerald-luxury text-center py-2.5 rounded-lg text-xs font-bold cursor-pointer active:scale-95 transition-transform"
-                   >
+                    onClick={handleConsultationClick}
+                    className="bg-gold-accent text-emerald-luxury text-center py-2.5 rounded-lg text-xs font-bold cursor-pointer active:scale-95 transition-transform"
+                  >
                     {t.header.consultation}
                   </button>
                 </div>

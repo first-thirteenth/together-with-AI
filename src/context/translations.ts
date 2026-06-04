@@ -88,6 +88,8 @@ export interface ReviewsSectionSchema {
 
 export interface FooterSectionSchema {
   brandTitle: string;
+  headerBrand: string;
+  brandSubtitle: string;
   brandDesc: string;
   requisitesTitle: string;
   requisitesLawyer: string;
@@ -366,6 +368,8 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
     },
     footer: {
       brandTitle: "Легализация с Anastazja Łapo",
+      headerBrand: "Лёгкая легализация",
+      brandSubtitle: "с Anastazja Łapo",
       brandDesc:
         "Экспертное сопровождение миграционных процессов, оформление ВНЖ, релокация бизнеса и комплаенс. Лёгкий путь в любую точку мира.",
       requisitesTitle: "Реквизиты и адрес",
@@ -669,6 +673,8 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
     },
     footer: {
       brandTitle: "Legalizacja z Anastazją Łapo",
+      headerBrand: "Łatwa legalizacja",
+      brandSubtitle: "z Anastazją Łapo",
       brandDesc:
         "Eksperckie wsparcie procesów migracyjnych, karty pobytu, relokacja biznesu i compliance. Łatwa droga w dowolne miejsce na świecie.",
       requisitesTitle: "Dane firmy i adres",
@@ -969,6 +975,8 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
     // ИСПРАВЛЕНО: Добавлен перевод футера на английский язык
     footer: {
       brandTitle: "Legalization with Anastazja Łapo",
+      headerBrand: "Easy Legalization",
+      brandSubtitle: "with Anastazja Łapo",
       brandDesc:
         "Expert guidance on migration processes, residence permits, business relocation, and compliance. An easy path to anywhere in the world.",
       requisitesTitle: "Company Details & Address",
@@ -1269,6 +1277,8 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
     // ИСПРАВЛЕНО: Добавлен перевод футера на украинский язык
     footer: {
       brandTitle: "Легалізація з Anastazja Łapo",
+      headerBrand: "Легка легалізація",
+      brandSubtitle: "з Anastazja Łapo",
       brandDesc:
         "Експертний супровід міграційних процесів, оформлення посвідок, релокація бізнесу та комплаєнс. Легкий шлях у будь-яку точку світу.",
       requisitesTitle: "Реквізити та адреса",
