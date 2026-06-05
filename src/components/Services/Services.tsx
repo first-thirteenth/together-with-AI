@@ -1,5 +1,6 @@
-import { ArrowRight, Sparkles, Check } from "lucide-react";
-import { motion } from "framer-motion";
+﻿import { ArrowRight, Sparkles, ChevronUp, MessageCircle, Check } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import { useLang } from "../../context/useLang";
 import { CONTACTS } from "../../config/contacts";
 
@@ -43,16 +44,20 @@ const staggerGrid: Variants = {
 
 export const Services = () => {
   const { t } = useLang();
+  const [expandedId, setExpandedId] = useState<string | null>(null);
 
   const services = [
-    { id: "nomad", ...t.services.items.nomad, popular: true },
-    { id: "startup", ...t.services.items.startup, popular: false },
-    { id: "passive", ...t.services.items.passive, popular: false },
-    { id: "investor", ...t.services.items.investor, popular: false },
-    { id: "origin", ...t.services.items.origin, popular: false },
-    { id: "family", ...t.services.items.family, popular: false },
-    { id: "compliance", ...t.services.items.compliance, popular: false },
-    { id: "appeal", ...t.services.items.appeal, popular: false },
+    { id: "turnkey", ...t.services.items.turnkey, popular: true },
+    { id: "allInclusive", ...t.services.items.allInclusive, popular: false },
+    { id: "appPrep", ...t.services.items.appPrep, popular: false },
+    { id: "consultation", ...t.services.items.consultation, popular: true },
+    { id: "citizenship", ...t.services.items.citizenship, popular: false },
+    { id: "permanent", ...t.services.items.permanent, popular: false },
+    { id: "kartaPolaka", ...t.services.items.kartaPolaka, popular: false },
+    { id: "driversLicense", ...t.services.items.driversLicense, popular: false },
+    { id: "openSP", ...t.services.items.openSP, popular: false },
+    { id: "openLLC", ...t.services.items.openLLC, popular: false },
+    { id: "contractReview", ...t.services.items.contractReview, popular: false },
   ];
 
   return (
@@ -61,7 +66,6 @@ export const Services = () => {
       id="services"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section heading with stagger */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -89,7 +93,6 @@ export const Services = () => {
           </motion.p>
         </motion.div>
 
-        {/* Cards grid with stagger */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -98,11 +101,14 @@ export const Services = () => {
           className="grid grid-cols-1 md:grid-cols-2 gap-6"
         >
           {services.map((service) => {
+            const isExpanded = expandedId === service.id;
+
             return (
               <motion.div
                 key={service.id}
                 variants={cardPop}
-                className={`bg-cream-card dark:bg-emerald-medium rounded-2xl p-6 sm:p-8 flex flex-col justify-between group transition-all duration-300 shadow-sm hover:shadow-md relative overflow-hidden will-change-[transform,opacity,filter] ${
+                layout
+                className={`bg-cream-card dark:bg-emerald-medium rounded-2xl p-6 sm:p-8 flex flex-col group transition-colors duration-300 shadow-sm hover:shadow-md relative overflow-hidden will-change-[transform,opacity] ${
                   service.popular
                     ? "border-2 border-gold-accent dark:border-gold-accent ring-1 ring-gold-accent/20"
                     : "border border-gold-accent/10 dark:border-gold-accent/20"
@@ -114,45 +120,82 @@ export const Services = () => {
                   </div>
                 )}
 
-                <div className="space-y-4">
-                  <div className="flex justify-between items-start gap-4">
-                    <h3 className="font-bold text-xl text-emerald-luxury dark:text-cream-bg group-hover:text-gold-hover transition-colors duration-200">
-                      {service.title}
-                    </h3>
-                    <div className="text-right flex-shrink-0">
-                      <span className="text-sm font-bold text-emerald-luxury dark:text-cream-bg bg-gold-accent/20 px-2.5 py-1 rounded-md transition-colors duration-500">
-                        {service.price}
-                      </span>
-                    </div>
-                  </div>
+                <div className="space-y-3">
+                  <h3 className="font-bold text-xl text-emerald-luxury dark:text-cream-bg group-hover:text-gold-hover transition-colors duration-200 pr-20">
+                    {service.title}
+                  </h3>
                   <p className="text-xs text-luxury-text/80 dark:text-cream-bg/80 leading-relaxed transition-colors duration-500">
                     {service.desc}
                   </p>
                 </div>
 
-                <div className="flex items-center justify-between border-t border-gold-accent/20 pt-4 mt-6 text-xs text-luxury-text/60 dark:text-cream-bg/60 transition-colors duration-500">
-                  <span className="flex items-center gap-1.5 font-medium text-emerald-medium dark:text-gold-accent">
-                    <Check size={12} className="text-gold-accent" />
-                    {service.time}
-                  </span>
+                <AnimatePresence initial={false}>
+                  {isExpanded && (
+                    <motion.div
+                      key="expanded"
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <div className="pt-4 mt-4 border-t border-gold-accent/20 space-y-4">
+                        <div>
+                          <span className="text-sm font-bold text-emerald-luxury dark:text-cream-bg bg-gold-accent/20 px-3 py-1.5 rounded-md transition-colors duration-500">
+                            {service.price}
+                          </span>
+                        </div>
+                        <ul className="space-y-2">
+                          {service.details.map((item, i) => (
+                            <li
+                              key={i}
+                              className="flex items-start gap-2 text-xs text-luxury-text/80 dark:text-cream-bg/80"
+                            >
+                              <Check
+                                size={12}
+                                className="text-gold-accent mt-0.5 flex-shrink-0"
+                              />
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                        <button
+                          onClick={() => {
+                            const msg = encodeURIComponent(
+                              `${t.quiz.inquiryMessage} "${service.title}".`,
+                            );
+                            window.open(
+                              `${CONTACTS.telegram}?text=${msg}`,
+                              "_blank",
+                              "noreferrer",
+                            );
+                          }}
+                          className="w-full flex items-center justify-center gap-2 bg-gold-accent hover:bg-gold-hover text-emerald-luxury font-semibold text-sm py-2.5 px-4 rounded-xl cursor-pointer transition-colors duration-200"
+                        >
+                          <MessageCircle size={15} />
+                          {t.services.btnContact}
+                        </button>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                <div className="flex justify-end border-t border-gold-accent/20 pt-4 mt-5">
                   <button
-                    onClick={() => {
-                      const msg = encodeURIComponent(
-                        `${t.quiz.inquiryMessage} "${service.title}".`,
-                      );
-                      window.open(
-                        `${CONTACTS.telegram}?text=${msg}`,
-                        "_blank",
-                        "noreferrer",
-                      );
-                    }}
-                    className="text-emerald-medium dark:text-cream-bg/80 group-hover:text-gold-hover transition-colors duration-200 cursor-pointer text-xs flex items-center gap-1"
+                    onClick={() =>
+                      setExpandedId(isExpanded ? null : service.id)
+                    }
+                    className="text-emerald-medium dark:text-cream-bg/80 hover:text-gold-hover transition-colors duration-200 cursor-pointer text-xs flex items-center gap-1"
                   >
-                    {t.services.btnMore}{" "}
-                    <ArrowRight
-                      size={12}
-                      className="transform group-hover:translate-x-0.5 transition-transform"
-                    />
+                    {isExpanded ? t.services.btnLess : t.services.btnMore}
+                    {isExpanded ? (
+                      <ChevronUp size={12} />
+                    ) : (
+                      <ArrowRight
+                        size={12}
+                        className="transform group-hover:translate-x-0.5 transition-transform"
+                      />
+                    )}
                   </button>
                 </div>
               </motion.div>
