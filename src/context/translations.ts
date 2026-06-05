@@ -78,11 +78,20 @@ export interface ReviewsSectionSchema {
   description: string;
   dragHint: string;
   items: {
-    markAnna: ReviewItemSchema;
+    maria: ReviewItemSchema;
+    ekaterina: ReviewItemSchema;
+    igor_game: ReviewItemSchema;
+    maksim: ReviewItemSchema;
+    vitaly: ReviewItemSchema;
+    ludmila: ReviewItemSchema;
+    taisia: ReviewItemSchema;
+    elizaveta: ReviewItemSchema;
+    olga: ReviewItemSchema;
+    yulia: ReviewItemSchema;
     dmitry: ReviewItemSchema;
-    elena: ReviewItemSchema;
-    igorOlga: ReviewItemSchema;
-    tatiana: ReviewItemSchema;
+    artur: ReviewItemSchema;
+    kristina: ReviewItemSchema;
+    anna: ReviewItemSchema;
   };
 }
 
@@ -347,30 +356,75 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         "Реальные истории людей, которые успешно прошли процесс легализации и доверили свой переезд эксперту.",
       dragHint: "Зажмите и тяните вбок или листайте",
       items: {
-        markAnna: {
-          name: "Марк и Анна",
-          program: "ВНЖ Digital Nomad, Испания",
-          text: "Обратились к Анастасии после самостоятельного отказа из-за неправильно оформленного контракта. Она полностью переформатировала наши документы с американским заказчиком и составила пояснительное письмо для UGE. Подали заново — одобрение пришло через 18 дней! Настоящий профессионал.",
+        maria: {
+          name: "Мария",
+          program: "Воссоединение семьи",
+          text: "Ужонд нам сделал подарок на Новый год — получили карты! С помощью юриста путь стал спокойным. Полгода назад я была в отчаянии, но Анастасия знала, что делает. Спасибо за веру в наш кейс ❤️",
+        },
+        ekaterina: {
+          name: "Екатерина Хаменок",
+          program: "ВНЖ по бизнесу",
+          text: "Все доки для бизнес-ВНЖ собрали за неделю. Анастасия — компетентный юрист с реальной практикой. Чёткое знание законодательства, никакой психопатии. Все вопросы по польскому праву уточняю только у неё 😀",
+        },
+        igor_game: {
+          name: "Игорь",
+          program: "Карта побыту",
+          text: "Ровно 3 месяца — с подачи документов до получения карты! Анастасия была на связи весь процесс, решала все вопросы вовремя. Без вас результат был бы иным. Спасибо за профессионализм 👍",
+        },
+        maksim: {
+          name: "Максим",
+          program: "ПМЖ, Гданьск",
+          text: "ПМЖ получили всего за 2,5 месяца! Карта подготовлена к выдаче. Отличная работа — быстро, чётко, по существу. Вот это юрист!",
+        },
+        vitaly: {
+          name: "Виталий",
+          program: "ПМЖ и ВНЖ, Варшава",
+          text: "Мне дали ПМЖ на 10 лет, жене ВНЖ на 3 года. Благодаря Анастасии всё получилось быстро и даже лучше, чем ожидали! Профессионализм на каждом этапе. Спасибо 🤗",
+        },
+        ludmila: {
+          name: "Людмила",
+          program: "Карты Поляка и ПМЖ",
+          text: "За 7 месяцев детям Карты Поляка и ПМЖ для всей семьи! Анастасия — добрый, отзывчивый и классный специалист. Очень рада, что повстречала вас! Огромное спасибо ❤️",
+        },
+        taisia: {
+          name: "Таисия",
+          program: "Карта Поляка",
+          text: "Карта Поляка и децизия на руках! Если бы не Анастасия — ничего не получилось бы. Её файл, рекомендации до экзамена — всё было точно в цель. Спасибо тысячу раз 🙏",
+        },
+        elizaveta: {
+          name: "Елизавета",
+          program: "Карта Поляка, сложный кейс",
+          text: "Я была не самым простым клиентом 🙈 Но Анастасия проделала чудо! Когда пришло уведомление о готовности Карты Поляка, я расплакалась от радости! Спасибо вам огромное! 🙏",
+        },
+        olga: {
+          name: "Ольга",
+          program: "Ускорение дела",
+          text: "Статус изменился на Decyzja pozytywna! Дожали их 😍 Без Анастасии я не знаю, сколько бы ещё ждала. Вы просто лучший специалист! Спасибо за помощь и консультации!!!",
+        },
+        yulia: {
+          name: "Юлия Шицкова",
+          program: "Комплексное сопровождение",
+          text: "Со 100% уверенностью говорю — Анастасия лучшая помощь в этих вопросах 💪 Всё чётко, понятно и по существу. Высочайший профессионализм!",
         },
         dmitry: {
-          name: "Дмитрий К.",
-          program: "Стартап-виза, Португалия",
-          text: "Анастасия помогла докрутить нашу бизнес-модель под жесткие требования института IAPMEI. Сопровождала на каждом шагу: от сбора справок до открытия счета. Всегда на связи в Telegram, объясняет сложные законы простым языком. Рекомендую.",
+          name: "Дмитрий",
+          program: "Положительное решение",
+          text: "Без вас не было бы такого результата, у меня просто нет слов 😍 Искренняя благодарность! Вы супер специалист! 👍",
         },
-        elena: {
-          name: "Елена Б.",
-          program: "ВНЖ без права на работу, Италия",
-          text: "Для меня было критично успеть подать документы до изменения правил по пассивному доходу. Анастасия подготовила кейс за 2 недели. Аудит доходов был сделан идеально — консульство в Москве выдало визу D без единого вопроса.",
+        artur: {
+          name: "Артур",
+          program: "Ускорение процесса",
+          text: "Мы очень благодарны! Вы потрясающий специалист и очень помогаете нам. Без вас всё было бы иначе. Я счастлив, что обратился к вам!",
         },
-        igorOlga: {
-          name: "Игорь и Ольга",
-          program: "Бизнес-инкубатор, Польша",
-          text: "Релоцировали IT-стартап в Варшаву. Anastazja Łapo идеально провела нас через весь процесс: от регистрации компании (Sp. z o.o.) до получения пластика карты побыту на 3 года. Сберегли тонну нервов.",
+        kristina: {
+          name: "Кристина",
+          program: "ВНЖ по бизнесу",
+          text: "С вами всё так быстро! Документы собрали за невероятные сроки. Было много неясных моментов — никто не мог ответить. Вы просто волшебница! Спасибо ❤️",
         },
-        tatiana: {
-          name: "Татьяна Ш.",
-          program: "Гражданство по корням, Румыния",
-          text: "Процесс восстановления корней казался нереальным из-за утерянных архивов. Анастасия организовала профессиональный поиск, нашла свидетельства дедушки и полностью вела дело до присяги в Бухаресте. Паспорт в руках!",
+        anna: {
+          name: "Анна",
+          program: "Карта побыту",
+          text: "Вы просто золото!!! Я не представляю, что бы мы делали без вас) Огромное спасибо за помощь и поддержку!",
         },
       },
     },
@@ -656,30 +710,75 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         "Prawdziwe historie osób, które z sukcesem przeszły proces legalizacji i powierzyły swoją przeprowadzkę ekspertowi.",
       dragHint: "Kliknij i przeciągnij w bok lub przewijaj",
       items: {
-        markAnna: {
-          name: "Mark i Anna",
-          program: "Karta Pobytu Digital Nomad, Hiszpania",
-          text: "Zwróciliśmy się do Anastazji po samodzielnej odmowie z powodu błędnie sformułowanego kontraktu. Całkowicie przeformatowała nasze dokumenty z amerykańskim zleceniodawcą i napisała list wyjaśniający do UGE. Złożyliśmy ponownie — zatwierdzenie przyszło po 18 dniach! Prawdziwy profesjonalista.",
+        maria: {
+          name: "Мария",
+          program: "Łączenie rodzin",
+          text: "Urząd wojewódzki sprawił nam prezent na Nowy Rok — dostaliśmy karty! Z pomocą prawnika proces stał się spokojny. Pół roku temu byłam w rozpaczy, ale Anastazja wiedziała, co robi. Dziękuję za wiarę w naszą sprawę ❤️",
+        },
+        ekaterina: {
+          name: "Екатерина Хаменок",
+          program: "Karta pobytu na działalność biznesową",
+          text: "Wszystkie dokumenty do karty pobytu na biznes zebraliśmy w tydzień. Anastazja to kompetentny prawnik z rzeczywistą praktyką. Precyzyjne znanie legislacji, bez bzdur. Wszystkie pytania o prawo polskie zadaję tylko jej 😀",
+        },
+        igor_game: {
+          name: "Игорь",
+          program: "Karta Pobytu",
+          text: "Dokładnie 3 miesiące — od złożenia dokumentów do otrzymania karty! Anastazja była dostępna przez cały proces, rozwiązywała wszystkie problemy na czas. Bez was wynik byłby inny. Dziękuję za profesjonalizm 👍",
+        },
+        maksim: {
+          name: "Максим",
+          program: "Pobyt stały, Gdańsk",
+          text: "Pobyt stały dostaliśmy zaledwie za 2,5 miesiąca! Karta jest przygotowana do wydania. Doskonała praca — szybko, jasno, konkretnie. To jest prawnik!",
+        },
+        vitaly: {
+          name: "Виталий",
+          program: "Pobyt stały i czasowy, Warszawa",
+          text: "Mnie przydzielono pobyt stały na 10 lat, żonie czasowy na 3 lata. Dzięki Anastazji wszystko wyszło szybko i nawet lepiej niż się spodziewaliśmy! Profesjonalizm na każdym etapie. Dziękuję 🤗",
+        },
+        ludmila: {
+          name: "Людмила",
+          program: "Karty Pobytu i Pobyt stały",
+          text: "W ciągu 7 miesięcy dzieciom Karty Pobytu i pobyt stały dla całej rodziny! Anastazja to miła, wrażliwa i doskonała specjalistka. Bardzo cieszę się, że Was poznałam! Ogromnie dziękuję ❤️",
+        },
+        taisia: {
+          name: "Таисия",
+          program: "Karta Pobytu",
+          text: "Karta Pobytu i decyzja pozytywna w ręku! Gdyby nie Anastazja — nic by się nie udało. Jej materiały, porady do egzaminu — wszystko było idealnie celne. Dziękuję tysiąc razy 🙏",
+        },
+        elizaveta: {
+          name: "Елизавета",
+          program: "Karta Pobytu, trudny przypadek",
+          text: "Byłam nie najmniej zawiłym klientem 🙈 Ale Anastazja dokonała cudu! Gdy przyszlo powiadomienie o gotowości mojej Karty Pobytu, rozpłakałam się ze szczęścia! Ogromne dziękuję! 🙏",
+        },
+        olga: {
+          name: "Ольга",
+          program: "Przyspieszenie sprawy",
+          text: "Status zmienił się na Decyzja pozytywna! Ich doszliśmy 😍 Bez Anastazji nie wiem ile bym jeszcze czekała. Jesteście po prostu najlepszym specjalistą! Dziękuję za pomoc i konsultacje!!!",
+        },
+        yulia: {
+          name: "Юлия Шицкова",
+          program: "Kompleksowe wsparcie",
+          text: "Ze 100% pewnością mówię — Anastazja jest najlepszą pomocą w tych sprawach 💪 Wszystko jasno, zrozumiale i do rzeczy. Najwyższy profesjonalizm!",
         },
         dmitry: {
-          name: "Dmitry K.",
-          program: "Wiza Startupowa, Portugalia",
-          text: "Anastazja pomogła nam dopracować nasz model biznesowy pod rygorystyczne wymagania instytutu IAPMEI. Towarzyszyła nam na każdym kroku: od zbierania zaświadczeń po otwarcie konta. Zawsze dostępna na Telegramie, tłumaczy skomplikowane prawo prostym językiem. Polecam.",
+          name: "Дмитрий",
+          program: "Pozytywna decyzja",
+          text: "Bez was nie byłoby takiego wyniku, po prostu mi się nie mówi 😍 Szczera wdzięczność! Jesteście wspaniałym specjalistą! 👍",
         },
-        elena: {
-          name: "Elena B.",
-          program: "Rezydent bez prawa do pracy, Włochy",
-          text: "Dla mnie kluczowe było zdążenie ze złożeniem dokumentów przed zmianą przepisów dotyczących dochodu pasywnego. Anastazja przygotowała sprawę w 2 tygodnie. Audyt dochodów został przeprowadzony idealnie — konsulat w Moskwie wydał wizę D bez żadnych pytań.",
+        artur: {
+          name: "Артур",
+          program: "Przyspieszenie procesu",
+          text: "Jesteśmy bardzo wdzięczni! Jesteście wspaniałym specjalistą i wiele nam pomagacie. Bez was wszystko byłoby inaczej. Jestem szczęśliwy, że się do was zwróciłem!",
         },
-        igorOlga: {
-          name: "Igor i Olga",
-          program: "Inkubator Biznesowy, Polska",
-          text: "Relokowaliśmy IT startup do Warszawy. Anastazja Łapo idealnie przeprowadziła nas przez cały proces: od rejestracji spółki (Sp. z o.o.) do odebrania plastikowej karty pobytu na 3 lata. Oszczędziło nam to mnóstwo nerwów.",
+        kristina: {
+          name: "Кристина",
+          program: "Karta pobytu na działalność biznesową",
+          text: "Z wami wszystko jest tak szybko! Dokumenty zebraliśmy w niesamowite terminy. Było wiele niejasnych momentów — nikt nie potrafił odpowiedzieć. Po prostu jesteście czarodziejką! Dziękuję ❤️",
         },
-        tatiana: {
-          name: "Tatiana Sz.",
-          program: "Obywatelstwo przez korzenie, Rumunia",
-          text: "Proces przywracania korzeni wydawał się nierealny z powodu zagubionych archiwów. Anastazja zorganizowała profesjonalne poszukiwania, znalazła akty dziadka i w pełni prowadziła sprawę aż do przysięgi w Bukareszcie. Paszport w ręku!",
+        anna: {
+          name: "Анна",
+          program: "Karta Pobytu",
+          text: "Po prostu magia!!! Nie wyobrażam sobie co byśmy robili bez was) Ogromne dziękuję za pomoc i wsparcie!",
         },
       },
     },
@@ -962,30 +1061,75 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         "Real stories of people who have successfully gone through the legalization process and trusted their relocation to an expert.",
       dragHint: "Click and drag sideways or scroll",
       items: {
-        markAnna: {
-          name: "Mark & Anna",
-          program: "Digital Nomad Residence Permit, Spain",
-          text: "We turned to Anastazja after a self-application rejection caused by an incorrectly structured contract. She completely reformatted our documents with the US client and drafted an explanatory letter for UGE. Re-submitted — approved in 18 days! A true professional.",
+        maria: {
+          name: "Maria",
+          program: "Family Reunification",
+          text: "The office gave us a gift on New Year's — we got our cards! With the lawyer's help, the process became peaceful. Half a year ago I was in despair, but Anastazja knew what she was doing. Thank you for believing in our case ❤️",
+        },
+        ekaterina: {
+          name: "Ekaterina Khamyonok",
+          program: "Business Residence Permit",
+          text: "We collected all documents for a business residence permit in just one week. Anastazja is a competent lawyer with real experience. Clear knowledge of the law, no nonsense. I ask all my questions about Polish law only to her 😀",
+        },
+        igor_game: {
+          name: "Igor",
+          program: "Residence Permit",
+          text: "Exactly 3 months — from filing documents to receiving the card! Anastazja was available throughout the process, solving all issues on time. Without you, the result would be different. Thank you for your professionalism 👍",
+        },
+        maksim: {
+          name: "Maxim",
+          program: "Permanent Residence, Gdańsk",
+          text: "We got permanent residence in just 2.5 months! The card is ready for issuance. Excellent work — fast, clear, to the point. This is what a lawyer should be!",
+        },
+        vitaly: {
+          name: "Vitaliy",
+          program: "Permanent & Temporary Residence, Warsaw",
+          text: "I got permanent residence for 10 years, my wife got temporary for 3 years. Thanks to Anastazja, everything worked out quickly and even better than we expected! Professionalism at every stage. Thank you 🤗",
+        },
+        ludmila: {
+          name: "Lyudmila",
+          program: "Residence Cards & Permanent Residence",
+          text: "In 7 months our children got residence cards and our whole family got permanent residence! Anastazja is a kind, responsive, and excellent specialist. I'm so glad we met you! Huge thanks ❤️",
+        },
+        taisia: {
+          name: "Taisia",
+          program: "Residence Permit",
+          text: "Residence card and positive decision in hand! Without Anastazja it would never have happened. Her materials, advice before the exam — everything was perfectly on target. Thank you a thousand times 🙏",
+        },
+        elizaveta: {
+          name: "Elizaveta",
+          program: "Residence Card, Complex Case",
+          text: "I was not the easiest client 🙈 But Anastazja performed a miracle! When the notification came about my residence card being ready, I cried with joy! Thank you so much! 🙏",
+        },
+        olga: {
+          name: "Olga",
+          program: "Case Acceleration",
+          text: "Status changed to Positive Decision! We pushed them through 😍 Without Anastazja I don't know how much longer I'd be waiting. You're simply the best specialist! Thank you for help and consultations!!!",
+        },
+        yulia: {
+          name: "Yulia Shitskova",
+          program: "Comprehensive Support",
+          text: "I say with 100% certainty — Anastazja is the best help for these matters 💪 Everything is clear, understandable, and to the point. Highest professionalism!",
         },
         dmitry: {
-          name: "Dmitry K.",
-          program: "Startup Visa, Portugal",
-          text: "Anastazja helped us fine-tune our business model for the strict requirements of the IAPMEI institute. Supported us at every step: from collecting certificates to account opening. Always responsive on Telegram, explains complex laws in simple terms. Highly recommend.",
+          name: "Dmitry",
+          program: "Positive Decision",
+          text: "Without you there wouldn't be such a result, I simply have no words 😍 Sincere gratitude! You're a super specialist! 👍",
         },
-        elena: {
-          name: "Elena B.",
-          program: "Residency without Right to Work, Italy",
-          text: "It was critical for me to submit documents before the passive income rules changed. Anastazja prepared the case in 2 weeks. The income audit was flawlessly executed — the consulate in Moscow issued the D-visa without a single question.",
+        artur: {
+          name: "Artur",
+          program: "Process Acceleration",
+          text: "We are very grateful! You're an amazing specialist and help us so much. Without you everything would be different. I'm happy I turned to you!",
         },
-        igorOlga: {
-          name: "Igor & Olga",
-          program: "Business Incubator, Poland",
-          text: "Relocated our IT startup to Warsaw. Anastazja Łapo perfectly guided us through the entire process: from company registration (Sp. z o.o.) to getting our 3-year residence card plastics. Saved us a ton of nerves.",
+        kristina: {
+          name: "Kristina",
+          program: "Business Residence Permit",
+          text: "With you everything is so fast! We collected documents in incredible time frames. There were many unclear moments — nobody could answer. You're just a wizard! Thank you ❤️",
         },
-        tatiana: {
-          name: "Tatiana S.",
-          program: "Citizenship by Descent, Romania",
-          text: "The root restoration process seemed impossible due to lost archives. Anastazja organized a professional search, found my grandfather's certificates, and fully managed the case until the oath in Bucharest. Passport in hand!",
+        anna: {
+          name: "Anna",
+          program: "Residence Permit",
+          text: "You're simply gold!!! I can't imagine what we'd do without you) Huge thanks for the help and support!",
         },
       },
     },
@@ -1269,30 +1413,75 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         "Реальні історії людей, які успішно пройшли процес легалізації та довірили свій переїзд експерту.",
       dragHint: "Затисніть і тягніть убік або гортайте",
       items: {
-        markAnna: {
-          name: "Марк та Анна",
-          program: "Посвідка Digital Nomad, Іспанія",
-          text: "Звернулися до Анастасії після самостійної відмови через неправильно оформлений контракт. Вона повністю переформатувала наші документи з американським замовником та склала пояснювальний лист для UGE. Подали знову — схвалення прийшло за 18 днів! Справжній професіонал.",
+        maria: {
+          name: "Марія",
+          program: "Возз'єднання сім'ї",
+          text: "Уряд подарував нам подарунок на Новий рік — отримали посвідки! З допомогою юриста процес став спокійним. Півроку тому я була у розпачі, але Анастасія знала, що робить. Спасибі за віру в нашу справу ❤️",
         },
-        dmitry: {
-          name: "Дмитро К.",
-          program: "Стартап-віза, Португалія",
+        ekaterina: {
+          name: "Екатерина Хаменок",
+          program: "Посвідка на бізнес",
           text: "Анастасія допомогла докрутити нашу бізнес-модель під жорсткі вимоги інституту IAPMEI. Супроводжувала на кожному кроці: від збору довідок до відкриття рахунку. Завжди на зв’язку в Telegram, пояснює складні закони простою мовою. Рекомендую.",
         },
-        elena: {
-          name: "Олена Б.",
-          program: "Посвідка без права на роботу, Італія",
-          text: "Для мене було критично встигнути подати документи до зміни правил щодо пасивного доходу. Анастасія підготувала кейс за 2 тижні. Аудит доходів був зроблений ідеально — консульство в Москві видало візу D без жодного запитання.",
+        igor_game: {
+          name: "Ігор",
+          program: "Посвідка на проживання",
+          text: "Рівно 3 місяці — від подання документів до отримання посвідки! Анастасія була на зв'язку весь процес, вирішувала всі питання вчасно. Без вас результат був би іншим. Спасибі за професіоналізм 👍",
         },
-        igorOlga: {
-          name: "Ігор та Ольга",
-          program: "Бізнес-інкубатор, Польша",
-          text: "Релокували IT-стартап у Варшаву. Анастазія Лапо ідеально провела нас через увесь процес: від реєстрації компанії (Sp. z o.o.) до отримання пластику посвідки на проживання на 3 роки. Зберегли тонну нервів.",
+        maksim: {
+          name: "Максим",
+          program: "ПМЖ, Гданськ",
+          text: "ПМЖ отримали за 2,5 місяці! Посвідка готова до видачі. Чудова робота — швидко, чітко, по суті. Це правник!",
         },
-        tatiana: {
-          name: "Тетяна Ш.",
-          program: "Громадянство за корінням, Румунія",
-          text: "Процес відновлення коріння здавався нереальним через втрачені архіви. Анастасія організувала професійний пошук, знайшла свідоцтва дідуся та повністю вела справу до присяги в Бухаресте. Паспорт у руках!",
+        vitaly: {
+          name: "Віталій",
+          program: "ПМЖ та ВНЖ, Варшава",
+          text: "Мені дали ПМЖ на 10 років, дружині ВНЖ на 3 роки. Завдяки Анастасії все отримали швидко та ще краще, ніж очікували! Професіоналізм на кожному етапі. Спасибі 🤗",
+        },
+        ludmila: {
+          name: "Людмила",
+          program: "Посвідки та ПМЖ",
+          text: "За 7 місяців дітям посвідки та ПМЖ для всієї сім'ї! Анастасія — добра, чуйна та чудова спеціалістка. Дуже рада, що вас зустріла! Величезне спасибі ❤️",
+        },
+        taisia: {
+          name: "Таїсія",
+          program: "Посвідка на проживання",
+          text: "Посвідка та позитивна рішення в руках! Без Анастасії нічого б не вийшло. Її матеріали, поради перед іспитом — все було точно в ціль. Спасибі тисячу разів 🙏",
+        },
+        elizaveta: {
+          name: "Єлизавета",
+          program: "Посвідка, складна справа",
+          text: "Я була не найпростішим клієнтом 🙈 Але Анастасія зробила чудо! Коли прийшло повідомлення про готовність моєї посвідки, я розплакалась від радості! Величезне спасибі! 🙏",
+        },
+        olga: {
+          name: "Ольга",
+          program: "Прискорення справи",
+          text: "Статус змінився на позитивну рішення! Дошкребли їх 😍 Без Анастасії не знаю, скільки б ще чекала. Ви просто найкращий спеціаліст! Спасибі за допомогу та консультації!!!",
+        },
+        yulia: {
+          name: "Юлія Шицкова",
+          program: "Комплексна підтримка",
+          text: "Зі 100% впевненістю кажу — Анастасія найкраща допомога в цих питаннях 💪 Все чітко, зрозуміло та по суті. Найвищий професіоналізм!",
+        },
+        dmitry: {
+          name: "Дмитро",
+          program: "Позитивна рішення",
+          text: "Без вас не було б такого результату, в мене просто немає слів 😍 Щира вдячність! Ви чудовий спеціаліст! 👍",
+        },
+        artur: {
+          name: "Артур",
+          program: "Прискорення процесу",
+          text: "Ми дуже вдячні! Ви чудовий спеціаліст і дуже нам допомагаєте. Без вас все було б інакше. Я щасливий, що звернувся до вас!",
+        },
+        kristina: {
+          name: "Крістіна",
+          program: "Посвідка на бізнес",
+          text: "З вами все так швидко! Документи зібрали за неймовірні терміни. Було багато нез'ясованих моментів — ніхто не міг відповісти. Ви просто чарівниця! Спасибі ❤️",
+        },
+        anna: {
+          name: "Анна",
+          program: "Посвідка на проживання",
+          text: "Ви просто золото!!! Не уявляю, що б ми без вас робили) Величезне спасибі за допомогу та підтримку!",
         },
       },
     },
