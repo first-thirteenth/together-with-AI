@@ -59,7 +59,12 @@ export const FloatingContact = () => {
           <motion.div
             initial={{ opacity: 0, scale: 0, rotate: -180 }}
             animate={{ opacity: 1, scale: 1, rotate: 0 }}
-            transition={{ delay: 0.15, type: "spring", stiffness: 280, damping: 14 }}
+            transition={{
+              delay: 0.15,
+              type: "spring",
+              stiffness: 280,
+              damping: 14,
+            }}
             className="relative"
             onMouseEnter={() => setShowCoffeeTooltip(true)}
             onMouseLeave={() => setShowCoffeeTooltip(false)}
@@ -78,11 +83,13 @@ export const FloatingContact = () => {
                     pointer-events-none"
                 >
                   {t.floatingContact.coffeeLabel}
-                  <span className="absolute right-[-6px] top-1/2 -translate-y-1/2 w-0 h-0
+                  <span
+                    className="absolute right-[-6px] top-1/2 -translate-y-1/2 w-0 h-0
                     border-t-[6px] border-t-transparent
                     border-b-[6px] border-b-transparent
                     border-l-[6px] border-l-gold-accent
-                    dark:border-l-emerald-medium" />
+                    dark:border-l-emerald-medium"
+                  />
                 </motion.span>
               )}
             </AnimatePresence>
@@ -125,8 +132,13 @@ export const FloatingContact = () => {
               aria-label={t.header.telegramTitle}
             >
               <span className="absolute top-0 -inset-full h-full w-1/2 block transform -skew-x-12 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-[shine_0.8s_ease-in-out]" />
-              <Send size={16} className="transform rotate-45 flex-shrink-0 relative z-10" />
-              <span className="text-sm relative z-10">{t.floatingContact.label}</span>
+              <Send
+                size={16}
+                className="transform rotate-45 flex-shrink-0 relative z-10"
+              />
+              <span className="text-sm relative z-10">
+                {t.floatingContact.label}
+              </span>
               <span className="absolute inset-0 rounded-2xl ring-2 ring-gold-accent/40 dark:ring-emerald-luxury/40 animate-ping opacity-30 pointer-events-none" />
             </a>
           </div>

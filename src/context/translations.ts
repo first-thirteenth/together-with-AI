@@ -212,7 +212,8 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       contactPlaceholder: "Telegram (@username) или телефон",
       sending: "Отправка...",
       configError: "Ошибка конфигурации формы. Пожалуйста, свяжитесь напрямую.",
-      networkError: "Произошла ошибка при отправке данных. Проверьте сеть или включите VPN, если Telegram заблокирован вашим провайдером.",
+      networkError:
+        "Произошла ошибка при отправке данных. Проверьте сеть или включите VPN, если Telegram заблокирован вашим провайдером.",
       inquiryMessage: "Здравствуйте! Меня интересует услуга",
       steps: [
         {
@@ -277,7 +278,8 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         casesTitle: "200+ успешных кейсов",
         casesDesc: "Одобренных ВНЖ, ПМЖ и гражданств на территории ЕС",
         rateTitle: "98.7% одобрений",
-        rateDesc: "Достигается за счет жесткого отбора профилей и глубокого аудита",
+        rateDesc:
+          "Достигается за счет жесткого отбора профилей и глубокого аудита",
       },
     },
     home: {
@@ -637,8 +639,10 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       namePlaceholder: "Twoje imię",
       contactPlaceholder: "Telegram (@username) lub numer telefonu",
       sending: "Wysyłanie...",
-      configError: "Błąd konfiguracji formularza. Prosimy o bezpośredni kontakt.",
-      networkError: "Wystąpił błąd podczas wysyłania danych. Sprawdź połączenie internetowe lub włącz VPN, jeśli Telegram jest zablokowany przez dostawcę.",
+      configError:
+        "Błąd konfiguracji formularza. Prosimy o bezpośredni kontakt.",
+      networkError:
+        "Wystąpił błąd podczas wysyłania danych. Sprawdź połączenie internetowe lub włącz VPN, jeśli Telegram jest zablokowany przez dostawcę.",
       inquiryMessage: "Dzień dobry! Interesuje mnie usługa",
       steps: [
         {
@@ -1070,7 +1074,8 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       contactPlaceholder: "Telegram (@username) or phone number",
       sending: "Sending...",
       configError: "Form configuration error. Please contact us directly.",
-      networkError: "An error occurred while sending your data. Please check your connection or use a VPN if Telegram is blocked by your provider.",
+      networkError:
+        "An error occurred while sending your data. Please check your connection or use a VPN if Telegram is blocked by your provider.",
       inquiryMessage: "Hello! I am interested in the service",
       steps: [
         {
@@ -1497,8 +1502,10 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       namePlaceholder: "Ваше ім’я",
       contactPlaceholder: "Telegram (@username) або телефон",
       sending: "Надсилання...",
-      configError: "Помилка конфігурації форми. Будь ласка, зв'яжіться напряму.",
-      networkError: "Виникла помилка під час надсилання даних. Перевірте мережу або увімкніть VPN, якщо Telegram заблокований вашим провайдером.",
+      configError:
+        "Помилка конфігурації форми. Будь ласка, зв'яжіться напряму.",
+      networkError:
+        "Виникла помилка під час надсилання даних. Перевірте мережу або увімкніть VPN, якщо Telegram заблокований вашим провайдером.",
       inquiryMessage: "Доброго дня! Мене цікавить послуга",
       steps: [
         {
@@ -1808,8 +1815,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       docsTitle: "Документи",
       docsCookies: "Політика кукі",
       docsAgreement: "Угода",
-      copyrightPost:
-        " Легка легалізація з Anastazja Łapo. Всі права захищені.",
+      copyrightPost: " Легка легалізація з Anastazja Łapo. Всі права захищені.",
       sslText: "Захищено SSL шифруванням",
     },
     floatingContact: {
