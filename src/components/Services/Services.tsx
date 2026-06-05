@@ -1,4 +1,10 @@
-﻿import { ArrowRight, Sparkles, ChevronUp, MessageCircle, Check } from "lucide-react";
+﻿import {
+  ArrowRight,
+  Sparkles,
+  ChevronUp,
+  MessageCircle,
+  Check,
+} from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { useLang } from "../../context/useLang";
@@ -54,10 +60,18 @@ export const Services = () => {
     { id: "citizenship", ...t.services.items.citizenship, popular: false },
     { id: "permanent", ...t.services.items.permanent, popular: false },
     { id: "kartaPolaka", ...t.services.items.kartaPolaka, popular: false },
-    { id: "driversLicense", ...t.services.items.driversLicense, popular: false },
+    {
+      id: "driversLicense",
+      ...t.services.items.driversLicense,
+      popular: false,
+    },
     { id: "openSP", ...t.services.items.openSP, popular: false },
     { id: "openLLC", ...t.services.items.openLLC, popular: false },
-    { id: "contractReview", ...t.services.items.contractReview, popular: false },
+    {
+      id: "contractReview",
+      ...t.services.items.contractReview,
+      popular: false,
+    },
   ];
 
   return (
