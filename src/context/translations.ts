@@ -1,4 +1,4 @@
-﻿export type LanguageCode = "EN" | "PL" | "RU" | "UA";
+export type LanguageCode = "EN" | "PL" | "RU" | "UA";
 
 export interface QuizOptionSchema {
   value: string;
@@ -247,33 +247,34 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       ],
     },
     about: {
-      badge: "Личный бренд и стандарты",
+      badge: "Личный бренд и стандарты работы",
       role: "Основатель проекта",
       titlePre: "Личный опыт и ",
       titleAccent: "юридическая точность",
       titlePost: " на вашей стороне",
       description:
-        "Я специализируюсь на международном миграционном праве более 8 лет. Моя работа заключается в том, чтобы убрать из процесса релокации всю бюрократическую неопределенность. Я не просто заполняю анкеты, а выстраиваю для вас легальный, безопасный и прогнозируемый трек получения статуса.",
+        "Я специализируюсь на польском и международном миграционном праве более 8 лет. Моя работа заключается в том, чтобы убрать из процесса вашей релокации всю бюрократическую неопределенность Труймяста и других воеводств. Я не просто заполняю анкеты в ужонд, а выстраиваю для вас легальный, безопасный и полностью прогнозируемый трек получения статуса — будь то Карта Побыту, Карта Поляка или запуск бизнеса.",
       features: [
-        "Глубокий пре-аудит документов до подписания договора",
-        "Прямая связь с экспертом без менеджеров и посредников",
+        "Глубокий пре-аудит документов до договора",
+        "Прямая связь со мной — без менеджеров и посредников",
+        "Бизнес-ориентированность и аудит рисков",
       ],
       stats: {
-        casesTitle: "350+ успешных кейсов",
-        casesDesc: "Одобренных ВНЖ и ПМЖ в ЕС",
-        rateTitle: "98.6% одобрений",
-        rateDesc: "За счет жесткого отбора профилей",
+        casesTitle: "200+ успешных кейсов",
+        casesDesc: "Одобренных ВНЖ, ПМЖ и гражданств на территории ЕС",
+        rateTitle: "98.7% одобрений",
+        rateDesc: "Достигается за счет жесткого отбора профилей и глубокого аудита",
       },
     },
     home: {
-      badge: "Официальная легализация и релокация под ключ",
-      titlePre: "Ваш надежный путь к ",
-      titleAccent: "ВНЖ и гражданству",
+      badge: "Персональное юридическое сопровождение",
+      titlePre: "Официальная легализация, гражданство и ",
+      titleAccent: "бизнес в Польше под ключ",
       description:
-        "Комплексное юридическое сопровождение: от анализа документов до гарантированного получения статуса. Минимизируем риски отказов на 99%.",
+        "Ваш надежный и прямой путь к ВНЖ, ПМЖ и Карте поляка без посредников. Беру на себя всю бюрократию, защищаю от скрытых рисков и довожу дело до гарантированного результата.",
       features: [
         "Оценка шансов до заключения договора",
-        "Работаем со сложными кейсами после отказов",
+        "Работаю со сложными кейсами после отказов",
       ],
       btnAudit: "Получить аудит кейса",
       btnPrograms: "Посмотреть программы",
@@ -466,8 +467,8 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       learnMore: "Подробнее",
     },
     ticker: {
-      cases: "350+ кейсов",
-      rate: "98.6% успех",
+      cases: "200+ кейсов",
+      rate: "98.7% успех",
       languages: "4 языка",
       city: "Варшава · Польша",
       vnj: "ВНЖ от 30 дней",
@@ -568,9 +569,9 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         "Bezpośredni kontakt z ekspertem, bez menedżerów i pośredników",
       ],
       stats: {
-        casesTitle: "350+ sukcesów",
+        casesTitle: "200+ sukcesów",
         casesDesc: "Zatwierdzonych kart pobytu i rezydentów w UE",
-        rateTitle: "98.6% skuteczności",
+        rateTitle: "98.7% skuteczności",
         rateDesc: "Dzięki rygorystycznej weryfikacji profili",
       },
     },
@@ -776,8 +777,8 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       learnMore: "Dowiedz się więcej",
     },
     ticker: {
-      cases: "350+ sukcesów",
-      rate: "98.6% skuteczności",
+      cases: "200+ sukcesów",
+      rate: "98.7% skuteczności",
       languages: "4 języki",
       city: "Warszawa · Polska",
       vnj: "Karta pobytu od 30 dni",
@@ -873,10 +874,10 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         "Direct communication with the expert without managers or intermediaries",
       ],
       stats: {
-        casesTitle: "350+ successful cases",
+        casesTitle: "200+ successful cases",
         casesDesc:
           "Approved residence permits and permanent residences in the EU",
-        rateTitle: "98.6% approval rate",
+        rateTitle: "98.7% approval rate",
         rateDesc: "Due to strict profile selection",
       },
     },
@@ -1083,8 +1084,8 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       learnMore: "Learn more",
     },
     ticker: {
-      cases: "350+ cases",
-      rate: "98.6% success rate",
+      cases: "200+ cases",
+      rate: "98.7% success rate",
       languages: "4 languages",
       city: "Warsaw · Poland",
       vnj: "Residence permit from 30 days",
@@ -1181,9 +1182,9 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         "Прямий зв'язок з експертом без менеджерів та посередників",
       ],
       stats: {
-        casesTitle: "350+ успішних кейсів",
+        casesTitle: "200+ успішних кейсів",
         casesDesc: "Схвалених посвідок на проживання та ПМП в ЄС",
-        rateTitle: "98.6% схвалень",
+        rateTitle: "98.7% схвалень",
         rateDesc: "Завдяки жорсткому відбору профілів",
       },
     },
@@ -1388,8 +1389,8 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       learnMore: "Докладніше",
     },
     ticker: {
-      cases: "350+ кейсів",
-      rate: "98.6% успіх",
+      cases: "200+ кейсів",
+      rate: "98.7% успіх",
       languages: "4 мови",
       city: "Варшава · Польща",
       vnj: "ВНЖ від 30 днів",
