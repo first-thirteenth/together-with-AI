@@ -61,11 +61,20 @@ export const Reviews = () => {
   const scrollLeft = useRef(0);
 
   const baseReviews = [
-    t.reviews.items.markAnna,
+    t.reviews.items.maria,
+    t.reviews.items.ekaterina,
+    t.reviews.items.igor_game,
+    t.reviews.items.maksim,
+    t.reviews.items.vitaly,
+    t.reviews.items.ludmila,
+    t.reviews.items.taisia,
+    t.reviews.items.elizaveta,
+    t.reviews.items.olga,
+    t.reviews.items.yulia,
     t.reviews.items.dmitry,
-    t.reviews.items.elena,
-    t.reviews.items.igorOlga,
-    t.reviews.items.tatiana,
+    t.reviews.items.artur,
+    t.reviews.items.kristina,
+    t.reviews.items.anna,
   ];
 
   const totalReviewsCount = 50;

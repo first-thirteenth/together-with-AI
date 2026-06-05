@@ -101,13 +101,13 @@ export const Footer = () => {
               </h4>
               <button
                 onClick={() => setLegalDoc("privacy")}
-                className="block hover:text-cream-bg transition-colors text-left"
+                className="block cursor-pointer hover:text-cream-bg transition-colors text-left"
               >
                 {t.footer.docsCookies}
               </button>
               <button
                 onClick={() => setLegalDoc("terms")}
-                className="block hover:text-cream-bg transition-colors text-left"
+                className="block cursor-pointer hover:text-cream-bg transition-colors text-left"
               >
                 {t.footer.docsAgreement}
               </button>
