@@ -67,7 +67,6 @@ export interface ServicesSectionSchema {
     driversLicense: ServiceItemSchema;
     openSP: ServiceItemSchema;
     openLLC: ServiceItemSchema;
-    contractReview: ServiceItemSchema;
   };
 }
 
@@ -309,7 +308,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       btnContact: "Написать в Telegram",
       items: {
         turnkey: {
-          title: "🥇 Пакет «Под ключ»",
+          title: "Пакет «Под ключ»",
           desc: "Полное юридическое сопровождение от старта до получения карты пребывания.",
           price: "1600 PLN",
           details: [
@@ -324,7 +323,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           ],
         },
         allInclusive: {
-          title: "⭐ Пакет «Всё включено»",
+          title: "Пакет «Всё включено»",
           desc: "Максимальная защита интересов для сложных, нестандартных или затянутых дел.",
           price: "2300 PLN",
           details: [
@@ -336,7 +335,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           ],
         },
         appPrep: {
-          title: "📄 Подготовка заявления",
+          title: "Подготовка заявления",
           desc: "Оптимальный выбор для тех, кто планирует подавать документы самостоятельно.",
           price: "650 PLN",
           details: [
@@ -347,7 +346,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           ],
         },
         consultation: {
-          title: "💬 Онлайн-консультация",
+          title: "Онлайн-консультация",
           desc: "Разбор вашей ситуации практикующим юристом. Чёткие ответы без канцеляризмов.",
           price: "260 PLN / 1 час",
           details: [
@@ -358,7 +357,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           ],
         },
         citizenship: {
-          title: "🇵🇱 Гражданство Польши",
+          title: "Гражданство Польши",
           desc: "Полное сопровождение процедуры получения польского паспорта.",
           price: "от 2000 PLN",
           details: [
@@ -369,7 +368,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           ],
         },
         permanent: {
-          title: "🇪🇺 ПМЖ / Карта резидента ЕС",
+          title: "ПМЖ / Карта резидента ЕС",
           desc: "Переход на новый уровень легализации: постоянный статус в Польше.",
           price: "от 1600 PLN",
           details: [
@@ -379,7 +378,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           ],
         },
         kartaPolaka: {
-          title: "🪪 Карта поляка",
+          title: "Карта поляка",
           desc: "Комплексная подготовка к собеседованию с консулом или воеводой.",
           price: "от 700 PLN",
           details: [
@@ -389,7 +388,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           ],
         },
         driversLicense: {
-          title: "🚗 Замена водительского удостоверения",
+          title: "Замена водительского удостоверения",
           desc: "Официальный обмен ваших прав на документ польского (европейского) образца.",
           price: "от 650 PLN",
           details: [
@@ -399,7 +398,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           ],
         },
         openSP: {
-          title: "🚀 Открытие ИП",
+          title: "Открытие ИП",
           desc: "Быстрый и правильный старт вашего бизнеса в Польше.",
           price: "650 PLN",
           details: [
@@ -410,7 +409,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           ],
         },
         openLLC: {
-          title: "🏢 Открытие ООО (Sp. z o.o.)",
+          title: "Открытие ООО (Sp. z o.o.)",
           desc: "Создание юридического лица под ключ.",
           price: "1500 PLN",
           details: [
@@ -418,16 +417,6 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
             "Регистрация в судебном реестре KRS",
             "Получение налоговых номеров NIP и REGON",
             "Консультация по структуре учредителей и уставному капиталу",
-          ],
-        },
-        contractReview: {
-          title: "🔍 Юридическая проверка договора",
-          desc: "Анализ договоров аренды, трудовых контрактов или договоров с партнёрами.",
-          price: "300 PLN",
-          details: [
-            "Поиск скрытых комиссий, штрафов и невыгодных условий",
-            "Анализ условий расторжения",
-            "Защита от финансовых потерь",
           ],
         },
       },
@@ -741,7 +730,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       btnContact: "Napisz na Telegram",
       items: {
         turnkey: {
-          title: "🥇 Pakiet «Pod klucz»",
+          title: "Pakiet «Pod klucz»",
           desc: "Pełna obsługa prawna od początku do otrzymania karty pobytu.",
           price: "1600 PLN",
           details: [
@@ -756,7 +745,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           ],
         },
         allInclusive: {
-          title: "⭐ Pakiet «Wszystko w cenie»",
+          title: "Pakiet «Wszystko w cenie»",
           desc: "Maksymalna ochrona interesów dla spraw trudnych, niestandardowych lub przedłużających się.",
           price: "2300 PLN",
           details: [
@@ -768,7 +757,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           ],
         },
         appPrep: {
-          title: "📄 Przygotowanie wniosku",
+          title: "Przygotowanie wniosku",
           desc: "Optymalny wybór dla tych, którzy planują składać dokumenty samodzielnie.",
           price: "650 PLN",
           details: [
@@ -779,7 +768,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           ],
         },
         consultation: {
-          title: "💬 Konsultacja online",
+          title: "Konsultacja online",
           desc: "Omówienie Twojej sytuacji z prawnikiem praktykiem. Jasne odpowiedzi bez biurokratyzmu.",
           price: "260 PLN / 1 godz.",
           details: [
@@ -790,7 +779,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           ],
         },
         citizenship: {
-          title: "🇵🇱 Obywatelstwo polskie",
+          title: "Obywatelstwo polskie",
           desc: "Pełna obsługa procedury uzyskania polskiego paszportu.",
           price: "od 2000 PLN",
           details: [
@@ -801,7 +790,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           ],
         },
         permanent: {
-          title: "🇪🇺 Pobyt stały / Karta rezydenta UE",
+          title: "Pobyt stały / Karta rezydenta UE",
           desc: "Przejście na nowy poziom legalizacji: trwały status w Polsce.",
           price: "od 1600 PLN",
           details: [
@@ -811,7 +800,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           ],
         },
         kartaPolaka: {
-          title: "🪪 Karta Polaka",
+          title: "Karta Polaka",
           desc: "Kompleksowe przygotowanie do rozmowy z konsulem lub wojewodą.",
           price: "od 700 PLN",
           details: [
@@ -821,7 +810,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           ],
         },
         driversLicense: {
-          title: "🚗 Wymiana prawa jazdy",
+          title: "Wymiana prawa jazdy",
           desc: "Oficjalna wymiana Twojego prawa jazdy na dokument polskiego (europejskiego) wzoru.",
           price: "od 650 PLN",
           details: [
@@ -831,7 +820,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           ],
         },
         openSP: {
-          title: "🚀 Otwarcie JDG",
+          title: "Otwarcie JDG",
           desc: "Szybki i prawidłowy start Twojego biznesu w Polsce.",
           price: "650 PLN",
           details: [
@@ -842,7 +831,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           ],
         },
         openLLC: {
-          title: "🏢 Otwarcie Sp. z o.o.",
+          title: "Otwarcie Sp. z o.o.",
           desc: "Tworzenie osoby prawnej pod klucz.",
           price: "1500 PLN",
           details: [
@@ -850,16 +839,6 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
             "Rejestracja w KRS",
             "Uzyskanie numerów NIP i REGON",
             "Konsultacja w zakresie struktury wspólników i kapitału zakładowego",
-          ],
-        },
-        contractReview: {
-          title: "🔍 Analiza prawna umowy",
-          desc: "Analiza umów najmu, umów o pracę lub umów z partnerami biznesowymi.",
-          price: "300 PLN",
-          details: [
-            "Wyszukiwanie ukrytych prowizji, kar i niekorzystnych warunków",
-            "Analiza warunków rozwiązania umowy",
-            "Ochrona przed stratami finansowymi",
           ],
         },
       },
@@ -1169,7 +1148,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       btnContact: "Message on Telegram",
       items: {
         turnkey: {
-          title: "🥇 «Turnkey» Package",
+          title: "«Turnkey» Package",
           desc: "Full legal support for your case from start to receiving the residence card.",
           price: "1600 PLN",
           details: [
@@ -1184,7 +1163,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           ],
         },
         allInclusive: {
-          title: "⭐ «All Inclusive» Package",
+          title: "«All Inclusive» Package",
           desc: "Maximum protection for complex, non-standard, or delayed cases.",
           price: "2300 PLN",
           details: [
@@ -1196,7 +1175,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           ],
         },
         appPrep: {
-          title: "📄 Application Preparation",
+          title: "Application Preparation",
           desc: "The best choice for those who plan to submit documents independently.",
           price: "650 PLN",
           details: [
@@ -1207,7 +1186,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           ],
         },
         consultation: {
-          title: "💬 Online Consultation",
+          title: "Online Consultation",
           desc: "Review of your situation by a practising lawyer. Clear answers without bureaucratic jargon.",
           price: "260 PLN / 1 hr",
           details: [
@@ -1218,7 +1197,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           ],
         },
         citizenship: {
-          title: "🇵🇱 Polish Citizenship",
+          title: "Polish Citizenship",
           desc: "Full support for the Polish passport acquisition procedure.",
           price: "from 2000 PLN",
           details: [
@@ -1229,7 +1208,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           ],
         },
         permanent: {
-          title: "🇪🇺 Permanent Residence / EU Resident Card",
+          title: "Permanent Residence / EU Resident Card",
           desc: "Moving to a new level of legalisation: permanent status in Poland.",
           price: "from 1600 PLN",
           details: [
@@ -1239,7 +1218,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           ],
         },
         kartaPolaka: {
-          title: "🪪 Karta Polaka",
+          title: "Karta Polaka",
           desc: "Comprehensive preparation for the interview with a consul or voivode.",
           price: "from 700 PLN",
           details: [
@@ -1249,7 +1228,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           ],
         },
         driversLicense: {
-          title: "🚗 Driver's Licence Exchange",
+          title: "Driver's Licence Exchange",
           desc: "Official exchange of your licence for a Polish (European) format document.",
           price: "from 650 PLN",
           details: [
@@ -1259,7 +1238,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           ],
         },
         openSP: {
-          title: "🚀 Opening a Sole Proprietorship",
+          title: "Opening a Sole Proprietorship",
           desc: "Fast and correct start of your business in Poland.",
           price: "650 PLN",
           details: [
@@ -1270,7 +1249,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           ],
         },
         openLLC: {
-          title: "🏢 Opening an LLC (Sp. z o.o.)",
+          title: "Opening an LLC (Sp. z o.o.)",
           desc: "Turnkey creation of a legal entity.",
           price: "1500 PLN",
           details: [
@@ -1278,16 +1257,6 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
             "Registration in the KRS court register",
             "Obtaining NIP and REGON numbers",
             "Consultation on shareholder structure and share capital",
-          ],
-        },
-        contractReview: {
-          title: "🔍 Legal Contract Review",
-          desc: "Analysis of rental, employment contracts or agreements with business partners.",
-          price: "300 PLN",
-          details: [
-            "Identifying hidden fees, penalties and unfavourable terms",
-            "Analysis of termination conditions",
-            "Protection against financial losses",
           ],
         },
       },
@@ -1599,7 +1568,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       btnContact: "Написати в Telegram",
       items: {
         turnkey: {
-          title: "🥇 Пакет «Під ключ»",
+          title: "Пакет «Під ключ»",
           desc: "Повний юридичний супровід від старту до отримання посвідки на проживання.",
           price: "1600 PLN",
           details: [
@@ -1614,7 +1583,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           ],
         },
         allInclusive: {
-          title: "⭐ Пакет «Все включено»",
+          title: "Пакет «Все включено»",
           desc: "Максимальний захист інтересів для складних, нестандартних або затяжних справ.",
           price: "2300 PLN",
           details: [
@@ -1626,7 +1595,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           ],
         },
         appPrep: {
-          title: "📄 Підготовка заяви",
+          title: "Підготовка заяви",
           desc: "Оптимальний вибір для тих, хто планує подавати документи самостійно.",
           price: "650 PLN",
           details: [
@@ -1637,7 +1606,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           ],
         },
         consultation: {
-          title: "💬 Онлайн-консультація",
+          title: "Онлайн-консультація",
           desc: "Розбір вашої ситуації практикуючим юристом. Чіткі відповіді без канцеляризмів.",
           price: "260 PLN / 1 год",
           details: [
@@ -1648,7 +1617,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           ],
         },
         citizenship: {
-          title: "🇵🇱 Громадянство Польщі",
+          title: "Громадянство Польщі",
           desc: "Повний супровід процедури отримання польського паспорту.",
           price: "від 2000 PLN",
           details: [
@@ -1659,7 +1628,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           ],
         },
         permanent: {
-          title: "🇪🇺 ПМЖ / Карта резидента ЄС",
+          title: "ПМЖ / Карта резидента ЄС",
           desc: "Перехід на новий рівень легалізації: постійний статус у Польщі.",
           price: "від 1600 PLN",
           details: [
@@ -1669,7 +1638,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           ],
         },
         kartaPolaka: {
-          title: "🪪 Карта поляка",
+          title: "Карта поляка",
           desc: "Комплексна підготовка до співбесіди з консулом або воєводою.",
           price: "від 700 PLN",
           details: [
@@ -1679,7 +1648,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           ],
         },
         driversLicense: {
-          title: "🚗 Заміна водійського посвідчення",
+          title: "Заміна водійського посвідчення",
           desc: "Офіційний обмін ваших прав на документ польського (європейського) зразка.",
           price: "від 650 PLN",
           details: [
@@ -1689,7 +1658,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           ],
         },
         openSP: {
-          title: "🚀 Відкриття ФОП / ІП",
+          title: "Відкриття ФОП / ІП",
           desc: "Швидкий та правильний старт вашого бізнесу в Польщі.",
           price: "650 PLN",
           details: [
@@ -1700,7 +1669,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
           ],
         },
         openLLC: {
-          title: "🏢 Відкриття ТОВ (Sp. z o.o.)",
+          title: "Відкриття ТОВ (Sp. z o.o.)",
           desc: "Створення юридичної особи під ключ.",
           price: "1500 PLN",
           details: [
@@ -1708,16 +1677,6 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
             "Реєстрація в судовому реєстрі KRS",
             "Отримання податкових номерів NIP та REGON",
             "Консультація щодо структури засновників та статутного капіталу",
-          ],
-        },
-        contractReview: {
-          title: "🔍 Юридична перевірка договору",
-          desc: "Аналіз договорів оренди, трудових контрактів або договорів з партнерами.",
-          price: "300 PLN",
-          details: [
-            "Пошук прихованих комісій, штрафів та невигідних умов",
-            "Аналіз умов розірвання",
-            "Захист від фінансових втрат",
           ],
         },
       },

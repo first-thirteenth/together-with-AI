@@ -4,6 +4,17 @@
   ChevronUp,
   MessageCircle,
   Check,
+  Trophy,
+  Gem,
+  FileText,
+  MessagesSquare,
+  Flag,
+  Globe,
+  CreditCard,
+  Car,
+  Rocket,
+  Building2,
+  type LucideIcon,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
@@ -52,6 +63,19 @@ export const Services = () => {
   const { t } = useLang();
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
+  const serviceIcons: Record<string, LucideIcon> = {
+    turnkey: Trophy,
+    allInclusive: Gem,
+    appPrep: FileText,
+    consultation: MessagesSquare,
+    citizenship: Flag,
+    permanent: Globe,
+    kartaPolaka: CreditCard,
+    driversLicense: Car,
+    openSP: Rocket,
+    openLLC: Building2,
+  };
+
   const services = [
     { id: "turnkey", ...t.services.items.turnkey, popular: true },
     { id: "allInclusive", ...t.services.items.allInclusive, popular: false },
@@ -67,11 +91,6 @@ export const Services = () => {
     },
     { id: "openSP", ...t.services.items.openSP, popular: false },
     { id: "openLLC", ...t.services.items.openLLC, popular: false },
-    {
-      id: "contractReview",
-      ...t.services.items.contractReview,
-      popular: false,
-    },
   ];
 
   return (
@@ -135,7 +154,15 @@ export const Services = () => {
                 )}
 
                 <div className="space-y-3">
-                  <h3 className="font-bold text-xl text-emerald-luxury dark:text-cream-bg group-hover:text-gold-hover transition-colors duration-200 pr-20">
+                  <h3 className="font-bold text-xl text-emerald-luxury dark:text-cream-bg group-hover:text-gold-hover transition-colors duration-200 pr-20 flex items-center gap-2.5">
+                    {(() => {
+                      const Icon = serviceIcons[service.id];
+                      return Icon ? (
+                        <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-gold-accent/15 dark:bg-gold-accent/20 text-gold-hover dark:text-gold-accent flex-shrink-0 transition-colors duration-300">
+                          <Icon size={16} strokeWidth={1.75} />
+                        </span>
+                      ) : null;
+                    })()}
                     {service.title}
                   </h3>
                   <p className="text-xs text-luxury-text/80 dark:text-cream-bg/80 leading-relaxed transition-colors duration-500">
