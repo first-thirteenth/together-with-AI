@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence, useAnimate } from "framer-motion";
-import { Send, Coffee } from "lucide-react";
+import { Send, Coffee, ChevronUp } from "lucide-react";
 import { CONTACTS } from "../../config/contacts";
 import { useLang } from "../../context/useLang";
 
@@ -55,6 +55,22 @@ export const FloatingContact = () => {
           transition={{ type: "spring", stiffness: 260, damping: 20 }}
           className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3"
         >
+          {/* Scroll to top button */}
+          <motion.button
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.05, type: "spring", stiffness: 280, damping: 14 }}
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            aria-label="Scroll to top"
+            className="w-12 h-12 rounded-full flex items-center justify-center shadow-lg
+              bg-gold-accent text-emerald-luxury
+              hover:bg-gold-hover hover:scale-110 active:scale-95
+              transition-[transform,background-color,box-shadow] duration-300 hover:shadow-xl
+              will-change-[transform] cursor-pointer"
+          >
+            <ChevronUp size={22} strokeWidth={2.5} />
+          </motion.button>
+
           {/* Coffee button — round with tooltip and wiggle */}
           <motion.div
             initial={{ opacity: 0, scale: 0, rotate: -180 }}
