@@ -1,6 +1,6 @@
 import { Award, BookOpen, CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
-import anastasiaPhoto from "../../assets/anastasia.jpg";
+import anastasiaPhoto from "../../assets/anastasia.webp";
 import { useLang } from "../../context/useLang";
 import { AnimatedCounter } from "../AnimatedCounter/AnimatedCounter";
 
@@ -146,7 +146,7 @@ export const About = () => {
                 <BookOpen className="text-gold-hover flex-shrink-0" size={22} />
                 <div>
                   <h4 className="font-bold text-emerald-luxury dark:text-cream-bg text-sm transition-colors duration-500">
-                    <AnimatedCounter target={98.7} suffix="%" decimals={1} />{" "}
+                    <AnimatedCounter target={99.9} suffix="%" decimals={1} />{" "}
                     {t.about.stats.rateTitle.replace(/^[\d.]+%\s*/, "")}
                   </h4>
                   <p className="text-xs text-luxury-text/60 dark:text-cream-bg/60 transition-colors duration-500">

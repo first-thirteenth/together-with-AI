@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLang } from "../../context/useLang";
 import { Cookie, X } from "lucide-react";
@@ -8,13 +8,11 @@ const STORAGE_KEY = "cookie-consent";
 
 export function CookieBanner() {
   const { t } = useLang();
-  const [status, setStatus] = useState<ConsentStatus | "pending">("pending");
+  const [status, setStatus] = useState<ConsentStatus>(() => {
+    if (typeof window === "undefined") return null;
+    return localStorage.getItem(STORAGE_KEY) as ConsentStatus | null;
+  });
   const [expanded, setExpanded] = useState(false);
-
-  useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY) as ConsentStatus | null;
-    setStatus(stored ?? null);
-  }, []);
 
   function handleAccept() {
     localStorage.setItem(STORAGE_KEY, "accepted");
@@ -40,8 +38,9 @@ export function CookieBanner() {
                      rounded-2xl backdrop-blur-md
                      bg-[#f4f0e6]/97 border border-[#c5a880]/40 shadow-[0_8px_40px_rgba(0,0,0,0.12)]
                      dark:bg-[#0f2e24]/97 dark:border-[#c5a880]/25 dark:shadow-[0_8px_40px_rgba(0,0,0,0.5)]"
-          role="dialog"
-          aria-label="Cookie consent"
+          role="region"
+          aria-live="polite"
+          aria-label={t.cookie.title}
         >
           {/* Gold top accent line */}
           <div className="h-[2px] w-full rounded-t-2xl bg-gradient-to-r from-transparent via-[#c5a880] to-transparent" />
@@ -57,7 +56,7 @@ export function CookieBanner() {
               </div>
               <button
                 onClick={handleNecessary}
-                className="rounded-full p-1 text-[#2c3531]/30 dark:text-[#f4f0e6]/30
+                className="rounded-full w-11 h-11 inline-flex items-center justify-center text-[#2c3531]/30 dark:text-[#f4f0e6]/30
                            transition-colors hover:text-[#2c3531]/70 dark:hover:text-[#f4f0e6]/70"
                 aria-label="Close"
               >

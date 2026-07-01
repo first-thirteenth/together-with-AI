@@ -141,6 +141,30 @@ export const Reviews = () => {
     scrollContainerRef.current.scrollLeft = scrollLeft.current - walk;
   };
 
+  const scrollByCard = (direction: "left" | "right") => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+    const firstCard = container.firstElementChild as HTMLElement | null;
+    if (!firstCard) return;
+    const delta = firstCard.offsetWidth + 96;
+    container.scrollBy({
+      left: direction === "right" ? delta : -delta,
+      behavior: "smooth",
+    });
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "ArrowRight") {
+      e.preventDefault();
+      scrollByCard("right");
+      return;
+    }
+    if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      scrollByCard("left");
+    }
+  };
+
   return (
     <section
       ref={sectionRef}
@@ -185,6 +209,10 @@ export const Reviews = () => {
               onMouseLeave={handleMouseLeaveOrUp}
               onMouseUp={handleMouseLeaveOrUp}
               onMouseMove={handleMouseMove}
+              onKeyDown={handleKeyDown}
+              tabIndex={0}
+              role="region"
+              aria-label={`${t.reviews.titlePre} ${t.reviews.titleAccent}`}
               className="flex gap-12 sm:gap-24 overflow-x-auto no-scrollbar py-8 px-4 md:px-[calc(50%-250px)] snap-x snap-mandatory scroll-smooth cursor-grab active:cursor-grabbing select-none"
               style={{ scrollbarWidth: "none" }}
             >

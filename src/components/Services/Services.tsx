@@ -1,4 +1,4 @@
-﻿import {
+import {
   ArrowRight,
   Sparkles,
   ChevronUp,
@@ -35,19 +35,16 @@ const fadeInUp: Variants = {
 const cardPop: Variants = {
   hidden: {
     opacity: 0,
-    scale: 0.6,
-    y: 40,
-    rotate: -4,
+    y: 50,
+    filter: "blur(6px)",
   },
   visible: {
     opacity: 1,
-    scale: 1,
     y: 0,
-    rotate: 0,
+    filter: "blur(0px)",
     transition: {
-      type: "spring",
-      stiffness: 400,
-      damping: 16,
+      duration: 0.7,
+      ease: [0.25, 1, 0.5, 1],
     },
   },
 };
@@ -55,7 +52,7 @@ const cardPop: Variants = {
 const staggerGrid: Variants = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.07, delayChildren: 0.05 },
+    transition: { staggerChildren: 0.13, delayChildren: 0.1 },
   },
 };
 
@@ -102,7 +99,7 @@ export const Services = () => {
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, margin: "-80px" }}
+          viewport={{ once: true, margin: "-80px" }}
           variants={{
             hidden: {},
             visible: { transition: { staggerChildren: 0.14 } },
@@ -129,7 +126,7 @@ export const Services = () => {
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, margin: "-60px" }}
+          viewport={{ once: true, margin: "-60px" }}
           variants={staggerGrid}
           className="grid grid-cols-1 md:grid-cols-2 gap-6"
         >
