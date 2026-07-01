@@ -239,6 +239,9 @@ export const Quiz = () => {
                   onClick={() => {
                     setUserData({ name: "", phone: "" });
                     setIsSubmitted(false);
+                    setIsFinished(false);
+                    setAnswers({});
+                    setCurrentStep(0);
                   }}
                   className="inline-flex items-center text-[11px] uppercase tracking-widest text-gold-accent hover:text-gold-hover transition-colors font-bold cursor-pointer pt-2"
                 >

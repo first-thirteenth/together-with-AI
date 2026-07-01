@@ -176,8 +176,8 @@ export const Home = () => {
       >
         <AnimatedBackground />
 
-        <div className="absolute h-full w-full overflow-hidden flex items-center">
-          <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="absolute h-full w-full overflow-hidden flex flex-col justify-center">
+          <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-20 pb-8">
             <div className="grid grid-cols-2 gap-12 items-center w-full relative">
               {/* Left: text, fully static on desktop */}
               <motion.div
