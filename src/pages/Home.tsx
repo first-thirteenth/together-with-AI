@@ -1,6 +1,6 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Shield, ArrowRight, CheckCircle2 } from "lucide-react";
-import { motion, useScroll, useTransform, useAnimate } from "framer-motion";
+import { motion, useAnimate } from "framer-motion";
 import { Quiz } from "../components/Quiz/Quiz.tsx";
 import { useLang } from "../context/useLang";
 import { AnimatedBackground } from "../components/AnimatedBackground/AnimatedBackground";
@@ -49,18 +49,8 @@ const featureItem = {
 
 export const Home = () => {
   const { t } = useLang();
-  const trackRef = useRef<HTMLDivElement>(null);
   const [quizRef, animateQuiz] = useAnimate();
   const [isHighlighted, setIsHighlighted] = useState(false);
-
-  const { scrollYProgress } = useScroll({
-    target: trackRef,
-    offset: ["start start", "end end"],
-  });
-
-  // Desktop only: text scrolls up and fades out
-  const textY = useTransform(scrollYProgress, [0, 0.3], [0, -120]);
-  const textOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
 
   const handleConsultation = async () => {
     const quizEl = document.getElementById("quiz");
@@ -182,7 +172,6 @@ export const Home = () => {
 
       {/* ─── DESKTOP layout: sticky scroll-driven hero ─── */}
       <div
-        ref={trackRef}
         className="hidden lg:block relative w-full h-screen bg-cream-bg dark:bg-emerald-luxury text-luxury-text dark:text-cream-bg font-sans lg:sticky lg:top-0 z-10 transition-colors duration-500"
       >
         <AnimatedBackground />
@@ -190,10 +179,9 @@ export const Home = () => {
         <div className="absolute h-full w-full overflow-hidden flex items-center">
           <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div className="grid grid-cols-2 gap-12 items-center w-full relative">
-              {/* Left: text with scroll-driven fade */}
+              {/* Left: text, fully static on desktop */}
               <motion.div
-                style={{ y: textY, opacity: textOpacity }}
-                className="space-y-6 will-change-[transform,opacity]"
+                className="space-y-6"
               >
                 <motion.div
                   initial="hidden"
