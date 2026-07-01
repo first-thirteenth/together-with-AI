@@ -114,18 +114,31 @@ export const Home = () => {
             </motion.p>
 
             <motion.ul
-              variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08 } } }}
+              variants={{
+                hidden: {},
+                visible: { transition: { staggerChildren: 0.08 } },
+              }}
               className="space-y-2 text-xs sm:text-sm text-luxury-text/90 dark:text-cream-bg/90 pt-1 transition-colors duration-500"
             >
               {t.home.features.map((feature: string, index: number) => (
-                <motion.li key={index} variants={featureItem} className="flex items-center gap-3">
-                  <CheckCircle2 size={16} className="text-gold-accent flex-shrink-0" />
+                <motion.li
+                  key={index}
+                  variants={featureItem}
+                  className="flex items-center gap-3"
+                >
+                  <CheckCircle2
+                    size={16}
+                    className="text-gold-accent flex-shrink-0"
+                  />
                   <span>{feature}</span>
                 </motion.li>
               ))}
             </motion.ul>
 
-            <motion.div variants={fromBelow} className="flex flex-col sm:flex-row gap-3 pt-2">
+            <motion.div
+              variants={fromBelow}
+              className="flex flex-col sm:flex-row gap-3 pt-2"
+            >
               <button
                 onClick={handleConsultation}
                 className="relative overflow-hidden inline-flex items-center justify-center gap-2 bg-gold-accent hover:bg-gold-hover text-emerald-luxury font-bold px-6 py-3 rounded-lg text-sm shadow-sm active:scale-98 cursor-pointer group w-full sm:w-auto"
@@ -138,7 +151,11 @@ export const Home = () => {
               </button>
               <button
                 className="inline-flex items-center justify-center bg-cream-card dark:bg-emerald-medium hover:bg-white dark:hover:bg-emerald-medium/50 border border-gold-accent/20 dark:border-gold-accent/30 text-emerald-medium dark:text-cream-bg font-semibold px-6 py-3 rounded-lg text-sm transition-all cursor-pointer shadow-sm w-full sm:w-auto"
-                onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
+                onClick={() =>
+                  document
+                    .getElementById("services")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
               >
                 {t.home.btnPrograms}
               </button>
@@ -162,8 +179,12 @@ export const Home = () => {
                   : "border-gold-accent/15 dark:border-gold-accent/20"
               }`}
             >
-              <h3 className="text-lg sm:text-xl font-bold mb-1 text-cream-bg">{t.home.quizTitle}</h3>
-              <p className="text-[11px] sm:text-xs text-cream-bg/60 mb-4 sm:mb-5">{t.home.quizDesc}</p>
+              <h3 className="text-lg sm:text-xl font-bold mb-1 text-cream-bg">
+                {t.home.quizTitle}
+              </h3>
+              <p className="text-[11px] sm:text-xs text-cream-bg/60 mb-4 sm:mb-5">
+                {t.home.quizDesc}
+              </p>
               <Quiz />
             </div>
           </motion.div>
@@ -171,18 +192,14 @@ export const Home = () => {
       </div>
 
       {/* ─── DESKTOP layout: sticky scroll-driven hero ─── */}
-      <div
-        className="hidden lg:block relative w-full h-screen bg-cream-bg dark:bg-emerald-luxury text-luxury-text dark:text-cream-bg font-sans lg:sticky lg:top-0 z-10 transition-colors duration-500"
-      >
+      <div className="hidden lg:block relative w-full h-screen bg-cream-bg dark:bg-emerald-luxury text-luxury-text dark:text-cream-bg font-sans lg:sticky lg:top-0 z-10 transition-colors duration-500">
         <AnimatedBackground />
 
-        <div className="absolute h-full w-full overflow-hidden flex flex-col justify-center">
-          <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-20 pb-8">
+        <div className="absolute h-full w-full overflow-hidden">
+          <section className="h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex items-center pt-24 pb-8">
             <div className="grid grid-cols-2 gap-12 items-center w-full relative">
               {/* Left: text, fully static on desktop */}
-              <motion.div
-                className="space-y-6"
-              >
+              <motion.div className="space-y-6">
                 <motion.div
                   initial="hidden"
                   animate="visible"
@@ -215,18 +232,31 @@ export const Home = () => {
                   </motion.p>
 
                   <motion.ul
-                    variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08 } } }}
+                    variants={{
+                      hidden: {},
+                      visible: { transition: { staggerChildren: 0.08 } },
+                    }}
                     className="space-y-3 text-sm text-luxury-text/90 dark:text-cream-bg/90 pt-1 transition-colors duration-500"
                   >
                     {t.home.features.map((feature: string, index: number) => (
-                      <motion.li key={index} variants={featureItem} className="flex items-center gap-3">
-                        <CheckCircle2 size={16} className="text-gold-accent flex-shrink-0" />
+                      <motion.li
+                        key={index}
+                        variants={featureItem}
+                        className="flex items-center gap-3"
+                      >
+                        <CheckCircle2
+                          size={16}
+                          className="text-gold-accent flex-shrink-0"
+                        />
                         <span>{feature}</span>
                       </motion.li>
                     ))}
                   </motion.ul>
 
-                  <motion.div variants={fromBelow} className="flex flex-row gap-3 pt-2">
+                  <motion.div
+                    variants={fromBelow}
+                    className="flex flex-row gap-3 pt-2"
+                  >
                     <button
                       onClick={handleConsultation}
                       className="relative overflow-hidden inline-flex items-center justify-center gap-2 bg-gold-accent hover:bg-gold-hover text-emerald-luxury font-bold px-6 py-3 rounded-lg text-sm shadow-sm active:scale-98 cursor-pointer group"
@@ -239,7 +269,11 @@ export const Home = () => {
                     </button>
                     <button
                       className="inline-flex items-center justify-center bg-cream-card dark:bg-emerald-medium hover:bg-white dark:hover:bg-emerald-medium/50 border border-gold-accent/20 dark:border-gold-accent/30 text-emerald-medium dark:text-cream-bg font-semibold px-6 py-3 rounded-lg text-sm transition-all cursor-pointer shadow-sm"
-                      onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
+                      onClick={() =>
+                        document
+                          .getElementById("services")
+                          ?.scrollIntoView({ behavior: "smooth" })
+                      }
                     >
                       {t.home.btnPrograms}
                     </button>
@@ -256,7 +290,12 @@ export const Home = () => {
               >
                 <motion.div
                   animate={{ scale: [1, 1.013, 1] }}
-                  transition={{ repeat: Infinity, duration: 4, ease: "easeInOut", repeatDelay: 2 }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: 4,
+                    ease: "easeInOut",
+                    repeatDelay: 2,
+                  }}
                   className="will-change-[transform]"
                 >
                   <div className="absolute -inset-1 bg-gradient-to-r from-gold-accent/20 to-transparent rounded-2xl blur opacity-30" />
@@ -269,8 +308,12 @@ export const Home = () => {
                         : "border-gold-accent/15 dark:border-gold-accent/20"
                     }`}
                   >
-                    <h3 className="text-lg sm:text-xl font-bold mb-1 text-cream-bg">{t.home.quizTitle}</h3>
-                    <p className="text-[11px] sm:text-xs text-cream-bg/60 mb-4 sm:mb-5">{t.home.quizDesc}</p>
+                    <h3 className="text-lg sm:text-xl font-bold mb-1 text-cream-bg">
+                      {t.home.quizTitle}
+                    </h3>
+                    <p className="text-[11px] sm:text-xs text-cream-bg/60 mb-4 sm:mb-5">
+                      {t.home.quizDesc}
+                    </p>
                     <Quiz />
                   </div>
                 </motion.div>
