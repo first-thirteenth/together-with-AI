@@ -276,7 +276,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       stats: {
         casesTitle: "200+ успешных кейсов",
         casesDesc: "Одобренных ВНЖ, ПМЖ и гражданств на территории ЕС",
-        rateTitle: "98.7% одобрений",
+        rateTitle: "99.9% одобрений",
         rateDesc:
           "Достигается за счет жесткого отбора профилей и глубокого аудита",
       },
@@ -594,7 +594,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
     },
     ticker: {
       cases: "200+ кейсов",
-      rate: "98.7% успех",
+      rate: "99.9% успех",
       languages: "4 языка",
       city: "Варшава · Польша",
       vnj: "ВНЖ от 30 дней",
@@ -699,7 +699,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       stats: {
         casesTitle: "200+ sukcesów",
         casesDesc: "Zatwierdzonych kart pobytu i rezydentów w UE",
-        rateTitle: "98.7% skuteczności",
+        rateTitle: "99.9% skuteczności",
         rateDesc: "Dzięki rygorystycznej weryfikacji profili",
       },
     },
@@ -1017,7 +1017,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
     },
     ticker: {
       cases: "200+ sukcesów",
-      rate: "98.7% skuteczności",
+      rate: "99.9% skuteczności",
       languages: "4 języki",
       city: "Warszawa · Polska",
       vnj: "Karta pobytu od 30 dni",
@@ -1117,7 +1117,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
         casesTitle: "200+ successful cases",
         casesDesc:
           "Approved residence permits and permanent residences in the EU",
-        rateTitle: "98.7% approval rate",
+        rateTitle: "99.9% approval rate",
         rateDesc: "Due to strict profile selection",
       },
     },
@@ -1436,7 +1436,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
     },
     ticker: {
       cases: "200+ cases",
-      rate: "98.7% success rate",
+      rate: "99.9% success rate",
       languages: "4 languages",
       city: "Warsaw · Poland",
       vnj: "Residence permit from 30 days",
@@ -1537,7 +1537,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
       stats: {
         casesTitle: "200+ успішних кейсів",
         casesDesc: "Схвалених посвідок на проживання та ПМП в ЄС",
-        rateTitle: "98.7% схвалень",
+        rateTitle: "99.9% схвалень",
         rateDesc: "Завдяки жорсткому відбору профілів",
       },
     },
@@ -1853,7 +1853,7 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
     },
     ticker: {
       cases: "200+ кейсів",
-      rate: "98.7% успіх",
+      rate: "99.9% успіх",
       languages: "4 мови",
       city: "Варшава · Польща",
       vnj: "ВНЖ від 30 днів",
@@ -1861,3 +1861,4 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
     },
   },
 };
+
