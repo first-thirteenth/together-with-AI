@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Feather,
   Menu,
@@ -79,6 +79,7 @@ export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [isPhoneHighlighted, setIsPhoneHighlighted] = useState(false);
+  const langMenuRef = useRef<HTMLDivElement>(null);
 
   // Инициализируем стейт сразу из localStorage, чтобы избежать мигания темы
   const [isDarkMode, setIsDarkMode] = useState(() => {
@@ -106,19 +107,38 @@ export const Header = () => {
     }
   }, [isDarkMode]);
 
-  // Интерактивный звонок с локализованным подтверждением
+  // Закрываем языковое меню при клике вне его области
+  useEffect(() => {
+    if (!isLangOpen) return;
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        langMenuRef.current &&
+        !langMenuRef.current.contains(event.target as Node)
+      ) {
+        setIsLangOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isLangOpen]);
+
+  // Прямой звонок без блокирующего нативного confirm-диалога
   const handleCallClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    const confirmCall = window.confirm(t.header.callConfirm);
-    if (confirmCall) {
-      window.location.href = `tel:${CONTACTS.phoneRaw}`;
-    }
+    window.location.href = `tel:${CONTACTS.phoneRaw}`;
   };
 
-  // Кнопка "Консультация" — подсвечиваем телефон на 2.5s
+  // Кнопка "Консультация" — ведет к квизу и подсвечивает телефон
   const handleConsultationClick = () => {
+    const targetId = window.matchMedia("(min-width: 1024px)").matches
+      ? "quiz-desktop"
+      : "quiz-mobile";
+    document
+      .getElementById(targetId)
+      ?.scrollIntoView({ behavior: "smooth", block: "center" });
     setIsPhoneHighlighted(true);
     setTimeout(() => setIsPhoneHighlighted(false), 2500);
+    setIsOpen(false);
   };
 
   // Массив языков для селектора
@@ -185,7 +205,7 @@ export const Header = () => {
             {/* Контакты + Языки + Тема + Кнопка (Десктоп) */}
             <div className="hidden xl:flex items-center gap-6">
               {/* Переключатель языков (Десктоп) */}
-              <div className="relative">
+              <div className="relative" ref={langMenuRef}>
                 <button
                   onClick={() => setIsLangOpen(!isLangOpen)}
                   className="text-xs font-medium text-luxury-text/70 dark:text-cream-bg/70 hover:text-gold-hover dark:hover:text-gold-accent flex items-center gap-2 transition-colors cursor-pointer select-none"

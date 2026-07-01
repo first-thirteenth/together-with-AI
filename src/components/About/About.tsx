@@ -1,6 +1,6 @@
 import { Award, BookOpen, CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
-import anastasiaPhoto from "../../assets/anastasia.jpg";
+import anastasiaPhoto from "../../assets/anastasia.webp";
 import { useLang } from "../../context/useLang";
 import { AnimatedCounter } from "../AnimatedCounter/AnimatedCounter";
 

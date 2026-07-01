@@ -1861,4 +1861,3 @@ export const translations: Record<LanguageCode, TranslationSchema> = {
     },
   },
 };
-
